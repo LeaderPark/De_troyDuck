@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Stat
 {
-    public StateMachine stateMachine;
+    private float value;
 
     
 }

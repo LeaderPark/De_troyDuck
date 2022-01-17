@@ -7,14 +7,15 @@ public class Player : Entity
 
     public float moveSpeed;
 
+    private bool direction; // false left, true right
+
     void Start()
     {
         new Move(Processors, GetComponent<Rigidbody>());
-        new Animate(Processors, transform.GetComponent<Animator>());
+        new Animate(Processors, GetComponent<Animator>());
+        new Collision(Processors, GetComponent<BoxCollider>());
         direction = false;
     }
-
-    private bool direction; // false left, true right
 
     void Update()
     {
@@ -59,6 +60,6 @@ public class Player : Entity
         }
         
         GetProcessor("Move")?.AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, moveSpeed * Time.deltaTime});
-
+        GetProcessor("Collision")?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
     }
 }

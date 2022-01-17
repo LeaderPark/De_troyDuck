@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class ColliderTest : MonoBehaviour
+public class ColliderSetter : MonoBehaviour
 {
     public static EditorWindow window;
 
-    public const int width = 200;
+    public const int width = 300;
     public const int height = 100;
 
-    [MenuItem("ColliderTest/ColliderTest")]
+    [MenuItem("ColliderSetter/ColliderSetter")]
     public static void HierarchySearcher_Show()
     {
-        window = EditorWindow.GetWindow<ColliderTestWindow>();
-        window.titleContent = new GUIContent("ColliderTest");
+        window = EditorWindow.GetWindow<ColliderSetterWindow>();
+        window.titleContent = new GUIContent("ColliderSetter");
         Rect WindowRect = window.position;
         WindowRect.x = Screen.width;
         WindowRect.width = width;

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class ColliderTestWindow : EditorWindow
+public class ColliderSetterWindow : EditorWindow
 {
     private SpriteRenderer spriteRenderer;
     private BoxCollider collider;
 
     void OnGUI()
     {
-        spriteRenderer = EditorGUILayout.ObjectField(spriteRenderer, typeof(SpriteRenderer), true) as SpriteRenderer;
-        collider = EditorGUILayout.ObjectField(collider, typeof(BoxCollider), true) as BoxCollider;
-
+        GUILayout.Space(10);
+        spriteRenderer = EditorGUILayout.ObjectField("SpriteRenderer",spriteRenderer, typeof(SpriteRenderer), true) as SpriteRenderer;
+        collider = EditorGUILayout.ObjectField("Collider", collider, typeof(BoxCollider), true) as BoxCollider;
+        GUILayout.Space(20);
         if (GUILayout.Button("Setting"))
         {
             ColliderTesting();
@@ -25,9 +26,8 @@ public class ColliderTestWindow : EditorWindow
         Vector2[] vertices = spriteRenderer.sprite.vertices;
         Rect rect = spriteRenderer.sprite.rect;
         
-        Vector2 size = new Vector2(rect.width, rect.height) / spriteRenderer.sprite.pixelsPerUnit;
+        Vector2 size = new Vector2(rect.width, rect.height) / (spriteRenderer.sprite.pixelsPerUnit * 2);
 
-        Debug.Log(size.x + " " + size.y);
 
         float minX = vertices[0].x;
         float maxX = vertices[0].x;
@@ -53,7 +53,13 @@ public class ColliderTestWindow : EditorWindow
                 maxY = item.y;
             }
         }
+
+        Vector2 verSize = new Vector2(maxX - minX, maxY - minY);
         
-        collider.size = new Vector3(maxX - minX, maxY - minY, collider.size.z);
+        collider.size = new Vector3(verSize.x, verSize.y, collider.size.z);
+
+        Vector2 pivot = verSize / 2 + new Vector2(minX, minY);
+
+        collider.center = pivot;
     }
 }

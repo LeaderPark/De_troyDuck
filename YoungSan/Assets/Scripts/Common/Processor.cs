@@ -10,7 +10,7 @@ public class Processor
     public Processor(Hashtable owner)
     {
         commands = new List<(string, object[])>();
-        owner.Add(this.GetType().Name, this);
+        owner.Add(this.GetType(), this);
     }
 
     public void AddCommand(string command, object[] parameters)

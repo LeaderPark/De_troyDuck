@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class Stat
 {
-    private float value;
-
-    
+    protected int Value {get; set;}
 }

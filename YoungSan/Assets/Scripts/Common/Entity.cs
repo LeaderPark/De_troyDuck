@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Entity : MonoBehaviour
 {
-    private Hashtable processors;
-
     protected Hashtable Processors {get; private set;}
 
     
-    protected Processor GetProcessor(string processorName)
+    protected Processor GetProcessor(Type processor)
     {
-        if (Processors.Contains(processorName))
+        if (Processors.Contains(processor))
         {
-            return Processors[processorName] as Processor;
+            return Processors[processor] as Processor;
         }
         return null;
     }

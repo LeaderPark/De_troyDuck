@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Supporter : Entity
+public class Health : Stat
 {
     
 }

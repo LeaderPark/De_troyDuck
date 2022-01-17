@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Sprite Shadow
   m_Shader: {fileID: -6465566751694194690, guid: 2bdde78fa54572e4893fda5c539227f3, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _ALPHATEST_ON _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT
+  m_ShaderKeywords: _ALPHATEST_ON _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT
     _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -80,7 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_55cc122f9f58446f821098bb9c947960: 1
+    - Vector1_55cc122f9f58446f821098bb9c947960: 0.2
     - Vector1_b786627d100647a4a845f32f8c729248: 20
     - Vector1_f22f652d64504a44b9335cdac164dfe4: 0
     - _AddPrecomputedVelocity: 0

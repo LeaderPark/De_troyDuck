@@ -31,11 +31,11 @@ public class Player : Entity
         {
             if (direction)
             {
-                GetProcessor("Animate").AddCommand("Play", new object[]{"Idle_Right"});
+                GetProcessor("Animate")?.AddCommand("Play", new object[]{"Idle_Right"});
             }
             else
             {
-                GetProcessor("Animate").AddCommand("Play", new object[]{"Idle_Left"});
+                GetProcessor("Animate")?.AddCommand("Play", new object[]{"Idle_Left"});
             }
         }
         else
@@ -50,15 +50,15 @@ public class Player : Entity
             }
             if (direction)
             {
-                GetProcessor("Animate").AddCommand("Play", new object[]{"Move_Right"});
+                GetProcessor("Animate")?.AddCommand("Play", new object[]{"Move_Right"});
             }
             else
             {
-                GetProcessor("Animate").AddCommand("Play", new object[]{"Move_Left"});
+                GetProcessor("Animate")?.AddCommand("Play", new object[]{"Move_Left"});
             }
         }
         
-        GetProcessor("Move").AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, moveSpeed * Time.deltaTime});
+        GetProcessor("Move")?.AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, moveSpeed * Time.deltaTime});
 
     }
 }

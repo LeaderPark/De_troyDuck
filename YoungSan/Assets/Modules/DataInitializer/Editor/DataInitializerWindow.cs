@@ -5,7 +5,6 @@ using UnityEditor;
 
 public class DataInitializerWindow : EditorWindow
 {
-    DataCategory category;
     int selectIndex;
 
     Vector2 leftScrollViewPosition;
@@ -18,7 +17,6 @@ public class DataInitializerWindow : EditorWindow
 
     public DataInitializerWindow()
     {
-        category = DataCategory.Entity;
         selectIndex = 0;
         dataNameList = new List<string>();
         assetPath = "Asset/";
@@ -26,12 +24,6 @@ public class DataInitializerWindow : EditorWindow
     
     private void OnGUI()
     {
-        EditorGUILayout.BeginHorizontal(GUI.skin.box, GUILayout.Height(20));
-
-        TopCategory();
-
-        EditorGUILayout.EndHorizontal();
-
         EditorGUILayout.BeginHorizontal();
         
         LeftScrollView();
@@ -41,28 +33,6 @@ public class DataInitializerWindow : EditorWindow
         RightScrollView();
 
         EditorGUILayout.EndHorizontal();
-    }
-
-    private void TopCategory()
-    {
-        GUIStyle selectedStyle = GUI.skin.button;
-        foreach (var item in System.Enum.GetNames(typeof(DataCategory)))
-        {
-            if (category.ToString() == item)
-            {
-                selectedStyle = GUI.skin.box;
-            }
-            else
-            {
-                selectedStyle = GUI.skin.button;
-            }
-            if (GUILayout.Button(item, selectedStyle, GUILayout.Width(100)))
-            {
-                category = (DataCategory)System.Enum.Parse(typeof(DataCategory), item);
-                dataNameList.Clear();
-                selectIndex = 0;
-            }
-        }
     }
 
     private void LeftScrollView()
@@ -80,9 +50,9 @@ public class DataInitializerWindow : EditorWindow
 
     private void CreateNewData()
     {
-        if (GUILayout.Button("Create New " + category.ToString()))
+        if (GUILayout.Button("Create New Entity"))
         {
-            string name = "New " + category.ToString();
+            string name = "New Entity";
             dataNameList.Add(name);
 
             // GameObject obj = new GameObject(name);
@@ -97,7 +67,7 @@ public class DataInitializerWindow : EditorWindow
 
     private void RemoveData()
     {
-        if (GUILayout.Button("Remove " + category.ToString()))
+        if (GUILayout.Button("Remove Entity"))
         {
             if (dataNameList.Count > selectIndex)
             {
@@ -138,16 +108,10 @@ public class DataInitializerWindow : EditorWindow
 
         EditorGUILayout.BeginVertical();
 
-        EditorGUILayout.LabelField(category.ToString(), EditorStyles.whiteLargeLabel);
+        EditorGUILayout.LabelField("Entity", EditorStyles.whiteLargeLabel);
 
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.EndScrollView();
     }
-}
-
-public enum DataCategory
-{
-    Entity,
-    Skill
 }

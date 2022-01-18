@@ -9,4 +9,7 @@ public class EntityData : ScriptableObject
     public string entityName;
     [Space(10)]
     public Status status;
+    [Space(10)]
+    public GameObject prefab;
+    
 }

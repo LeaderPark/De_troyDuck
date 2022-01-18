@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Stat
 {
-    [SerializeField] protected StatCategory category;
-    [SerializeField] protected int value;
+    public StatCategory category;
+    public int minValue;
+    public int maxValue;
 }
 
 public enum StatCategory

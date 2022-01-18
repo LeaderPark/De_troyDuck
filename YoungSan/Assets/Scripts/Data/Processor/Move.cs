@@ -17,5 +17,10 @@ public class Move : Processor
 
         rigidbody.velocity = velocity;
     }
+
+    private void Stop()
+    {
+        rigidbody.velocity = Vector3.zero;
+    }
     
 }

@@ -5,19 +5,21 @@ using System;
 
 public class Entity : MonoBehaviour
 {
-    protected Hashtable Processors {get; private set;}
+    private Hashtable Processors {get; set;}
 
+    [SerializeField] private EntityData entityData;
+    public Clone clone;
     
-    protected Processor GetProcessor(Type processor)
+    public Processor GetProcessor(Type processor)
     {
-        if (Processors.Contains(processor))
+        if (Processors.ContainsKey(processor))
         {
             return Processors[processor] as Processor;
         }
         return null;
     }
 
-    protected void Process()
+    private void Process()
     {
         foreach (Processor processor in Processors.Values)
         {
@@ -27,7 +29,25 @@ public class Entity : MonoBehaviour
     
     void Awake()
     {
+        clone = new Clone(entityData);
         Processors = new Hashtable();
+        SettingProcessor();
+    }
+
+    private void SettingProcessor()
+    {
+        if (GetComponent<Animator>() != null)
+        {
+            new Animate(Processors, GetComponent<Animator>());
+        }
+        if (GetComponent<Rigidbody>() != null)
+        {
+            new Move(Processors, GetComponent<Rigidbody>());
+        }
+        if (GetComponent<BoxCollider>() != null)
+        {
+            new Collision(Processors, GetComponent<BoxCollider>());
+        }
     }
 
     void LateUpdate()

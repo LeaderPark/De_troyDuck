@@ -5,5 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class Status
 {
-    [SerializeField] protected List<Stat> stats;
+    public List<Stat> stats;
 }

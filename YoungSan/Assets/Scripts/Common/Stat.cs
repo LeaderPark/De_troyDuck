@@ -2,7 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Stat
 {
-    protected int Value {get; set;}
+    [SerializeField] protected StatCategory category;
+    [SerializeField] protected int value;
+}
+
+public enum StatCategory
+{
+    Health,
+    Attack,
+    Speed,
+    Stamina
 }

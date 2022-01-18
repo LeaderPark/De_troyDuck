@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class ColliderSetter : MonoBehaviour
+public class DataInitializer : MonoBehaviour
 {
     public static EditorWindow window;
 
-    public const int width = 300;
-    public const int height = 100;
+    public const int width = 800;
+    public const int height = 500;
 
-    [MenuItem("ColliderSetter/ColliderSetter")]
+    [MenuItem("DataInitializer/DataInitializer Wizard")]
     public static void HierarchySearcher_Show()
     {
-        window = EditorWindow.GetWindow<ColliderSetterWindow>();
-        window.titleContent = new GUIContent("ColliderSetter");
+        window = EditorWindow.GetWindow<DataInitializerWindow>();
+        window.titleContent = new GUIContent("DataInitializer Wizard");
         Rect WindowRect = window.position;
         WindowRect.x = Screen.width;
         WindowRect.width = width;
@@ -23,5 +23,4 @@ public class ColliderSetter : MonoBehaviour
         window.minSize = new Vector2(width, height / 10);
         window.maxSize = new Vector2(width, height);
     }
-    
 }

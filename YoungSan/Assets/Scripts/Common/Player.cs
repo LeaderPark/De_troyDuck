@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     private bool direction; // false left, true right
     private bool dontmove;
+    private int attackStack;
 
     private Entity entity;
 
@@ -28,6 +29,15 @@ public class Player : MonoBehaviour
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
+        if (inputX > 0)
+        {
+            direction = true;
+        }
+        else if (inputX < 0)
+        {
+            direction = false;
+        }
+
         if (!dontmove)
         {
             if (inputX == 0 && inputY == 0)
@@ -43,14 +53,6 @@ public class Player : MonoBehaviour
             }
             else
             {   
-                if (inputX > 0)
-                {
-                    direction = true;
-                }
-                else if (inputX < 0)
-                {
-                    direction = false;
-                }
                 if (direction)
                 {
                     entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Move_Right"});
@@ -61,53 +63,71 @@ public class Player : MonoBehaviour
                 }
             }
         
-            entity.GetProcessor(typeof(Move))?.AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * Time.deltaTime});
+            entity.GetProcessor(typeof(Move))?.AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
             entity.GetProcessor(typeof(Collision))?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (direction)
+
+            System.Action<float> attack2 = (System.Action<float>)((float time) => 
             {
-                entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Attack1_Right"});
+                if (time >= 0.2f)
+                {
+                    attackStack = 3;
+                    entity.GetProcessor(typeof(Move))?.AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
+                    if (direction)
+                    {
+                        entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Attack2_Right"});
+                    }
+                    else
+                    {
+                        entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Attack2_Left"});
+                    }
+                    dontmove = true;
+                }
+                else
+                {
+                    attackStack = 1;
+                }
+            });
+            if (attackStack == 0)
+            {
+                if (direction)
+                {
+                    entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Attack1_Right"});
+                }
+                else
+                {
+                    entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Attack1_Left"});
+                }
+                attackStack = 1;
+                entity.GetProcessor(typeof(Move))?.AddCommand("Stop", new object[]{});
+                dontmove = true;
             }
             else
             {
-                entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Attack1_Left"});
+                attackStack = 2;
+                entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClip", new object[]{"Attack1_Right", attack2});
+                entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClip", new object[]{"Attack1_Left", attack2});
             }
-            entity.GetProcessor(typeof(Move))?.AddCommand("Stop", new object[]{});
-            dontmove = true;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (direction)
-            {
-                entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Attack2_Right"});
-            }
-            else
-            {
-                entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Attack2_Left"});
-            }
-            entity.GetProcessor(typeof(Move))?.AddCommand("Stop", new object[]{});
-            dontmove = true;
         }
 
-        if (direction)
+        System.Action<float> end = (System.Action<float>)((float time) => 
         {
-            entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClipEnd", new object[]{"Attack1_Right", (System.Action)(() => {dontmove = false;})});
-        }
-        else
-        {
-            entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClipEnd", new object[]{"Attack1_Left", (System.Action)(() => {dontmove = false;})});
-        }
+            if (time >= 0.8f)
+            {
+                dontmove = false;
+                attackStack = 0;
+            }
+        });
 
-        if (direction)
+        if (attackStack != 2)
         {
-            entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClipEnd", new object[]{"Attack2_Right", (System.Action)(() => {dontmove = false;})});
+            entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClip", new object[]{"Attack1_Right", end});
+            entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClip", new object[]{"Attack1_Left", end});
         }
-        else
-        {
-            entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClipEnd", new object[]{"Attack2_Left", (System.Action)(() => {dontmove = false;})});
-        }
+        entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClip", new object[]{"Attack2_Right", end});
+        entity.GetProcessor(typeof(Animate))?.AddCommand("CheckClip", new object[]{"Attack2_Left", end});
     }
 }

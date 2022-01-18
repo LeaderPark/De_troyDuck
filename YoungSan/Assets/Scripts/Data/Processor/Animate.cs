@@ -27,15 +27,12 @@ public class Animate : Processor
         }
     }
 
-    void CheckClipEnd(string stateName, System.Action onClipEnd)
+    void CheckClip(string stateName, System.Action<float> onClipEnd)
     {
         var animatorState = animator.GetCurrentAnimatorStateInfo(0);
         if (animatorState.IsName(stateName))
         {
-            if (animatorState.normalizedTime >= 0.9f)
-            {
-                onClipEnd();
-            }
+            onClipEnd(animatorState.normalizedTime);
         }
     }
 

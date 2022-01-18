@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
             }
         }
         
-        entity.GetProcessor(typeof(Move))?.AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * Time.deltaTime});
+        entity.GetProcessor(typeof(Move))?.AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
         entity.GetProcessor(typeof(Collision))?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
     }
 

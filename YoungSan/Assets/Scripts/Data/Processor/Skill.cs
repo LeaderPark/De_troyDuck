@@ -2,9 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill : Processor
+
+namespace Processor
 {
-    public Skill(Hashtable owner) : base(owner)
+    public class Skill : Processor
     {
+
+        SkillSet skillSet;
+
+        public Skill(Hashtable owner, SkillSet skillSet) : base(owner)
+        {
+            this.skillSet = skillSet;
+        }
+
+        private void UseSkill(int index, bool isRight)
+        {
+            skillSet.ActiveSkill(index, isRight);
+        }
     }
 }

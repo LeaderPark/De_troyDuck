@@ -10,18 +10,18 @@ public class Entity : MonoBehaviour
     [SerializeField] private EntityData entityData;
     public Clone clone;
     
-    public Processor GetProcessor(Type processor)
+    public Processor.Processor GetProcessor(Type processor)
     {
         if (Processors.ContainsKey(processor))
         {
-            return Processors[processor] as Processor;
+            return Processors[processor] as Processor.Processor;
         }
         return null;
     }
 
     private void Process()
     {
-        foreach (Processor processor in Processors.Values)
+        foreach (Processor.Processor processor in Processors.Values)
         {
             processor.Process();
         }
@@ -38,15 +38,20 @@ public class Entity : MonoBehaviour
     {
         if (GetComponent<Animator>() != null)
         {
-            new Animate(Processors, GetComponent<Animator>());
+            new Processor.Animate(Processors, GetComponent<Animator>());
         }
         if (GetComponent<Rigidbody>() != null)
         {
-            new Move(Processors, GetComponent<Rigidbody>());
+            new Processor.Move(Processors, GetComponent<Rigidbody>());
         }
         if (GetComponent<BoxCollider>() != null)
         {
-            new Collision(Processors, GetComponent<BoxCollider>());
+            new Processor.Collision(Processors, GetComponent<BoxCollider>());
+            new Processor.HitBody(Processors, clone);
+        }
+        if (GetComponentInChildren<SkillSet>() != null)
+        {
+            new Processor.Skill(Processors, GetComponentInChildren<SkillSet>());
         }
     }
 

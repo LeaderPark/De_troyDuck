@@ -1,39 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
-public class Animate : Processor
+namespace Processor
 {
-    private Animator animator;
-    
-    public Animate(Hashtable owner, Animator animator) : base(owner)
+    public class Animate : Processor
     {
-        this.animator = animator;
-    }
-
-    private void Play(string stateName)
-    {
-        var animatorState = animator.GetCurrentAnimatorStateInfo(0);
-        if (animatorState.IsName(stateName))
+        private Animator animator;
+        
+        public Animate(Hashtable owner, Animator animator) : base(owner)
         {
-            if (animatorState.normalizedTime >= 0.9f)
+            this.animator = animator;
+        }
+
+        private void Play(string stateName)
+        {
+            if (Locker) return;
+            var animatorState = animator.GetCurrentAnimatorStateInfo(0);
+            if (animatorState.IsName(stateName))
+            {
+                if (animatorState.normalizedTime >= 0.9f)
+                {
+                    animator.Play(stateName);
+                }
+            }
+            else
             {
                 animator.Play(stateName);
             }
         }
-        else
-        {
-            animator.Play(stateName);
-        }
-    }
 
-    void CheckClip(string stateName, System.Action<float> onClipEnd)
-    {
-        var animatorState = animator.GetCurrentAnimatorStateInfo(0);
-        if (animatorState.IsName(stateName))
+        void CheckClip(string stateName, System.Action<float> onClipEnd)
         {
-            onClipEnd(animatorState.normalizedTime);
+            if (Locker) return;
+            var animatorState = animator.GetCurrentAnimatorStateInfo(0);
+            if (animatorState.IsName(stateName))
+            {
+                onClipEnd(animatorState.normalizedTime);
+            }
         }
+
+        protected override void StartLock()
+        {
+            animator.speed = 0f;
+        }
+        protected override void EndLock()
+        {
+            animator.speed = 1f;
+        }
+
     }
 
 }

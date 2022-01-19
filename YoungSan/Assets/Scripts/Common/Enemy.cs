@@ -25,11 +25,11 @@ public class Enemy : MonoBehaviour
         {
             if (direction)
             {
-                entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Idle_Right"});
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Idle_Right"});
             }
             else
             {
-                entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Idle_Left"});
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Idle_Left"});
             }
         }
         else
@@ -44,16 +44,16 @@ public class Enemy : MonoBehaviour
             }
             if (direction)
             {
-                entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Move_Right"});
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Move_Right"});
             }
             else
             {
-                entity.GetProcessor(typeof(Animate))?.AddCommand("Play", new object[]{"Move_Left"});
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Move_Left"});
             }
         }
         
-        entity.GetProcessor(typeof(Move))?.AddCommand("MoveToWard", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
-        entity.GetProcessor(typeof(Collision))?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
+        entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
     }
 
 }

@@ -6,6 +6,7 @@ public class Clone
 {
     public string Name {get; private set;}
     public Hashtable StatTable {get; private set;}
+    public Hashtable MaxStatTable {get; private set;}
 
 
     public int GetStat(StatCategory category)
@@ -18,18 +19,56 @@ public class Clone
         return 0;
     }
 
+    public int GetMaxStat(StatCategory category)
+    {
+        if (MaxStatTable.ContainsKey(category))
+        {
+            return (int)MaxStatTable[category];
+        }
+
+        return 0;
+    }
+
+    public void AddStat(StatCategory category, int value)
+    {
+        if (StatTable.ContainsKey(category))
+        {
+            StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] + value, 0, (int)MaxStatTable[category]);
+        }
+    }
+
+    public void SubStat(StatCategory category, int value)
+    {
+        if (StatTable.ContainsKey(category))
+        {
+            int temp = (int)StatTable[category] - value;
+            StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] - value, 0, (int)MaxStatTable[category]);
+            if (temp < 0)
+            {
+                Dead();
+            }
+        }
+    }
+
+    private void Dead()
+    {
+
+    }
+
     public Clone(EntityData data)
     {
         Name = data.entityName;
-        StatTable = new Hashtable();
+        MaxStatTable = new Hashtable();
         
         for (int i = 0; i < data.status.stats.Count; i++)
         {
             Stat temp = data.status.stats[i];
 
-            StatTable.Add(temp.category, Random.Range(temp.minValue, temp.maxValue + 1));
+            MaxStatTable.Add(temp.category, Random.Range(temp.minValue, temp.maxValue + 1));
         }
 
+
+        StatTable = new Hashtable(MaxStatTable);
         Debug.Log(string.Format("Name : {0}, HP : {1}, Atk : {2}, Speed : {3}, Stamina : {4}", Name, GetStat(StatCategory.Health), GetStat(StatCategory.Attack), GetStat(StatCategory.Speed), GetStat(StatCategory.Stamina)));
     }
 }

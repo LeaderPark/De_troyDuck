@@ -6,11 +6,3 @@ public class EnemyAI : MonoBehaviour
 {
     
 }
-
-
-public enum AIPersonality
-{
-    Aggressive,
-    Cowardly,
-    Sensible
-}

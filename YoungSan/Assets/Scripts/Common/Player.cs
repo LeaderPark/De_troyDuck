@@ -78,18 +78,20 @@ public class Player : MonoBehaviour
             {
                 if (time >= 0.2f)
                 {
+                    entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, direction, (System.Action)(() =>
+                    {
+                        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
+                        if (direction)
+                        {
+                            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack2_Right"});
+                        }
+                        else
+                        {
+                            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack2_Left"});
+                        }
+                        dontmove = true;
+                    })});
                     attackStack = 3;
-                    entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
-                    if (direction)
-                    {
-                        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack2_Right"});
-                    }
-                    else
-                    {
-                        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack2_Left"});
-                    }
-                    dontmove = true;
-                    entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, direction});
                 }
                 else
                 {
@@ -98,18 +100,20 @@ public class Player : MonoBehaviour
             });
             if (attackStack == 0)
             {
-                if (direction)
+                entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, direction, (System.Action)(() =>
                 {
-                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1_Right"});
-                }
-                else
-                {
-                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1_Left"});
-                }
-                entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, direction});
-                attackStack = 1;
-                entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
-                dontmove = true;
+                    if (direction)
+                    {
+                        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1_Right"});
+                    }
+                    else
+                    {
+                        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1_Left"});
+                    }
+                    entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
+                    attackStack = 1;
+                    dontmove = true;
+                })});
             }
             else
             {

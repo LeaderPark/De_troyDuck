@@ -16,17 +16,20 @@ public class SkillData : MonoBehaviour
 
     public string skillDamageForm;
 
+    public float coolTime;
+
     public SkillEffect skillEffect;
 
     public int CalculateSkillDamage()
     {
+        string temp = skillDamageForm;
         foreach (var item in System.Enum.GetNames(typeof(StatCategory)))
         {
-            skillDamageForm = skillDamageForm.Replace("{" + item + "}", entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
-            skillDamageForm = skillDamageForm.Replace("{Max" + item + "}", entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+            temp = temp.Replace("{" + item + "}", entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+            temp = temp.Replace("{Max" + item + "}", entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
         }
         
-        Expression ex = new Expression(skillDamageForm);
+        Expression ex = new Expression(temp);
         return (int)ex.Evaluate();
     }
 

@@ -29,8 +29,8 @@ public class Entity : MonoBehaviour
     
     void Awake()
     {
-        clone = new Clone(entityData);
         Processors = new Hashtable();
+        clone = new Clone(entityData);
         SettingProcessor();
     }
 

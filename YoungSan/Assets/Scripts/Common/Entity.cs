@@ -53,6 +53,10 @@ public class Entity : MonoBehaviour
         {
             new Processor.Skill(Processors, GetComponentInChildren<SkillSet>());
         }
+        if (GetComponentInChildren<SpriteRenderer>() != null)
+        {
+            new Processor.Sprite(Processors, GetComponent<SpriteRenderer>());
+        }
     }
 
     void LateUpdate()

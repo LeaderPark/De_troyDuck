@@ -12,7 +12,7 @@ namespace Processor
             this.collider = collider;
         }
 
-        private void SetCollider(Sprite sprite)
+        private void SetCollider(UnityEngine.Sprite sprite)
         {
             Vector2[] vertices = sprite.vertices;
             Rect rect = sprite.rect;

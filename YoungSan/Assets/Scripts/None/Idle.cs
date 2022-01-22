@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State
+public class Idle : State
 {
-    public abstract void Process();
+    public override void Process()
+    {
+        
+    }
 }

@@ -7,53 +7,39 @@ public class Enemy : MonoBehaviour
 
     private bool direction; // false left, true right
 
+    private EntityEvent entityEvent;
+
     private Entity entity;
 
     void Awake()
     {
         entity = GetComponent<Entity>();
+        entityEvent = GetComponent<EntityEvent>();
         direction = false;
     }
     
     void Update()
     {
+        Process();
+    }
 
+
+    private void Process()
+    {
         float inputX = Random.Range(-1, 2);
         float inputY = Random.Range(-1, 2);
-        
-        if (inputX == 0 && inputY == 0)
+
+        if (inputX > 0)
         {
-            if (direction)
-            {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Idle_Right"});
-            }
-            else
-            {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Idle_Left"});
-            }
+            direction = true;
         }
-        else
-        {   
-            if (inputX > 0)
-            {
-                direction = true;
-            }
-            else if (inputX < 0)
-            {
-                direction = false;
-            }
-            if (direction)
-            {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Move_Right"});
-            }
-            else
-            {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Move_Left"});
-            }
+        else if (inputX < 0)
+        {
+            direction = false;
         }
-        
-        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
-        entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
+
+        entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
+
     }
 
 }

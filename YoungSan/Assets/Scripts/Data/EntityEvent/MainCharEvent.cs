@@ -71,7 +71,7 @@ public class MainCharEvent : EntityEvent
         });
         System.Action<float> attack3 = (System.Action<float>)((float time) => 
         {
-            if (time >= 0.5f)
+            if (time >= 0.2f)
             {
                 entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{2, direction, (System.Action)(() =>
                 {

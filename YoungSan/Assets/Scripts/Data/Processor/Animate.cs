@@ -31,9 +31,35 @@ namespace Processor
             }
         }
 
+        private void PlayNoLock(string stateName)
+        {
+            animator.speed = 1f;
+            var animatorState = animator.GetCurrentAnimatorStateInfo(0);
+            if (animatorState.IsName(stateName))
+            {
+                if (animatorState.normalizedTime >= 0.9f)
+                {
+                    animator.Play(stateName);
+                }
+            }
+            else
+            {
+                animator.Play(stateName);
+            }
+        }
+
         void CheckClip(string stateName, System.Action<float> onClipEnd)
         {
             if (Locker) return;
+            var animatorState = animator.GetCurrentAnimatorStateInfo(0);
+            if (animatorState.IsName(stateName))
+            {
+                onClipEnd(animatorState.normalizedTime);
+            }
+        }
+
+        void CheckClipNoLock(string stateName, System.Action<float> onClipEnd)
+        {
             var animatorState = animator.GetCurrentAnimatorStateInfo(0);
             if (animatorState.IsName(stateName))
             {

@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State
+
+namespace StateMachine
 {
-    public abstract void Process();
+    public abstract class State
+    {
+        public abstract State Process(StateMachine stateMachine);
+    }
 }

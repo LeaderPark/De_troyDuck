@@ -7,7 +7,7 @@ public class Entity : MonoBehaviour
 {
     private Hashtable Processors {get; set;}
 
-    [SerializeField] private EntityData entityData;
+    public EntityData entityData;
     public Clone clone;
     
     public Processor.Processor GetProcessor(Type processor)

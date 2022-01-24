@@ -10,6 +10,10 @@ public class EntityData : ScriptableObject
     [Space(10)]
     public Status status;
     [Space(10)]
+    public float activityRadius;
+    [Space(10)]
+    public float searchRadius;
+    [Space(10)]
     public GameObject prefab;
     
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704c3dfa0e410614b8e6af1fa7ed2afe, type: 3}
+  m_Name: TestEnemy
+  m_EditorClassIdentifier: 
+  minMoveTime: 0.2
+  maxMoveTime: 0.6
+  minIdleTime: 0.2
+  maxIdleTime: 0.4
+  homeTime: 5
+  searchDelay: 1

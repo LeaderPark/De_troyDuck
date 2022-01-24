@@ -5,11 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    private bool direction; // false left, true right
+    public bool direction {get; set;} // false left, true right
+    public Vector2 spawnPoint {get; set;}
 
-    private EntityEvent entityEvent;
+    public EntityEvent entityEvent {get; private set;}
 
-    private Entity entity;
+    public Entity entity {get; private set;}
 
     void Awake()
     {
@@ -17,29 +18,15 @@ public class Enemy : MonoBehaviour
         entityEvent = GetComponent<EntityEvent>();
         direction = false;
     }
-    
-    void Update()
+
+    void OnDrawGizmosSelected()
     {
-        Process();
-    }
-
-
-    private void Process()
-    {
-        float inputX = Random.Range(-1, 2);
-        float inputY = Random.Range(-1, 2);
-
-        if (inputX > 0)
-        {
-            direction = true;
-        }
-        else if (inputX < 0)
-        {
-            direction = false;
-        }
-
-        entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
-
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(spawnPoint, GetComponent<Entity>().entityData.activityRadius);
+        Gizmos.color = Color.blue;
+        Vector3 temp = transform.position;
+        temp.y = 0;
+        Gizmos.DrawWireSphere(temp, GetComponent<Entity>().entityData.searchRadius);
     }
 
 }

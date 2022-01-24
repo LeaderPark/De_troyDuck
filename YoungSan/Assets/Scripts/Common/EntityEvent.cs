@@ -5,9 +5,9 @@ using UnityEngine;
 public class EntityEvent : MonoBehaviour
 {
     public Entity entity;
-    public void CallEvent(EventCategory skillCategory, object[] parameters)
+    public void CallEvent(EventCategory eventCategory, object[] parameters)
     {
-        this.GetType().GetMethod(string.Concat("Call", skillCategory.ToString()), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Invoke(this, parameters);
+        this.GetType().GetMethod(string.Concat("Call", eventCategory.ToString()), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Invoke(this, parameters);
     }
 
     protected virtual void Awake()

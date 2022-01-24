@@ -9,7 +9,7 @@ public class SkillData : MonoBehaviour
     public HitBox[] LeftHitBox;
     public HitBox[] RightHitBox;
 
-    [HideInInspector] public Entity entity;
+    public Entity entity {get; set;}
 
     public float startTime;
     public float time;

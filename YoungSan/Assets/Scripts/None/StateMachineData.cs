@@ -19,4 +19,9 @@ public class StateMachineData : ScriptableObject
 
     [Space(20)]
     public float searchDelay;
+    
+    [Space(10)]
+    public float activityRadius;
+    [Space(10)]
+    public float searchRadius;
 }

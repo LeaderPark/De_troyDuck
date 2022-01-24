@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    [HideInInspector]
-    public SkillData skillData;
+    public SkillData skillData {get; set;}
 
     void OnTriggerEnter(Collider other)
     {

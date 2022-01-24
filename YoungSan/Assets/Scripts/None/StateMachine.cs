@@ -15,7 +15,7 @@ namespace StateMachine
         public StateMachineData stateMachineData;
         
 
-        public float searchTimeStack;
+        public float searchTimeStack {get; set;}
 
         void Awake()
         {
@@ -25,6 +25,9 @@ namespace StateMachine
             stateTable.Add(typeof(Idle), new Idle());
             stateTable.Add(typeof(Move), new Move());
             stateTable.Add(typeof(Pursue), new Pursue());
+            stateTable.Add(typeof(SkillCheck), new SkillCheck());
+            stateTable.Add(typeof(Attack), new Attack());
+            stateTable.Add(typeof(Distance), new Distance());
             state = GetStateTable(typeof(Idle));
         }
 

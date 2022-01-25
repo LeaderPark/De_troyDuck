@@ -26,6 +26,7 @@ namespace StateMachine
                 Vector3 dir = new Vector3(dirVec.x, 0, dirVec.y);
                 if (Physics.BoxCast(pos - dir.normalized * 0.1f, boxCollider.size / 2, dir, Quaternion.identity, 0.5f, LayerMask.GetMask(new string[]{"Wall"})))
                 {
+                    start = false;
                     return stateMachine.GetStateTable(typeof(Move));
                 }
 

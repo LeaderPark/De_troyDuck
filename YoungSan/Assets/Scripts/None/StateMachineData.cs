@@ -24,4 +24,6 @@ public class StateMachineData : ScriptableObject
     public float activityRadius;
     [Space(10)]
     public float searchRadius;
+    [Space(10)]
+    public float distanceRadius;
 }

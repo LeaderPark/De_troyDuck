@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
         Vector3 temp = transform.position;
         temp.y = 0;
         Gizmos.DrawWireSphere(temp, GetComponent<StateMachine.StateMachine>().stateMachineData.searchRadius);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(temp, GetComponent<StateMachine.StateMachine>().stateMachineData.distanceRadius);
     }
 
 }

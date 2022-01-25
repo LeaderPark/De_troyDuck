@@ -59,9 +59,9 @@ namespace StateMachine
                 {
                     start = true;
                     timeStack = 0;
-                    moveDirX = Random.Range(-1f, 1.01f);
-                    moveDirY = Random.Range(-1f, 1.01f);
-                    moveTime = Random.Range(stateMachine.stateMachineData.minMoveTime, stateMachine.stateMachineData.maxMoveTime + 0.1f);
+                    moveDirX = Random.Range(-1f, 1f);
+                    moveDirY = Random.Range(-1f, 1f);
+                    moveTime = Random.Range(stateMachine.stateMachineData.minMoveTime, stateMachine.stateMachineData.maxMoveTime);
                 }
                 if (start)
                 {

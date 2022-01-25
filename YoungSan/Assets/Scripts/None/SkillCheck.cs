@@ -10,18 +10,25 @@ namespace StateMachine
         public override State Process(StateMachine stateMachine)
         {
 
-            foreach (var item in stateMachine.Enemy.skillArea.skillAreaDatas)
+            foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
             {
-                if (item.inLeftSkillArea || item.inRightSkillArea)
+                foreach (var item in skillAreaBundle.skillAreaDatas)
                 {
-                    float attackQuest = Random.Range(0, 10);
-                    if (attackQuest < 5)
+                    if (item.inLeftSkillArea || item.inRightSkillArea)
                     {
-                        return stateMachine.GetStateTable(typeof(Attack));
-                    }
-                    else
-                    {
-                        return stateMachine.GetStateTable(typeof(Distance));
+                        if (Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) < stateMachine.stateMachineData.distanceRadius)
+                        {
+                            return stateMachine.GetStateTable(typeof(Distance));
+                        }
+                        float attackQuest = Random.Range(0, 10);
+                        if (attackQuest < 8)
+                        {
+                            return stateMachine.GetStateTable(typeof(Attack));
+                        }
+                        else
+                        {
+                            return stateMachine.GetStateTable(typeof(Distance));
+                        }
                     }
                 }
             }

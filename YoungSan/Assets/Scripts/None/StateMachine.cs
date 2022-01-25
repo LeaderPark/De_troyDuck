@@ -34,6 +34,7 @@ namespace StateMachine
         void Update()
         {
             state = state.Process(this);
+            Debug.Log(state.GetType().Name);
         }
 
         public State GetStateTable(System.Type type)

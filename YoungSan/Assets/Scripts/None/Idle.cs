@@ -31,7 +31,7 @@ namespace StateMachine
             {
                 start = true;
                 timeStack = 0;
-                idleTime = Random.Range(stateMachine.stateMachineData.minIdleTime, stateMachine.stateMachineData.maxIdleTime + 0.1f);
+                idleTime = Random.Range(stateMachine.stateMachineData.minIdleTime, stateMachine.stateMachineData.maxIdleTime);
             }
             if (start)
             {

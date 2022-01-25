@@ -6,10 +6,10 @@ public class MainChar_Attack3 : SkillEffect
 {
     public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity)
     {
-        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{(hitEntity.transform.position - attackEntity.transform.position).normalized, 1});
         hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{3f});
         hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{3f});
         hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[]{3f});
+        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{(hitEntity.transform.position - attackEntity.transform.position).normalized, 1});
         StartCoroutine(DamageColor(hitEntity?.GetComponent<SpriteRenderer>()));
     }
 

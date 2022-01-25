@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    [HideInInspector]
-    public SkillData skillData;
+    public SkillData skillData {get; set;}
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != null)
         {
             Entity entity = other.GetComponent<Entity>();
-            skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity);
-            entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
+            if (skillData.entity.gameObject.layer != entity?.gameObject.layer)
+            {
+                skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity);
+                entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
+            }
         }
     }
 }

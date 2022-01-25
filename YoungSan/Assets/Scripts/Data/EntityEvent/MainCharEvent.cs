@@ -45,9 +45,9 @@ public class MainCharEvent : EntityEvent
             }
         });
 
-        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClip", new object[]{"Attack1", end});
-        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClip", new object[]{"Attack2", end});
-        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClip", new object[]{"Attack3", end});
+        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack1", end});
+        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack2", end});
+        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack3", end});
     }
     private void CallDefaultAttack(float inputX, float inputY, bool direction)
     {
@@ -101,12 +101,12 @@ public class MainCharEvent : EntityEvent
         else if (attackStack == 1)
         {
             attackStack = 2;
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClip", new object[]{"Attack1", attack2});
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack1", attack2});
         }
         else if (attackStack == 3)
         {
             attackStack = 4;
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClip", new object[]{"Attack2", attack3});
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack2", attack3});
         }
     }
     private void CallSkill1()

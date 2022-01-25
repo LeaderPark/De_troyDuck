@@ -6,7 +6,7 @@ using UnityEngine;
 public class SkillSet : MonoBehaviour
 {
     public SkillData[] skillDatas;
-    public float[] skillCoolTimes;
+    public float[] skillCoolTimes {get; set;}
     private bool[] skillCools;
 
     void Awake()

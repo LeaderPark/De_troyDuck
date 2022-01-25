@@ -6,10 +6,9 @@ public class MainChar_Attack1 : SkillEffect
 {
     public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity)
     {
-        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{(hitEntity.transform.position - attackEntity.transform.position).normalized, 1});
-        hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.5f});
-        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.5f});
-        hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[]{0.5f});
+        hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.2f});
+        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.2f});
+        hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[]{0.2f});
         StartCoroutine(DamageColor(hitEntity?.GetComponent<SpriteRenderer>()));
     }
 
@@ -17,9 +16,9 @@ public class MainChar_Attack1 : SkillEffect
     {
         if (sr != null)
         {
-            sr.color -= (Color.white - Color.red) / 3;
+            sr.color -= (Color.white - Color.red) / 5;
             yield return new WaitForSeconds(0.5f);
-            sr.color += (Color.white - Color.red) / 3;
+            sr.color += (Color.white - Color.red) / 5;
         }
     }
 }

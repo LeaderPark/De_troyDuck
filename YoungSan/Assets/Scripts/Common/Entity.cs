@@ -55,6 +55,7 @@ public class Entity : MonoBehaviour
     public void Rebirth()
     {
         isDead = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void SettingProcessor()

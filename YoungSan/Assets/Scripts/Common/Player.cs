@@ -38,10 +38,12 @@ public class Player : MonoBehaviour
             direction = false;
         }
 
+        bool attackPhase = false;
 
         //if (Input.GetMouseButtonDown(0))
         if(Input.GetKeyDown(KeyCode.Z))
         {
+            attackPhase = true;
             entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { inputX, inputY, direction });
             //RaycastHit hit;
             //if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[]{"Ground"})))
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
 			{
+                attackPhase = true;
 				Vector3 mousePos = hit.point - transform.position;
 				bool attackDirection = (mousePos.x > 0f);
 				direction = attackDirection;
@@ -64,7 +67,7 @@ public class Player : MonoBehaviour
 			}
 		}
 
-        entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
+        if (!attackPhase) entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
     }
     
     void OnDrawGizmosSelected()

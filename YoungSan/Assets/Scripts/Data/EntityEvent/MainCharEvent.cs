@@ -106,6 +106,10 @@ public class MainCharEvent : EntityEvent
                 StartCoroutine(endCheck);
             }
         }
+        else
+        {
+            Debug.Log("df");
+        }
     }
 
     private IEnumerator AttackVelocityTime(float time)

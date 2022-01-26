@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
             direction = false;
         }
 
+        entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
 
         //if (Input.GetMouseButtonDown(0))
         if(Input.GetKeyDown(KeyCode.Z))
@@ -63,8 +64,6 @@ public class Player : MonoBehaviour
 				entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { mousePos.x, mousePos.z, attackDirection });
 			}
 		}
-
-        entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
     }
     
     void OnDrawGizmosSelected()

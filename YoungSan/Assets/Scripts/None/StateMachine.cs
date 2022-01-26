@@ -50,11 +50,17 @@ namespace StateMachine
         void OnDrawGizmos()
         {
             Player player = GameObject.FindObjectOfType<Player>();
-            Enemy enemy = GetComponent<Enemy>();
-            Vector3 pos = enemy.transform.position;
-            pos.y = 0;
-            Vector2 dirVec = new Vector2(player.transform.position.x, player.transform.position.z) - new Vector2(enemy.transform.position.x, enemy.transform.position.z);
-            Gizmos.DrawRay(new Ray(pos, new Vector3(dirVec.x, 0, dirVec.y)));
+            if (player != null)
+            {
+                Enemy enemy = GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    Vector3 pos = enemy.transform.position;
+                    pos.y = 0;
+                    Vector2 dirVec = new Vector2(player.transform.position.x, player.transform.position.z) - new Vector2(enemy.transform.position.x, enemy.transform.position.z);
+                    Gizmos.DrawRay(new Ray(pos, new Vector3(dirVec.x, 0, dirVec.y)));
+                }
+            }
         }
 
         void OnDrawGizmosSelected()

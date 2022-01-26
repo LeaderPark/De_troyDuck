@@ -41,7 +41,7 @@ public class MainCharEvent : EntityEvent
         {
             System.Action<bool, float> attack2 = (System.Action<bool, float>)((bool transition, float time) => 
             {
-                if (!transition && time >= 0.4f)
+                if (!transition && time >= 0.4f || transition)
                 {
                     entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, new Vector2(inputX, inputY), direction, (System.Action)(() =>
                     {
@@ -51,7 +51,7 @@ public class MainCharEvent : EntityEvent
                         StartCoroutine(AttackVelocityTime(0.08f));
                         dontmove = true;
                     })});
-                    attackStack = 3;
+                    attackStack = 2;
                 }
                 else
                 {
@@ -60,7 +60,7 @@ public class MainCharEvent : EntityEvent
             });
             System.Action<bool, float> attack3 = (System.Action<bool, float>)((bool transition, float time) => 
             {
-                if (!transition && time >= 0.2f)
+                if (!transition && time >= 0.2f || transition)
                 {
                     entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{2, new Vector2(inputX, inputY), direction, (System.Action)(() =>
                     {
@@ -70,11 +70,11 @@ public class MainCharEvent : EntityEvent
                         StartCoroutine(AttackVelocityTime(0.08f));
                         dontmove = true;
                     })});
-                    attackStack = 5;
+                    attackStack = 3;
                 }
                 else
                 {
-                    attackStack = 3;
+                    attackStack = 2;
                 }
             });
             if (attackStack == 0)
@@ -85,18 +85,16 @@ public class MainCharEvent : EntityEvent
                     entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1"});
                     entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
                     StartCoroutine(AttackVelocityTime(0.08f));
-                    attackStack = 1;
                     dontmove = true;
                 })});
+                attackStack = 1;
             }
             else if (attackStack == 1)
             {
-                attackStack = 2;
                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack1", attack2});
             }
-            else if (attackStack == 3)
+            else if (attackStack == 2)
             {
-                attackStack = 4;
                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack2", attack3});
             }
 
@@ -106,17 +104,11 @@ public class MainCharEvent : EntityEvent
                 StartCoroutine(endCheck);
             }
         }
-        else
-        {
-            Debug.Log("df");
-        }
     }
 
     private IEnumerator AttackVelocityTime(float time)
     {
-        dontAttack = true;
         yield return new WaitForSeconds(time);
-        dontAttack = false;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(0, 0, 0).normalized, 0});
     }
 
@@ -136,7 +128,7 @@ public class MainCharEvent : EntityEvent
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack1", end});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack2", end});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack3", end});
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return null;
         }
     }
 

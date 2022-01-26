@@ -14,8 +14,8 @@ public class HitBox : MonoBehaviour
             if (skillData.entity.gameObject.layer != entity?.gameObject.layer)
             {
                 entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
-                skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);
                 entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
+                skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);
             }
         }
     }

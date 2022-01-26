@@ -38,12 +38,10 @@ public class Player : MonoBehaviour
             direction = false;
         }
 
-        bool attackPhase = false;
 
         //if (Input.GetMouseButtonDown(0))
         if(Input.GetKeyDown(KeyCode.Z))
         {
-            attackPhase = true;
             entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { inputX, inputY, direction });
             //RaycastHit hit;
             //if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[]{"Ground"})))
@@ -59,15 +57,46 @@ public class Player : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
 			{
-                attackPhase = true;
 				Vector3 mousePos = hit.point - transform.position;
 				bool attackDirection = (mousePos.x > 0f);
 				direction = attackDirection;
 				entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { mousePos.x, mousePos.z, attackDirection });
 			}
 		}
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (entity.isDead) return;
+			RaycastHit hit;
+			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Enemy" })))
+			{
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Idle", (System.Action<bool, float>)((bool transition, float time)=>
+                {
+                    if (!transition)
+                    {
+                        if (hit.collider.gameObject.GetComponent<Entity>().isDead)
+                        {
+                            Vector3 mousePos = hit.point - transform.position;
+                            if (Vector2.Distance(new Vector2(hit.collider.transform.position.x, hit.collider.transform.position.z), new Vector2(transform.position.x, transform.position.z)) < 6)
+                            {
+                                Entity hitEntity = hit.collider.gameObject.GetComponent<Entity>();
+                                hitEntity.Rebirth();
+                                hitEntity.gameObject.AddComponent<Player>();
 
-        if (!attackPhase) entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
+                                hitEntity.clone.SetStat(StatCategory.Health, hitEntity.clone.GetMaxStat(StatCategory.Health));
+                                hitEntity.clone.SetStat(StatCategory.Attack, hitEntity.clone.GetMaxStat(StatCategory.Attack));
+                                hitEntity.clone.SetStat(StatCategory.Speed, hitEntity.clone.GetMaxStat(StatCategory.Speed));
+                                hitEntity.gameObject.layer = 6;
+                                FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().Follow = hitEntity.transform;
+                                entity.gameObject.layer = 7;
+                                entity.clone.SubStat(StatCategory.Health, entity.clone.GetStat(StatCategory.Health));
+                            }
+                        }
+                    }
+                })});
+			}
+		}
+
+        entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
     }
     
     void OnDrawGizmosSelected()

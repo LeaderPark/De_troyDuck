@@ -8,6 +8,8 @@ public class Clone
     public Hashtable StatTable {get; private set;}
     public Hashtable MaxStatTable {get; private set;}
 
+    private Entity entity {get; set;}
+
 
     public int GetStat(StatCategory category)
     {
@@ -43,20 +45,24 @@ public class Clone
         {
             int temp = (int)StatTable[category] - value;
             StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] - value, 0, (int)MaxStatTable[category]);
-            if (temp < 0)
+            if (category == StatCategory.Health && temp <= 0)
             {
-                Dead();
+                entity.Dead();
             }
         }
     }
 
-    private void Dead()
+    public void SetStat(StatCategory category, int value)
     {
-
+        if (StatTable.ContainsKey(category))
+        {
+            StatTable[category] = (int)Mathf.Clamp(value, 0, (int)MaxStatTable[category]);
+        }
     }
 
-    public Clone(EntityData data)
+    public Clone(Entity entity, EntityData data)
     {
+        this.entity = entity;
         Name = data.entityName;
         MaxStatTable = new Hashtable();
         

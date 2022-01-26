@@ -29,27 +29,28 @@ namespace Processor
             }
             commands.Clear();
 
-            if (LockTimer != null && !Locker)
+            if (Locker)
             {
-                LockTimer = null;
-                EndLock();
+                LockTimer -= Time.deltaTime;
+                if (LockTimer <= 0)
+                {
+                    Locker = false;
+                    EndLock();
+                }
             }
         }
         
         protected bool Locker;
-        
-        private Timer LockTimer;
+        private float LockTimer;
 
         protected void Lock(float time)
         {
-            if (LockTimer != null) LockTimer.Dispose();
-            Locker = true;
-            StartLock();
-            LockTimer = new Timer((o) =>
+            if (!Locker)
             {
-                Locker = false;
-                LockTimer.Dispose();
-            }, null, (int)(time * 1000), Timeout.Infinite);
+                LockTimer = time;
+                StartLock();
+                Locker = true;
+            }
         }
 
         protected virtual void StartLock()

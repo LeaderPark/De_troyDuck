@@ -15,9 +15,9 @@ namespace Processor
             this.skillSet = skillSet;
         }
 
-        private void UseSkill(int index, bool isRight, System.Action action)
+        private void UseSkill(int index, Vector2 direction, bool isRight, System.Action action)
         {
-            skillSet.ActiveSkill(index, isRight, action);
+            skillSet.ActiveSkill(index, direction, isRight, action);
         }
 
         private void StopSkill()

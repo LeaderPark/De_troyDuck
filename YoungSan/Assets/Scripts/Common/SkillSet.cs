@@ -28,7 +28,7 @@ public class SkillSet : MonoBehaviour
         }
     }
 
-    public void ActiveSkill(int index, bool isRight, System.Action action)
+    public void ActiveSkill(int index, Vector2 direction, bool isRight, System.Action action)
     {
         if (skillDatas.Length > index)
         {
@@ -36,6 +36,7 @@ public class SkillSet : MonoBehaviour
             CoolDown(index);
             action();
             SkillData data = skillDatas[index];
+            data.direction = direction;
             StartCoroutine(CheckActiveTime(data, isRight));
         }
     }

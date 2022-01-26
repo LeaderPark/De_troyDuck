@@ -43,7 +43,7 @@ public class MainCharEvent : EntityEvent
             {
                 if (!transition && time >= 0.2f)
                 {
-                    entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, direction, (System.Action)(() =>
+                    entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, new Vector2(inputX, inputY), direction, (System.Action)(() =>
                     {
                         entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                         entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack2"});
@@ -62,7 +62,7 @@ public class MainCharEvent : EntityEvent
             {
                 if (!transition && time >= 0.2f)
                 {
-                    entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{2, direction, (System.Action)(() =>
+                    entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{2, new Vector2(inputX, inputY), direction, (System.Action)(() =>
                     {
                         entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                         entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack3"});
@@ -79,7 +79,7 @@ public class MainCharEvent : EntityEvent
             });
             if (attackStack == 0)
             {
-                entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, direction, (System.Action)(() =>
+                entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, new Vector2(inputX, inputY), direction, (System.Action)(() =>
                 {
                     entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                     entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1"});

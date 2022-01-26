@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainChar_Attack3 : SkillEffect
 {
-    public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity)
+    public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
     {
         hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.1f});
         hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.1f});
@@ -12,8 +12,7 @@ public class MainChar_Attack3 : SkillEffect
         StartCoroutine(DamageColor(hitEntity?.GetComponent<SpriteRenderer>()));
         if (hitEntity != null)
         {
-            Vector3 dir = hitEntity.transform.position - attackEntity.transform.position;
-            dir.y = 0;
+            Vector3 dir = new Vector3(direction.x, 0, direction.y);
             StartCoroutine(KnockBack(hitEntity, (dir).normalized, 0.1f));
         }
     }

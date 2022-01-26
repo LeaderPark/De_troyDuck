@@ -6,5 +6,5 @@ public abstract class SkillEffect : MonoBehaviour
 {
     
 
-    public abstract void ShowSkillEffect(Entity attackEntity, Entity hitEntity);
+    public abstract void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction);
 }

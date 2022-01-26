@@ -20,6 +20,8 @@ public class SkillData : MonoBehaviour
 
     public SkillEffect skillEffect;
 
+    public Vector2 direction;
+
     public int CalculateSkillDamage()
     {
         string temp = skillDamageForm;

@@ -2013,7 +2013,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2554,7 +2554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539464866}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: -7.5, y: 108.52788, z: -157.66054}
+  m_LocalPosition: {x: -7.5, y: 108.527885, z: -157.66046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 202704643}
@@ -5017,7 +5017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472755539}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: -7.5, y: 108.52788, z: -157.66054}
+  m_LocalPosition: {x: -7.5, y: 108.527885, z: -157.66046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 624607897}
@@ -10740,6 +10740,7 @@ GameObject:
   - component: {fileID: 7199667814661071588}
   - component: {fileID: 9162142744626262371}
   - component: {fileID: 7199667814661071584}
+  - component: {fileID: 7199667814661071583}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -10747,6 +10748,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7199667814661071583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199667814661071582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f28f40f79af9448bf51099f66280e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateMachineData: {fileID: 11400000, guid: 898b76716ceb34946b359450d2a8ae1a, type: 2}
 --- !u!114 &7199667814661071584
 MonoBehaviour:
   m_ObjectHideFlags: 0

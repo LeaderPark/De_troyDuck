@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1289081298133878148, guid: 31166d1de06a5c24bb4d5a78cf39f738, type: 3}
       propertyPath: m_Name
-      value: chat test 2
+      value: chat test2
       objectReference: {fileID: 0}
     - target: {fileID: 1289081298133878149, guid: 31166d1de06a5c24bb4d5a78cf39f738, type: 3}
       propertyPath: m_FlipX
@@ -1280,7 +1280,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBB34\uC57C\uD638"
+  m_Text: 
 --- !u!222 &793902015
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1456,7 +1456,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1289081298133878144, guid: 31166d1de06a5c24bb4d5a78cf39f738, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 31166d1de06a5c24bb4d5a78cf39f738, type: 3}
 --- !u!1 &1003133947 stripped
 GameObject:
@@ -1482,17 +1483,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1003133949 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1289081298133878144, guid: 31166d1de06a5c24bb4d5a78cf39f738, type: 3}
-  m_PrefabInstance: {fileID: 1003133945}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003133947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1003133952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1838,10 +1828,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1791269403}
   - component: {fileID: 1791269404}
+  - component: {fileID: 1791269407}
   - component: {fileID: 1791269405}
   - component: {fileID: 1791269406}
   - component: {fileID: 1791269401}
-  - component: {fileID: 1791269402}
   m_Layer: 0
   m_Name: cut 1
   m_TagString: Untagged
@@ -1862,21 +1852,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talkBoxTrm: {fileID: 79878886}
-  Talker: {fileID: 1003133947}
-  dialogueName: 
+  talker: {fileID: 1003133947}
   dialogueEnd: 0
---- !u!114 &1791269402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791269400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76559ea5314cc646bc8d31c3565b0b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1791269403
 Transform:
   m_ObjectHideFlags: 0
@@ -1967,19 +1944,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1791269401}
-          m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
-          m_MethodName: TalkStart
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: dsa
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1791269401}
@@ -2006,7 +1971,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9db538226266947a1606afcc3dc8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 1003133949}
+  entity: {fileID: 0}
+--- !u!114 &1791269407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791269400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65f3c755371d074186a10a70416a20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1901079841
 GameObject:
   m_ObjectHideFlags: 0

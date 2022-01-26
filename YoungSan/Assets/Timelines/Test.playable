@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Version: 3
   m_AnimClip: {fileID: 0}
   m_Locked: 0
-  m_Muted: 0
+  m_Muted: 1
   m_CustomPlayableFullTypename: 
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 2887707142269228994}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Version: 3
   m_AnimClip: {fileID: 0}
   m_Locked: 0
-  m_Muted: 0
+  m_Muted: 1
   m_CustomPlayableFullTypename: 
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 2887707142269228994}
@@ -153,6 +153,22 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -5020320863537136912}
+    - {fileID: 469024717229030834}
+--- !u!114 &469024717229030834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141e0bfc1825e3b4b99c1a7f6b765491, type: 3}
+  m_Name: Dialogue Marker
+  m_EditorClassIdentifier: 
+  m_Time: 2
+  dialogueFileName: testDialogue
+  wait: 0
 --- !u!114 &1724610440053735351
 MonoBehaviour:
   m_ObjectHideFlags: 1

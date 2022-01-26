@@ -41,7 +41,7 @@ public class MainCharEvent : EntityEvent
         {
             System.Action<bool, float> attack2 = (System.Action<bool, float>)((bool transition, float time) => 
             {
-                if (!transition && time >= 0.2f)
+                if (!transition && time >= 0.4f)
                 {
                     entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, new Vector2(inputX, inputY), direction, (System.Action)(() =>
                     {

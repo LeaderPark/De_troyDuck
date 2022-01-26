@@ -20,9 +20,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (looock) return;
         Process();
     }
 
+    private bool looock;
 
     private void Process()
     {
@@ -78,18 +80,7 @@ public class Player : MonoBehaviour
                             Vector3 mousePos = hit.point - transform.position;
                             if (Vector2.Distance(new Vector2(hit.collider.transform.position.x, hit.collider.transform.position.z), new Vector2(transform.position.x, transform.position.z)) < 6)
                             {
-                                Entity hitEntity = hit.collider.gameObject.GetComponent<Entity>();
-                                hitEntity.Rebirth();
-                                hitEntity.gameObject.AddComponent<Player>();
-
-                                hitEntity.clone.SetStat(StatCategory.Health, hitEntity.clone.GetMaxStat(StatCategory.Health));
-                                hitEntity.clone.SetStat(StatCategory.Attack, hitEntity.clone.GetMaxStat(StatCategory.Attack));
-                                hitEntity.clone.SetStat(StatCategory.Speed, hitEntity.clone.GetMaxStat(StatCategory.Speed));
-                                hitEntity.gameObject.layer = 6;
-                                FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().Follow = hitEntity.transform;
-
-                                entity.gameObject.layer = 7;
-                                entity.clone.SetStat(StatCategory.Health, 0);
+                                StartCoroutine(ChangeBody(hit));
                             }
                         }
                     }
@@ -98,6 +89,42 @@ public class Player : MonoBehaviour
 		}
 
         entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
+    }
+
+    IEnumerator ChangeBody(RaycastHit hit)
+    {
+        looock = true;
+        entity.gameObject.layer = 0;
+
+        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Change"});
+
+        Entity hitEntity = hit.collider.gameObject.GetComponent<Entity>();
+        hitEntity.Rebirth();
+
+        bool nyan = false;
+        while (!nyan)
+        {
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Change", (System.Action<bool, float>)((bool transition, float time) =>
+            {
+                if (!transition && time >= 0.9f)
+                {
+                    nyan = true;
+                }
+            })});
+            yield return null;
+        }
+
+        hitEntity.gameObject.AddComponent<Player>();
+        hitEntity.GetComponent<SpriteRenderer>().color = Color.white;
+
+        hitEntity.clone.SetStat(StatCategory.Health, hitEntity.clone.GetMaxStat(StatCategory.Health));
+        hitEntity.clone.SetStat(StatCategory.Attack, hitEntity.clone.GetMaxStat(StatCategory.Attack));
+        hitEntity.clone.SetStat(StatCategory.Speed, hitEntity.clone.GetMaxStat(StatCategory.Speed));
+        hitEntity.gameObject.layer = 6;
+        FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().Follow = hitEntity.transform;
+
+        entity.gameObject.layer = 7;
+        entity.clone.SetStat(StatCategory.Health, 0);
     }
     
     void OnDrawGizmosSelected()

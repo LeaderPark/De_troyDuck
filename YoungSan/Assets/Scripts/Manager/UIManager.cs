@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 		{
 			hpText.text = "Hp : " + playerEntity.clone.GetStat(StatCategory.Health).ToString();
 		}
-		else
+		if (FindObjectOfType<Player>() == null)
 		{
 			GameOver();
 		}

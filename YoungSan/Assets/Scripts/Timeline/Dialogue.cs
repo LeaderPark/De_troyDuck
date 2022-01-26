@@ -110,6 +110,7 @@ public class Dialogue : MonoBehaviour
     {
         talkBoxTxt.text = "";
         fakeTalkBoxTxt.text = "";
+        talkBoxTxt.rectTransform.anchoredPosition = new Vector2(0, 0);
 
         for (int i = 0; i < dialogueList.Count; i++)
         {
@@ -119,6 +120,7 @@ public class Dialogue : MonoBehaviour
         float x = fakeTalkBoxTxt.preferredWidth;
         float y = fakeTalkBoxTxt.preferredHeight;
         talkBoxTrm.sizeDelta = new Vector2(x, y) + padding;
+        talkBoxTxt.rectTransform.anchoredPosition += new Vector2(padding.x / 2,0); 
 
         for (int i = 0; i < dialogueList.Count; i++)
 		{
@@ -158,7 +160,7 @@ public class Dialogue : MonoBehaviour
 		for (int j = 0; j < dialogue.Length; j++)
 		{
 			talkBoxTxt.text += dialogue[j];
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.01f);
 		}
         dialoguePlayCheck = false;
     }

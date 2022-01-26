@@ -83,6 +83,21 @@ public class Entity : MonoBehaviour
         }
     }
 
+    float timeStack;
+
+    void Update()
+    {
+        if (isDead)
+        {
+            timeStack += Time.deltaTime;
+            if (timeStack >= 3f)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else timeStack = 0;
+    }
+
     void LateUpdate()
     {
         Process();

@@ -24,9 +24,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        entity.clone.SubStat(StatCategory.Health, entity.clone.GetMaxStat(StatCategory.Health) / 2);
-        entity.clone.SubStat(StatCategory.Attack, entity.clone.GetMaxStat(StatCategory.Attack) / 2);
-        entity.clone.SubStat(StatCategory.Speed, entity.clone.GetMaxStat(StatCategory.Speed) / 2);
+        entity.clone.SetStat(StatCategory.Health, (int)(entity.clone.GetMaxStat(StatCategory.Health) * 0.5f));
+        entity.clone.SetStat(StatCategory.Attack, (int)(entity.clone.GetMaxStat(StatCategory.Attack) * 0.5f));
+        entity.clone.SetStat(StatCategory.Speed, (int)(entity.clone.GetMaxStat(StatCategory.Speed) * 0.5f));
         
     }
 

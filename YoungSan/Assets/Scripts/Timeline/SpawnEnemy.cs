@@ -6,9 +6,11 @@ public class SpawnEnemy : MonoBehaviour
 {
     public GameObject enemy;
     public Transform[] spawnPoints;
+    public Transform mainSpawn;
     public void EnemySpawn()
     {
         StartCoroutine(spawn());
+        StartCoroutine(MainSpawn());
     }
 
     IEnumerator spawn()
@@ -17,6 +19,15 @@ public class SpawnEnemy : MonoBehaviour
         {
             Instantiate(enemy, spawnPoints[i].position, Quaternion.identity);
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    IEnumerator MainSpawn()
+    {
+        while(true)
+        {
+            Instantiate(enemy, mainSpawn.position, Quaternion.identity);
+            yield return new WaitForSeconds(2f);
         }
     }
 }

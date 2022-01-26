@@ -34,6 +34,8 @@ namespace StateMachine
 
         void Update()
         {
+            if (Player == null) Player = GameObject.FindObjectOfType<Player>();
+            if (Player == null) return;
             state = state.Process(this);
             Debug.Log(state.GetType().Name);
         }

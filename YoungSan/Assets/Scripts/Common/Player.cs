@@ -87,8 +87,9 @@ public class Player : MonoBehaviour
                                 hitEntity.clone.SetStat(StatCategory.Speed, hitEntity.clone.GetMaxStat(StatCategory.Speed));
                                 hitEntity.gameObject.layer = 6;
                                 FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().Follow = hitEntity.transform;
+
                                 entity.gameObject.layer = 7;
-                                entity.clone.SubStat(StatCategory.Health, entity.clone.GetStat(StatCategory.Health));
+                                entity.clone.SetStat(StatCategory.Health, 0);
                             }
                         }
                     }

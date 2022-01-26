@@ -45,7 +45,7 @@ public class Clone
         {
             int temp = (int)StatTable[category] - value;
             StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] - value, 0, (int)MaxStatTable[category]);
-            if (category == StatCategory.Health && temp <= 0)
+            if (category == StatCategory.Health && (int)StatTable[category] <= 0)
             {
                 entity.Dead();
             }
@@ -57,6 +57,10 @@ public class Clone
         if (StatTable.ContainsKey(category))
         {
             StatTable[category] = (int)Mathf.Clamp(value, 0, (int)MaxStatTable[category]);
+            if (category == StatCategory.Health && (int)StatTable[category] <= 0)
+            {
+                entity.Dead();
+            }
         }
     }
 

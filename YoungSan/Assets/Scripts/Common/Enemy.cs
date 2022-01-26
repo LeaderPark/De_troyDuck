@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     public bool direction {get; set;} // false left, true right
-    public Vector2 spawnPoint {get; set;}
+    public Vector2 spawnPoint;
 
     public EntityEvent entityEvent {get; private set;}
 

@@ -7,16 +7,22 @@ namespace StateMachine
 {
     public class Distance : State
     {
-        float moveDirX;
-        float moveDirY;
 
         bool start;        
         
         public override State Process(StateMachine stateMachine)
         {
-            Vector2 dirVec = new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z) - new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z);
-            moveDirX = Random.Range(-1f, 1f) + dirVec.x;
-            moveDirY = Random.Range(-1f, 1f) + dirVec.y;
+            Vector3 dirVec = stateMachine.Enemy.transform.position - stateMachine.Player.transform.position;
+            dirVec.y = 0;
+
+            Vector3 rightVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;
+
+            if (Random.Range(0, 1) == 0)
+                rightVec *= -1;
+
+            float moveDirX = rightVec.x + dirVec.x;
+            float moveDirY = rightVec.z + dirVec.z;
+
             if (Vector2.Distance(stateMachine.Enemy.spawnPoint, (new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) + new Vector2(moveDirX, moveDirY).normalized) < stateMachine.stateMachineData.activityRadius)
             {
                 if (moveDirX > 0)

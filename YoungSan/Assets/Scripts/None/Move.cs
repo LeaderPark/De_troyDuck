@@ -38,59 +38,58 @@ namespace StateMachine
                     backSpawnPoint = false;
                     start = false;
                 }
+                return this;
+            } 
+
+            if (Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) <= stateMachine.stateMachineData.searchRadius)
+            {
+                stateMachine.searchTimeStack += Time.deltaTime;
             }
             else
             {
-                if (Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) <= stateMachine.stateMachineData.searchRadius)
+                stateMachine.searchTimeStack = 0;
+            }
+            if (stateMachine.stateMachineData.searchDelay <= stateMachine.searchTimeStack)
+            {
+                start = false;
+                stateMachine.searchTimeStack = 0;
+                return stateMachine.GetStateTable(typeof(Pursue));
+            }
+            if (!start)
+            {
+                start = true;
+                timeStack = 0;
+                moveDirX = Random.Range(-1f, 1f);
+                moveDirY = Random.Range(-1f, 1f);
+                moveTime = Random.Range(stateMachine.stateMachineData.minMoveTime, stateMachine.stateMachineData.maxMoveTime);
+            }
+            if (start)
+            {
+                timeStack += Time.deltaTime;
+                if (Vector2.Distance(stateMachine.Enemy.spawnPoint, (new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) + new Vector2(moveDirX, moveDirY).normalized) < stateMachine.stateMachineData.activityRadius)
                 {
-                    stateMachine.searchTimeStack += Time.deltaTime;
+                    if (moveDirX > 0)
+                    {
+                        stateMachine.Enemy.direction = true;
+                    }
+                    else if (moveDirX < 0)
+                    {
+                        stateMachine.Enemy.direction = false;
+                    }
+                    stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{moveDirX, moveDirY, stateMachine.Enemy.direction});
                 }
                 else
                 {
-                    stateMachine.searchTimeStack = 0;
+                    backSpawnPoint = true;
+                    timeStack = 0;
                 }
-                if (stateMachine.stateMachineData.searchDelay <= stateMachine.searchTimeStack)
+                if (moveTime <= timeStack)
                 {
                     start = false;
-                    stateMachine.searchTimeStack = 0;
-                    return stateMachine.GetStateTable(typeof(Pursue));
-                }
-                if (!start)
-                {
-                    start = true;
-                    timeStack = 0;
-                    moveDirX = Random.Range(-1f, 1f);
-                    moveDirY = Random.Range(-1f, 1f);
-                    moveTime = Random.Range(stateMachine.stateMachineData.minMoveTime, stateMachine.stateMachineData.maxMoveTime);
-                }
-                if (start)
-                {
-                    timeStack += Time.deltaTime;
-                    if (Vector2.Distance(stateMachine.Enemy.spawnPoint, (new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) + new Vector2(moveDirX, moveDirY).normalized) < stateMachine.stateMachineData.activityRadius)
+                    float idleQuest = Random.Range(0, 10);
+                    if (idleQuest < 5)
                     {
-                        if (moveDirX > 0)
-                        {
-                            stateMachine.Enemy.direction = true;
-                        }
-                        else if (moveDirX < 0)
-                        {
-                            stateMachine.Enemy.direction = false;
-                        }
-                        stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{moveDirX, moveDirY, stateMachine.Enemy.direction});
-                    }
-                    else
-                    {
-                        backSpawnPoint = true;
-                        timeStack = 0;
-                    }
-                    if (moveTime <= timeStack)
-                    {
-                        start = false;
-                        float idleQuest = Random.Range(0, 10);
-                        if (idleQuest < 5)
-                        {
-                            return stateMachine.GetStateTable(typeof(Idle));
-                        }
+                        return stateMachine.GetStateTable(typeof(Idle));
                     }
                 }
             }

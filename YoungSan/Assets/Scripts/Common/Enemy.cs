@@ -22,20 +22,4 @@ public class Enemy : MonoBehaviour
         direction = false;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        StateMachine.StateMachine stateMachine = GetComponent<StateMachine.StateMachine>();
-        if (stateMachine != null && stateMachine.stateMachineData != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(spawnPoint, stateMachine.stateMachineData.activityRadius);
-            Gizmos.color = Color.blue;
-            Vector3 temp = transform.position;
-            temp.y = 0;
-            Gizmos.DrawWireSphere(temp, stateMachine.stateMachineData.searchRadius);
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(temp, stateMachine.stateMachineData.distanceRadius);
-        }
-    }
-
 }

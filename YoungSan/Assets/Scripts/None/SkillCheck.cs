@@ -9,14 +9,14 @@ namespace StateMachine
     {
         public override State Process(StateMachine stateMachine)
         {
-
+            float distance = Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z));
             foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
             {
                 foreach (var item in skillAreaBundle.skillAreaDatas)
                 {
                     if (item.inLeftSkillArea || item.inRightSkillArea)
                     {
-                        if (Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) < stateMachine.stateMachineData.distanceRadius)
+                        if (distance < stateMachine.stateMachineData.distanceRadius)
                         {
                             return stateMachine.GetStateTable(typeof(Distance));
                         }
@@ -33,13 +33,22 @@ namespace StateMachine
                 }
             }
             
-            if (Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) < stateMachine.stateMachineData.distanceRadius)
+            
+            if (distance < stateMachine.stateMachineData.distanceRadius)
             {
                 return stateMachine.GetStateTable(typeof(Distance));
             }
             else
             {
-                return stateMachine.GetStateTable(typeof(Pursue));
+                float pursueQuest = Random.Range(0, 10);
+                if (pursueQuest < 9)
+                {
+                    return stateMachine.GetStateTable(typeof(Pursue));
+                }
+                else
+                {
+                    return stateMachine.GetStateTable(typeof(Wait));
+                }
             }
         }
     }

@@ -18,12 +18,20 @@ public class StateMachineData : ScriptableObject
     public float homeTime;
 
     [Space(20)]
+    public float destinationUpdateTime;
+
+    [Space(20)]
+    public float waitTime;
+
+    [Space(20)]
     public float searchDelay;
     
-    [Space(10)]
+    [Space(20)]
     public float activityRadius;
     [Space(10)]
     public float searchRadius;
     [Space(10)]
     public float distanceRadius;
+    [Space(10)]
+    public float destinationRadius;
 }

@@ -28,6 +28,7 @@ namespace StateMachine
             stateTable.Add(typeof(SkillCheck), new SkillCheck());
             stateTable.Add(typeof(Attack), new Attack());
             stateTable.Add(typeof(Distance), new Distance());
+            stateTable.Add(typeof(Wait), new Wait());
             state = GetStateTable(typeof(Idle));
         }
 
@@ -54,6 +55,24 @@ namespace StateMachine
             pos.y = 0;
             Vector2 dirVec = new Vector2(player.transform.position.x, player.transform.position.z) - new Vector2(enemy.transform.position.x, enemy.transform.position.z);
             Gizmos.DrawRay(new Ray(pos, new Vector3(dirVec.x, 0, dirVec.y)));
+        }
+
+        void OnDrawGizmosSelected()
+        {
+            Enemy enemy = GetComponent<Enemy>();
+            if (enemy != null && stateMachineData != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(enemy.spawnPoint, stateMachineData.activityRadius);
+                Gizmos.color = Color.blue;
+                Vector3 temp = transform.position;
+                temp.y = 0;
+                Gizmos.DrawWireSphere(temp, stateMachineData.searchRadius);
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireSphere(temp, stateMachineData.distanceRadius);
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawWireSphere(temp, stateMachineData.destinationRadius);
+            }
         }
     }
 }

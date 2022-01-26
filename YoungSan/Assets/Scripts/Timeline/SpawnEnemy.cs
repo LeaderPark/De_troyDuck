@@ -24,10 +24,11 @@ public class SpawnEnemy : MonoBehaviour
 
     IEnumerator MainSpawn()
     {
+        yield return new WaitForSeconds(10f);
         while(true)
         {
             Instantiate(enemy, mainSpawn.position, Quaternion.identity);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
         }
     }
 }

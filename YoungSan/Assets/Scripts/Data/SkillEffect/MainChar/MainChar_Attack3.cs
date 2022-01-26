@@ -20,7 +20,7 @@ public class MainChar_Attack3 : SkillEffect
 
     IEnumerator KnockBack(Entity hitEntity, Vector3 dir, float time)
     {
-        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{dir, 20});
+        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{dir, 10});
         yield return new WaitForSeconds(time);
         hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
     }

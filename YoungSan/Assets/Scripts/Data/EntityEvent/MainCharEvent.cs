@@ -48,7 +48,7 @@ public class MainCharEvent : EntityEvent
                         entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                         entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack2"});
                         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
-                        StartCoroutine(AttackVelocityTime(0.1f));
+                        StartCoroutine(AttackVelocityTime(0.08f));
                         dontmove = true;
                     })});
                     attackStack = 3;
@@ -67,7 +67,7 @@ public class MainCharEvent : EntityEvent
                         entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                         entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack3"});
                         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
-                        StartCoroutine(AttackVelocityTime(0.1f));
+                        StartCoroutine(AttackVelocityTime(0.08f));
                         dontmove = true;
                     })});
                     attackStack = 5;
@@ -84,7 +84,7 @@ public class MainCharEvent : EntityEvent
                     entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                     entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1"});
                     entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
-                    StartCoroutine(AttackVelocityTime(0.1f));
+                    StartCoroutine(AttackVelocityTime(0.08f));
                     attackStack = 1;
                     dontmove = true;
                 })});

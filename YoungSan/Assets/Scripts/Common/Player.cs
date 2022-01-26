@@ -39,17 +39,30 @@ public class Player : MonoBehaviour
         }
 
 
+        //if (Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { inputX, inputY, direction });
+            //RaycastHit hit;
+            //if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[]{"Ground"})))
+            //{
+            //    Vector3 mousePos = hit.point - transform.position;
+            //    bool attackDirection = (mousePos.x > 0f);
+            //    direction = attackDirection;
+            //    entityEvent.CallEvent(EventCategory.DefaultAttack, new object[]{mousePos.x, mousePos.z, attackDirection});
+            //}
+        }
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[]{"Ground"})))
-            {
-                Vector3 mousePos = hit.point - transform.position;
-                bool attackDirection = (mousePos.x > 0f);
-                direction = attackDirection;
-                entityEvent.CallEvent(EventCategory.DefaultAttack, new object[]{mousePos.x, mousePos.z, attackDirection});
-            }
-        }
+			RaycastHit hit;
+			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+			{
+				Vector3 mousePos = hit.point - transform.position;
+				bool attackDirection = (mousePos.x > 0f);
+				direction = attackDirection;
+				entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { mousePos.x, mousePos.z, attackDirection });
+			}
+		}
 
         entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
     }

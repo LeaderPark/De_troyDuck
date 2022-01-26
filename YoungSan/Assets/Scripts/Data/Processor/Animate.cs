@@ -8,6 +8,7 @@ namespace Processor
     public class Animate : Processor
     {
         private Animator animator;
+        bool locking;
         
         public Animate(Hashtable owner, Animator animator) : base(owner)
         {
@@ -48,32 +49,42 @@ namespace Processor
             }
         }
 
-        void CheckClip(string stateName, System.Action<float> onClipEnd)
+        void CheckClip(string stateName, System.Action<bool, float> onClipEnd)
         {
             if (Locker) return;
             var animatorState = animator.GetCurrentAnimatorStateInfo(0);
             if (animatorState.IsName(stateName))
             {
-                onClipEnd(animatorState.normalizedTime);
+                onClipEnd(false, animatorState.normalizedTime);
+            }
+            if (locking)
+            {
+                onClipEnd(true, 0f);
             }
         }
 
-        void CheckClipNoLock(string stateName, System.Action<float> onClipEnd)
+        void CheckClipNoLock(string stateName, System.Action<bool, float> onClipEnd)
         {
             var animatorState = animator.GetCurrentAnimatorStateInfo(0);
             if (animatorState.IsName(stateName))
             {
-                onClipEnd(animatorState.normalizedTime);
+                onClipEnd(false, animatorState.normalizedTime);
+            }
+            if (locking)
+            {
+                onClipEnd(true, 0f);
             }
         }
 
         protected override void StartLock()
         {
             animator.speed = 0f;
+            locking = true;
         }
         protected override void EndLock()
         {
             animator.speed = 1f;
+            locking = false;
         }
 
     }

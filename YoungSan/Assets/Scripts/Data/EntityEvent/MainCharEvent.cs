@@ -6,6 +6,9 @@ public class MainCharEvent : EntityEvent
 {
     private bool dontmove;
     private int attackStack;
+    private bool dontAttack;
+
+    IEnumerator endCheck;
 
     protected override void Awake()
     {
@@ -30,85 +33,109 @@ public class MainCharEvent : EntityEvent
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
             entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
         }
-        else
-        {
-            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) / 2});
-        }
         
-
-        System.Action<float> end = (System.Action<float>)((float time) => 
-        {
-            if (time >= 0.9f)
-            {
-                dontmove = false;
-                attackStack = 0;
-            }
-        });
-
-        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack1", end});
-        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack2", end});
-        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack3", end});
     }
     private void CallDefaultAttack(float inputX, float inputY, bool direction)
     {
-        System.Action<float> attack2 = (System.Action<float>)((float time) => 
+        if (!dontAttack)
         {
-            if (time >= 0.5f)
+            System.Action<bool, float> attack2 = (System.Action<bool, float>)((bool transition, float time) => 
             {
-                entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, direction, (System.Action)(() =>
+                if (!transition && time >= 0.2f)
+                {
+                    entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, direction, (System.Action)(() =>
+                    {
+                        entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
+                        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack2"});
+                        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
+                        StartCoroutine(AttackVelocityTime(0.1f));
+                        dontmove = true;
+                    })});
+                    attackStack = 3;
+                }
+                else
+                {
+                    attackStack = 1;
+                }
+            });
+            System.Action<bool, float> attack3 = (System.Action<bool, float>)((bool transition, float time) => 
+            {
+                if (!transition && time >= 0.2f)
+                {
+                    entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{2, direction, (System.Action)(() =>
+                    {
+                        entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
+                        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack3"});
+                        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
+                        StartCoroutine(AttackVelocityTime(0.1f));
+                        dontmove = true;
+                    })});
+                    attackStack = 5;
+                }
+                else
+                {
+                    attackStack = 3;
+                }
+            });
+            if (attackStack == 0)
+            {
+                entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, direction, (System.Action)(() =>
                 {
                     entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
-                    entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
-                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack2"});
+                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1"});
+                    entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
+                    StartCoroutine(AttackVelocityTime(0.1f));
+                    attackStack = 1;
                     dontmove = true;
                 })});
-                attackStack = 3;
             }
-            else
+            else if (attackStack == 1)
             {
-                attackStack = 1;
+                attackStack = 2;
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack1", attack2});
             }
-        });
-        System.Action<float> attack3 = (System.Action<float>)((float time) => 
-        {
-            if (time >= 0.2f)
+            else if (attackStack == 3)
             {
-                entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{2, direction, (System.Action)(() =>
-                {
-                    entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
-                    entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
-                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack3"});
-                    dontmove = true;
-                })});
-                attackStack = 5;
+                attackStack = 4;
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack2", attack3});
             }
-            else
+
+            if (endCheck == null)
             {
-                attackStack = 3;
+                endCheck = AttackEndCheck();
+                StartCoroutine(endCheck);
             }
-        });
-        if (attackStack == 0)
-        {
-            entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, direction, (System.Action)(() =>
-            {
-                entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack1"});
-                entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
-                attackStack = 1;
-                dontmove = true;
-            })});
-        }
-        else if (attackStack == 1)
-        {
-            attackStack = 2;
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack1", attack2});
-        }
-        else if (attackStack == 3)
-        {
-            attackStack = 4;
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack2", attack3});
         }
     }
+
+    private IEnumerator AttackVelocityTime(float time)
+    {
+        dontAttack = true;
+        yield return new WaitForSeconds(time);
+        dontAttack = false;
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(0, 0, 0).normalized, 0});
+    }
+
+    private IEnumerator AttackEndCheck()
+    {
+        while (true)
+        {
+            System.Action<bool, float> end = (System.Action<bool, float>)((bool transition, float time) => 
+            {
+                if (!transition && time >= 1f || transition)
+                {
+                    attackStack = 0;
+                    dontmove = false;
+                }
+            });
+
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack1", end});
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack2", end});
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack3", end});
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+    }
+
     private void CallSkill1()
     {
     }

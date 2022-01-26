@@ -20,6 +20,14 @@ public class SkillSet : MonoBehaviour
         }
     }
 
+    public void StopSkill()
+    {
+        foreach (var item in skillDatas)
+        {
+            item.gameObject.SetActive(false);
+        }
+    }
+
     public void ActiveSkill(int index, bool isRight, System.Action action)
     {
         if (skillDatas.Length > index)

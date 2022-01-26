@@ -32,8 +32,15 @@ namespace StateMachine
                     }
                 }
             }
-
-            return stateMachine.GetStateTable(typeof(Pursue));
+            
+            if (Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) < stateMachine.stateMachineData.distanceRadius)
+            {
+                return stateMachine.GetStateTable(typeof(Distance));
+            }
+            else
+            {
+                return stateMachine.GetStateTable(typeof(Pursue));
+            }
         }
     }
 }

@@ -30,7 +30,8 @@ namespace StateMachine
             
             try
             {
-                stateMachine.Enemy.entityEvent.CallEvent(bundles[bundleIdx].eventCategory, new object[]{0, 0, directions[bundleIdx]});
+                Vector2 dirVec = new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z) - new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z);
+                stateMachine.Enemy.entityEvent.CallEvent(bundles[bundleIdx].eventCategory, new object[]{dirVec.x, dirVec.y, directions[bundleIdx]});
             }
             catch
             {

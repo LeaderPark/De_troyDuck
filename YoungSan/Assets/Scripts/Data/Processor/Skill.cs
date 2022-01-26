@@ -19,5 +19,10 @@ namespace Processor
         {
             skillSet.ActiveSkill(index, isRight, action);
         }
+
+        private void StopSkill()
+        {
+            skillSet.StopSkill();
+        }
     }
 }

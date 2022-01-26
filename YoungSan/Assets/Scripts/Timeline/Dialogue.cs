@@ -41,6 +41,7 @@ public class Dialogue : MonoBehaviour
     }
     private void Update()
     {
+        if(talker!=null)
         talkBoxTrm.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position + new Vector3(0, 1));
         if (dialogueEnd && Input.anyKeyDown)
         {
@@ -101,6 +102,7 @@ public class Dialogue : MonoBehaviour
     }
     private void AnimationSet(string animationName)
     {
+        if(animationName != "None")
         talkerEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { animationName });
     }
 
@@ -122,9 +124,10 @@ public class Dialogue : MonoBehaviour
 		{
             dialoguePlayCheck = true;
             AnimationSet(dialougeAnimationList[i]);
+            print("a");
             StartCoroutine(TypingText(dialogueList[i]));
 
-			while (!dialoguePlayCheck)
+			while (dialoguePlayCheck)
 			{
 				yield return null;
 			}
@@ -145,11 +148,18 @@ public class Dialogue : MonoBehaviour
         //yield return new WaitForSeconds(0.1f);
         talkBoxTrm.gameObject.SetActive(true);
 
-        for (int j = 0; j < dialogue.Length; j++)
-        {
-            talkBoxTxt.text += dialogue[j];
-            yield return new WaitForSeconds(0.1f);
-        }
+		//      int count = 0;
+		//while (count<dialogue.Length)
+		//{
+		//          talkBoxTxt.text += dialogue[count];
+		//          yield return new WaitForSeconds(0.1f);
+		//          count++;
+		//      }
+		for (int j = 0; j < dialogue.Length; j++)
+		{
+			talkBoxTxt.text += dialogue[j];
+			yield return new WaitForSeconds(0.1f);
+		}
         dialoguePlayCheck = false;
     }
     public void EndText()

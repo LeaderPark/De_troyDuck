@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.Playables;
-public class Reciver : MonoBehaviour, INotificationReceiver
+public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 {
 	Dialogue dialogue;
-	
+
 	private void Start()
 	{
 		dialogue = GetComponent<Dialogue>();
 	}
+
 	public void OnNotify(Playable origin, INotification notification, object context)
 	{
-		DialogueMarker marker = notification as DialogueMarker;
+		ObjectControlMarker marker = notification as ObjectControlMarker;
 		if (marker != null)
 		{
-			List<Dictionary<string, object>> dialogueList = CSVReader.Read(string.Format("Dialogue/{0}", marker.dialogueFileName));
-			dialogue.StartTalk(dialogueList,marker.wait);
+			GameObject gameObject1 = marker.contorolObject.Resolve(origin.GetGraph().GetResolver());
+			gameObject1.SetActive(false);
 		}
 	}
 }

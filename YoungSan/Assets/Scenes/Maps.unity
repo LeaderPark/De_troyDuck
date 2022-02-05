@@ -2557,15 +2557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f173daf840e99f41be520c89de41e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 192623323373048502, guid: 5776208fa797cdc46a8482deef6a3c52, type: 3}
-  spawnPoints:
-  - {fileID: 510815962}
-  - {fileID: 339159045}
-  - {fileID: 1500730421}
-  - {fileID: 918970701}
-  - {fileID: 1998776827}
-  - {fileID: 1875630763}
-  mainSpawn: {fileID: 1998678021}
 --- !u!1 &506131327
 GameObject:
   m_ObjectHideFlags: 0
@@ -3027,8 +3018,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960cfee29c69ea545badd0a2e865a1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpText: {fileID: 1136878647}
-  gmaeOverPanel: {fileID: 1262490678}
 --- !u!4 &572952126
 Transform:
   m_ObjectHideFlags: 0
@@ -3521,15 +3510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f173daf840e99f41be520c89de41e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 192623323373048502, guid: 5776208fa797cdc46a8482deef6a3c52, type: 3}
-  spawnPoints:
-  - {fileID: 510815962}
-  - {fileID: 339159045}
-  - {fileID: 1500730421}
-  - {fileID: 918970701}
-  - {fileID: 1998776827}
-  - {fileID: 1875630763}
-  mainSpawn: {fileID: 1998678021}
 --- !u!114 &821734663 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2289989693407090797, guid: 1bcec3047b777c24da508d421772583f, type: 3}
@@ -8915,7 +8895,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 207825c7e6b463a418321fa8bda7c0a6, type: 2}
-  isDead: 0
 --- !u!54 &2075073055139156094
 Rigidbody:
   m_ObjectHideFlags: 0

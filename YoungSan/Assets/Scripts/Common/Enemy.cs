@@ -22,12 +22,4 @@ public class Enemy : MonoBehaviour
         direction = false;
     }
 
-    void Start()
-    {
-        entity.clone.SetStat(StatCategory.Health, (int)(entity.clone.GetMaxStat(StatCategory.Health) * 0.5f));
-        entity.clone.SetStat(StatCategory.Attack, (int)(entity.clone.GetMaxStat(StatCategory.Attack) * 0.5f));
-        entity.clone.SetStat(StatCategory.Speed, (int)(entity.clone.GetMaxStat(StatCategory.Speed) * 0.5f));
-        
-    }
-
 }

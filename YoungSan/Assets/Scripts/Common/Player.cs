@@ -26,8 +26,27 @@ public class Player : MonoBehaviour
 
     private void Process()
     {
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputY = Input.GetAxisRaw("Vertical");
+        InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
+
+        float inputX = 0;
+        float inputY = 0;
+
+        if (inputManager.GetKeyState(KeyCode.D) == ButtonState.Stay)
+        {
+            inputX = 1f;
+        }
+        else if (inputManager.GetKeyState(KeyCode.A) == ButtonState.Stay)
+        {
+            inputX = -1f;
+        }
+        if (inputManager.GetKeyState(KeyCode.W) == ButtonState.Stay)
+        {
+            inputY = 1f;
+        }
+        else if (inputManager.GetKeyState(KeyCode.S) == ButtonState.Stay)
+        {
+            inputY = -1f;
+        }
 
         if (inputX > 0)
         {
@@ -52,7 +71,7 @@ public class Player : MonoBehaviour
             //    entityEvent.CallEvent(EventCategory.DefaultAttack, new object[]{mousePos.x, mousePos.z, attackDirection});
             //}
         }
-        if (Input.GetMouseButtonDown(0))
+        if (inputManager.GetMouseState(MouseButton.Left) == ButtonState.Down)
         {
 			RaycastHit hit;
 			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
@@ -61,43 +80,6 @@ public class Player : MonoBehaviour
 				bool attackDirection = (mousePos.x > 0f);
 				direction = attackDirection;
 				entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { mousePos.x, mousePos.z, attackDirection });
-			}
-		}
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (entity.isDead) return;
-            RaycastHit[] hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 2000, LayerMask.GetMask(new string[] { "Enemy" }));
-			for (int i = 0; i < hits.Length; i++)
-			{
-                if (hits[i].collider.gameObject.GetComponent<Entity>().isDead)
-                {
-                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Idle", (System.Action<bool, float>)((bool transition, float time)=>
-                    {
-                        if (!transition)
-                        {
-                            if (hits[i].collider.gameObject.GetComponent<Entity>().isDead)
-                            {
-                                Vector3 mousePos = hits[i].point - transform.position;
-                                if (Vector2.Distance(new Vector2(hits[i].collider.transform.position.x, hits[i].collider.transform.position.z), new Vector2(transform.position.x, transform.position.z)) < 6)
-                                {
-                                    Entity hitEntity = hits[i].collider.gameObject.GetComponent<Entity>();
-                                    hitEntity.Rebirth();
-                                    hitEntity.gameObject.AddComponent<Player>();
-
-                                    hitEntity.clone.SetStat(StatCategory.Health, hitEntity.clone.GetMaxStat(StatCategory.Health));
-                                    hitEntity.clone.SetStat(StatCategory.Attack, hitEntity.clone.GetMaxStat(StatCategory.Attack));
-                                    hitEntity.clone.SetStat(StatCategory.Speed, hitEntity.clone.GetMaxStat(StatCategory.Speed));
-                                    hitEntity.gameObject.layer = 6;
-                                    FindObjectOfType<Cinemachine.CinemachineVirtualCamera>().Follow = hitEntity.transform;
-
-                                    entity.gameObject.layer = 7;
-                                    entity.clone.SetStat(StatCategory.Health, 0);
-                                }
-                            }
-                        }
-                    })});
-                    break;
-                }
 			}
 		}
 

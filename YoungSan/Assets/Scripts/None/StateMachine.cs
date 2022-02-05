@@ -40,6 +40,11 @@ namespace StateMachine
             Debug.Log(state.GetType().Name);
         }
 
+        public void SetState(System.Type type)
+        {
+            state = GetStateTable(type);
+        }
+
         public State GetStateTable(System.Type type)
         {
             if (stateTable.ContainsKey(type))

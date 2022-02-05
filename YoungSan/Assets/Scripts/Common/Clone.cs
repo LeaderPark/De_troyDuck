@@ -47,7 +47,7 @@ public class Clone
             StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] - value, 0, (int)MaxStatTable[category]);
             if (category == StatCategory.Health && (int)StatTable[category] <= 0)
             {
-                entity.Dead();
+                
             }
         }
     }
@@ -59,7 +59,7 @@ public class Clone
             StatTable[category] = (int)Mathf.Clamp(value, 0, (int)MaxStatTable[category]);
             if (category == StatCategory.Health && (int)StatTable[category] <= 0)
             {
-                entity.Dead();
+                
             }
         }
     }

@@ -18,5 +18,10 @@ namespace Processor
             if (Locker) return;
             spriteRenderer.flipX = !isRight;
         }
+
+        private void SetColor(Color color)
+        {
+            spriteRenderer.material.SetColor("_Color", color);
+        }
     }
 }

@@ -41,7 +41,7 @@ public class MainCharEvent : EntityEvent
         {
             System.Action<bool, float> attack2 = (System.Action<bool, float>)((bool transition, float time) => 
             {
-                if (!transition && time >= 0.4f || transition)
+                if (!transition && time >= 0.4f && !transition && time <= 0.9f || transition)
                 {
                     entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{1, new Vector2(inputX, inputY), direction, (System.Action)(() =>
                     {
@@ -50,8 +50,8 @@ public class MainCharEvent : EntityEvent
                         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
                         StartCoroutine(AttackVelocityTime(0.08f));
                         dontmove = true;
-                        attackStack = 2;
                     })});
+                    attackStack = 2;
                 }
                 else
                 {
@@ -60,7 +60,7 @@ public class MainCharEvent : EntityEvent
             });
             System.Action<bool, float> attack3 = (System.Action<bool, float>)((bool transition, float time) => 
             {
-                if (!transition && time >= 0.2f || transition)
+                if (!transition && time >= 0.2f && !transition && time <= 0.9f || transition)
                 {
                     entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{2, new Vector2(inputX, inputY), direction, (System.Action)(() =>
                     {
@@ -69,8 +69,8 @@ public class MainCharEvent : EntityEvent
                         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
                         StartCoroutine(AttackVelocityTime(0.08f));
                         dontmove = true;
-                        attackStack = 3;
                     })});
+                    attackStack = 3;
                 }
                 else
                 {
@@ -86,8 +86,8 @@ public class MainCharEvent : EntityEvent
                     entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
                     StartCoroutine(AttackVelocityTime(0.08f));
                     dontmove = true;
-                    attackStack = 1;
                 })});
+                attackStack = 1;
             }
             else if (attackStack == 1)
             {

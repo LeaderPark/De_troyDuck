@@ -31,6 +31,13 @@ public class MainChar_Attack2 : SkillEffect
             }
             break;
         }
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        if (hitEntity != null)
+        {
+            GameObject effect = poolManager.GetObject("HitEffect");
+            effect.transform.position = hitEntity.transform.position - Vector3.up * 0.5f;
+            effect.GetComponent<Animator>().Play("HitEffect1");
+        }
     }
     
     IEnumerator KnockBack(Entity hitEntity, Vector3 dir, float time, float power)

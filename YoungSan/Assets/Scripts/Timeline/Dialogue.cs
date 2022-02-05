@@ -16,6 +16,7 @@ public class Dialogue : MonoBehaviour
 
     private bool dialoguePlayCheck;
     private bool wait = false;
+    private bool timeLineStart = false;
     public bool dialogueEnd = false;
     
 
@@ -52,19 +53,29 @@ public class Dialogue : MonoBehaviour
     {
         lineIdx++;
         dialogueEnd = false;
-        if (lineIdx <= maxLineIdx)
+        if (timeLineStart)
         {
+            timelineController.StartTimeline();
             EndText();
-            NextTalk();
         }
         else
         {
-            EndText();
-            if(wait)
-            timelineController.StartTimeline();
-
+            if (lineIdx <= maxLineIdx)
+            {
+                EndText();
+                NextTalk();
+            }
+            else
+            {
+                EndText();
+                if (wait)
+                {
+                    timelineController.StartTimeline();
+                }
+            }
         }
     }
+    //처음 파일을 읽고 대화를 시작할때 쓸 함수
     public void StartTalk(List<Dictionary<string, object>> dialogueDataList,bool _wait)
     {
         dialogueEnd = false;
@@ -73,16 +84,22 @@ public class Dialogue : MonoBehaviour
         lineIdx++;
         maxLineIdx = int.Parse(data[data.Count - 1]["Line"].ToString());
         wait = _wait;
+        timeLineStart = false;
         NextTalk();
     }
-    private void NextTalk()
+
+    //라인 데이터를 받아서 ReadLineText를 실행시켜주는 함수
+    public void NextTalk()
     {
+        timeLineStart = false;
+
         List<Dictionary<string, object>> dialogueDataList = data.FindAll(x => int.Parse(x["Line"].ToString()) == lineIdx);
 
         string charName = data.Find(x => int.Parse(x["Line"].ToString()) == lineIdx)["Char"].ToString();
         List<string> dialougeList = new List<string>();
         List<float> dialougeDelayList = new List<float>();
         List<string> dialougeAnimationList = new List<string>();
+        List<string> dialougeCutList = new List<string>();
 
 
         foreach (var item in dialogueDataList)
@@ -90,9 +107,10 @@ public class Dialogue : MonoBehaviour
             dialougeList.Add(item["Dialogue"].ToString());
             dialougeDelayList.Add(float.Parse(item["Delay"].ToString()));
             dialougeAnimationList.Add(item["Animation"].ToString());
+            dialougeCutList.Add(item["Cut"].ToString());
         }
         TalkerSet(charName);
-        StartCoroutine(ReadLineText(charName, dialougeList, dialougeDelayList, dialougeAnimationList));
+        StartCoroutine(ReadLineText(charName, dialougeList, dialougeDelayList, dialougeAnimationList, dialougeCutList));
     }
 
     private void TalkerSet(string talkerName)
@@ -106,7 +124,8 @@ public class Dialogue : MonoBehaviour
         talkerEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { animationName });
     }
 
-    IEnumerator ReadLineText(string talkerName,List<string>dialogueList,List<float> delayLsit,List<string> dialougeAnimationList)
+    //한 라인의 데이터를 받아서 실행하는 함수
+    IEnumerator ReadLineText(string talkerName,List<string>dialogueList,List<float> delayLsit,List<string> dialougeAnimationList,List<string> dialougeCutList)
     {
         talkBoxTxt.text = "";
         fakeTalkBoxTxt.text = "";
@@ -115,6 +134,10 @@ public class Dialogue : MonoBehaviour
         for (int i = 0; i < dialogueList.Count; i++)
         {
             fakeTalkBoxTxt.text += dialogueList[i];
+            if (dialougeCutList[i] != "None")
+            {
+                timeLineStart = true;
+            }
         }
 
         float x = fakeTalkBoxTxt.preferredWidth;
@@ -126,7 +149,6 @@ public class Dialogue : MonoBehaviour
 		{
             dialoguePlayCheck = true;
             AnimationSet(dialougeAnimationList[i]);
-            print("a");
             StartCoroutine(TypingText(dialogueList[i]));
 
 			while (dialoguePlayCheck)

@@ -21,8 +21,6 @@ public class HitBox : MonoBehaviour
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);
                     break;
                     case 7: // enemy
-                    StateMachine.StateMachine stateMachine = entity?.GetComponent<StateMachine.StateMachine>();
-                    stateMachine?.SetState(typeof(StateMachine.Distance));
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);

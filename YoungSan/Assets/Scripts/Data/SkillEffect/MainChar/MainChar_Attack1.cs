@@ -18,9 +18,11 @@ public class MainChar_Attack1 : SkillEffect
             }
             break;
             case 7: // enemy
-            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{1f});
-            hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{1f});
-            hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[]{1f});
+            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.4f});
+            hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.4f});
+            hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[]{0.4f});
+            hitEntity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[]{0.4f});
+            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
             StartCoroutine(DamageColor(hitEntity));
             if (hitEntity != null)
             {

@@ -17,6 +17,7 @@ namespace Processor
 
         private void UseSkill(int index, Vector2 direction, bool isRight, System.Action action)
         {
+            if (Locker) return;
             skillSet.ActiveSkill(index, direction, isRight, action);
         }
 

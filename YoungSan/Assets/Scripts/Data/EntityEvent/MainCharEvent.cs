@@ -50,8 +50,8 @@ public class MainCharEvent : EntityEvent
                         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
                         StartCoroutine(AttackVelocityTime(0.08f));
                         dontmove = true;
+                        attackStack = 2;
                     })});
-                    attackStack = 2;
                 }
                 else
                 {
@@ -69,8 +69,8 @@ public class MainCharEvent : EntityEvent
                         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
                         StartCoroutine(AttackVelocityTime(0.08f));
                         dontmove = true;
+                        attackStack = 3;
                     })});
-                    attackStack = 3;
                 }
                 else
                 {
@@ -86,8 +86,8 @@ public class MainCharEvent : EntityEvent
                     entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 2});
                     StartCoroutine(AttackVelocityTime(0.08f));
                     dontmove = true;
+                    attackStack = 1;
                 })});
-                attackStack = 1;
             }
             else if (attackStack == 1)
             {

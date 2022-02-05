@@ -15,7 +15,10 @@ namespace Processor
 
         private void SetDirection(bool isRight)
         {
-            if (Locker) return;
+            lock(lockObject)
+            {
+                if (Locker) return;
+            }
             spriteRenderer.flipX = !isRight;
         }
 

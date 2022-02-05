@@ -17,7 +17,10 @@ namespace Processor
 
         private void SetVelocity(Vector3 normal, float power)
         {
-            if (Locker) return;
+            lock(lockObject)
+            {
+                if (Locker) return;
+            }
             Vector3 velocity = normal * power;
 
             rigidbody.velocity = velocity;

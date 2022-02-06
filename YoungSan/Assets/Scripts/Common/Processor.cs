@@ -14,7 +14,6 @@ namespace Processor
         {
             commands = new List<(string, object[])>();
             owner.Add(this.GetType(), this);
-            lockObject = new object();
         }
 
         public void AddCommand(string command, object[] parameters)
@@ -30,34 +29,27 @@ namespace Processor
             }
             commands.Clear();
 
-            lock(lockObject)
+            if (Locker)
             {
-                if (Locker)
+                LockTimer -= Time.deltaTime;
+                if (LockTimer <= 0)
                 {
-                    LockTimer -= Time.deltaTime;
-                    if (LockTimer <= 0)
-                    {
-                        Locker = false;
-                        EndLock();
-                    }
+                    Locker = false;
+                    EndLock();
                 }
             }
         }
         
         protected bool Locker;
         private float LockTimer;
-        protected object lockObject;
 
         protected void Lock(float time)
         {
-            lock(lockObject)
+            if (!Locker)
             {
-                if (!Locker)
-                {
-                    LockTimer = time;
-                    StartLock();
-                    Locker = true;
-                }
+                LockTimer = time;
+                StartLock();
+                Locker = true;
             }
         }
 

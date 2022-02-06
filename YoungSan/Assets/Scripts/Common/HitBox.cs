@@ -16,11 +16,13 @@ public class HitBox : MonoBehaviour
                 switch (skillData.entity.gameObject.layer)
                 {
                     case 6: // player
+                    CameraShake.Shake();
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);
                     break;
                     case 7: // enemy
+                    CameraShake.Shake();
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);

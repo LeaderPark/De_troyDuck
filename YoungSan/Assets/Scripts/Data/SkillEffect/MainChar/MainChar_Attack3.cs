@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MainChar_Attack3 : SkillEffect
 {
+    public AnimationClip hitEffectClip;
+    
     public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
     {
         switch (hitEntity?.gameObject.layer)
@@ -34,9 +36,9 @@ public class MainChar_Attack3 : SkillEffect
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         if (hitEntity != null)
         {
-            GameObject effect = poolManager.GetObject("HitEffect");
+            HitEffect effect = poolManager.GetObject("HitEffect").GetComponent<HitEffect>();
             effect.transform.position = hitEntity.transform.position - Vector3.up * 0.5f;
-            effect.GetComponent<Animator>().Play("HitEffect1");
+            effect.Play(hitEffectClip);
         }
     }
 

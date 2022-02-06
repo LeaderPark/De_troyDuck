@@ -17,10 +17,7 @@ namespace Processor
 
         private void Play(string stateName)
         {
-            lock(lockObject)
-            {
-                if (Locker) return;
-            }
+            if (Locker) return;
             var animatorState = animator.GetCurrentAnimatorStateInfo(0);
             if (animatorState.IsName(stateName))
             {
@@ -54,10 +51,7 @@ namespace Processor
 
         void CheckClip(string stateName, System.Action<bool, float> onClipEnd)
         {
-            lock(lockObject)
-            {
-                if (Locker) return;
-            }
+            if (Locker) return;
             var animatorState = animator.GetCurrentAnimatorStateInfo(0);
             if (animatorState.IsName(stateName))
             {

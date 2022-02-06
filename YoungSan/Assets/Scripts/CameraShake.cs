@@ -5,15 +5,11 @@ using Cinemachine;
 
 public class CameraShake : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static void Shake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        CinemachineVirtualCamera virtualCam = FindObjectOfType<CinemachineVirtualCamera>();
+        Vector3 pos = virtualCam.transform.position;
+        Quaternion rot = virtualCam.transform.rotation;
+        virtualCam.ForceCameraPosition(pos + Vector3.right * Mathf.PerlinNoise(Random.Range(0, 100), 0) * 0.2f, rot);
     }
 }

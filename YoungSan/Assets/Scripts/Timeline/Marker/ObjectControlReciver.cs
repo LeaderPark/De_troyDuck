@@ -17,8 +17,16 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 		ObjectControlMarker marker = notification as ObjectControlMarker;
 		if (marker != null)
 		{
-			GameObject gameObject1 = marker.contorolObject.Resolve(origin.GetGraph().GetResolver());
-			gameObject1.SetActive(false);
+			for (int i = 0; i < marker.animationDatas.Length; i++)
+			{
+				GameObject obj = marker.animationDatas[i].contorolObject.Resolve(origin.GetGraph().GetResolver());
+				AnimationClip clip = marker.animationDatas[i].animation.Resolve(origin.GetGraph().GetResolver());
+
+				Animator objAnimator = obj.GetComponent<Animator>();
+				objAnimator.Play(clip.name);
+			}
+			
+			//GameObject obj = marker.contorolObject.Resolve(origin.GetGraph().GetResolver());
 		}
 	}
 }

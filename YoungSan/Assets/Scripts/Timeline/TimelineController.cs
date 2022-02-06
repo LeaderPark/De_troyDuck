@@ -10,8 +10,6 @@ public class TimelineController : MonoBehaviour
 	PlayableDirector director;
 	[SerializeField] private Image fade;
 
-	public Entity entity;
-
 	private void Awake()
 	{
 		director = GetComponent<PlayableDirector>();
@@ -26,11 +24,6 @@ public class TimelineController : MonoBehaviour
 	{
 		director.playableGraph.GetRootPlayable(0).SetSpeed(0);
 		print("∏ÿ√„");
-	}
-	public void playAnimation(AnimationClip obj)
-	{
-		print(obj.name);
-		entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] {obj.name});
 	}
 	public void FadeInOut(bool fadeOut)
 	{

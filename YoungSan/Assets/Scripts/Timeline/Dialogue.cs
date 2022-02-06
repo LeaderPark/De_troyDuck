@@ -12,7 +12,7 @@ public class Dialogue : MonoBehaviour
     private Text fakeTalkBoxTxt;
 
     public GameObject talker;
-    private Entity talkerEntity;
+   // private Entity talkerEntity;
 
     private bool dialoguePlayCheck;
     private bool wait = false;
@@ -116,12 +116,16 @@ public class Dialogue : MonoBehaviour
     private void TalkerSet(string talkerName)
     {
        talker = GameObject.Find(talkerName);
-       talkerEntity = talker.GetComponent<Entity>();
+       //talkerEntity = talker.GetComponent<Entity>();
     }
     private void AnimationSet(string animationName)
     {
-        if(animationName != "None")
-        talkerEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { animationName });
+		if (animationName != "None")
+		{
+			Animator objAnimator = talker.GetComponent<Animator>();
+			objAnimator.Play(animationName);
+
+		}
     }
 
     //한 라인의 데이터를 받아서 실행하는 함수
@@ -134,10 +138,6 @@ public class Dialogue : MonoBehaviour
         for (int i = 0; i < dialogueList.Count; i++)
         {
             fakeTalkBoxTxt.text += dialogueList[i];
-            if (dialougeCutList[i] != "None")
-            {
-                timeLineStart = true;
-            }
         }
 
         float x = fakeTalkBoxTxt.preferredWidth;
@@ -150,15 +150,23 @@ public class Dialogue : MonoBehaviour
             dialoguePlayCheck = true;
             AnimationSet(dialougeAnimationList[i]);
             StartCoroutine(TypingText(dialogueList[i]));
-
-			while (dialoguePlayCheck)
+            if (dialougeCutList[i] != "None")
+            {
+                timeLineStart = true;
+                timelineController.StartTimeline();
+            }
+            while (dialoguePlayCheck)
 			{
 				yield return null;
 			}
             //print(delayLsit[i] + Time.deltaTime);
 			yield return new WaitForSeconds(delayLsit[i]);
 		}
-        dialogueEnd = true;
+        if (!timeLineStart)
+        {
+            dialogueEnd = true;
+        }
+        //대화창 넘기는 ▽이런거 추가 예정
         if (!wait)
         {
             EndText();
@@ -169,22 +177,21 @@ public class Dialogue : MonoBehaviour
     }
     IEnumerator TypingText(string dialogue)
     {
-        //yield return new WaitForSeconds(0.1f);
         talkBoxTrm.gameObject.SetActive(true);
 
-		//      int count = 0;
-		//while (count<dialogue.Length)
-		//{
-		//          talkBoxTxt.text += dialogue[count];
-		//          yield return new WaitForSeconds(0.1f);
-		//          count++;
-		//      }
 		for (int j = 0; j < dialogue.Length; j++)
 		{
 			talkBoxTxt.text += dialogue[j];
 			yield return new WaitForSeconds(0.01f);
 		}
         dialoguePlayCheck = false;
+    }
+    public void EndTalk()
+    {
+        timelineController.PauseTimeline();
+        dialogueEnd = true;
+        timeLineStart = false;
+        //대화창 넘기는 ▽이런거 추가 예정
     }
     public void EndText()
     {

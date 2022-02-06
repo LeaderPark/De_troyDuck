@@ -7,7 +7,17 @@ using UnityEditor;
 public class ObjectControlMarker : Marker, INotification
 {
 	public PropertyName id { get { return new PropertyName(); } }
-	public ExposedReference<GameObject> contorolObject;
-	public string animationName;
 
+	public AnimationData[] animationDatas;
+	//public ExposedReference<GameObject> contorolObject;
+	//public ExposedReference<AnimationClip> animation;
+	//public string animationName;
+
+}
+
+[System.Serializable]
+public struct AnimationData
+{
+	public ExposedReference<GameObject> contorolObject;
+	public ExposedReference<AnimationClip> animation;
 }

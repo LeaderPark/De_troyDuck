@@ -56,15 +56,20 @@ public class SkillSet : MonoBehaviour
     {
         skillCools[index] = true;
         skillCoolTimes[index] = skillDatas[index].coolTime;
-        Timer coolTimer = null;
-        coolTimer = new Timer((o) =>
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < skillCoolTimes.Length; i++)
         {
-            skillCoolTimes[index]--;
-            if (skillCoolTimes[index] <= 0)
+            if (skillCools[i])
             {
-                skillCools[index] = false;
-                coolTimer.Dispose();
+                skillCoolTimes[i] -= Time.deltaTime;
+                if (skillCoolTimes[i] <= 0)
+                {
+                    skillCools[i] = false;
+                }
             }
-        }, null, 0, 1000);
+        }
     }
 }

@@ -44,6 +44,18 @@ public class ManagerObject : MonoBehaviour
         }
         return null;
     }
+
+    public void SetTimeScale(float timeScale, float time)
+    {
+        StartCoroutine(ControlTimeScale(timeScale, time));
+    }
+
+    IEnumerator ControlTimeScale(float timeScale, float time)
+    {
+        Time.timeScale = timeScale;
+        yield return new WaitForSeconds(time);
+        Time.timeScale = 1f;
+    }
 }
 
 public enum ManagerType

@@ -14,6 +14,7 @@ public class HitBox : MonoBehaviour
             if (skillData.entity.gameObject.layer != entity?.gameObject.layer)
             {
                 if (entity == null)
+                    return;
                 switch (entity.gameObject.layer)
                 {
                     case 6: // player

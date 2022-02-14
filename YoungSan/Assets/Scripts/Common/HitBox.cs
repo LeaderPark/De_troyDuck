@@ -19,7 +19,6 @@ public class HitBox : MonoBehaviour
                 {
                     case 6: // player
                     CameraShake.Instance.Shake();
-                    ManagerObject.Instance.SetTimeScale(0.4f, 1f);
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);

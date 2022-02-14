@@ -12,7 +12,8 @@ namespace StateMachine
         
         public override State Process(StateMachine stateMachine)
         {
-            Vector3 dirVec = stateMachine.Enemy.transform.position - stateMachine.Player.transform.position;
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            Vector3 dirVec = stateMachine.Enemy.transform.position - gameManager.Player.transform.position;
             dirVec.y = 0;
 
             Vector3 rightVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;
@@ -40,7 +41,7 @@ namespace StateMachine
                 return stateMachine.GetStateTable(typeof(Move));
             }
             
-            if (Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) < stateMachine.stateMachineData.distanceRadius)
+            if (Vector2.Distance(new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) < stateMachine.stateMachineData.distanceRadius)
             {
                 return stateMachine.GetStateTable(typeof(Distance));
             }

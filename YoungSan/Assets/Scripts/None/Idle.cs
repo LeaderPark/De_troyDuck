@@ -13,7 +13,8 @@ namespace StateMachine
 
         public override State Process(StateMachine stateMachine)
         {
-            if (Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) <= stateMachine.stateMachineData.searchRadius)
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            if (Vector2.Distance(new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) <= stateMachine.stateMachineData.searchRadius)
             {
                 stateMachine.searchTimeStack += Time.deltaTime;
             }

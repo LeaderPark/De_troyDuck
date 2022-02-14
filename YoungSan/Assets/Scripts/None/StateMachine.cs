@@ -10,7 +10,6 @@ namespace StateMachine
         private State state;
         private Hashtable stateTable;
         public Enemy Enemy {get; private set;}
-        public Player Player {get; private set;}
         
         public StateMachineData stateMachineData;
         
@@ -20,7 +19,6 @@ namespace StateMachine
         void Awake()
         {
             Enemy = GetComponent<Enemy>();
-            Player = GameObject.FindObjectOfType<Player>();
             stateTable = new Hashtable();
             stateTable.Add(typeof(Idle), new Idle());
             stateTable.Add(typeof(Move), new Move());
@@ -34,10 +32,7 @@ namespace StateMachine
 
         void Update()
         {
-            if (Player == null) Player = GameObject.FindObjectOfType<Player>();
-            if (Player == null) return;
             state = state.Process(this);
-            Debug.Log(state.GetType().Name);
         }
 
         public void SetState(System.Type type)

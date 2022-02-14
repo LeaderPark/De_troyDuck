@@ -23,9 +23,10 @@ namespace StateMachine
             }
             if (start)
             {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
                 timeStack += Time.deltaTime;
                 
-                Vector3 dirVec = stateMachine.Enemy.transform.position - stateMachine.Player.transform.position;
+                Vector3 dirVec = stateMachine.Enemy.transform.position - gameManager.Player.transform.position;
                 dirVec.y = 0;
                 
                 dirVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;

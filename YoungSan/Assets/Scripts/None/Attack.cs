@@ -9,6 +9,7 @@ namespace StateMachine
     {
         public override State Process(StateMachine stateMachine)
         {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             List<SkillAreaBundle> bundles = new List<SkillAreaBundle>();
             List<bool> directions = new List<bool>();
             foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
@@ -30,7 +31,7 @@ namespace StateMachine
             
             try
             {
-                Vector2 dirVec = new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z) - new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z);
+                Vector2 dirVec = new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z) - new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z);
                 stateMachine.Enemy.entityEvent.CallEvent(bundles[bundleIdx].eventCategory, new object[]{dirVec.x, dirVec.y, directions[bundleIdx]});
             }
             catch

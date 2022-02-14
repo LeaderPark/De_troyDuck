@@ -53,7 +53,7 @@ public class ManagerObject : MonoBehaviour
     IEnumerator ControlTimeScale(float timeScale, float time)
     {
         Time.timeScale = timeScale;
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1f;
     }
 }
@@ -62,4 +62,5 @@ public enum ManagerType
 {
     InputManager,
     PoolManager,
+    GameManager,
 }

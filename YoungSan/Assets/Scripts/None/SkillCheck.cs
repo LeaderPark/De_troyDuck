@@ -9,7 +9,8 @@ namespace StateMachine
     {
         public override State Process(StateMachine stateMachine)
         {
-            float distance = Vector2.Distance(new Vector2(stateMachine.Player.transform.position.x, stateMachine.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z));
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            float distance = Vector2.Distance(new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z));
             foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
             {
                 foreach (var item in skillAreaBundle.skillAreaDatas)

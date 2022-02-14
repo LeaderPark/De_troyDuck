@@ -9,7 +9,7 @@ namespace StateMachine
     {
         float timeStack;
 
-        bool moveDir;
+        int moveDir;
 
         bool start;
 
@@ -19,7 +19,7 @@ namespace StateMachine
             if (!start)
             {
                 timeStack = 0;
-                moveDir = Random.Range(0, 2) == 0;
+                moveDir = Random.Range(0, 5);
                 start = true;
             }
             if (start)
@@ -30,7 +30,8 @@ namespace StateMachine
                 dirVec.y = 0;
                 
                 dirVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;
-                if (moveDir) dirVec *= -1;
+                if (moveDir == 1) dirVec *= -1;
+                if (moveDir > 1) dirVec *= 0;
 
                 if (dirVec.x > 0f)
                 {
@@ -42,11 +43,21 @@ namespace StateMachine
                 }
 
                 stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{dirVec.x, dirVec.z, stateMachine.Enemy.direction});
-
-                if (stateMachine.stateMachineData.waitTime <= timeStack)
+                if (moveDir > 1)
                 {
-                    start = false;
-                    return stateMachine.GetStateTable(typeof(SkillCheck));
+                    if (stateMachine.stateMachineData.waitTime + 1f <= timeStack)
+                    {
+                        start = false;
+                        return stateMachine.GetStateTable(typeof(SkillCheck));
+                    }
+                }
+                else
+                {
+                    if (stateMachine.stateMachineData.waitTime <= timeStack)
+                    {
+                        start = false;
+                        return stateMachine.GetStateTable(typeof(SkillCheck));
+                    }
                 }
             }
             return this;

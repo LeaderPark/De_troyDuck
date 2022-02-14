@@ -18,8 +18,7 @@ namespace StateMachine
 
             Vector3 rightVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;
 
-            if (Random.Range(0, 1) == 0)
-                rightVec *= -1;
+            if (Random.Range(0, 2) == 0) rightVec *= -1;
 
             float moveDirX = rightVec.x + dirVec.x;
             float moveDirY = rightVec.z + dirVec.z;

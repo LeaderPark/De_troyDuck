@@ -20,6 +20,7 @@ public class MainChar_Attack3 : SkillEffect
             }
             break;
             case 7: // enemy
+            //ManagerObject.Instance.SetTimeScale(0.2f, 2f);
             hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[]{0.4f});
@@ -29,7 +30,7 @@ public class MainChar_Attack3 : SkillEffect
             if (hitEntity != null)
             {
                 Vector3 dir = new Vector3(direction.x, 0, direction.y);
-                StartCoroutine(KnockBack(hitEntity, (dir).normalized, 0.1f, 40));
+                StartCoroutine(KnockBack(hitEntity, (dir).normalized, 0.1f, 10));
             }
             break;
         }
@@ -44,9 +45,30 @@ public class MainChar_Attack3 : SkillEffect
 
     
     IEnumerator KnockBack(Entity hitEntity, Vector3 dir, float time, float power)
-    {
-        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { dir, power });
-        yield return new WaitForSeconds(time);
+	{
+        float waitTime = 0;
+		while (true)
+		{
+			waitTime += Time.deltaTime;
+			if (waitTime >= time)
+			{
+				break;
+			}
+			hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { dir, power });
+			yield return null;
+		}
+		waitTime = 0;
+
+		while (true)
+		{
+            waitTime += Time.deltaTime;
+            if (waitTime >= 0.3f)
+            {
+                break;
+            }
+            hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { dir, Mathf.Lerp(power,0, waitTime/0.3f) });
+            yield return null;
+        }
         hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
     }
 

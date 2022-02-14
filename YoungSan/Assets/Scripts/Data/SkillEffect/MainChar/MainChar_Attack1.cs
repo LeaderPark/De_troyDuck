@@ -44,8 +44,29 @@ public class MainChar_Attack1 : SkillEffect
 
     IEnumerator KnockBack(Entity hitEntity, Vector3 dir, float time, float power)
     {
-        hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { dir, power });
-        yield return new WaitForSeconds(time);
+        float waitTime = 0;
+        while (true)
+        {
+            waitTime += Time.deltaTime;
+            if (waitTime >= time)
+            {
+                break;
+            }
+            hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { dir, power });
+            yield return null;
+        }
+        waitTime = 0;
+
+        while (true)
+        {
+            waitTime += Time.deltaTime;
+            if (waitTime >= 0.3f)
+            {
+                break;
+            }
+            hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { dir, Mathf.Lerp(power, 0, waitTime / 0.3f) });
+            yield return null;
+        }
         hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
     }
     IEnumerator DamageColor(Entity hitEntity)

@@ -30,7 +30,7 @@ public class Entity : MonoBehaviour
     void Awake()
     {
         Processors = new Hashtable();
-        clone = new Clone(this, entityData);
+        clone = new Clone(entityData);
         SettingProcessor();
     }
 

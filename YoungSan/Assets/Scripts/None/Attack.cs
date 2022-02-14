@@ -15,6 +15,9 @@ namespace StateMachine
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             bundles.Clear();
             directions.Clear();
+            
+            if (Random.Range(0, 100) < 60) return stateMachine.GetStateTable(typeof(SkillCheck));
+
             foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
             {
                 foreach (var item in skillAreaBundle.skillAreaDatas)

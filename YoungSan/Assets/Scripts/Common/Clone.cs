@@ -5,10 +5,9 @@ using UnityEngine;
 public class Clone
 {
     public string Name {get; private set;}
-    public Hashtable StatTable {get; private set;}
-    public Hashtable MaxStatTable {get; private set;}
 
-    private Entity entity {get; set;}
+    private Hashtable StatTable {get; set;}
+    private Hashtable MaxStatTable {get; set;}
 
 
     public int GetStat(StatCategory category)
@@ -44,7 +43,7 @@ public class Clone
         if (StatTable.ContainsKey(category))
         {
             int temp = (int)StatTable[category] - value;
-            StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] - value, 0, (int)MaxStatTable[category]);
+            StatTable[category] = (int)Mathf.Clamp(temp, 0, (int)MaxStatTable[category]);
             if (category == StatCategory.Health && (int)StatTable[category] <= 0)
             {
                 
@@ -64,9 +63,8 @@ public class Clone
         }
     }
 
-    public Clone(Entity entity, EntityData data)
+    public Clone(EntityData data)
     {
-        this.entity = entity;
         Name = data.entityName;
         MaxStatTable = new Hashtable();
         

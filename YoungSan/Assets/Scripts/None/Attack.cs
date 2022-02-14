@@ -7,11 +7,14 @@ namespace StateMachine
 {
     public class Attack : State
     {
+        List<SkillAreaBundle> bundles = new List<SkillAreaBundle>();
+        List<bool> directions = new List<bool>();
+
         public override State Process(StateMachine stateMachine)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            List<SkillAreaBundle> bundles = new List<SkillAreaBundle>();
-            List<bool> directions = new List<bool>();
+            bundles.Clear();
+            directions.Clear();
             foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
             {
                 foreach (var item in skillAreaBundle.skillAreaDatas)

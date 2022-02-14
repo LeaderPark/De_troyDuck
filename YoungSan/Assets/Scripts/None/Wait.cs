@@ -15,6 +15,7 @@ namespace StateMachine
 
         public override State Process(StateMachine stateMachine)
         {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             if (!start)
             {
                 timeStack = 0;
@@ -23,7 +24,6 @@ namespace StateMachine
             }
             if (start)
             {
-            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
                 timeStack += Time.deltaTime;
                 
                 Vector3 dirVec = stateMachine.Enemy.transform.position - gameManager.Player.transform.position;

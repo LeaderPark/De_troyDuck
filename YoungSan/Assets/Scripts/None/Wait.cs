@@ -33,15 +33,6 @@ namespace StateMachine
                 if (moveDir == 1) dirVec *= -1;
                 if (moveDir > 1) dirVec *= 0;
 
-                if (dirVec.x > 0f)
-                {
-                    stateMachine.Enemy.direction = true;
-                }
-                else
-                {
-                    stateMachine.Enemy.direction = false;
-                }
-
                 stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{dirVec.x, dirVec.z, stateMachine.Enemy.direction});
                 if (moveDir > 1)
                 {

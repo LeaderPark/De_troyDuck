@@ -12,7 +12,8 @@ public class CameraShake : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = new GameObject().AddComponent<CameraShake>();
+                instance = new GameObject("Camera Shake").AddComponent<CameraShake>();
+                DontDestroyOnLoad(instance.gameObject);
             }
             return instance;
         }

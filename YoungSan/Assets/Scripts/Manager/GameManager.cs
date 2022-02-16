@@ -11,7 +11,7 @@ public class GameManager : Manager
         {
             if (player == null)
             {
-                player = FindObjectOfType<Player>();
+                player = GameObject.FindWithTag("Player").GetComponent<Player>();
             }
 
             return player;

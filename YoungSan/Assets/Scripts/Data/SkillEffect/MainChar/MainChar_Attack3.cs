@@ -8,9 +8,9 @@ public class MainChar_Attack3 : SkillEffect
     
     public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
     {
-        switch (hitEntity?.gameObject.layer)
+        switch (hitEntity?.gameObject.tag)
         {
-            case 6: // player
+            case "Player": // player
             hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.2f});
             StartCoroutine(DamageColor(hitEntity));
             if (hitEntity != null)
@@ -19,7 +19,7 @@ public class MainChar_Attack3 : SkillEffect
                 StartCoroutine(KnockBack(hitEntity, (dir).normalized, 0.1f, 8));
             }
             break;
-            case 7: // enemy
+            case "Enemy": // enemy
             //ManagerObject.Instance.SetTimeScale(0.2f, 2f);
             hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.4f});

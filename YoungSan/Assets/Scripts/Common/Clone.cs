@@ -9,6 +9,7 @@ public class Clone
     private Hashtable StatTable {get; set;}
     private Hashtable MaxStatTable {get; set;}
 
+    private Entity entity;
 
     public int GetStat(StatCategory category)
     {
@@ -46,7 +47,7 @@ public class Clone
             StatTable[category] = (int)Mathf.Clamp(temp, 0, (int)MaxStatTable[category]);
             if (category == StatCategory.Health && (int)StatTable[category] <= 0)
             {
-                
+                Die();
             }
         }
     }
@@ -58,14 +59,33 @@ public class Clone
             StatTable[category] = (int)Mathf.Clamp(value, 0, (int)MaxStatTable[category]);
             if (category == StatCategory.Health && (int)StatTable[category] <= 0)
             {
-                
+                Die();
             }
         }
     }
 
-    public Clone(EntityData data)
+    private void Die()
+    {
+        entity.isDead = true;
+        if (entity.GetComponent<Player>() != null)
+        {
+            entity.GetComponent<Player>().enabled = false;
+        }
+        if (entity.GetComponent<Enemy>() != null)
+        {
+            entity.GetComponent<Enemy>().enabled = false;
+        }
+        if (entity.GetComponent<StateMachine.StateMachine>() != null)
+        {
+            entity.GetComponent<StateMachine.StateMachine>().enabled = false;
+        }
+        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Die"});
+    }
+
+    public Clone(Entity entity, EntityData data)
     {
         Name = data.entityName;
+        this.entity = entity;
         MaxStatTable = new Hashtable();
         
         for (int i = 0; i < data.status.stats.Count; i++)

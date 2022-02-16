@@ -11,19 +11,19 @@ public class HitBox : MonoBehaviour
         if (other.gameObject != null)
         {
             Entity entity = other.GetComponent<Entity>();
-            if (skillData.entity.gameObject.layer != entity?.gameObject.layer)
+            if (skillData.entity.gameObject.tag != entity?.gameObject.tag)
             {
-                if (entity == null)
-                    return;
-                switch (entity.gameObject.layer)
+                if (entity == null) return;
+                if (entity.isDead) return;
+                switch (entity.gameObject.tag)
                 {
-                    case 6: // player
+                    case "Player": // player
                     CameraShake.Instance.Shake();
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);
                     break;
-                    case 7: // enemy
+                    case "Enemy": // enemy
                     CameraShake.Instance.Shake();
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});

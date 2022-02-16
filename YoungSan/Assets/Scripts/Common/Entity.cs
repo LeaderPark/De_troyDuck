@@ -9,6 +9,8 @@ public class Entity : MonoBehaviour
 
     public EntityData entityData;
     public Clone clone;
+
+    public bool isDead;
     
     public Processor.Processor GetProcessor(Type processor)
     {
@@ -30,7 +32,8 @@ public class Entity : MonoBehaviour
     void Awake()
     {
         Processors = new Hashtable();
-        clone = new Clone(entityData);
+        clone = new Clone(this, entityData);
+        isDead = false;
         SettingProcessor();
     }
 

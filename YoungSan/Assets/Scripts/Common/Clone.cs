@@ -64,7 +64,7 @@ public class Clone
         }
     }
 
-    private void Die()
+    public void Die()
     {
         entity.isDead = true;
         if (entity.GetComponent<Player>() != null)

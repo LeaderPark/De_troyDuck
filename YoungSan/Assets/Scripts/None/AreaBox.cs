@@ -13,16 +13,19 @@ public class AreaBox : MonoBehaviour
     {
         if (other.gameObject != null)
         {
-            player = other.gameObject.GetComponent<Player>();
-            if (player != null)
+            if (other.gameObject.CompareTag("Player"))
             {
-                if (areaDirection == AreaDirection.Left)
+                player = other.gameObject.GetComponent<Player>();
+                if (player != null)
                 {
-                    skillAreaData.inLeftSkillArea = true;
-                }
-                else
-                {
-                    skillAreaData.inRightSkillArea = true;
+                    if (areaDirection == AreaDirection.Left)
+                    {
+                        skillAreaData.inLeftSkillArea = true;
+                    }
+                    else
+                    {
+                        skillAreaData.inRightSkillArea = true;
+                    }
                 }
             }
         }

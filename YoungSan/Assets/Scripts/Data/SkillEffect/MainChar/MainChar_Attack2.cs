@@ -20,11 +20,11 @@ public class MainChar_Attack2 : SkillEffect
             }
             break;
             case "Enemy": // enemy
+            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Hit"});
             hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[]{0.4f});
-            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
             StartCoroutine(DamageColor(hitEntity));
             if (hitEntity != null)
             {

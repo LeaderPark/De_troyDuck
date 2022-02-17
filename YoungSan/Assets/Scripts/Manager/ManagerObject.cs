@@ -9,6 +9,10 @@ public class ManagerObject : MonoBehaviour
     {
         get
         {
+            if (instance == null)
+            {
+                Instantiate(Resources.Load<GameObject>("ManagerObject"));
+            }
             return instance;
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : Manager
 {
@@ -11,14 +12,20 @@ public class GameManager : Manager
         {
             if (player == null)
             {
-                player = GameObject.FindWithTag("Player").GetComponent<Player>();
+                Player = GameObject.FindWithTag("Player").GetComponent<Player>();
             }
 
             return player;
         }
         set
         {
+            if (player != null)
+            {
+                player.transform.parent = null;
+            }
             player = value;
+            player.transform.SetParent(transform);
+            Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
         }
     }
 }

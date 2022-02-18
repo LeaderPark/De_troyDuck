@@ -3,33 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class hitTest : MonoBehaviour
+public class DamageEffect : MonoBehaviour
 {
-	public static hitTest Instance;
-	[SerializeField]
-	private GameObject hitImagePrefab;
-
-	private void Awake()
+	private static DamageEffect instance;
+	public static DamageEffect Instance
 	{
-		if (Instance!=null)
+		get
 		{
-			Destroy(this);
+			if (instance == null)
+			{
+				instance = FindObjectOfType<DamageEffect>();
+				if (instance == null)
+				{
+					instance = new GameObject("Damage Effect").AddComponent<DamageEffect>();
+					DontDestroyOnLoad(instance.gameObject);
+				}
+			}
+			return instance;
 		}
-		Instance = this;
-		print(Instance);
 	}
 
-	public void hitEffect()
+	private GameObject canvas;
+
+	public void OnDamageEffect()
 	{
-		StartCoroutine(hitEffectTest());
+		StartCoroutine(DamageEffectProcess());
 	}
-	public IEnumerator hitEffectTest()
+	public IEnumerator DamageEffectProcess()
 	{
 		PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
 
-		Image hitImage = poolManager.GetObject("hitImageTest").GetComponent<Image>();
+		Image hitImage = poolManager.GetObject("DamageEffect").GetComponent<Image>();
 
-		hitImage.gameObject.transform.SetParent(this.gameObject.transform);
+		if (canvas == null)
+		{
+			canvas = GameObject.Find("Canvas");
+		}
+
+		hitImage.gameObject.transform.SetParent(canvas.transform);
+		//hitImage.gameObject.transform.SetParent(this.gameObject.transform);
 		hitImage.rectTransform.anchorMax = Vector2.one;
 		hitImage.rectTransform.anchorMin = Vector2.zero;
 		hitImage.rectTransform.anchoredPosition = Vector2.zero;

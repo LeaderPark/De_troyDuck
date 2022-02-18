@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MountainBanditEvent : EntityEvent
+public class BatMountainBanditEvent : EntityEvent
 {
     private bool dontmove;
 

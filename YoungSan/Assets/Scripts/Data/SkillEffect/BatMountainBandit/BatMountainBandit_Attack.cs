@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MountainBandit_Attack : SkillEffect
+public class BatMountainBandit_Attack : SkillEffect
 {
     public AnimationClip hitEffectClip;
 

@@ -20,12 +20,23 @@ public class InputManager : Manager
         keyTable[KeyCode.A] = ButtonState.None;
         keyTable[KeyCode.S] = ButtonState.None;
         keyTable[KeyCode.D] = ButtonState.None;
+        keyTable[KeyCode.Q] = ButtonState.None;
 
         mouseTable[MouseButton.Left] = ButtonState.None;
         mouseTable[MouseButton.Right] = ButtonState.None;
     }
 
-    public ButtonState GetKeyState(KeyCode keyCode)
+    public bool CheckKeyState(KeyCode keyCode, ButtonState state)
+    {
+        return GetKeyState(keyCode) == state;
+    }
+
+    public bool CheckMouseState(MouseButton mouse, ButtonState state)
+    {
+        return GetMouseState(mouse) == state;
+    }
+
+    private ButtonState GetKeyState(KeyCode keyCode)
     {
         if (keyTable.ContainsKey(keyCode))
         {

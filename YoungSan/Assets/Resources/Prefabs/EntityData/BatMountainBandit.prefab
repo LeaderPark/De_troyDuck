@@ -222,12 +222,12 @@ GameObject:
   - component: {fileID: 4630027691702936314}
   - component: {fileID: 4630027691702936312}
   - component: {fileID: 4630027691702936263}
-  - component: {fileID: 1823145890804986609}
+  - component: {fileID: 6869263000748316990}
   - component: {fileID: 4630027691702936313}
   - component: {fileID: 6176921944388049793}
   - component: {fileID: 1553282847400589262}
   m_Layer: 7
-  m_Name: MountainBandit
+  m_Name: BatMountainBandit
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,7 +359,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99, y: 1.62, z: 0.2}
   m_Center: {x: -0.024999976, y: 0.81, z: 0}
---- !u!114 &1823145890804986609
+--- !u!114 &6869263000748316990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4630027691702936259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a19277ef99ba714dab29fc97ce32bd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 09cba93273346c843b06ba6d24141a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 4630027691702936314}
@@ -537,7 +537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6668997982035880589}
-  - component: {fileID: 6668997982035880578}
+  - component: {fileID: 699095934054546113}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -559,7 +559,7 @@ Transform:
   m_Father: {fileID: 6668997983014011881}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6668997982035880578
+--- !u!114 &699095934054546113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6668997982035880588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34b5076cd822dea4faaf70de3a05d4d7, type: 3}
+  m_Script: {fileID: 11500000, guid: b17156201cd67a6438c98cdb00b9627a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffectClip: {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
@@ -653,11 +653,11 @@ MonoBehaviour:
   - {fileID: 3905612962508708290}
   RightHitBox:
   - {fileID: 6595363625223148861}
-  startTime: 0.5
-  time: 0.3
+  startTime: 0.67
+  time: 0.13
   skillDamageForm: '{Attack}'
   coolTime: 0
-  skillEffect: {fileID: 6668997982035880578}
+  skillEffect: {fileID: 699095934054546113}
   direction: {x: 0, y: 0}
 --- !u!1 &8651137759522063989
 GameObject:

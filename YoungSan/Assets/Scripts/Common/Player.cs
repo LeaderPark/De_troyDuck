@@ -31,19 +31,19 @@ public class Player : MonoBehaviour
         float inputX = 0;
         float inputY = 0;
 
-        if (inputManager.GetKeyState(KeyCode.D) == ButtonState.Stay)
+        if (inputManager.CheckKeyState(KeyCode.D, ButtonState.Stay))
         {
             inputX = 1f;
         }
-        else if (inputManager.GetKeyState(KeyCode.A) == ButtonState.Stay)
+        else if (inputManager.CheckKeyState(KeyCode.A, ButtonState.Stay))
         {
             inputX = -1f;
         }
-        if (inputManager.GetKeyState(KeyCode.W) == ButtonState.Stay)
+        if (inputManager.CheckKeyState(KeyCode.W, ButtonState.Stay))
         {
             inputY = 1f;
         }
-        else if (inputManager.GetKeyState(KeyCode.S) == ButtonState.Stay)
+        else if (inputManager.CheckKeyState(KeyCode.S, ButtonState.Stay))
         {
             inputY = -1f;
         }
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         {
             entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { inputX, inputY, direction });
         }
-        if (inputManager.GetMouseState(MouseButton.Left) == ButtonState.Down)
+        if (inputManager.CheckMouseState(MouseButton.Left, ButtonState.Down))
         {
 			RaycastHit hit;
 			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
@@ -74,6 +74,15 @@ public class Player : MonoBehaviour
 				entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { mousePos.x, mousePos.z, attackDirection });
 			}
 		}
+        if(inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
+        {
+            Debug.Log("nyan");
+			RaycastHit hit;
+			if (Physics.SphereCast(transform.position + Vector3.up * 10, 2, Vector3.down, out hit, 20, LayerMask.GetMask(new string[] { "Enemy" })))
+			{
+                Debug.Log(hit.transform.gameObject.name);
+			}
+        }
 
         entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
     }
@@ -86,5 +95,8 @@ public class Player : MonoBehaviour
         {
             Gizmos.DrawLine(transform.position, hit.point);
         }
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 2);
     }
 }

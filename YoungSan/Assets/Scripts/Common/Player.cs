@@ -76,11 +76,15 @@ public class Player : MonoBehaviour
 		}
         if(inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
         {
-            Debug.Log("nyan");
 			RaycastHit hit;
 			if (Physics.SphereCast(transform.position + Vector3.up * 10, 2, Vector3.down, out hit, 20, LayerMask.GetMask(new string[] { "Enemy" })))
 			{
                 Debug.Log(hit.transform.gameObject.name);
+                Entity target = hit.transform.GetComponent<Entity>();
+                if (target.isDead)
+                {
+                    entity.clone.Die();
+                }
 			}
         }
 

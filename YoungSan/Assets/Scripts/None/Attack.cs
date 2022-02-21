@@ -21,6 +21,7 @@ namespace StateMachine
             
             if (!start)
             {
+                timeStack = 0;
                 bundles.Clear();
                 directions.Clear();
 

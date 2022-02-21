@@ -6,6 +6,7 @@ public class HitBox : MonoBehaviour
 {
     public SkillData skillData {get; set;}
 
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != null)
@@ -15,6 +16,8 @@ public class HitBox : MonoBehaviour
             {
                 if (entity == null) return;
                 if (entity.isDead) return;
+                
+                Debug.Log("Hit " + Time.time);
                 switch (entity.gameObject.tag)
                 {
                     case "Player": // player

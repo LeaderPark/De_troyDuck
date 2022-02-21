@@ -59,7 +59,7 @@ public class BatMountainBanditEvent : EntityEvent
         {
             System.Action<bool, float> end = (System.Action<bool, float>)((bool transition, float time) => 
             {
-                if (!transition && time >= 1f || transition)
+                if (!transition && time >= 1f)
                 {
                     dontmove = false;
                     dontAttack = false;

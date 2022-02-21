@@ -6,18 +6,6 @@ public class HitBox : MonoBehaviour
 {
     public SkillData skillData {get; set;}
 
-    HashSet<Entity> targets;
-
-    void Awake()
-    {
-        targets = new HashSet<Entity>();
-    }
-
-    void OnDisable()
-    {
-        if (targets.Count > 0) targets.Clear();
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != null)
@@ -27,8 +15,6 @@ public class HitBox : MonoBehaviour
             {
                 if (entity == null) return;
                 if (entity.isDead) return;
-                if (targets.Contains(entity)) return;
-                targets.Add(entity);
                 switch (entity.gameObject.tag)
                 {
                     case "Player": // player

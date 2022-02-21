@@ -24,8 +24,8 @@ public class SkillSet : MonoBehaviour
     {
         foreach (var item in skillDatas)
         {
-            item.gameObject.SetActive(false);
             StopAllCoroutines();
+            item.gameObject.SetActive(false);
         }
     }
 

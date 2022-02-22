@@ -83,8 +83,9 @@ public class Player : MonoBehaviour
                 Entity target = hit.transform.GetComponent<Entity>();
                 if (target.isDead)
                 {
+                    entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
                     entity.clone.Die();
-                    
+                    return;
                 }
 			}
         }

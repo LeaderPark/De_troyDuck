@@ -6,6 +6,18 @@ public class HitBox : MonoBehaviour
 {
     public SkillData skillData {get; set;}
 
+    HashSet<Entity> targets;
+
+    void Awake()
+    {
+        targets = new HashSet<Entity>();
+    }
+
+    void OnDisable()
+    {
+        if (targets.Count > 0) targets.Clear();
+    }
+
     
     void OnTriggerEnter(Collider other)
     {
@@ -16,16 +28,20 @@ public class HitBox : MonoBehaviour
             {
                 if (entity == null) return;
                 if (entity.isDead) return;
-                        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+                
+                if (targets.Contains(entity)) return;
+                targets.Add(entity);
+
+                SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
 
                 switch (entity.gameObject.tag)
                 {
                     case "Player": // player
-                        CameraShake.Instance.Shake();
+                    CameraShake.Instance.Shake();
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
                     DamageEffect.Instance?.OnDamageEffect();
-                        soundManager.SoundStart("HitSound");
+                    soundManager.SoundStart("HitSound");
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);
                     break;
                     case "Enemy": // enemy

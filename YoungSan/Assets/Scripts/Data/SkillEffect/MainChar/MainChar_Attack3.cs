@@ -20,8 +20,10 @@ public class MainChar_Attack3 : SkillEffect
             }
             break;
             case "Enemy": // enemy
-            //ManagerObject.Instance.SetTimeScale(0.2f, 2f);
-            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
+                          //ManagerObject.Instance.SetTimeScale(0.2f, 2f);
+                SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+                soundManager.SoundStart("HitSound");
+                hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
             hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[]{0.4f});

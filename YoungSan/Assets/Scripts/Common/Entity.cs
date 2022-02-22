@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
     public Clone clone;
 
     public bool isDead;
-    
+        
     public Processor.Processor GetProcessor(Type processor)
     {
         if (Processors.ContainsKey(processor))

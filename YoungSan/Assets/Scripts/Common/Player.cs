@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
         Process();
     }
 
+    private bool dash;
+    private bool dashCool;
 
     private void Process()
     {
@@ -89,8 +91,25 @@ public class Player : MonoBehaviour
                 }
 			}
         }
+        if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool)
+        {
+            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
+            StartCoroutine(AttackVelocityTime(0.08f));
+            dash = true;
+            dashCool = true;
+        }
+        if (dash) return;
 
         entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
+    }
+    
+    private IEnumerator AttackVelocityTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        dash = false;
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
+        yield return new WaitForSeconds(2f);
+        dashCool = false;
     }
     
     void OnDrawGizmosSelected()
@@ -105,4 +124,5 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 2);
     }
+
 }

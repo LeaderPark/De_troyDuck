@@ -109,7 +109,7 @@ public class MainCharEvent : EntityEvent
     private IEnumerator AttackVelocityTime(float time)
     {
         yield return new WaitForSeconds(time);
-        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(0, 0, 0).normalized, 0});
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
     }
 
     private IEnumerator AttackEndCheck()

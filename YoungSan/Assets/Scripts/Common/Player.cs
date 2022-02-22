@@ -81,12 +81,19 @@ public class Player : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.SphereCast(transform.position + Vector3.up * 10, 2, Vector3.down, out hit, 20, LayerMask.GetMask(new string[] { "Enemy" })))
 			{
-                Debug.Log(hit.transform.gameObject.name);
+                GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
                 Entity target = hit.transform.GetComponent<Entity>();
                 if (target.isDead)
                 {
                     entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
                     entity.clone.Die();
+                    entity.gameObject.layer = 7;
+                    entity.gameObject.tag = "Enemy";
+                    gameManager.Player = target.GetComponent<Player>();
+                    gameManager.Player.enabled = true;
+                    gameManager.Player.gameObject.layer = 6;
+                    gameManager.Player.gameObject.tag = "Player";
+                    
                     return;
                 }
 			}
@@ -108,7 +115,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
         dash = false;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         dashCool = false;
     }
     

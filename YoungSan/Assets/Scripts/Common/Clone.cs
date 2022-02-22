@@ -52,6 +52,16 @@ public class Clone
         }
     }
 
+    public void SetMaxStat(StatCategory category, int value)
+    {
+        if (MaxStatTable.ContainsKey(category))
+        {
+            MaxStatTable[category] = value;
+            SetStat(category, GetStat(category));
+        }
+    }
+
+
     public void SetStat(StatCategory category, int value)
     {
         if (StatTable.ContainsKey(category))

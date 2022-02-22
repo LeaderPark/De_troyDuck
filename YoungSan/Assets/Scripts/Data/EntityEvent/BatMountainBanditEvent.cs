@@ -58,7 +58,7 @@ public class BatMountainBanditEvent : EntityEvent
 
     private IEnumerator AttackDelayCheck()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.5f);
         dontAttack = false;
     }
 

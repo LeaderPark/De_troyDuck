@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
                 if (target.isDead)
                 {
                     entity.clone.Die();
+                    
                 }
 			}
         }

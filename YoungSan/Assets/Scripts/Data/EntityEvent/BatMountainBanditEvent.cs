@@ -13,6 +13,7 @@ public class BatMountainBanditEvent : EntityEvent
     protected override void Awake()
     {
         dontmove = false;
+        dontAttack = false;
     }
 
     private void CallMove(float inputX, float inputY, bool direction)
@@ -40,26 +41,18 @@ public class BatMountainBanditEvent : EntityEvent
         {
             entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, new Vector2(inputX, inputY), direction, (System.Action)(() =>
             {
-                Debug.Log("NYan" + " " + Time.time);
                 entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack"});
                 entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(0, 0, 0).normalized, 0});
                 dontmove = true;
+                dontAttack = true;
             })});
-            dontAttack = true;
-            StartCoroutine(AttackDelayCheck());
             if (endCheck == null)
             {
                 endCheck = AttackEndCheck();
                 StartCoroutine(endCheck);
             }
         }
-    }
-
-    private IEnumerator AttackDelayCheck()
-    {
-        yield return new WaitForSeconds(1.5f);
-        dontAttack = false;
     }
 
     private IEnumerator AttackEndCheck()
@@ -71,6 +64,7 @@ public class BatMountainBanditEvent : EntityEvent
                 if (!transition && time >= 1f || transition)
                 {
                     dontmove = false;
+                    dontAttack = false;
                 }
             });
 

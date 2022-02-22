@@ -22,9 +22,9 @@ public class SkillSet : MonoBehaviour
 
     public void StopSkill()
     {
+        StopAllCoroutines();
         foreach (var item in skillDatas)
         {
-            StopAllCoroutines();
             item.gameObject.SetActive(false);
         }
     }
@@ -34,6 +34,7 @@ public class SkillSet : MonoBehaviour
         if (skillDatas.Length > index)
         {
             if (skillCools[index]) return;
+            StopSkill();
             CoolDown(index);
             action();
             SkillData data = skillDatas[index];

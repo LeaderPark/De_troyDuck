@@ -89,6 +89,9 @@ public class Clone
         {
             entity.GetComponent<StateMachine.StateMachine>().enabled = false;
         }
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{ Vector3.zero, 0 });
+        entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
+        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0f});
         entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Die"});
     }
 

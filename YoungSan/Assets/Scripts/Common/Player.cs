@@ -109,8 +109,7 @@ public class Player : MonoBehaviour
             if (target != null)
             {
                 GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-                entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
-                
+
                 entity.clone.Die();
                 entity.gameObject.layer = 7;
                 entity.gameObject.tag = "Enemy";

@@ -21,6 +21,7 @@ public class GameManager : Manager
         {
             if (player != null)
             {
+                player.transform.parent = Camera.main.transform;
                 player.transform.parent = null;
             }
             player = value;

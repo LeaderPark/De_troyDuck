@@ -33,7 +33,7 @@ public class HitBox : MonoBehaviour
                 targets.Add(entity);
 
                 SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-
+                
                 switch (entity.gameObject.tag)
                 {
                     case "Player": // player

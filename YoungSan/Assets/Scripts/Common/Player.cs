@@ -86,11 +86,16 @@ public class Player : MonoBehaviour
                 if (target.isDead)
                 {
                     entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
+                    
                     entity.clone.Die();
                     entity.gameObject.layer = 7;
                     entity.gameObject.tag = "Enemy";
+
                     gameManager.Player = target.GetComponent<Player>();
+                    // foreach (StatCategory stat in )
+                    // gameManager.Player.entity.clone.SetStat()
                     gameManager.Player.enabled = true;
+                    gameManager.Player.entity.isDead = false;
                     gameManager.Player.gameObject.layer = 6;
                     gameManager.Player.gameObject.tag = "Player";
                     

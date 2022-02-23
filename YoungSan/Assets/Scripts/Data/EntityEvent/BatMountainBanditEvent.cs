@@ -43,7 +43,7 @@ public class BatMountainBanditEvent : EntityEvent
             {
                 entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack"});
-                entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(0, 0, 0).normalized, 0});
+                entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
                 dontmove = true;
                 dontAttack = true;
             })});

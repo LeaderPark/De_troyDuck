@@ -78,30 +78,54 @@ public class Player : MonoBehaviour
 		}
         if(inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
         {
-			RaycastHit hit;
-			if (Physics.SphereCast(transform.position + Vector3.up * 10, 2, Vector3.down, out hit, 20, LayerMask.GetMask(new string[] { "Enemy" })))
-			{
-                GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-                Entity target = hit.transform.GetComponent<Entity>();
-                if (target.isDead)
-                {
-                    entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
-                    
-                    entity.clone.Die();
-                    entity.gameObject.layer = 7;
-                    entity.gameObject.tag = "Enemy";
+			RaycastHit[] hits = Physics.SphereCastAll(transform.position + Vector3.up * 10, 2, Vector3.down, 20, LayerMask.GetMask(new string[] { "Enemy" }));
+			float distance = 0;
+            Entity target = null;
+            foreach (RaycastHit hit in hits)
+            {
+                Entity hitEntity = hit.transform.GetComponent<Entity>();
 
-                    gameManager.Player = target.GetComponent<Player>();
-                    // foreach (StatCategory stat in )
-                    // gameManager.Player.entity.clone.SetStat()
-                    gameManager.Player.enabled = true;
-                    gameManager.Player.entity.isDead = false;
-                    gameManager.Player.gameObject.layer = 6;
-                    gameManager.Player.gameObject.tag = "Player";
+
+                if (hitEntity.isDead)
+                {
+                    if (target == null)
+                    {
+                        target = hitEntity;
+                        distance = Vector2.Distance(new Vector2(hitEntity.transform.position.x, hitEntity.transform.position.z), new Vector2(transform.position.x, transform.position.z));
+                    }
+                    else
+                    {
+                        float temp = Vector2.Distance(new Vector2(hitEntity.transform.position.x, hitEntity.transform.position.z), new Vector2(transform.position.x, transform.position.z));
+                        if (distance > temp)
+                        {
+                            target = hitEntity;
+                            distance = temp;
+                        }
+                    }
                     
-                    return;
                 }
 			}
+
+            if (target != null)
+            {
+                GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+                entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
+                
+                entity.clone.Die();
+                entity.gameObject.layer = 7;
+                entity.gameObject.tag = "Enemy";
+                gameManager.Player = target.GetComponent<Player>();
+                foreach (StatCategory stat in System.Enum.GetValues(typeof(StatCategory)))
+                {
+                    gameManager.Player.entity.clone.SetStat(stat, gameManager.Player.entity.clone.GetMaxStat(stat));
+                }
+                gameManager.Player.enabled = true;
+                gameManager.Player.entity.isDead = false;
+                gameManager.Player.gameObject.layer = 6;
+                gameManager.Player.gameObject.tag = "Player";
+                
+                return;
+            }
         }
         if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool)
         {

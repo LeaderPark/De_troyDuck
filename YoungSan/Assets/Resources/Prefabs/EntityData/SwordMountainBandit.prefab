@@ -495,11 +495,13 @@ MonoBehaviour:
   - {fileID: 7494574574163639945}
   RightHitBox:
   - {fileID: 411769097772724854}
-  startTime: 0.25
-  time: 0.15
+  startTime: 0.4
+  time: 0.05
+  soundStartTime: 0
   skillDamageForm: '{Attack}'
   coolTime: 0
-  skillEffect: {fileID: 0}
+  skillEffect: {fileID: 197208136061750744}
+  attackSound: {fileID: 0}
   direction: {x: 0, y: 0}
 --- !u!1 &4143921575116378352
 GameObject:
@@ -823,11 +825,13 @@ MonoBehaviour:
   - {fileID: 4143921575528386691}
   RightHitBox:
   - {fileID: 4143921575591518511}
-  startTime: 0.25
-  time: 0.15
+  startTime: 0.1
+  time: 0.05
+  soundStartTime: 0
   skillDamageForm: '{Attack}'
   coolTime: 0
-  skillEffect: {fileID: 0}
+  skillEffect: {fileID: 4143921575637521609}
+  attackSound: {fileID: 0}
   direction: {x: 0, y: 0}
 --- !u!1 &4143921576820434128
 GameObject:

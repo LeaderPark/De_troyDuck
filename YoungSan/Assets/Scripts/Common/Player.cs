@@ -85,7 +85,6 @@ public class Player : MonoBehaviour
             {
                 Entity hitEntity = hit.transform.GetComponent<Entity>();
 
-
                 if (hitEntity.isDead)
                 {
                     if (target == null)

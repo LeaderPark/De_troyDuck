@@ -37,6 +37,11 @@ public class Entity : MonoBehaviour
         SettingProcessor();
     }
 
+    void Update()
+    {
+        
+    }
+
     private void SettingProcessor()
     {
         if (GetComponent<Animator>() != null)

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainChar_Attack2 : SkillEffect
+public class SwordMountainBandit_Attack2 : SkillEffect
 {
     public AnimationClip hitEffectClip;
-    
+
     public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
     {
         switch (hitEntity?.gameObject.tag)
@@ -33,7 +33,7 @@ public class MainChar_Attack2 : SkillEffect
             if (hitEntity != null)
             {
                 Vector3 dir = new Vector3(direction.x, 0, direction.y);
-                StartCoroutine(KnockBack(hitEntity, (dir).normalized, 0.2f, 10));
+                StartCoroutine(KnockBack(hitEntity, (dir).normalized, 0.2f, 8));
             }
             break;
         }
@@ -76,7 +76,6 @@ public class MainChar_Attack2 : SkillEffect
         }
         hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
     }
-
     IEnumerator DamageColor(Entity hitEntity)
     {
         hitEntity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetColor", new object[] { Color.white });

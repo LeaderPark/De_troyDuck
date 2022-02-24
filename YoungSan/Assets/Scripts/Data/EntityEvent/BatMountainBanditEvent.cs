@@ -5,9 +5,9 @@ using UnityEngine;
 public class BatMountainBanditEvent : EntityEvent
 {
     private bool dontmove;
+    private bool dontAttack;
 
     IEnumerator endCheck;
-    private bool dontAttack;
     
 
     protected override void Awake()
@@ -37,7 +37,7 @@ public class BatMountainBanditEvent : EntityEvent
     }
     private void CallDefaultAttack(float inputX, float inputY, bool direction)
     {
-        if (!dontAttack && !dontmove)
+        if (!dontAttack)
         {
             entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, new Vector2(inputX, inputY), direction, (System.Action)(() =>
             {

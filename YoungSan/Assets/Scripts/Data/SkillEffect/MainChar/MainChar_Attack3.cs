@@ -12,6 +12,8 @@ public class MainChar_Attack3 : SkillEffect
         {
             case "Player": // player
             hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.2f});
+            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
+            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.2f});
             StartCoroutine(DamageColor(hitEntity));
             if (hitEntity != null)
             {

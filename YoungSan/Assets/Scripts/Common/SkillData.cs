@@ -13,13 +13,14 @@ public class SkillData : MonoBehaviour
 
     public float startTime;
     public float time;
+    public float soundStartTime;
 
     public string skillDamageForm;
 
     public float coolTime;
 
     public SkillEffect skillEffect;
-
+    public AudioClip attackSound;
     public Vector2 direction;
 
     public int CalculateSkillDamage()

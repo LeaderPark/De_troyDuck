@@ -40,6 +40,7 @@ public class SkillSet : MonoBehaviour
             SkillData data = skillDatas[index];
             data.direction = direction;
             StartCoroutine(CheckActiveTime(data, isRight));
+            StartCoroutine(attackSound(data));
         }
     }
 
@@ -52,7 +53,13 @@ public class SkillSet : MonoBehaviour
         data.gameObject.SetActive(false);
         yield return null;
     }
-
+    IEnumerator attackSound(SkillData data)
+    {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+        yield return new WaitForSeconds(data.soundStartTime);
+        if(data.attackSound!=null)
+        soundManager.SoundStart(data.attackSound.name);
+    }
 
     private void CoolDown(int index)
     {

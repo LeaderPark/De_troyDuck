@@ -32,7 +32,6 @@ public class HitBox : MonoBehaviour
                 if (targets.Contains(entity)) return;
                 targets.Add(entity);
 
-                SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
                 
                 switch (entity.gameObject.tag)
                 {
@@ -41,7 +40,6 @@ public class HitBox : MonoBehaviour
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
                     DamageEffect.Instance?.OnDamageEffect();
-                    soundManager.SoundStart("HitSound");
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);
                     break;
                     case "Enemy": // enemy

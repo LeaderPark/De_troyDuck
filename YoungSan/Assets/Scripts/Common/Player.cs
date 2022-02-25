@@ -110,6 +110,7 @@ public class Player : MonoBehaviour
                 GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 
                 entity.clone.Die();
+                entity.gameObject.GetComponent<AudioListener>().enabled = false;
                 entity.gameObject.layer = 7;
                 entity.gameObject.tag = "Enemy";
                 gameManager.Player = target.GetComponent<Player>();
@@ -117,6 +118,7 @@ public class Player : MonoBehaviour
                 {
                     gameManager.Player.entity.clone.SetStat(stat, gameManager.Player.entity.clone.GetMaxStat(stat));
                 }
+                gameManager.Player.GetComponent<AudioListener>().enabled = true;
                 gameManager.Player.enabled = true;
                 gameManager.Player.entity.isDead = false;
                 gameManager.Player.gameObject.layer = 6;

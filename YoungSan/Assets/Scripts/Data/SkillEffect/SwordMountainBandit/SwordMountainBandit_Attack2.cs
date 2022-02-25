@@ -8,6 +8,8 @@ public class SwordMountainBandit_Attack2 : SkillEffect
 
     public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
     {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+        soundManager.SoundStart("HitSound2");
         switch (hitEntity?.gameObject.tag)
         {
             case "Player": // player
@@ -22,8 +24,6 @@ public class SwordMountainBandit_Attack2 : SkillEffect
             }
             break;
             case "Enemy": // enemy
-            SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-            soundManager.SoundStart("HitSound2");
             hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
             hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.4f});

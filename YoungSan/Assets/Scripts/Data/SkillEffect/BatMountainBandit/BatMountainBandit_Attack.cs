@@ -8,6 +8,8 @@ public class BatMountainBandit_Attack : SkillEffect
 
     public override void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
     {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+        soundManager.SoundStart("HitSound2");
         switch (hitEntity?.gameObject.tag)
         {
             case "Player": // player

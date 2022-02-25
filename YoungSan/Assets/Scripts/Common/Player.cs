@@ -127,7 +127,6 @@ public class Player : MonoBehaviour
         }
         if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool)
         {
-            entity.GetComponent<Collider>().enabled = false;
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
             StartCoroutine(AttackVelocityTime(0.08f));
             dash = true;
@@ -142,7 +141,6 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         dash = false;
-        entity.GetComponent<Collider>().enabled = true;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
         yield return new WaitForSeconds(1f);
         dashCool = false;

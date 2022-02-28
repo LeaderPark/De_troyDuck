@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : Manager
+public class UIManger : Manager
 {
     private float playerCurrentHP; 
     private float playerCurrentStamina;
@@ -17,7 +17,10 @@ public class UIManager : Manager
 
     void Update()
     {
-
+        var currentStat = UpdateCurrentStat();
+        Debug.Log("CurrentHP :" + currentStat.Item1 + "\t CurrentStamina : " + currentStat.Item2);
+        var maxStat = UpdateMaxStat();
+        Debug.Log("MaxHP :" + maxStat.Item1 + "\t MaxStamina : " + maxStat.Item2);
     }
 
     public (float, float) UpdateMaxStat()
@@ -25,7 +28,6 @@ public class UIManager : Manager
         entity = GameObject.FindWithTag("Player").GetComponent<Entity>();
         playerMaxHP = entity.clone.GetMaxStat(StatCategory.Health);
         playerMaxStamina = entity.clone.GetMaxStat(StatCategory.Stamina);
-        Debug.Log("UpdateMaxStat()");
         return (playerMaxHP,playerMaxStamina);
     }
 
@@ -34,7 +36,6 @@ public class UIManager : Manager
         entity = GameObject.FindWithTag("Player").GetComponent<Entity>();
         playerCurrentHP = entity.clone.GetStat(StatCategory.Health);
         playerCurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
-        Debug.Log("UpdateCurrentStat()");
         return (playerCurrentHP, playerCurrentStamina);
     }
 }

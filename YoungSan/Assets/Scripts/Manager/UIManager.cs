@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManger : Manager
+public class UIManager : Manager
 {
     private float playerCurrentHP; 
     private float playerCurrentStamina;

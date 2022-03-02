@@ -5,7 +5,7 @@ using UnityEngine;
 public class BatMountainBanditEvent : EntityEvent
 {
     private bool dontmove;
-    private bool dontAttack;
+    private int attackStack;
 
     IEnumerator endCheck;
     
@@ -13,7 +13,7 @@ public class BatMountainBanditEvent : EntityEvent
     protected override void Awake()
     {
         dontmove = false;
-        dontAttack = false;
+        attackStack = 0;
     }
 
     private void CallMove(float inputX, float inputY, bool direction)
@@ -37,7 +37,7 @@ public class BatMountainBanditEvent : EntityEvent
     }
     private void CallDefaultAttack(float inputX, float inputY, bool direction)
     {
-        if (!dontAttack)
+        if (attackStack == 0)
         {
             entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, new Vector2(inputX, inputY), direction, (System.Action)(() =>
             {
@@ -45,13 +45,13 @@ public class BatMountainBanditEvent : EntityEvent
                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack"});
                 entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
                 dontmove = true;
-                dontAttack = true;
             })});
-            if (endCheck == null)
-            {
-                endCheck = AttackEndCheck();
-                StartCoroutine(endCheck);
-            }
+            attackStack = 1;
+        }
+        if (endCheck == null)
+        {
+            endCheck = AttackEndCheck();
+            StartCoroutine(endCheck);
         }
     }
 
@@ -63,8 +63,8 @@ public class BatMountainBanditEvent : EntityEvent
             {
                 if (!transition && time >= 1f || transition)
                 {
+                    attackStack = 0;
                     dontmove = false;
-                    dontAttack = false;
                 }
             });
 

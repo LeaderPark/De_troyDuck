@@ -68,5 +68,6 @@ public enum ManagerType
     PoolManager,
     GameManager,
     SoundManager,
-    UIManager
+    UIManager,
+    TimelineManager
 }

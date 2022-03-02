@@ -367,6 +367,7 @@ GameObject:
   - component: {fileID: 1009489312}
   - component: {fileID: 4580442240323297771}
   - component: {fileID: 5261142048948540176}
+  - component: {fileID: 7365705623806924774}
   m_Layer: 7
   m_Name: MainChar
   m_TagString: Enemy
@@ -555,6 +556,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachineData: {fileID: 11400000, guid: 898b76716ceb34946b359450d2a8ae1a, type: 2}
+--- !u!81 &7365705623806924774
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075073055555241501}
+  m_Enabled: 1
 --- !u!1 &2388458980938419714
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,9 +880,11 @@ MonoBehaviour:
   - {fileID: 507352122581545443}
   startTime: 0.03
   time: 0.03
+  soundStartTime: 0
   skillDamageForm: ({Attack} + 2) * 2 + 10
   coolTime: 0
   skillEffect: {fileID: 276663892}
+  attackSound: {fileID: 0}
   direction: {x: 0, y: 0}
 --- !u!1 &3720855888058998040
 GameObject:
@@ -984,9 +995,11 @@ MonoBehaviour:
   - {fileID: 2751635251116658996}
   startTime: 0
   time: 0.4
+  soundStartTime: 0
   skillDamageForm: '{Attack} * 6'
   coolTime: 0
   skillEffect: {fileID: 7137876916191949852}
+  attackSound: {fileID: 0}
   direction: {x: 0, y: 0}
 --- !u!1 &4914971777484609309
 GameObject:
@@ -1468,7 +1481,9 @@ MonoBehaviour:
   - {fileID: 7952806635551821888}
   startTime: 0.1
   time: 0.2
+  soundStartTime: 0
   skillDamageForm: '{Speed} * 2'
   coolTime: 0
   skillEffect: {fileID: 6512122961216048893}
+  attackSound: {fileID: 0}
   direction: {x: 0, y: 0}

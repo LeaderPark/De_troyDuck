@@ -23,7 +23,7 @@ public class MainChar_Attack2 : SkillEffect
             break;
             case "Enemy": // enemy
             SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-            soundManager.SoundStart("HitSound2");
+            soundManager.SoundStart("HitSound2", transform);
             hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
             hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.4f});
             hitEntity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{0.4f});

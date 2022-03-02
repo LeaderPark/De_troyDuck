@@ -58,7 +58,7 @@ public class SkillSet : MonoBehaviour
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
         yield return new WaitForSeconds(data.soundStartTime);
         if(data.attackSound!=null)
-        soundManager.SoundStart(data.attackSound.name);
+        soundManager.SoundStart(data.attackSound.name, transform);
     }
 
     private void CoolDown(int index)

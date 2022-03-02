@@ -41,15 +41,17 @@ public class SoundManager : Manager
         }
     }
 
-    public void SoundStart(string soundName)
+    public void SoundStart(string soundName, Transform soundPos)
     {
-        StartCoroutine(SoundPlayCoroutine(soundName));
+        StartCoroutine(SoundPlayCoroutine(soundName,soundPos));
     }
-    private IEnumerator SoundPlayCoroutine(string soundName)
+    private IEnumerator SoundPlayCoroutine(string soundName, Transform soundPos)
     {
 
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-        AudioSource audioSource = poolManager.GetObject("SoundPrefab").GetComponent<AudioSource>(); 
+        AudioSource audioSource = poolManager.GetObject("SoundPrefab").GetComponent<AudioSource>();
+        audioSource.gameObject.transform.position = soundPos.position;
+        audioSource.gameObject.transform.SetParent(soundPos);
         AudioClip clip = GetSound(soundName);
 
         //audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFX")[0];
@@ -58,7 +60,7 @@ public class SoundManager : Manager
 
         yield return new WaitForSeconds(clip.length);
         audioSource.Stop();
-
+        audioSource.gameObject.transform.SetParent(poolManager.gameObject.transform);
         audioSource.gameObject.SetActive(false);
     }
 }

@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 2193459943475004850}
   - component: {fileID: 831266378485611722}
   - component: {fileID: 5458304546411925637}
+  - component: {fileID: -2420791776724051165}
   m_Layer: 7
   m_Name: SwordMountainBandit
   m_TagString: Enemy
@@ -396,6 +397,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachineData: {fileID: 11400000, guid: 898b76716ceb34946b359450d2a8ae1a, type: 2}
+--- !u!81 &-2420791776724051165
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193459943475004808}
+  m_Enabled: 0
 --- !u!1 &2755805365563334974
 GameObject:
   m_ObjectHideFlags: 0

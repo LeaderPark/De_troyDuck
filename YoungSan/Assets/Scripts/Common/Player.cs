@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private bool dash;
     private bool dashCool;
 
-    private async void Process()
+    private void Process()
     {
         InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
 

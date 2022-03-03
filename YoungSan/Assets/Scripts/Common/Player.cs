@@ -135,10 +135,11 @@ public class Player : MonoBehaviour
                 return;
             }
         }
-        if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool)
+        if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool && entity.clone.GetStat(StatCategory.Stamina) >= 50)
         {
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
-            StartCoroutine(AttackVelocityTime(0.08f));
+            entity.clone.SubStat(StatCategory.Stamina, 50);
+            StartCoroutine(AttackVelocityTime(0.08f));d
             dash = true;
             dashCool = true;
         }

@@ -18,6 +18,7 @@ public class SkillData : MonoBehaviour
     public string skillDamageForm;
 
     public float coolTime;
+    public int useStamina;
 
     public SkillEffect skillEffect;
     public AudioClip attackSound;

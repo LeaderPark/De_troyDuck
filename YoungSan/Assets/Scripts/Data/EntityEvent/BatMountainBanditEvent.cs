@@ -4,80 +4,22 @@ using UnityEngine;
 
 public class BatMountainBanditEvent : EntityEvent
 {
-    private bool dontmove;
-    private int attackStack;
-
-    IEnumerator endCheck;
-    
 
     protected override void Awake()
     {
-        dontmove = false;
-        attackStack = 0;
+        base.Awake();
+        DefalutAttack();
     }
 
-    private void CallMove(float inputX, float inputY, bool direction)
+    private void DefalutAttack()
     {
-        if (!dontmove)
-        {
-            entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
-            if (inputX == 0 && inputY == 0)
-            {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Idle"});
-            }
-            else
-            {   
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Move"});
-            }
-
-            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
-            entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
-        }
-        
-    }
-    private void CallDefaultAttack(float inputX, float inputY, bool direction)
-    {
-        if (attackStack == 0)
-        {
-            entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{0, new Vector2(inputX, inputY), direction, (System.Action)(() =>
-            {
-                entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Attack"});
-                entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
-                dontmove = true;
-            })});
-            attackStack = 1;
-        }
-        if (endCheck == null)
-        {
-            endCheck = AttackEndCheck();
-            StartCoroutine(endCheck);
-        }
+        maxAttackStack[EventCategory.DefaultAttack] = 1;
+        attackAnimation[EventCategory.DefaultAttack] = new string[]{ "Attack" };
+        attackTransitionTime[EventCategory.DefaultAttack] = new (float, float)[]{};
+        attackIndex[EventCategory.DefaultAttack] = new int[]{ 0 };
+        attackProcess[EventCategory.DefaultAttack] = new System.Action<float, float>[]{ 
+        null
+        };
     }
 
-    private IEnumerator AttackEndCheck()
-    {
-        while (true)
-        {
-            System.Action<bool, float> end = (System.Action<bool, float>)((bool transition, float time) => 
-            {
-                if (!transition && time >= 1f || transition)
-                {
-                    attackStack = 0;
-                    dontmove = false;
-                }
-            });
-
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Attack", end});
-            yield return null;
-        }
-    }
-
-    private void CallSkill1()
-    {
-    }
-    private void CallSkill2()
-    {
-
-    }
 }

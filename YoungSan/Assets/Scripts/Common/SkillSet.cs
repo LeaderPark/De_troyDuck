@@ -34,10 +34,11 @@ public class SkillSet : MonoBehaviour
         if (skillDatas.Length > index)
         {
             if (skillCools[index]) return;
-            if (skillDatas[index].useStamina > skillDatas[index].entity.clone.GetStat(StatCategory.Stamina)) return;
+            int useStamina = skillDatas[index].CalculateUseStamina();
+            if (useStamina > skillDatas[index].entity.clone.GetStat(StatCategory.Stamina)) return;
             CoolDown(index);
             StopSkill();
-            skillDatas[index].entity.clone.SubStat(StatCategory.Stamina, skillDatas[index].useStamina);
+            skillDatas[index].entity.clone.SubStat(StatCategory.Stamina, useStamina);
             action();
             SkillData data = skillDatas[index];
             data.direction = direction;

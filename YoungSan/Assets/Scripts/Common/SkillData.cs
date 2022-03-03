@@ -18,7 +18,7 @@ public class SkillData : MonoBehaviour
     public string skillDamageForm;
 
     public float coolTime;
-    public int useStamina;
+    public string useStaminaForm;
 
     public SkillEffect skillEffect;
     public AudioClip attackSound;
@@ -27,6 +27,19 @@ public class SkillData : MonoBehaviour
     public int CalculateSkillDamage()
     {
         string temp = skillDamageForm;
+        foreach (var item in System.Enum.GetNames(typeof(StatCategory)))
+        {
+            temp = temp.Replace("{" + item + "}", entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+            temp = temp.Replace("{Max" + item + "}", entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+        }
+        
+        Expression ex = new Expression(temp);
+        return (int)ex.Evaluate();
+    }
+
+    public int CalculateUseStamina()
+    {
+        string temp = useStaminaForm;
         foreach (var item in System.Enum.GetNames(typeof(StatCategory)))
         {
             temp = temp.Replace("{" + item + "}", entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());

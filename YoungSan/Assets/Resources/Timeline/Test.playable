@@ -39,6 +39,26 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &-5736420325405221241
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0.5333333333333333
+  animationDatas:
+  - contorolObject:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    animation:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!74 &-5145019076794936889
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -613,6 +633,7 @@ MonoBehaviour:
     - {fileID: -3526825958735831418}
     - {fileID: 7423048932418512992}
     - {fileID: 7506002731003899121}
+    - {fileID: -5736420325405221241}
 --- !u!114 &459230853576056662
 MonoBehaviour:
   m_ObjectHideFlags: 1

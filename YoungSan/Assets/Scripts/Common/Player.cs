@@ -129,6 +129,9 @@ public class Player : MonoBehaviour
                 gameManager.Player.entity.clone.SetStat(StatCategory.Health, (int)((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * hpRatio));
                 gameManager.Player.entity.clone.SetStat(StatCategory.Stamina, (int)((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Stamina)) * staminaRatio));
 
+                uiManager.statbar.UpdateStatBar();
+                uiManager.statbar.UpdateStatText();
+
                 return;
             }
         }

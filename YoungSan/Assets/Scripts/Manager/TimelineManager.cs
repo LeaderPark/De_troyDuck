@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class TimelineManager : Manager
 {
@@ -9,6 +10,7 @@ public class TimelineManager : Manager
 	private GameObject directorObj;
 	private void Start()
 	{
+		StartCutScene("Prologue");
 	}
 	public void StartCutScene(string cutSceneName)
 	{

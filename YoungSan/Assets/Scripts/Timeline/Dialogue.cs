@@ -177,12 +177,15 @@ public class Dialogue : MonoBehaviour
     }
     IEnumerator TypingText(string dialogue)
     {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
         talkBoxTrm.gameObject.SetActive(true);
 
 		for (int j = 0; j < dialogue.Length; j++)
 		{
 			talkBoxTxt.text += dialogue[j];
-			yield return new WaitForSeconds(0.01f);
+            if(j%4 ==0)
+            soundManager.SoundStart("Test6", transform,false);
+            yield return new WaitForSeconds(0.01f);
 		}
         dialoguePlayCheck = false;
     }

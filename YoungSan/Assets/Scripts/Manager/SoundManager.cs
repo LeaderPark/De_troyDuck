@@ -41,18 +41,19 @@ public class SoundManager : Manager
         }
     }
 
-    public void SoundStart(string soundName, Transform soundPos)
+    public void SoundStart(string soundName, Transform soundPos,bool is3DSound = true)
     {
-        StartCoroutine(SoundPlayCoroutine(soundName,soundPos));
+        StartCoroutine(SoundPlayCoroutine(soundName,soundPos, is3DSound));
     }
-    private IEnumerator SoundPlayCoroutine(string soundName, Transform soundPos)
+    private IEnumerator SoundPlayCoroutine(string soundName, Transform soundPos, bool is3DSound)
     {
-
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         AudioSource audioSource = poolManager.GetObject("SoundPrefab").GetComponent<AudioSource>();
         audioSource.gameObject.transform.position = soundPos.position;
         audioSource.gameObject.transform.SetParent(soundPos);
         AudioClip clip = GetSound(soundName);
+
+        audioSource.spatialBlend = is3DSound ? 1 : 0;
 
         //audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFX")[0];
         audioSource.clip = clip;

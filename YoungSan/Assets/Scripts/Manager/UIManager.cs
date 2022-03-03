@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,19 +9,22 @@ public class UIManager : Manager
     private float playerCurrentStamina;
     private float playerMaxHP;
     private float playerMaxStamina;
+    private float hp;
+    private float stamina;
     private Entity entity;
+    public Statbar statbar;
+
+    (float, float) currentStat;
+    (float, float) maxStat;
 
     void Start()
     {
-        
+        statbar = transform.GetComponentInChildren<Statbar>();
     }
 
     void Update()
     {
-        var currentStat = UpdateCurrentStat();
-        Debug.Log("CurrentHP :" + currentStat.Item1 + "\t CurrentStamina : " + currentStat.Item2);
-        var maxStat = UpdateMaxStat();
-        Debug.Log("MaxHP :" + maxStat.Item1 + "\t MaxStamina : " + maxStat.Item2);
+
     }
 
     public (float, float) UpdateMaxStat()
@@ -37,5 +41,25 @@ public class UIManager : Manager
         playerCurrentHP = entity.clone.GetStat(StatCategory.Health);
         playerCurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
         return (playerCurrentHP, playerCurrentStamina);
+    }
+
+    public float BackUpHpStat()
+    {
+        currentStat = UpdateCurrentStat();
+        maxStat = UpdateMaxStat();
+
+        hp = currentStat.Item1 / maxStat.Item1;
+
+        return hp;
+    }
+
+    public float BackUpStaminaStat()
+    {
+        currentStat = UpdateCurrentStat();
+        maxStat = UpdateMaxStat();
+
+        stamina = currentStat.Item2 / maxStat.Item2;
+
+        return stamina;
     }
 }

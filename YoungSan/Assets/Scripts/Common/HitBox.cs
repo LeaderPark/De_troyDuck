@@ -18,7 +18,6 @@ public class HitBox : MonoBehaviour
         if (targets.Count > 0) targets.Clear();
     }
 
-    
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != null)
@@ -41,6 +40,7 @@ public class HitBox : MonoBehaviour
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.entity});
                     DamageEffect.Instance?.OnDamageEffect();
                     skillData.skillEffect?.ShowSkillEffect(skillData.entity, entity, skillData.direction);
+
                     break;
                     case "Enemy": // enemy
                     CameraShake.Instance.Shake();

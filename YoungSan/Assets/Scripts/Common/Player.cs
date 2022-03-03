@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private bool dash;
     private bool dashCool;
 
-    private void Process()
+    private async void Process()
     {
         InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
 
@@ -108,7 +108,10 @@ public class Player : MonoBehaviour
             if (target != null)
             {
                 GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-
+                UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+                
+                float hpRatio = uiManager.BackUpHpStat();
+                float staminaRatio = uiManager.BackUpStaminaStat();
                 entity.clone.Die();
                 entity.gameObject.GetComponent<AudioListener>().enabled = false;
                 entity.gameObject.layer = 7;
@@ -123,7 +126,9 @@ public class Player : MonoBehaviour
                 gameManager.Player.entity.isDead = false;
                 gameManager.Player.gameObject.layer = 6;
                 gameManager.Player.gameObject.tag = "Player";
-                
+                gameManager.Player.entity.clone.SetStat(StatCategory.Health, (int)((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * hpRatio));
+                gameManager.Player.entity.clone.SetStat(StatCategory.Stamina, (int)((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Stamina)) * staminaRatio));
+
                 return;
             }
         }

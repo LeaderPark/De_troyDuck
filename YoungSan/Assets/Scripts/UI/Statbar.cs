@@ -16,18 +16,20 @@ public class Statbar : MonoBehaviour
     private UIManager uiManager;
     void Start()
     {
-        // hpSlider = GetComponent<Slider>();
-        // staminaSlider = GetComponent<Slider>();
         uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        uiManager.UpdateCurrentStat();
+        uiManager.UpdateMaxStat();
+        UpdateStatBar();
+        UpdateStatText();
+        
     }
 
     void Update()
     {
-        UpdateStatBar();
-        UpdateStatText();
+
     }
 
-    void UpdateStatBar()
+    public void UpdateStatBar()
     {
         currentStat = uiManager.UpdateCurrentStat();
         maxStat = uiManager.UpdateMaxStat();
@@ -37,9 +39,9 @@ public class Statbar : MonoBehaviour
         staminaSlider.value = currentStat.Item2;
     }
 
-    void UpdateStatText()
+    public void UpdateStatText()
     {
-        hpText.text = currentStat.Item1 + " / " + maxStat.Item1;
-        staminaText.text = currentStat.Item2 + " / " + maxStat.Item2;
+        hpText.text = Mathf.Round(currentStat.Item1) + " / " + maxStat.Item1;
+        staminaText.text = Mathf.Round(currentStat.Item2) + " / " + maxStat.Item2;
     }
 }

@@ -126,20 +126,17 @@ public class Player : MonoBehaviour
                 gameManager.Player.entity.isDead = false;
                 gameManager.Player.gameObject.layer = 6;
                 gameManager.Player.gameObject.tag = "Player";
-                gameManager.Player.entity.clone.SetStat(StatCategory.Health, (int)((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * hpRatio));
-                gameManager.Player.entity.clone.SetStat(StatCategory.Stamina, (int)((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Stamina)) * staminaRatio));
-
-                uiManager.statbar.UpdateStatBar();
-                uiManager.statbar.UpdateStatText();
+                gameManager.Player.entity.clone.SetStat(StatCategory.Health, Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * hpRatio));
+                //gameManager.Player.entity.clone.SetStat(StatCategory.Stamina,  Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Stamina)) * staminaRatio));
 
                 return;
             }
         }
-        if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool && entity.clone.GetStat(StatCategory.Stamina) >= 50)
+        if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool && entity.clone.GetStat(StatCategory.Stamina) >= 50 && new Vector3(inputX, 0, inputY).normalized != Vector3.zero)
         {
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
             entity.clone.SubStat(StatCategory.Stamina, 50);
-            StartCoroutine(AttackVelocityTime(0.08f));d
+            StartCoroutine(AttackVelocityTime(0.08f));
             dash = true;
             dashCool = true;
         }

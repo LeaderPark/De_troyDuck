@@ -17,9 +17,6 @@ namespace Processor
         void DamageOnBody(int damage, Entity attackEntity)
         {
             clone.SubStat(StatCategory.Health, damage);
-            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uiManager.statbar.UpdateStatBar();
-            uiManager.statbar.UpdateStatText();
             Debug.Log(string.Format("Name : {0}, HP : {1}, Atk : {2}, Speed : {3}, Stamina : {4}", clone.Name, clone.GetStat(StatCategory.Health), clone.GetStat(StatCategory.Attack), clone.GetStat(StatCategory.Speed), clone.GetStat(StatCategory.Stamina)));
         }
     }

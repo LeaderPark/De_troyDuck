@@ -36,6 +36,10 @@ public class Clone
         if (StatTable.ContainsKey(category))
         {
             StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] + value, 0, (int)MaxStatTable[category]);
+
+            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uiManager.statbar.UpdateStatBar();
+            uiManager.statbar.UpdateStatText();
         }
     }
 
@@ -49,6 +53,10 @@ public class Clone
             {
                 Die();
             }
+
+            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uiManager.statbar.UpdateStatBar();
+            uiManager.statbar.UpdateStatText();
         }
     }
 
@@ -58,6 +66,10 @@ public class Clone
         {
             MaxStatTable[category] = value;
             SetStat(category, GetStat(category));
+
+            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uiManager.statbar.UpdateStatBar();
+            uiManager.statbar.UpdateStatText();
         }
     }
 
@@ -71,6 +83,10 @@ public class Clone
             {
                 Die();
             }
+
+            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uiManager.statbar.UpdateStatBar();
+            uiManager.statbar.UpdateStatText();
         }
     }
 

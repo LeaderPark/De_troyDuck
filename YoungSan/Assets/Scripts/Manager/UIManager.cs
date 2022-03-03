@@ -22,14 +22,10 @@ public class UIManager : Manager
         statbar = transform.GetComponentInChildren<Statbar>();
     }
 
-    void Update()
-    {
-
-    }
-
     public (float, float) UpdateMaxStat()
     {
-        entity = GameObject.FindWithTag("Player").GetComponent<Entity>();
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        Entity entity = gameManager.Player.GetComponent<Entity>();
         playerMaxHP = entity.clone.GetMaxStat(StatCategory.Health);
         playerMaxStamina = entity.clone.GetMaxStat(StatCategory.Stamina);
         return (playerMaxHP,playerMaxStamina);
@@ -37,7 +33,8 @@ public class UIManager : Manager
 
     public (float, float) UpdateCurrentStat()
     {
-        entity = GameObject.FindWithTag("Player").GetComponent<Entity>();
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        Entity entity = gameManager.Player.GetComponent<Entity>();
         playerCurrentHP = entity.clone.GetStat(StatCategory.Health);
         playerCurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
         return (playerCurrentHP, playerCurrentStamina);

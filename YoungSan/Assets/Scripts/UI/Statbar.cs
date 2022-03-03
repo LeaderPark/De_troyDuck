@@ -17,16 +17,8 @@ public class Statbar : MonoBehaviour
     void Start()
     {
         uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uiManager.UpdateCurrentStat();
-        uiManager.UpdateMaxStat();
         UpdateStatBar();
         UpdateStatText();
-        
-    }
-
-    void Update()
-    {
-
     }
 
     public void UpdateStatBar()

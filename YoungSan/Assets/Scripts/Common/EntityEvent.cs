@@ -93,7 +93,7 @@ public class EntityEvent : MonoBehaviour
                                 entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{attackAnimation[category][i + 1]});
                                 entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
-                    attackProcess[category][i + 1]?.Invoke(inputX, inputY);
+                                attackProcess[category][i + 1]?.Invoke(inputX, inputY);
                                 dontmove = true;
                             })});
                             attackStack[category] = i + 2;

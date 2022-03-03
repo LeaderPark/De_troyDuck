@@ -10,7 +10,7 @@ public class TimelineManager : Manager
 	private GameObject directorObj;
 	private void Start()
 	{
-		StartCutScene("Prologue");
+		//StartCutScene("Prologue");
 	}
 	public void StartCutScene(string cutSceneName)
 	{

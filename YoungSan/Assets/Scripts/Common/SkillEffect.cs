@@ -5,12 +5,13 @@ using UnityEngine;
 public abstract class SkillEffect : MonoBehaviour
 {
     public AnimationClip hitEffectClip;
-    public string hitSound;
+    public AudioClip hitSoundClip;
 
     public void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
     {
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-        soundManager.SoundStart(hitSound, transform);
+        if(hitSoundClip!=null)
+        soundManager.SoundStart(hitSoundClip.name, transform);
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         if (hitEntity != null)
         {

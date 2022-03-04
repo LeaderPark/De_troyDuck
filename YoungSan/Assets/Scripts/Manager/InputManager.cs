@@ -8,7 +8,7 @@ public class InputManager : Manager
     private Dictionary<KeyCode, ButtonState> keyTable;
     private Dictionary<MouseButton, ButtonState> mouseTable;
 
-    void OnEnable()
+    void Awake()
     {
         keyTable = new Dictionary<KeyCode, ButtonState>();
         mouseTable = new Dictionary<MouseButton, ButtonState>();

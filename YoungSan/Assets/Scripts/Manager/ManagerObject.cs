@@ -21,7 +21,7 @@ public class ManagerObject : MonoBehaviour
     Hashtable ManagerTable {get; set;}
 
 
-    private void OnEnable()
+    private void Awake()
     {
         instance = this;
         DontDestroyOnLoad(gameObject);

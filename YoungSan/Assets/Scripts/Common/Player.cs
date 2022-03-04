@@ -135,6 +135,8 @@ public class Player : MonoBehaviour
         if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool && entity.clone.GetStat(StatCategory.Stamina) >= 50 && new Vector3(inputX, 0, inputY).normalized != Vector3.zero)
         {
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.35f});
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Dash"});
             entity.clone.SubStat(StatCategory.Stamina, 50);
             StartCoroutine(AttackVelocityTime(0.08f));
             dash = true;

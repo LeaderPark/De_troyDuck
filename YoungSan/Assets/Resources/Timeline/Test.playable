@@ -275,7 +275,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -302,13 +320,49 @@ MonoBehaviour:
     m_BlendOutDuration: 1.1999999999999997
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -375,6 +429,21 @@ MonoBehaviour:
     m_DisplayName: PlayerFollowCam
   m_Markers:
     m_Objects: []
+--- !u!114 &-4546000502536084751
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141e0bfc1825e3b4b99c1a7f6b765491, type: 3}
+  m_Name: Dialogue Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0.26666666666666666
+  dialogueFileName: testDialogue
+  wait: 0
 --- !u!114 &-3728828517230963133
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -634,6 +703,7 @@ MonoBehaviour:
     - {fileID: 7423048932418512992}
     - {fileID: 7506002731003899121}
     - {fileID: -5736420325405221241}
+    - {fileID: -4546000502536084751}
 --- !u!114 &459230853576056662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -763,7 +833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 0.15
   dialogueFileName: testDialogue
-  wait: 1
+  wait: 0
 --- !u!114 &5892314262735546313
 MonoBehaviour:
   m_ObjectHideFlags: 1

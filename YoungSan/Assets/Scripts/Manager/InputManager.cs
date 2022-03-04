@@ -8,13 +8,14 @@ public class InputManager : Manager
     private Dictionary<KeyCode, ButtonState> keyTable;
     private Dictionary<MouseButton, ButtonState> mouseTable;
 
-    void Awake()
+    void OnEnable()
     {
         keyTable = new Dictionary<KeyCode, ButtonState>();
         mouseTable = new Dictionary<MouseButton, ButtonState>();
+        KeySetting();
     }
 
-    void Start()
+    void KeySetting()
     {
         keyTable[KeyCode.W] = ButtonState.None;
         keyTable[KeyCode.A] = ButtonState.None;

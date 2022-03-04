@@ -7,7 +7,7 @@ public class PoolManager : Manager
     Dictionary<string, List<GameObject>> PoolObjects;
     Hashtable PoolObjectTable {get; set;}
 
-    void Awake()
+    void OnEnable()
     {
         PoolObjects = new Dictionary<string, List<GameObject>>();
         PoolObjectTable = new Hashtable();

@@ -11,6 +11,7 @@ public class TestAsset : PlayableAsset
 	public string dialogueMessage;
 
 	public AnimationCurve delayCurve;
+	public float activeTime;
 
 	public ScriptPlayable<TestBehaivor> playable;
 
@@ -67,7 +68,7 @@ public class TestAssetEditor : Editor
 						{
 							dur += ta.delayCurve.Evaluate(j * 0.1f);
 						}
-						clip.duration = dur;
+						clip.duration = dur+ ta.activeTime;
 					}
 				}
 			}

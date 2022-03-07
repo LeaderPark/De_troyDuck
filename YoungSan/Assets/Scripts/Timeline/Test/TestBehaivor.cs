@@ -24,8 +24,6 @@ public class TestBehaivor : PlayableBehaviour
 			if (ManagerObject.Instance != null)
 			{
 				poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-				talkObj.SetActive(false);
-
 			}
 		}
 		Debug.Log("AAA");
@@ -74,7 +72,8 @@ public class TestBehaivor : PlayableBehaviour
 	{
 		if (Application.isPlaying)
 		{
-
+			if (talkObj != null)
+				talkObj.SetActive(false);
 		}
 		else
 		{
@@ -98,7 +97,6 @@ public class TestBehaivor : PlayableBehaviour
 					if (idx < txt.Length)
 					{
 						talkBox.text += txt[idx];
-						SetBoxSize();
 						idx = Mathf.Clamp(idx + 1, 0, txt.Length);
 					}
 				}
@@ -106,7 +104,22 @@ public class TestBehaivor : PlayableBehaviour
 		}
 		else
 		{
-			
+			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position);
+			time += Time.deltaTime;
+			for (bool b = true; b;)
+			{
+				b = false;
+				if (time >= delayCurve.Evaluate(idx * 0.1f))
+				{
+					b = true;
+					time -= delayCurve.Evaluate(idx * 0.1f);
+					if (idx < txt.Length)
+					{
+						talkBox.text += txt[idx];
+						idx = Mathf.Clamp(idx + 1, 0, txt.Length);
+					}
+				}
+			}
 		}
 	}
 	public void SetBoxSize()

@@ -39,6 +39,8 @@ public class TestBehaivor : PlayableBehaviour
 			List<GameObject> pool = new List<GameObject>();
 			GameObject canvas = GameObject.Find("TestCanvas");
 
+			time = 0;
+			idx = 0;
 			for (int i = 0; i < canvas.transform.childCount; i++)
 			{
 				pool.Add(canvas.transform.GetChild(i).gameObject);

@@ -13,6 +13,7 @@ public class UIManager : Manager
     private float stamina;
     private Entity entity;
     public Statbar statbar;
+    public Skillinterface skillinterface;
 
     (float, float) currentStat;
     (float, float) maxStat;
@@ -20,6 +21,7 @@ public class UIManager : Manager
     void Start()
     {
         statbar = transform.GetComponentInChildren<Statbar>();
+        skillinterface = transform.GetComponentInChildren<Skillinterface>();
     }
 
     public (float, float) UpdateMaxStat()

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     private bool direction; // false left, true right
 
     private EntityEvent entityEvent;
 
     private Entity entity;
+
+    public float dashCoolTime = 1f;
 
     void Awake()
     {
@@ -152,7 +153,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
         dash = false;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
-        yield return new WaitForSeconds(1f);
+
+        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        uIManager.skillinterface.time_coolTime = dashCoolTime;
+        uIManager.skillinterface.Trigger_Skill(); //새롭게 추가 추후 수정
+
+        yield return new WaitForSeconds(dashCoolTime);
+
         dashCool = false;
     }
     

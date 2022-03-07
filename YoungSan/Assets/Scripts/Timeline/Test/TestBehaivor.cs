@@ -64,7 +64,6 @@ public class TestBehaivor : PlayableBehaviour
 		fakeTalkbox = talkObj.transform.Find("fakeText").GetComponent<Text>();
 		talkBox.text = "";
 		fakeTalkbox.text = txt;
-		talkBox.text = "";
 		Debug.Log("Play");
 		talkObj.SetActive(true);
 		SetBoxSize();

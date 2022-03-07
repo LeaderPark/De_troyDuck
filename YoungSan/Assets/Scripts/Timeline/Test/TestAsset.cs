@@ -35,6 +35,7 @@ public class TestAsset : PlayableAsset
 			//behaviour.talkObj.transform.parent = GameObject.Find("TestCanvas").transform;
 		}
 		//behaviour.talkObj.SetActive(false);
+		behaviour.delayCurve = delayCurve;
 		behaviour.talker = talker.Resolve(graph.GetResolver());
 		behaviour.txt = dialogueMessage;
 
@@ -52,7 +53,11 @@ public class TestAssetEditor : Editor
 		if (GUILayout.Button("Set Clip Size"))
 		{
 			TestAsset ta = (TestAsset)serializedObject.targetObject;
-			if (ta.playable.IsNull()) return;
+			if (ta.playable.IsNull())
+			{
+				Debug.Log("Playable is null");
+				return; 
+			}
 			for (int i = 0; i < ta.playable.GetGraph().GetOutputCount(); i++)
 			{
 				TrackAsset asset = ta.playable.GetGraph().GetOutput(i).GetReferenceObject() as TrackAsset;

@@ -1,55 +1,79 @@
 fileFormatVersion: 2
-guid: 1507d9adc7299e041aa2c217eaf48258
+guid: d71714fd7846eb045b521e0537f5d7fc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8947575119741383987
-    second: MainChar_Change_0
+      213: -4390841961861812100
+    second: SwordMountainBandit_0
   - first:
-      213: -8031146227969028182
-    second: MainChar_Change_1
+      213: 6970351872505914067
+    second: SwordMountainBandit_1
   - first:
-      213: -7950960679027169246
-    second: MainChar_Change_2
+      213: -1593808540932039898
+    second: SwordMountainBandit_2
   - first:
-      213: -3367271515303726001
-    second: MainChar_Change_3
+      213: 4594353675499263339
+    second: SwordMountainBandit_3
   - first:
-      213: 3038587690289208867
-    second: MainChar_Change_4
+      213: 624311214154016473
+    second: SwordMountainBandit_4
   - first:
-      213: 8707085961759843958
-    second: MainChar_Change_5
+      213: 4695982620116998083
+    second: SwordMountainBandit_5
   - first:
-      213: 6580075236076371241
-    second: MainChar_Change_6
+      213: -4564404395818175401
+    second: SwordMountainBandit_6
   - first:
-      213: 2783416177043475299
-    second: MainChar_Change_7
+      213: -1529645057735679034
+    second: SwordMountainBandit_7
   - first:
-      213: 3823868229824722264
-    second: MainChar_Change_8
+      213: -3274848376971207829
+    second: SwordMountainBandit_8
   - first:
-      213: -7739382131865588285
-    second: MainChar_Change_9
+      213: 1585093071705741482
+    second: SwordMountainBandit_9
   - first:
-      213: -8031650633164083113
-    second: MainChar_Change_10
+      213: 5837288322891457655
+    second: SwordMountainBandit_10
   - first:
-      213: 6443651867400689952
-    second: MainChar_Change_11
+      213: 8833312404596262975
+    second: SwordMountainBandit_11
   - first:
-      213: -3718730340702931111
-    second: MainChar_Change_12
+      213: -395847784360087237
+    second: SwordMountainBandit_12
   - first:
-      213: 5955692208025599928
-    second: MainChar_Change_13
+      213: -2546410149826113712
+    second: SwordMountainBandit_13
   - first:
-      213: 3001329328103259047
-    second: MainChar_Change_14
+      213: -6222405459319793829
+    second: SwordMountainBandit_14
   - first:
-      213: 7154932805749171439
-    second: MainChar_Change_15
+      213: 2521644816755224803
+    second: SwordMountainBandit_15
+  - first:
+      213: 4939487426747249312
+    second: SwordMountainBandit_16
+  - first:
+      213: -7239601065717416069
+    second: SwordMountainBandit_17
+  - first:
+      213: -4008186509660333524
+    second: SwordMountainBandit_18
+  - first:
+      213: 5330879748685167295
+    second: SwordMountainBandit_19
+  - first:
+      213: 6068798196697538435
+    second: SwordMountainBandit_20
+  - first:
+      213: 8414798673043354655
+    second: SwordMountainBandit_21
+  - first:
+      213: 4789157741144354807
+    second: SwordMountainBandit_22
+  - first:
+      213: 2176374716634282651
+    second: SwordMountainBandit_23
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,9 +137,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -125,9 +149,21 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -139,91 +175,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainChar_Change_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 960
-        width: 320
-        height: 320
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dca01bab5d3d3d380800000000000000
-      internalID: -8947575119741383987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainChar_Change_1
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 960
-        width: 320
-        height: 320
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aaf00b67e03ab8090800000000000000
-      internalID: -8031146227969028182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainChar_Change_2
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 960
-        width: 320
-        height: 320
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 228ac7f636388a190800000000000000
-      internalID: -7950960679027169246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainChar_Change_3
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 960
-        width: 320
-        height: 320
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f44b70cb56c0541d0800000000000000
-      internalID: -3367271515303726001
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainChar_Change_4
+      name: SwordMountainBandit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -237,14 +189,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32e109ab76b3b2a20800000000000000
-      internalID: 3038587690289208867
+      spriteID: c70f856df789013c0800000000000000
+      internalID: -4390841961861812100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_5
+      name: SwordMountainBandit_1
       rect:
         serializedVersion: 2
         x: 320
@@ -258,14 +210,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6766c73dc88c5d870800000000000000
-      internalID: 8707085961759843958
+      spriteID: 3d2a138f81aabb060800000000000000
+      internalID: 6970351872505914067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_6
+      name: SwordMountainBandit_2
       rect:
         serializedVersion: 2
         x: 640
@@ -279,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92d3da1809f115b50800000000000000
-      internalID: 6580075236076371241
+      spriteID: 62b13cd8397a1e9e0800000000000000
+      internalID: -1593808540932039898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_7
+      name: SwordMountainBandit_3
       rect:
         serializedVersion: 2
         x: 960
@@ -300,14 +252,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36b80ce044ea0a620800000000000000
-      internalID: 2783416177043475299
+      spriteID: b65d4a0735c62cf30800000000000000
+      internalID: 4594353675499263339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_8
+      name: SwordMountainBandit_4
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 640
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d661f4ddbff9a800800000000000000
+      internalID: 624311214154016473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_5
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 640
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c75b77005b7b2140800000000000000
+      internalID: 4695982620116998083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_6
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 640
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 754b600a26af7a0c0800000000000000
+      internalID: -4564404395818175401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_7
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 640
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c3ab35aceb95cae0800000000000000
+      internalID: -1529645057735679034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_8
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 640
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6bdd5580c66d82d0800000000000000
+      internalID: -3274848376971207829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_9
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 640
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa814f220c16ff510800000000000000
+      internalID: 1585093071705741482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_10
       rect:
         serializedVersion: 2
         x: 0
@@ -321,14 +399,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 855ba9235eb111530800000000000000
-      internalID: 3823868229824722264
+      spriteID: 7742b796dc6320150800000000000000
+      internalID: 5837288322891457655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_9
+      name: SwordMountainBandit_11
       rect:
         serializedVersion: 2
         x: 320
@@ -342,14 +420,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cd6521c4f0389490800000000000000
-      internalID: -7739382131865588285
+      spriteID: f380302c4da369a70800000000000000
+      internalID: 8833312404596262975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_10
+      name: SwordMountainBandit_12
       rect:
         serializedVersion: 2
         x: 640
@@ -363,14 +441,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 750b63a7d48d98090800000000000000
-      internalID: -8031650633164083113
+      spriteID: b317714998aa18af0800000000000000
+      internalID: -395847784360087237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_11
+      name: SwordMountainBandit_13
       rect:
         serializedVersion: 2
         x: 960
@@ -384,14 +462,98 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02953b4cb337c6950800000000000000
-      internalID: 6443651867400689952
+      spriteID: 05f4a2fc57559acd0800000000000000
+      internalID: -2546410149826113712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_12
+      name: SwordMountainBandit_14
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 320
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b57dac4d33395a9a0800000000000000
+      internalID: -6222405459319793829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_15
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 320
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e07660c99eaef220800000000000000
+      internalID: 2521644816755224803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_16
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 320
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a237c3e4a59c8440800000000000000
+      internalID: 4939487426747249312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_17
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 320
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7fbf521035c78b90800000000000000
+      internalID: -7239601065717416069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_18
       rect:
         serializedVersion: 2
         x: 0
@@ -405,14 +567,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9573fe2357a646cc0800000000000000
-      internalID: -3718730340702931111
+      spriteID: c2ade221b9f0068c0800000000000000
+      internalID: -4008186509660333524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_13
+      name: SwordMountainBandit_19
       rect:
         serializedVersion: 2
         x: 320
@@ -426,14 +588,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bf7de2328ed6a250800000000000000
-      internalID: 5955692208025599928
+      spriteID: fbaf3b023e61bf940800000000000000
+      internalID: 5330879748685167295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_14
+      name: SwordMountainBandit_20
       rect:
         serializedVersion: 2
         x: 640
@@ -447,14 +609,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ab7e874f1dd6a920800000000000000
-      internalID: 3001329328103259047
+      spriteID: 38f10b75ec3b83450800000000000000
+      internalID: 6068798196697538435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainChar_Change_15
+      name: SwordMountainBandit_21
       rect:
         serializedVersion: 2
         x: 960
@@ -468,8 +630,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe4e7767a7d6b4360800000000000000
-      internalID: 7154932805749171439
+      spriteID: f147d234fce57c470800000000000000
+      internalID: 8414798673043354655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_22
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ffa83e6791867240800000000000000
+      internalID: 4789157741144354807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordMountainBandit_23
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 320
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9ab02b1649043e10800000000000000
+      internalID: 2176374716634282651
       vertices: []
       indices: 
       edges: []
@@ -477,7 +681,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0880c6a376543a14c91e9a308409e06e
+    spriteID: 147f0ee98c0192d47ad98bfaa350e7da
     internalID: 0
     vertices: []
     indices: 
@@ -486,7 +690,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

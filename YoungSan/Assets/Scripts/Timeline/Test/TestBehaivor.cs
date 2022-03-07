@@ -6,44 +6,110 @@ using UnityEngine.UI;
 
 public class TestBehaivor : PlayableBehaviour
 {
-	public GameObject game;
+	public GameObject talker;
 	public string txt;
-	[HideInInspector]
 	public GameObject talkObj;
+	public AnimationCurve delayCurve;
 
 	private Text talkBox;
+	private Text fakeTalkbox;
 	private PoolManager poolManager;
 	private float time = 0;
 	private int idx = 0;
 
 	public override void OnGraphStart(Playable playable)
 	{
-		if (ManagerObject.Instance != null)
+		if (Application.isPlaying)
 		{
-			poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-			talkBox = talkObj.GetComponent<Text>();
-			talkBox.text = "";
+			if (ManagerObject.Instance != null)
+			{
+				poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+				talkObj.SetActive(false);
+
+			}
 		}
 		Debug.Log("AAA");
 	}
+	public override void OnBehaviourPlay(Playable playable, FrameData info)
+	{
+		if (Application.isPlaying)
+		{
+			talkObj = poolManager.GetUIObject("TalkBox");
+		}
+		else
+		{
+			List<GameObject> pool = new List<GameObject>();
+			GameObject canvas = GameObject.Find("TestCanvas");
+
+			for (int i = 0; i < canvas.transform.childCount; i++)
+			{
+				pool.Add(canvas.transform.GetChild(i).gameObject);
+			}
+			foreach (var item in pool)
+			{
+				if (!item.activeSelf)
+				{
+					item.SetActive(true);
+					talkObj = item;
+					break;
+				}
+			}
+			if (talkObj == null)
+			{
+				talkObj = GameObject.Instantiate(Resources.Load<GameObject>("PoolObject/TalkBox"),canvas.transform);
+			}
+			
+		}
+		talkBox = talkObj.transform.Find("Text").GetComponent<Text>();
+		fakeTalkbox = talkObj.transform.Find("fakeText").GetComponent<Text>();
+		talkBox.text = "";
+		fakeTalkbox.text = txt;
+		talkBox.text = "";
+		Debug.Log("Play");
+		talkObj.SetActive(true);
+		SetBoxSize();
+
+	}
+
+	public override void OnBehaviourPause(Playable playable, FrameData info)
+	{
+		if (Application.isPlaying)
+		{
+
+		}
+		else
+		{
+			if(talkObj!=null)
+			talkObj.SetActive(false);
+		}
+	}
 	public override void ProcessFrame(Playable playable, FrameData info, object playerData)
 	{
+		talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position);
 		time += Time.deltaTime;
-		if (time >= 0.1f)
+		for (bool b = true; b;)
 		{
-			if (idx <= txt.Length - 1)
+			b = false;
+			if (time >= delayCurve.Evaluate(idx * 0.1f))
 			{
-				//GameObject gma = poolManager.GetUIObject("test");
-				talkBox.text += txt[idx];
-				Debug.Log(txt[idx]);
-				idx++;
+				b = true;
+				time -= delayCurve.Evaluate(idx * 0.1f);
+				if (idx < txt.Length)
+				{
+					talkBox.text += txt[idx];
+					SetBoxSize();
+					idx = Mathf.Clamp(idx + 1, 0, txt.Length);
+				}
 			}
-			idx = Mathf.Clamp(idx, 0, txt.Length);
-			time = 0;
 		}
-
-
-		//Debug.Log(playable.GetGraph().GetRootPlayable(0).GetDuration());
-		//Debug.Log(game + " : " + txt);
+	}
+	public void SetBoxSize()
+	{
+		talkBox.rectTransform.anchoredPosition = new Vector2(0, 0);
+		float x = fakeTalkbox.preferredWidth;
+		float y = fakeTalkbox.preferredHeight;
+		RectTransform talkBoxRect = talkObj.GetComponent<RectTransform>();
+		talkBoxRect.sizeDelta = new Vector2(x, y) + new Vector2(30,30);
+		talkBox.rectTransform.anchoredPosition += new Vector2(30/2 ,0);
 	}
 }

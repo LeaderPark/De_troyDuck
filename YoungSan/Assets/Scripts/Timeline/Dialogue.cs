@@ -143,6 +143,7 @@ public class Dialogue : MonoBehaviour
         float x = fakeTalkBoxTxt.preferredWidth;
         float y = fakeTalkBoxTxt.preferredHeight;
         talkBoxTrm.sizeDelta = new Vector2(x, y) + padding;
+
         talkBoxTxt.rectTransform.anchoredPosition += new Vector2(padding.x / 2,0); 
 
         for (int i = 0; i < dialogueList.Count; i++)

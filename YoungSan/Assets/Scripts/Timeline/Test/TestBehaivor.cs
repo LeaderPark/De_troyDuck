@@ -84,22 +84,29 @@ public class TestBehaivor : PlayableBehaviour
 	}
 	public override void ProcessFrame(Playable playable, FrameData info, object playerData)
 	{
-		talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position);
-		time += Time.deltaTime;
-		for (bool b = true; b;)
+		if (Application.isPlaying)
 		{
-			b = false;
-			if (time >= delayCurve.Evaluate(idx * 0.1f))
+			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position);
+			time += Time.deltaTime;
+			for (bool b = true; b;)
 			{
-				b = true;
-				time -= delayCurve.Evaluate(idx * 0.1f);
-				if (idx < txt.Length)
+				b = false;
+				if (time >= delayCurve.Evaluate(idx * 0.1f))
 				{
-					talkBox.text += txt[idx];
-					SetBoxSize();
-					idx = Mathf.Clamp(idx + 1, 0, txt.Length);
+					b = true;
+					time -= delayCurve.Evaluate(idx * 0.1f);
+					if (idx < txt.Length)
+					{
+						talkBox.text += txt[idx];
+						SetBoxSize();
+						idx = Mathf.Clamp(idx + 1, 0, txt.Length);
+					}
 				}
 			}
+		}
+		else
+		{
+			
 		}
 	}
 	public void SetBoxSize()

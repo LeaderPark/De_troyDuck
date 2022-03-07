@@ -16,7 +16,7 @@ public class TestAsset : PlayableAsset
 
 	public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
 	{
-		var playable = ScriptPlayable<TestBehaivor>.Create(graph);
+		playable = ScriptPlayable<TestBehaivor>.Create(graph);
 		var behaviour = playable.GetBehaviour();
 
 		if (Application.isPlaying)
@@ -53,11 +53,7 @@ public class TestAssetEditor : Editor
 		if (GUILayout.Button("Set Clip Size"))
 		{
 			TestAsset ta = (TestAsset)serializedObject.targetObject;
-			if (ta.playable.IsNull())
-			{
-				Debug.Log("Playable is null");
-				return; 
-			}
+			if (ta.playable.IsNull()) return;
 			for (int i = 0; i < ta.playable.GetGraph().GetOutputCount(); i++)
 			{
 				TrackAsset asset = ta.playable.GetGraph().GetOutput(i).GetReferenceObject() as TrackAsset;

@@ -9,14 +9,17 @@ public class SkillSet : MonoBehaviour
     public float[] skillCoolTimes {get; set;}
     private bool[] skillCools;
 
+    public Entity entity {get; private set;}
+
     void Awake()
     {
         skillCools = new bool[skillDatas.Length];
         skillCoolTimes = new float[skillDatas.Length];
+        entity = GetComponentInParent<Entity>();
         foreach (var item in skillDatas)
         {
             item.gameObject.SetActive(false);
-            item.entity = GetComponentInParent<Entity>();
+            item.skillSet = this;
         }
     }
 
@@ -27,6 +30,9 @@ public class SkillSet : MonoBehaviour
         {
             item.gameObject.SetActive(false);
         }
+        
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        gameManager.StopAfterImage(entity);
     }
 
     public void ActiveSkill(int index, Vector2 direction, bool isRight, System.Action action)
@@ -35,10 +41,13 @@ public class SkillSet : MonoBehaviour
         {
             if (skillCools[index]) return;
             int useStamina = skillDatas[index].CalculateUseStamina();
-            if (useStamina > skillDatas[index].entity.clone.GetStat(StatCategory.Stamina)) return;
+            if (useStamina > entity.clone.GetStat(StatCategory.Stamina)) return;
             CoolDown(index);
             StopSkill();
-            skillDatas[index].entity.clone.SubStat(StatCategory.Stamina, useStamina);
+            
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            if (entity.CompareTag("Player")) gameManager.AfterImage(entity, skillDatas[index].startTime + skillDatas[index].time);
+            entity.clone.SubStat(StatCategory.Stamina, useStamina);
             action();
             SkillData data = skillDatas[index];
             data.direction = direction;

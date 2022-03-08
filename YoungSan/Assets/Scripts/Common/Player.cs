@@ -135,11 +135,14 @@ public class Player : MonoBehaviour
         }
         if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool && entity.clone.GetStat(StatCategory.Stamina) >= 50 && new Vector3(inputX, 0, inputY).normalized != Vector3.zero)
         {
-            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("ActiveCollider", new object[]{false});
+            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.35f});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Dash"});
             entity.clone.SubStat(StatCategory.Stamina, 50);
             StartCoroutine(AttackVelocityTime(0.08f));
+            gameManager.AfterImage(entity, 0.35f);
             dash = true;
             dashCool = true;
         }
@@ -147,12 +150,16 @@ public class Player : MonoBehaviour
 
         entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
     }
+
     
     private IEnumerator AttackVelocityTime(float time)
     {
         yield return new WaitForSeconds(time);
         dash = false;
-        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
+
+        yield return new WaitForSeconds(0.27f);
+        entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("ActiveCollider", new object[]{true});
 
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         uIManager.skillinterface.time_coolTime = dashCoolTime;

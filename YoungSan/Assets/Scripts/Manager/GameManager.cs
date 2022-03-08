@@ -29,4 +29,39 @@ public class GameManager : Manager
             Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
         }
     }
+
+    private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
+    
+    public void AfterImage(Entity entity, float time)
+    {
+        afterImageState[entity] = false;
+        StartCoroutine(AfterImageProcess(entity, time));
+    }
+
+    public void StopAfterImage(Entity entity)
+    {
+        afterImageState[entity] = true;
+    }
+    
+    private IEnumerator AfterImageProcess(Entity entity, float time)
+    {
+        SpriteRenderer spriteRenderer = entity.GetComponent<SpriteRenderer>();
+        int count = (int)(time / 0.01f);
+        for (int i = 0; i < count && !afterImageState[entity]; i++)
+        {
+            PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+            GameObject obj = poolManager.GetObject("AfterImage");
+            AfterImage afterImage = obj.GetComponent<AfterImage>();
+            afterImage.SetTarget(spriteRenderer);
+            afterImage.Play();
+            StartCoroutine(AfterImageInActive(obj, time - i * 0.01f));
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    private IEnumerator AfterImageInActive(GameObject afterImage, float time)
+    {
+        yield return new WaitForSeconds(time);
+        afterImage.SetActive(false);
+    }
 }

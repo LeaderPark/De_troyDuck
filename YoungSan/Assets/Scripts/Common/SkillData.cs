@@ -9,7 +9,7 @@ public class SkillData : MonoBehaviour
     public HitBox[] LeftHitBox;
     public HitBox[] RightHitBox;
 
-    public Entity entity {get; set;}
+    public SkillSet skillSet {get; set;}
 
     public float startTime;
     public float time;
@@ -29,8 +29,8 @@ public class SkillData : MonoBehaviour
         string temp = skillDamageForm;
         foreach (var item in System.Enum.GetNames(typeof(StatCategory)))
         {
-            temp = temp.Replace("{" + item + "}", entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
-            temp = temp.Replace("{Max" + item + "}", entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+            temp = temp.Replace("{" + item + "}", skillSet.entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+            temp = temp.Replace("{Max" + item + "}", skillSet.entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
         }
         
         Expression ex = new Expression(temp);
@@ -42,8 +42,8 @@ public class SkillData : MonoBehaviour
         string temp = useStaminaForm;
         foreach (var item in System.Enum.GetNames(typeof(StatCategory)))
         {
-            temp = temp.Replace("{" + item + "}", entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
-            temp = temp.Replace("{Max" + item + "}", entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+            temp = temp.Replace("{" + item + "}", skillSet.entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+            temp = temp.Replace("{Max" + item + "}", skillSet.entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
         }
         
         Expression ex = new Expression(temp);

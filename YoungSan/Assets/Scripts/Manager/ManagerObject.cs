@@ -60,6 +60,7 @@ public class ManagerObject : MonoBehaviour
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1f;
     }
+
 }
 
 public enum ManagerType

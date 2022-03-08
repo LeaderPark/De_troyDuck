@@ -57,6 +57,7 @@ public class SoundManager : Manager
 
         //audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFX")[0];
         audioSource.clip = clip;
+        audioSource.volume = 0.5f;
         audioSource.Play();
 
         yield return new WaitForSeconds(clip.length);

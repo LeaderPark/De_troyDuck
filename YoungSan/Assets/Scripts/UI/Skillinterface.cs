@@ -1,3 +1,4 @@
+using System.IO.Compression;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,59 +6,64 @@ using UnityEngine.UI;
 
 public class Skillinterface : MonoBehaviour
 {
-    public Text text_CoolTime; 
-    public Image image_fill; 
-    public float time_coolTime = 2; 
-    private float time_current;
-    private bool isEnded = true; 
+    public Text[] text_CoolTime;
+    public Image[] image_fill;
+    public GameObject[] activation_image;
+    public float[] skillCoolTimes {get; set;}
+    private bool[] skillCools;
+    public List<float> skillCoolTimeList = new List<float>();
+    public List<SkillData> skillDataList = new List<SkillData>();
 
-
-    private void Update()
+    public SkillSet skillSet;
+    void Start()
     {
-        if (isEnded)
-            return;
-        Check_CoolTime();
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
+        SetSkillDatas();
+        Init_UI();
     }
 
-    void Check_CoolTime() 
+    private void Init_UI()
     {
-        time_current += Time.deltaTime; 
-        if(time_current < time_coolTime) 
+        for (int i = 0; i < transform.childCount; i++)
         {
-            Set_FillAmount(time_current); 
+            image_fill[i].type = Image.Type.Filled;
+            image_fill[i].fillMethod = Image.FillMethod.Radial360;
+            image_fill[i].fillOrigin = (int)Image.Origin360.Top;
+            image_fill[i].fillClockwise = false;
+            Debug.Log("setting UI" + i);
         }
-        else if(!isEnded)
+    }
+
+    public void SetSkillDatas()
+    {
+        skillDataList.Clear();
+        skillCoolTimeList.Clear();
+
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
+
+        for (int i = 0; i < skillSet.skillDatas.Length; i++)
         {
-            End_CoolTime(); 
+            if(skillSet.skillDatas[i].coolTime != 0)
+            {
+                skillDataList.Add(skillSet.skillDatas[i]);
+                skillCoolTimeList.Add(skillSet.skillDatas[i].coolTime);
+            }
         }
+        SkillUIActivation();
     }
 
-    void End_CoolTime()
+    public void SkillUIActivation()
     {
-        Set_FillAmount(time_coolTime);
-        isEnded = true; 
-        //text_CoolTime.gameObject.SetActive(false); 
-        text_CoolTime.text = "M2";
-    }
-
-    public void Trigger_Skill() 
-    {
-        if (!isEnded) return; //아직 쿨타임이면 안한다.
-
-        Reset_CoolTime(); // 쿨타임을 돌린다.
-    }
-
-    void Reset_CoolTime()
-    {
-        text_CoolTime.gameObject.SetActive(true); 
-        time_current = 0;
-        Set_FillAmount(0);
-        isEnded = false;
-    }
-
-    void Set_FillAmount(float value)
-    {
-        image_fill.fillAmount = value / time_coolTime;
-        text_CoolTime.text = string.Format("{0}",value.ToString("0.0"));
+        for (int i = 0; i < activation_image.Length; i++)
+        {
+            activation_image[i].SetActive(true);
+        }
+        for (int i = 0; i < skillDataList.Count + 2; i++)
+        {
+            //추후 여기다가 스킬 이미지 갔다가 넣는거 만들면 됨 미래의 친구 
+            activation_image[i].SetActive(false);
+        }
     }
 }

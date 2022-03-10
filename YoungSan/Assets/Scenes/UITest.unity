@@ -123,6 +123,65 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &91029947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91029948}
+  - component: {fileID: 91029949}
+  m_Layer: 0
+  m_Name: Attack5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &91029948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91029947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2031051715}
+  - {fileID: 410661513}
+  m_Father: {fileID: 3081672838098652204}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &91029949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91029947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17643a34a2649247891d44de29ac90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Attack5
+  LeftHitBox:
+  - {fileID: 2031051716}
+  RightHitBox:
+  - {fileID: 410661514}
+  startTime: 0
+  time: 0.4
+  soundStartTime: 0
+  skillDamageForm: '{Attack} * 6'
+  coolTime: 2
+  useStaminaForm: '{Attack}'
+  skillEffect: {fileID: 3081672838098652203}
+  attackSound: {fileID: 0}
+  direction: {x: 0, y: 0}
 --- !u!1 &143503051
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +274,10 @@ PrefabInstance:
     - target: {fileID: 2193459943475004808, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
       propertyPath: m_Name
       value: SwordMountainBandit (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193459943475004808, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2193459943475004814, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
       propertyPath: m_RootOrder
@@ -580,6 +643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordMountainBandit
       objectReference: {fileID: 0}
+    - target: {fileID: 2193459943475004808, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2193459943475004814, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -696,6 +763,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &410661512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410661513}
+  - component: {fileID: 410661515}
+  - component: {fileID: 410661514}
+  m_Layer: 0
+  m_Name: SkillHitRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &410661513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410661512}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 91029948}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &410661514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410661512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b237a02e5fe92546999414e9b4fbd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &410661515
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410661512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9873667, y: 2, z: 1.8}
+  m_Center: {x: 0.24681163, y: 1.6, z: 0.041496277}
 --- !u!1001 &449529824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1190,6 +1314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordMountainBandit (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2193459943475004808, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2193459943475004814, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1240,6 +1368,122 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
+--- !u!1 &748309961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748309962}
+  - component: {fileID: 748309964}
+  - component: {fileID: 748309963}
+  m_Layer: 0
+  m_Name: SkillHitLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748309962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748309961}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895392341}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748309963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748309961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b237a02e5fe92546999414e9b4fbd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &748309964
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748309961}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9873667, y: 2, z: 1.8}
+  m_Center: {x: -0.2468116, y: 1.6, z: 0.041496277}
+--- !u!1 &895392340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 895392341}
+  - component: {fileID: 895392342}
+  m_Layer: 0
+  m_Name: Attack4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &895392341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895392340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 748309962}
+  - {fileID: 1499680698}
+  m_Father: {fileID: 3081672838098652204}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &895392342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895392340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17643a34a2649247891d44de29ac90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Attack4
+  LeftHitBox:
+  - {fileID: 748309963}
+  RightHitBox:
+  - {fileID: 1499680699}
+  startTime: 0
+  time: 0.4
+  soundStartTime: 0
+  skillDamageForm: '{Attack} * 6'
+  coolTime: 1
+  useStaminaForm: '{Attack}'
+  skillEffect: {fileID: 3081672838098652203}
+  attackSound: {fileID: 0}
+  direction: {x: 0, y: 0}
 --- !u!1 &1035095111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,6 +1654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordMountainBandit (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2193459943475004808, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2193459943475004814, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1460,6 +1708,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
+--- !u!1 &1499680697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1499680698}
+  - component: {fileID: 1499680700}
+  - component: {fileID: 1499680699}
+  m_Layer: 0
+  m_Name: SkillHitRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1499680698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499680697}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895392341}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1499680699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499680697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b237a02e5fe92546999414e9b4fbd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1499680700
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499680697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9873667, y: 2, z: 1.8}
+  m_Center: {x: 0.24681163, y: 1.6, z: 0.041496277}
 --- !u!1 &1667583518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,6 +1875,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordMountainBandit (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2193459943475004808, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2193459943475004814, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1664,6 +1973,63 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 0, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2031051714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031051715}
+  - component: {fileID: 2031051717}
+  - component: {fileID: 2031051716}
+  m_Layer: 0
+  m_Name: SkillHitLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2031051715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031051714}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 91029948}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2031051716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031051714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b237a02e5fe92546999414e9b4fbd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2031051717
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031051714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9873667, y: 2, z: 1.8}
+  m_Center: {x: -0.2468116, y: 1.6, z: 0.041496277}
 --- !u!1001 &3081672838098652201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1674,10 +2040,6 @@ PrefabInstance:
     - target: {fileID: 988483909742197261, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
       propertyPath: useStamina
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 988483909742197261, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
-      propertyPath: skillDamageForm
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2075073055555241499, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
       propertyPath: m_RootOrder
@@ -1747,18 +2109,42 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8395010891160245862, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
-      propertyPath: skillDamageForm
-      value: 20
+    - target: {fileID: 6889393618469072843, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
+      propertyPath: skillDatas.Array.size
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8776134104244395766, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
-      propertyPath: skillDamageForm
-      value: 20
+    - target: {fileID: 6889393618469072843, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
+      propertyPath: skillDatas.Array.data[3]
+      value: 
+      objectReference: {fileID: 895392342}
+    - target: {fileID: 6889393618469072843, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
+      propertyPath: skillDatas.Array.data[4]
+      value: 
+      objectReference: {fileID: 91029949}
+    - target: {fileID: 7365705623806924774, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
 --- !u!4 &3081672838098652202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2075073055555241499, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
+  m_PrefabInstance: {fileID: 3081672838098652201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3081672838098652203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7137876916191949852, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
+  m_PrefabInstance: {fileID: 3081672838098652201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ae226a989b5a74288852e5dcd59bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &3081672838098652204 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7050469096730066162, guid: deb9282e672b8c04eab8c39eff639bcd, type: 3}
   m_PrefabInstance: {fileID: 3081672838098652201}
   m_PrefabAsset: {fileID: 0}

@@ -27,6 +27,7 @@ public class HitBox : MonoBehaviour
             {
                 if (entity == null) return;
                 if (entity.isDead) return;
+                if (!entity.hitable) return;
                 
                 if (targets.Contains(entity)) return;
                 targets.Add(entity);

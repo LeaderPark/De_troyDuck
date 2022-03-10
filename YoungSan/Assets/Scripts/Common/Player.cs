@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
         if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool && entity.clone.GetStat(StatCategory.Stamina) >= 50 && new Vector3(inputX, 0, inputY).normalized != Vector3.zero)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("ActiveCollider", new object[]{false});
+            entity.hitable = false;
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.35f});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Dash"});
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
 
         yield return new WaitForSeconds(0.27f);
-        entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("ActiveCollider", new object[]{true});
+        entity.hitable = true;
 
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         uIManager.skillinterface.time_coolTime = dashCoolTime;

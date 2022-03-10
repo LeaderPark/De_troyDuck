@@ -12,11 +12,6 @@ namespace Processor
             this.collider = collider;
         }
 
-        private void ActiveCollider(bool active)
-        {
-            collider.enabled = active;
-        }
-
         private void SetCollider(UnityEngine.Sprite sprite)
         {
             Vector2[] vertices = sprite.vertices;

@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     public Clone clone;
 
     public bool isDead;
+    public bool hitable;
         
     public Processor.Processor GetProcessor(Type processor)
     {
@@ -34,6 +35,7 @@ public class Entity : MonoBehaviour
         Processors = new Hashtable();
         clone = new Clone(this, entityData);
         isDead = false;
+        hitable = true;
         SettingProcessor();
     }
 

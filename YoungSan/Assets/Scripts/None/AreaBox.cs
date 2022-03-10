@@ -5,7 +5,6 @@ using UnityEngine;
 public class AreaBox : MonoBehaviour
 {
     public SkillAreaData skillAreaData {get; set;}
-    private Player player;
 
     public AreaDirection areaDirection {get; set;}
     
@@ -13,19 +12,16 @@ public class AreaBox : MonoBehaviour
     {
         if (other.gameObject != null)
         {
-            if (other.gameObject.CompareTag("Player"))
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            if (other.gameObject.GetComponent<Player>() == gameManager.Player)
             {
-                player = other.gameObject.GetComponent<Player>();
-                if (player != null)
+                if (areaDirection == AreaDirection.Left)
                 {
-                    if (areaDirection == AreaDirection.Left)
-                    {
-                        skillAreaData.inLeftSkillArea = true;
-                    }
-                    else
-                    {
-                        skillAreaData.inRightSkillArea = true;
-                    }
+                    skillAreaData.inLeftSkillArea = true;
+                }
+                else
+                {
+                    skillAreaData.inRightSkillArea = true;
                 }
             }
         }
@@ -35,7 +31,8 @@ public class AreaBox : MonoBehaviour
     {
         if (other.gameObject != null)
         {
-            if (player == other.gameObject.GetComponent<Player>())
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            if (other.gameObject.GetComponent<Player>() == gameManager.Player)
             {
                 if (areaDirection == AreaDirection.Left)
                 {

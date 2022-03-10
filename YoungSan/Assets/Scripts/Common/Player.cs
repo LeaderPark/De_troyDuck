@@ -130,6 +130,7 @@ public class Player : MonoBehaviour
                 gameManager.Player.entity.clone.SetStat(StatCategory.Health, Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * hpRatio));
                 //gameManager.Player.entity.clone.SetStat(StatCategory.Stamina,  Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Stamina)) * staminaRatio));
 
+                uiManager.skillinterface.SetSkillDatas();
                 return;
             }
         }
@@ -154,16 +155,16 @@ public class Player : MonoBehaviour
     
     private IEnumerator AttackVelocityTime(float time)
     {
+        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        // uIManager.skillinterface.time_coolTime = dashCoolTime + time + 0.27f;
+        // uIManager.skillinterface.Trigger_Skill(); //새롭게 추가 추후 수정
+
         yield return new WaitForSeconds(time);
         dash = false;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
 
         yield return new WaitForSeconds(0.27f);
         entity.hitable = true;
-
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.skillinterface.time_coolTime = dashCoolTime;
-        uIManager.skillinterface.Trigger_Skill(); //새롭게 추가 추후 수정
 
         yield return new WaitForSeconds(dashCoolTime);
 

@@ -11,5 +11,7 @@ public class EntityData : ScriptableObject
     public Status status;
     [Space(10)]
     public GameObject prefab;
+    [Space(11)]
+    public float uiPos;
     
 }

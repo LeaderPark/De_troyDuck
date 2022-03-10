@@ -38,13 +38,14 @@ public class Entity : MonoBehaviour
         hitable = true;
         SettingProcessor();
     }
+	private void OnDrawGizmos()
+	//private void OnDrawGizmosSelected()
+	{
+        Gizmos.color = Color.white;
+        Gizmos.DrawCube(transform.position+new Vector3(0,entityData.uiPos,0), new Vector3(0.25f, 0.25f, 0.25f));
+	}
 
-    void Update()
-    {
-        
-    }
-
-    private void SettingProcessor()
+	private void SettingProcessor()
     {
         if (GetComponent<Animator>() != null)
         {

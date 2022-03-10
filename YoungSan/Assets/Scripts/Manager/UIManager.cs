@@ -62,10 +62,10 @@ public class UIManager : Manager
             PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
             GameObject hpBar = poolManager.GetUIObject("TestCanvas");
             EnemyStatUi enemyUi = hpBar.GetComponentInChildren<EnemyStatUi>();
-
             enemyUi.entity = entity;
-            enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));
+
             enemyUi.SetPos();
+            enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));
 
     }
     public void EnemyHpBarUpdate(Entity entity)

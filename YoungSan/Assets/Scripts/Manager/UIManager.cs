@@ -60,7 +60,7 @@ public class UIManager : Manager
 	public void GetEnemyHpBar(Entity entity)
 	{
             PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-            GameObject hpBar = poolManager.GetUIObject("TestCanvas");
+            GameObject hpBar = poolManager.GetObject("EnemyHp");
             EnemyStatUi enemyUi = hpBar.GetComponentInChildren<EnemyStatUi>();
             enemyUi.entity = entity;
 
@@ -72,11 +72,10 @@ public class UIManager : Manager
     {
         if (entity.gameObject.tag != "Player")
         {
-            Canvas canvas = entity.GetComponentInChildren<Canvas>();
-            if (canvas != null)
+            Transform enemyHp = entity.gameObject.transform.Find("EnemyHp(Clone)");
+            if (enemyHp != null)
             {
-            Debug.Log(canvas);
-                EnemyStatUi enemyUi = canvas.GetComponentInChildren<EnemyStatUi>();
+                EnemyStatUi enemyUi = enemyHp.GetComponentInChildren<EnemyStatUi>();
 
                 enemyUi.entity = entity;
                 enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));

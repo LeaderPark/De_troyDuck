@@ -18,6 +18,7 @@ public class Statbar : MonoBehaviour
     void Start()
     {
         uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        SetStatBar();
         UpdateStatBar();
         UpdateStatText();
     }
@@ -35,14 +36,16 @@ public class Statbar : MonoBehaviour
     }
     public void SetStatBar()
     {
+        StopAllCoroutines();
         currentStat = uiManager.UpdateCurrentStat();
         maxStat = uiManager.UpdateMaxStat();
         hpSlider.maxValue = maxStat.Item1;
         staminaSlider.maxValue = maxStat.Item2;
-        fakeHpSlider.maxValue = maxStat.Item1;
+        fakeHpSlider.maxValue = hpSlider.maxValue;
         hpSlider.value = currentStat.Item1;
         staminaSlider.value = currentStat.Item2;
-        fakeHpSlider.value = currentStat.Item1;
+        fakeHpSlider.value = hpSlider.value;
+
     }
 
     public void UpdateStatText()
@@ -59,9 +62,9 @@ public class Statbar : MonoBehaviour
         while (true)
         {
             time += Time.deltaTime;
-            fakeHpSlider.value = Mathf.Lerp(fill, curretnHp, time / 0.5f);
+            fakeHpSlider.value = Mathf.Lerp(fill, curretnHp, time / 1f);
             yield return null;
-            if (time >= 0.5f)
+            if (time >= 1f)
             {
                 fakeHpSlider.value = Mathf.Lerp(fill, curretnHp, 1);
                 break;

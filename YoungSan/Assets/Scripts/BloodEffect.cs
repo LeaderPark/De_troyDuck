@@ -15,7 +15,7 @@ public class BloodEffect : MonoBehaviour
     public void Play()
     {
         visualEffect.SendEvent("OnPlay");
-        
+        StartCoroutine(OffEffect());
     }
 
     IEnumerator OffEffect()

@@ -72,7 +72,7 @@ public class Clone
             SetStat(category, GetStat(category));
 
             UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uiManager.statbar.UpdateStatBar();
+            uiManager.statbar.SetStatBar();
             uiManager.statbar.UpdateStatText();
         }
     }
@@ -89,7 +89,7 @@ public class Clone
             }
 
             UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uiManager.statbar.UpdateStatBar();
+            uiManager.statbar.SetStatBar();
             uiManager.statbar.UpdateStatText();
         }
     }

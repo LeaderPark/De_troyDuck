@@ -12,8 +12,9 @@ public class UIManager : Manager
     private float hp;
     private float stamina;
     private Entity entity;
-    public Statbar statbar;
-    public Skillinterface skillinterface;
+
+    [HideInInspector] public Statbar statbar;
+    [HideInInspector] public Skillinterface skillinterface;
 
     (float, float) currentStat;
     (float, float) maxStat;
@@ -36,6 +37,7 @@ public class UIManager : Manager
     {
         return entity.clone.GetStat(StatCategory.Health);
     }
+
     //public void GetEnemyHpBar(Entity entity)
     //{
     //    GameObject hpBar;
@@ -57,26 +59,26 @@ public class UIManager : Manager
     //    enemyUi.entity = entity;
     //    enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));
     //}
+    
 	public void GetEnemyHpBar(Entity entity)
 	{
             PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-            GameObject hpBar = poolManager.GetUIObject("TestCanvas");
+            GameObject hpBar = poolManager.GetObject("EnemyHp");
             EnemyStatUi enemyUi = hpBar.GetComponentInChildren<EnemyStatUi>();
-
             enemyUi.entity = entity;
-            enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));
+
             enemyUi.SetPos();
+            enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));
 
     }
     public void EnemyHpBarUpdate(Entity entity)
     {
         if (entity.gameObject.tag != "Player")
         {
-            Canvas canvas = entity.GetComponentInChildren<Canvas>();
-            if (canvas != null)
+            Transform enemyHp = entity.gameObject.transform.Find("EnemyHp(Clone)");
+            if (enemyHp != null)
             {
-            Debug.Log(canvas);
-                EnemyStatUi enemyUi = canvas.GetComponentInChildren<EnemyStatUi>();
+                EnemyStatUi enemyUi = enemyHp.GetComponentInChildren<EnemyStatUi>();
 
                 enemyUi.entity = entity;
                 enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));

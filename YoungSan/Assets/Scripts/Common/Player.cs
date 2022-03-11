@@ -77,7 +77,43 @@ public class Player : MonoBehaviour
 				entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { mousePos.x, mousePos.z, attackDirection });
 			}
 		}
-        if(inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
+        if (inputManager.CheckKeyState(KeyCode.E, ButtonState.Down))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+            {
+                Vector3 mousePos = hit.point - transform.position;
+                bool attackDirection = (mousePos.x > 0f);
+                direction = attackDirection;
+                entityEvent.CallEvent(EventCategory.Skill1, new object[] { mousePos.x, mousePos.z, attackDirection });
+            }
+        }
+        if (inputManager.CheckKeyState(KeyCode.R, ButtonState.Down))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+            {
+                Vector3 mousePos = hit.point - transform.position;
+                bool attackDirection = (mousePos.x > 0f);
+                direction = attackDirection;
+                entityEvent.CallEvent(EventCategory.Skill2, new object[] { mousePos.x, mousePos.z, attackDirection });
+            }
+        }
+        if (inputManager.CheckKeyState(KeyCode.F, ButtonState.Down))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+            {
+                Vector3 mousePos = hit.point - transform.position;
+                bool attackDirection = (mousePos.x > 0f);
+                direction = attackDirection;
+                entityEvent.CallEvent(EventCategory.Skill3, new object[] { mousePos.x, mousePos.z, attackDirection });
+            }
+        }
+
+
+
+        if (inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
         {
 			RaycastHit[] hits = Physics.SphereCastAll(transform.position + Vector3.up * 10, 2, Vector3.down, 20, LayerMask.GetMask(new string[] { "Enemy" }));
 			float distance = 0;

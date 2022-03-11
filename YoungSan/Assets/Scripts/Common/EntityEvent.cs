@@ -7,9 +7,9 @@ public class EntityEvent : MonoBehaviour
     public Entity entity;
 
     public void CallEvent(EventCategory eventCategory, object[] parameters)
-    {
-        this.GetType().GetMethod(string.Concat("Call", eventCategory.ToString()), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Invoke(this, parameters);
-    }
+    {                                                                                                                                                                   
+        this.GetType().GetMethod(string.Concat("Call", eventCategory.ToString()), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.Invoke(this, parameters);
+    }                                                                                                                                                                   
 
     protected virtual void Awake()
     {
@@ -63,9 +63,22 @@ public class EntityEvent : MonoBehaviour
     {
         AttackSkillEvent(inputX, inputY, direction, EventCategory.DefaultAttack);
     }
+    protected void CallSkill1(float inputX, float inputY, bool direction)
+    {
+        AttackSkillEvent(inputX, inputY, direction, EventCategory.Skill1);
+    }
+    protected void CallSkill2(float inputX, float inputY, bool direction)
+    {
+        AttackSkillEvent(inputX, inputY, direction, EventCategory.Skill2);
+    }
+    protected void CallSkill3(float inputX, float inputY, bool direction)
+    {
+        AttackSkillEvent(inputX, inputY, direction, EventCategory.Skill3);
+    }
 
     private void AttackSkillEvent(float inputX, float inputY, bool direction, EventCategory category)
     {
+        if (!attackStack.ContainsKey(category)) return;
         if (attackStack[category] == 0)
         {
             entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{attackIndex[category][0], new Vector2(inputX, inputY), direction, (System.Action)(() =>

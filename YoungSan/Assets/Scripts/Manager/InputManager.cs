@@ -22,6 +22,9 @@ public class InputManager : Manager
         keyTable[KeyCode.S] = ButtonState.None;
         keyTable[KeyCode.D] = ButtonState.None;
         keyTable[KeyCode.Q] = ButtonState.None;
+        keyTable[KeyCode.E] = ButtonState.None;
+        keyTable[KeyCode.R] = ButtonState.None;
+        keyTable[KeyCode.F] = ButtonState.None;
 
         mouseTable[MouseButton.Left] = ButtonState.None;
         mouseTable[MouseButton.Right] = ButtonState.None;

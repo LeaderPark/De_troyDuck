@@ -62,13 +62,3 @@ public class ManagerObject : MonoBehaviour
     }
 
 }
-
-public enum ManagerType
-{
-    InputManager,
-    PoolManager,
-    GameManager,
-    SoundManager,
-    UIManager,
-    TimelineManager
-}

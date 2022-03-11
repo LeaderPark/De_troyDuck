@@ -6,3 +6,13 @@ public class Manager : MonoBehaviour
 {
 
 }
+
+public enum ManagerType
+{
+    InputManager,
+    PoolManager,
+    GameManager,
+    SoundManager,
+    UIManager,
+    TimelineManager
+}

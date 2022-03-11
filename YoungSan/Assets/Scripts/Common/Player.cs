@@ -17,9 +17,15 @@ public class Player : MonoBehaviour
         entity = GetComponent<Entity>();
         entityEvent = GetComponent<EntityEvent>();
         direction = false;
+        
     }
 
-    void Update()
+	private void Start()
+	{
+		UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        uIManager.skillinterface.skillCoolTimeList.Add(dashCoolTime);
+	}
+	void Update()
     {
         Process();
     }
@@ -183,6 +189,9 @@ public class Player : MonoBehaviour
             gameManager.AfterImage(entity, 0.35f);
             dash = true;
             dashCool = true;
+            UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uIManager.skillinterface.CoolDown(0);
+
         }
         if (dash) return;
 

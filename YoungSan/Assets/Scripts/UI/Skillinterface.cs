@@ -8,13 +8,12 @@ public class Skillinterface : MonoBehaviour
     public Text[] text_CoolTime;
     public Image[] image_fill;
     public GameObject[] activation_image;
-    public float[] skillCoolTimes {get; set;}
-    private bool[] skillCools = {true, true, true, true, true};
+    public List<float> skillCoolTimes = new List<float>();
     public List<float> skillCoolTimeList = new List<float>();
     public List<SkillData> skillDataList = new List<SkillData>();
 
     private SkillSet skillSet;
-    void Start()
+    void Awake()
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
@@ -65,25 +64,29 @@ public class Skillinterface : MonoBehaviour
             activation_image[i].SetActive(false);
         }
     }
-    private void CoolDown(int index)
+    public void CoolDown(int index)
     {
-        skillCools[index] = true;
-        skillCoolTimes[index] = skillCoolTimeList[index];
+        skillCoolTimes.Add(skillCoolTimeList[index]);
+        StartCoroutine(Cool(index, skillCoolTimes[index]));
     }
+    IEnumerator Cool(int index,float cool)
+    {
+        float time = cool;
+		while (true)
+		{
+            time -= Time.deltaTime;
+            Set_FillAmount(time);
+            if (time <= 0)
+            {
+                skillCoolTimes.RemoveAt(index);
+                yield break;
+            }
+            yield return null;
 
+        }
+    }
     private void Update()
     {
-        // for (int i = 0; i < skillCoolTimes.Length; i++)
-        // {
-        //     if (skillCools[i])
-        //     {
-        //         skillCoolTimes[i] -= Time.deltaTime;
-        //         if (skillCoolTimes[i] <= 0)
-        //         {
-        //             skillCools[i] = false;
-        //         }
-        //     }
-        // }
     }
 
     // private void Check_CoolTime()
@@ -125,10 +128,14 @@ public class Skillinterface : MonoBehaviour
     //     Set_FillAmount(time_cooltime);
     //     isEnded = false;
     // }
-    private void Set_FillAmount(float _value)
+    public void Set_FillAmount(float _value)
     {
-        image_fill[i].fillAmount = _value / skillCoolTimes[i];
-        string txt = _value.ToString("0.0");
-        text_CoolTime[i].text = txt;
+		for (int i = 0; i < skillCoolTimes.Count; i++)
+		{
+            image_fill[i].fillAmount = _value / skillCoolTimes[i];
+            string txt = _value.ToString("0.0");
+            text_CoolTime[i].text = txt;
+        }
+
     }
 }

@@ -19,7 +19,7 @@ public class UIManager : Manager
     (float, float) currentStat;
     (float, float) maxStat;
 
-    void Start()
+    void Awake()
     {
         statbar = transform.GetComponentInChildren<Statbar>();
         skillinterface = transform.GetComponentInChildren<Skillinterface>();

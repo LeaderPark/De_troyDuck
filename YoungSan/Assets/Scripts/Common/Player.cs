@@ -88,10 +88,12 @@ public class Player : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
             {
+                UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 Vector3 mousePos = hit.point - transform.position;
                 bool attackDirection = (mousePos.x > 0f);
                 direction = attackDirection;
                 entityEvent.CallEvent(EventCategory.Skill1, new object[] { mousePos.x, mousePos.z, attackDirection });
+                uiManager.skillinterface.CoolDown(2);
             }
         }
         if (inputManager.CheckKeyState(KeyCode.R, ButtonState.Down))
@@ -190,7 +192,7 @@ public class Player : MonoBehaviour
             dash = true;
             dashCool = true;
             UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uIManager.skillinterface.CoolDown(0);
+            uIManager.skillinterface.CoolDown(1);
 
         }
         if (dash) return;
@@ -216,7 +218,6 @@ public class Player : MonoBehaviour
 
         dashCool = false;
     }
-    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;

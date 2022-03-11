@@ -40,7 +40,10 @@ public class Skillinterface : MonoBehaviour
 
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
-
+        skillDataList.Add(null);
+        skillCoolTimeList.Add(0);
+        skillDataList.Add(null);
+        skillCoolTimeList.Add(gameManager.Player.GetComponent<Player>().dashCoolTime);
         for (int i = 0; i < skillSet.skillDatas.Length; i++)
         {
             if(skillSet.skillDatas[i].coolTime != 0)
@@ -58,7 +61,7 @@ public class Skillinterface : MonoBehaviour
         {
             activation_image[i].SetActive(true);
         }
-        for (int i = 0; i < skillDataList.Count + 2; i++)
+        for (int i = 0; i < skillDataList.Count; i++)
         {
             //추후 여기다가 스킬 이미지 갔다가 넣는거 만들면 됨 미래의 친구 
             activation_image[i].SetActive(false);
@@ -66,8 +69,8 @@ public class Skillinterface : MonoBehaviour
     }
     public void CoolDown(int index)
     {
-        skillCoolTimes.Add(skillCoolTimeList[index]);
-        StartCoroutine(Cool(index, skillCoolTimes[index]));
+        //skillCoolTimes.Add(skillCoolTimeList[index]);
+        StartCoroutine(Cool(index, skillCoolTimeList[index]));
     }
     IEnumerator Cool(int index,float cool)
     {
@@ -75,10 +78,10 @@ public class Skillinterface : MonoBehaviour
 		while (true)
 		{
             time -= Time.deltaTime;
-            Set_FillAmount(time);
+            Set_FillAmount(time,index);
             if (time <= 0)
             {
-                skillCoolTimes.RemoveAt(index);
+                //skillCoolTimes.RemoveAt(index);
                 yield break;
             }
             yield return null;
@@ -128,14 +131,11 @@ public class Skillinterface : MonoBehaviour
     //     Set_FillAmount(time_cooltime);
     //     isEnded = false;
     // }
-    public void Set_FillAmount(float _value)
+    public void Set_FillAmount(float _value,int index)
     {
-		for (int i = 0; i < skillCoolTimes.Count; i++)
-		{
-            image_fill[i].fillAmount = _value / skillCoolTimes[i];
+            image_fill[index].fillAmount = _value / skillCoolTimeList[index];
             string txt = _value.ToString("0.0");
-            text_CoolTime[i].text = txt;
-        }
+            text_CoolTime[index].text = txt;
 
     }
 }

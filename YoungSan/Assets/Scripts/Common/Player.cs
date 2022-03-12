@@ -57,15 +57,6 @@ public class Player : MonoBehaviour
             inputY = -1f;
         }
 
-        if (inputX > 0)
-        {
-            direction = true;
-        }
-        else if (inputX < 0)
-        {
-            direction = false;
-        }
-
 
         //if (Input.GetMouseButtonDown(0))
         if(Input.GetKeyDown(KeyCode.Z))
@@ -197,6 +188,15 @@ public class Player : MonoBehaviour
         }
         if (dash) return;
 
+        if (inputX > 0)
+        {
+            direction = true;
+        }
+        else if (inputX < 0)
+        {
+            direction = false;
+        }
+        
         entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
     }
 

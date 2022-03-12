@@ -88,8 +88,8 @@ public class EntityEvent : MonoBehaviour
                 entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
                 attackProcess[category][0]?.Invoke(inputX, inputY);
                 dontmove = true;
+                attackStack[category] = 1;
             })});
-            attackStack[category] = 1;
         }
         else
         {
@@ -108,8 +108,8 @@ public class EntityEvent : MonoBehaviour
                                 entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
                                 attackProcess[category][i + 1]?.Invoke(inputX, inputY);
                                 dontmove = true;
+                                attackStack[category] = i + 2;
                             })});
-                            attackStack[category] = i + 2;
                         }
                         else
                         {

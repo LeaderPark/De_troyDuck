@@ -81,7 +81,7 @@ public class EntityEvent : MonoBehaviour
         if (!attackStack.ContainsKey(category)) return;
         if (attackStack[category] == 0)
         {
-            entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{attackIndex[category][0], new Vector2(inputX, inputY), direction, (System.Action)(() =>
+            entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{category, attackIndex[category][0], new Vector2(inputX, inputY), direction, (System.Action)(() =>
             {
                 entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{attackAnimation[category][0]});
@@ -101,7 +101,7 @@ public class EntityEvent : MonoBehaviour
                     {
                         if (!transition && time >= attackTransitionTime[category][i].Item1 && time <= attackTransitionTime[category][i].Item2 || transition)
                         {
-                            entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{attackIndex[category][i + 1], new Vector2(inputX, inputY), direction, (System.Action)(() =>
+                            entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{category, attackIndex[category][i + 1], new Vector2(inputX, inputY), direction, (System.Action)(() =>
                             {
                                 entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
                                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{attackAnimation[category][i + 1]});

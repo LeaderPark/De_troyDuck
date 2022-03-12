@@ -999,9 +999,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a85b2e3dcbade4b9cd7668cfb5502c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillDatas:
-  - {fileID: 1084051539244743064}
-  - {fileID: 4143921576584385570}
+  skillDataCategories:
+  - category: 1
+    skillDatas:
+    - {fileID: 1084051539244743064}
+    - {fileID: 4143921576584385570}
 --- !u!1 &7196675433996465914
 GameObject:
   m_ObjectHideFlags: 0

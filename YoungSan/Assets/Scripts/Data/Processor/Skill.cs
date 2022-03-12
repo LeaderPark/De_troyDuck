@@ -15,10 +15,10 @@ namespace Processor
             this.skillSet = skillSet;
         }
 
-        private void UseSkill(int index, Vector2 direction, bool isRight, System.Action action)
+        private void UseSkill(EventCategory category, int index, Vector2 direction, bool isRight, System.Action action)
         {
             if (Locker) return;
-            skillSet.ActiveSkill(index, direction, isRight, action);
+            skillSet.ActiveSkill(category, index, direction, isRight, action);
         }
 
         private void StopSkill()

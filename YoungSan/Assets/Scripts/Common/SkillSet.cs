@@ -3,53 +3,76 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
+[System.Serializable]
+public class SkillDataCategory
+{
+    public EventCategory category;
+    public SkillData[] skillDatas;
+}
+
 public class SkillSet : MonoBehaviour
 {
-    public SkillData[] skillDatas;
-    public float[] skillCoolTimes {get; set;}
-    private bool[] skillCools;
+    public SkillDataCategory[] skillDataCategories;
+    public Dictionary<EventCategory, SkillData[]> skillDatas;
+    public Dictionary<EventCategory, float[]> skillCoolTimes {get; set;}
+    private Dictionary<EventCategory,bool[]> skillCools;
 
     public Entity entity {get; private set;}
 
     void Awake()
     {
-        skillCools = new bool[skillDatas.Length];
-        skillCoolTimes = new float[skillDatas.Length];
+        skillDatas = new Dictionary<EventCategory, SkillData[]>();
+        skillCools = new Dictionary<EventCategory, bool[]>();
+        skillCoolTimes = new Dictionary<EventCategory, float[]>();
         entity = GetComponentInParent<Entity>();
-        foreach (var item in skillDatas)
+
+        foreach (SkillDataCategory category in skillDataCategories)
         {
-            item.gameObject.SetActive(false);
-            item.skillSet = this;
+            skillDatas[category.category] = category.skillDatas;
+        }
+        foreach (var key in skillDatas.Keys)
+        {
+            skillCools[key] = new bool[skillDatas[key].Length];
+            skillCoolTimes[key] = new float[skillDatas[key].Length];
+            foreach (var item in skillDatas[key])
+            {
+                item.gameObject.SetActive(false);
+                item.skillSet = this;
+            }
         }
     }
 
     public void StopSkill()
     {
         StopAllCoroutines();
-        foreach (var item in skillDatas)
+        foreach (var key in skillDatas.Keys)
         {
-            item.gameObject.SetActive(false);
+            foreach (var item in skillDatas[key])
+            {
+                item.gameObject.SetActive(false);
+            }
         }
         
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         gameManager.StopAfterImage(entity);
     }
 
-    public void ActiveSkill(int index, Vector2 direction, bool isRight, System.Action action)
+    public void ActiveSkill(EventCategory category, int index, Vector2 direction, bool isRight, System.Action action)
     {
-        if (skillDatas.Length > index)
+        if (!skillDatas.ContainsKey(category)) return;
+        if (skillDatas[category].Length > index)
         {
-            if (skillCools[index]) return;
-            int useStamina = skillDatas[index].CalculateUseStamina();
+            if (skillCools[category][index]) return;
+            int useStamina = skillDatas[category][index].CalculateUseStamina();
             if (useStamina > entity.clone.GetStat(StatCategory.Stamina)) return;
-            CoolDown(index);
+            CoolDown(category, index);
             StopSkill();
             
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            if (entity.CompareTag("Player")) gameManager.AfterImage(entity, skillDatas[index].startTime + skillDatas[index].time);
+            if (entity.CompareTag("Player")) gameManager.AfterImage(entity, skillDatas[category][index].startTime + skillDatas[category][index].time);
             entity.clone.SubStat(StatCategory.Stamina, useStamina);
             action();
-            SkillData data = skillDatas[index];
+            SkillData data = skillDatas[category][index];
             data.direction = direction;
             StartCoroutine(CheckActiveTime(data, isRight));
             StartCoroutine(attackSound(data));
@@ -73,22 +96,25 @@ public class SkillSet : MonoBehaviour
         soundManager.SoundStart(data.attackSound.name, transform);
     }
 
-    private void CoolDown(int index)
+    private void CoolDown(EventCategory category, int index)
     {
-        skillCools[index] = true;
-        skillCoolTimes[index] = skillDatas[index].coolTime;
+        skillCools[category][index] = true;
+        skillCoolTimes[category][index] = skillDatas[category][index].coolTime;
     }
 
     private void Update()
     {
-        for (int i = 0; i < skillCoolTimes.Length; i++)
+        foreach (var key in skillCoolTimes.Keys)
         {
-            if (skillCools[i])
+            for (int i = 0; i < skillCoolTimes[key].Length; i++)
             {
-                skillCoolTimes[i] -= Time.deltaTime;
-                if (skillCoolTimes[i] <= 0)
+                if (skillCools[key][i])
                 {
-                    skillCools[i] = false;
+                    skillCoolTimes[key][i] -= Time.deltaTime;
+                    if (skillCoolTimes[key][i] <= 0)
+                    {
+                        skillCools[key][i] = false;
+                    }
                 }
             }
         }

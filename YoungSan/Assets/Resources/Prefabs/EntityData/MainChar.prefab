@@ -478,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 207825c7e6b463a418321fa8bda7c0a6, type: 2}
   isDead: 0
+  hitable: 0
 --- !u!114 &2075073055555241510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,10 +1111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a85b2e3dcbade4b9cd7668cfb5502c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillDatas:
-  - {fileID: 988483909742197261}
-  - {fileID: 8776134104244395766}
-  - {fileID: 8395010891160245862}
+  skillDataCategories:
+  - category: 1
+    skillDatas:
+    - {fileID: 988483909742197261}
+    - {fileID: 8776134104244395766}
+    - {fileID: 8395010891160245862}
 --- !u!1 &6054046773418771585
 GameObject:
   m_ObjectHideFlags: 0

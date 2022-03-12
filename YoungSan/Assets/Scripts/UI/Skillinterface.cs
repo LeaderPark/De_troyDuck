@@ -63,14 +63,18 @@ public class Skillinterface : MonoBehaviour
         }
         for (int i = 0; i < skillDataList.Count; i++)
         {
-            //추후 여기다가 스킬 이미지 갔다가 넣는거 만들면 됨 미래의 친구 
+            //추후 여기다가 스킬 이미지 갔다가 넣는거 만들면 됨 미래의 친구ssssss 
             activation_image[i].SetActive(false);
         }
     }
     public void CoolDown(int index)
     {
+        if (skillCoolTimeList.Count - 1 >= index)
+        {
+            StartCoroutine(Cool(index, skillCoolTimeList[index]));
+
+        }
         //skillCoolTimes.Add(skillCoolTimeList[index]);
-        StartCoroutine(Cool(index, skillCoolTimeList[index]));
     }
     IEnumerator Cool(int index,float cool)
     {
@@ -133,9 +137,16 @@ public class Skillinterface : MonoBehaviour
     // }
     public void Set_FillAmount(float _value,int index)
     {
+        if (skillCoolTimeList.Count - 1 >= index)
+        {
             image_fill[index].fillAmount = _value / skillCoolTimeList[index];
             string txt = _value.ToString("0.0");
             text_CoolTime[index].text = txt;
-
+        }
+        else
+        {
+            image_fill[index].fillAmount = 0;
+            text_CoolTime[index].text = "0.0";
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,6 @@ public class Skillinterface : MonoBehaviour
     public Text[] text_CoolTime;
     public Image[] image_fill;
     public GameObject[] activation_image;
-    public List<float> skillCoolTimes = new List<float>();
-    public List<float> skillCoolTimeList = new List<float>();
-    public List<SkillData> skillDataList = new List<SkillData>();
 
     private SkillSet skillSet;
     void Awake()
@@ -35,24 +33,28 @@ public class Skillinterface : MonoBehaviour
 
     public void SetSkillDatas()
     {
-        skillDataList.Clear();
-        skillCoolTimeList.Clear();
 
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
-        skillDataList.Add(null);
-        skillCoolTimeList.Add(0);
-        skillDataList.Add(null);
-        skillCoolTimeList.Add(gameManager.Player.GetComponent<Player>().dashCoolTime);
-        for (int i = 0; i < skillSet.skillDatas.Length; i++)
-        {
-            if(skillSet.skillDatas[i].coolTime != 0)
+        StopAllCoroutines();
+	    for (int j = 0; j < Enum.GetValues(typeof(EventCategory)).Length; j++)
+		{
+            Set_FillAmount(0, 0, j, Enum.GetName(typeof(KeyType),j));
+
+
+            if (skillSet.skillCoolTimes.ContainsKey((EventCategory)Enum.GetValues(typeof(EventCategory)).GetValue(j)))
             {
-                skillDataList.Add(skillSet.skillDatas[i]);
-                skillCoolTimeList.Add(skillSet.skillDatas[i].coolTime);
+                for (int i = 0; i < skillSet.skillCoolTimes[(EventCategory)Enum.GetValues(typeof(EventCategory)).GetValue(j)].Length; i++)
+                {
+                    CoolDown((EventCategory)Enum.GetValues(typeof(EventCategory)).GetValue(j), i);
+
+                }
             }
+
         }
         SkillUIActivation();
+
+
     }
 
     public void SkillUIActivation()
@@ -61,28 +63,28 @@ public class Skillinterface : MonoBehaviour
         {
             activation_image[i].SetActive(true);
         }
-        for (int i = 0; i < skillDataList.Count; i++)
+        for (int i = 0; i < skillSet.skillDatas.Count + 1; i++)
         {
             //추후 여기다가 스킬 이미지 갔다가 넣는거 만들면 됨 미래의 친구ssssss 
             activation_image[i].SetActive(false);
         }
     }
-    public void CoolDown(int index)
+    public void CoolDown(EventCategory eventCategory, int index)
     {
-        if (skillCoolTimeList.Count - 1 >= index)
+        if(skillSet.skillCoolTimes.ContainsKey(eventCategory))
         {
-            StartCoroutine(Cool(index, skillCoolTimeList[index]));
-
+            StartCoroutine(Cool(eventCategory, skillSet.skillCoolTimes[eventCategory][index], index));
         }
-        //skillCoolTimes.Add(skillCoolTimeList[index]);
     }
-    IEnumerator Cool(int index,float cool)
+    IEnumerator Cool(EventCategory eventCategory, float cool, int index)
     {
         float time = cool;
-		while (true)
-		{
+        string keyName = text_CoolTime[index].text;
+        Debug.Log(time);
+        while (true)
+        {
             time -= Time.deltaTime;
-            Set_FillAmount(time,index);
+            Set_FillAmount(time, cool, index,keyName);
             if (time <= 0)
             {
                 //skillCoolTimes.RemoveAt(index);
@@ -92,61 +94,32 @@ public class Skillinterface : MonoBehaviour
 
         }
     }
-    private void Update()
+
+    public void Set_FillAmount(float cool, float maxCool, int index,string keyName)
     {
-    }
+        string txt;
 
-    // private void Check_CoolTime()
-    // {
-    //     time_current = Time.time - time_start;
-    //     if (time_current < time_cooltime)
-    //     {
-    //         Set_FillAmount(time_cooltime - time_current);
-    //     }
-    //     else if (!isEnded)
-    //     {
-    //         End_CoolTime();
-    //     }
-    // }
 
-    // private void End_CoolTime()
-    // {
-    //     Set_FillAmount(0);
-    //     isEnded = true;
-    //     text_CoolTime.gameObject.SetActive(false);
-    //     Debug.Log("Skills Available!");
-    // }
+        image_fill[index].fillAmount = cool / maxCool;
 
-    // private void Trigger_Skill()
-    // {
-    //     if(!isEnded)
-    //     {
-    //         return;
-    //     }
-
-    //     Reset_CoolTime();
-    // }
-
-    // private void Reset_CoolTime()
-    // {
-    //     text_CoolTime.gameObject.SetActive(true);
-    //     time_current = time_cooltime;
-    //     time_start = Time.time;
-    //     Set_FillAmount(time_cooltime);
-    //     isEnded = false;
-    // }
-    public void Set_FillAmount(float _value,int index)
-    {
-        if (skillCoolTimeList.Count - 1 >= index)
+        if (cool > 0)
         {
-            image_fill[index].fillAmount = _value / skillCoolTimeList[index];
-            string txt = _value.ToString("0.0");
-            text_CoolTime[index].text = txt;
+            txt = cool.ToString("0.0");
         }
         else
         {
+            txt = keyName;
             image_fill[index].fillAmount = 0;
-            text_CoolTime[index].text = "0.0";
         }
+        text_CoolTime[index].text = txt;
     }
+}
+public enum KeyType
+{
+    M1,
+    M2,
+    E,
+    R,
+    F
+
 }

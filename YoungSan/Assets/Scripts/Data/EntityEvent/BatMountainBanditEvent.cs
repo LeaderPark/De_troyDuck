@@ -9,7 +9,7 @@ public class BatMountainBanditEvent : EntityEvent
     {
         base.Awake();
         DefalutAttack();
-        Skill2();
+        Skill1();
     }
 
     private void DefalutAttack()
@@ -23,12 +23,12 @@ public class BatMountainBanditEvent : EntityEvent
         };
     }
 
-    private void Skill2()
+    private void Skill1()
     {
         maxAttackStack[EventCategory.Skill1] = 1;
         attackAnimation[EventCategory.Skill1] = new string[] { "Attack" };
         attackTransitionTime[EventCategory.Skill1] = new (float, float)[] { };
-        attackIndex[EventCategory.Skill1] = new int[] { 1 };
+        attackIndex[EventCategory.Skill1] = new int[] { 0 };
         attackProcess[EventCategory.Skill1] = new System.Action<float, float>[]{
         null
         };

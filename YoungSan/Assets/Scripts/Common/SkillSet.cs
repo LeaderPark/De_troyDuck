@@ -100,6 +100,9 @@ public class SkillSet : MonoBehaviour
     {
         skillCools[category][index] = true;
         skillCoolTimes[category][index] = skillDatas[category][index].coolTime;
+
+        UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        uiManager.skillinterface.CoolDown(category, index);
     }
 
     private void Update()

@@ -42,6 +42,7 @@ public abstract class SkillEffect : MonoBehaviour
     {
         entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{time});
         entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{time});
+        entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[]{time});
     }
 
     protected void ChangeColor(Entity entity, Color color, float time)

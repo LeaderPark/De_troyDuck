@@ -38,6 +38,28 @@ public class Entity : MonoBehaviour
         hitable = true;
         SettingProcessor();
     }
+
+    public void Die()
+    {
+        isDead = true;
+        if (GetComponent<Player>() != null)
+        {
+            GetComponent<Player>().enabled = false;
+        }
+        if (GetComponent<Enemy>() != null)
+        {
+            GetComponent<Enemy>().enabled = false;
+        }
+        if (GetComponent<StateMachine.StateMachine>() != null)
+        {
+            GetComponent<StateMachine.StateMachine>().enabled = false;
+        }
+        GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{ Vector3.zero, 0 });
+        GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0f});
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Die"});
+    }
+
 	private void OnDrawGizmos()
 	//private void OnDrawGizmosSelected()
 	{
@@ -58,7 +80,7 @@ public class Entity : MonoBehaviour
         if (GetComponent<BoxCollider>() != null)
         {
             new Processor.Collision(Processors, GetComponent<BoxCollider>());
-            new Processor.HitBody(Processors, clone);
+            new Processor.HitBody(Processors, this);
         }
         if (GetComponentInChildren<SkillSet>() != null)
         {

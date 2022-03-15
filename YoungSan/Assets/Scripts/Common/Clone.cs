@@ -49,10 +49,6 @@ public class Clone
         {
             int temp = (int)StatTable[category] - value;
             StatTable[category] = (int)Mathf.Clamp(temp, 0, (int)MaxStatTable[category]);
-            if (category == StatCategory.Health && (int)StatTable[category] <= 0)
-            {
-                Die();
-            }
 
             UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
             uiManager.statbar.UpdateStatBar();
@@ -83,36 +79,11 @@ public class Clone
         if (StatTable.ContainsKey(category))
         {
             StatTable[category] = (int)Mathf.Clamp(value, 0, (int)MaxStatTable[category]);
-            if (category == StatCategory.Health && (int)StatTable[category] <= 0)
-            {
-                Die();
-            }
 
             UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
             uiManager.statbar.SetStatBar();
             uiManager.statbar.UpdateStatText();
         }
-    }
-
-    public void Die()
-    {
-        entity.isDead = true;
-        if (entity.GetComponent<Player>() != null)
-        {
-            entity.GetComponent<Player>().enabled = false;
-        }
-        if (entity.GetComponent<Enemy>() != null)
-        {
-            entity.GetComponent<Enemy>().enabled = false;
-        }
-        if (entity.GetComponent<StateMachine.StateMachine>() != null)
-        {
-            entity.GetComponent<StateMachine.StateMachine>().enabled = false;
-        }
-        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{ Vector3.zero, 0 });
-        entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
-        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0f});
-        entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Die"});
     }
 
     public Clone(Entity entity, EntityData data)

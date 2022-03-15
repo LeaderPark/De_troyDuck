@@ -16,8 +16,9 @@ namespace Processor
 
         void DamageOnBody(int damage, Entity attackEntity)
         {
+            int oldHealth = entity.clone.GetStat(StatCategory.Health);
             entity.clone.SubStat(StatCategory.Health, damage);
-            if ((int)entity.clone.GetStat(StatCategory.Health) - damage <= 0)
+            if (oldHealth - damage <= 0)
             {
                 entity.Die();
             }

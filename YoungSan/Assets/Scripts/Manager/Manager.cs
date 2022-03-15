@@ -14,5 +14,6 @@ public enum ManagerType
     GameManager,
     SoundManager,
     UIManager,
-    TimelineManager
+    TimelineManager,
+    EventManager,
 }

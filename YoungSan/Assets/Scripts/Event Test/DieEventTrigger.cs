@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatEventTrigger : GlobalEventTrigger
+public class DieEventTrigger : GlobalEventTrigger
 {
 
-    public void Add(StatEvent action)
+    public void Add(DieEvent action)
     {
         onTrigger = System.Delegate.Combine(onTrigger, action);
     }
 
-    public void Remove(StatEvent action)
+    public void Remove(DieEvent action)
     {
         onTrigger = System.Delegate.Remove(onTrigger, action);
     }

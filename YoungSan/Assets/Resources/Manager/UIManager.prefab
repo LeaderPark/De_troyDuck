@@ -989,9 +989,6 @@ MonoBehaviour:
   - {fileID: 956624686927779823}
   - {fileID: 1356912467682033627}
   - {fileID: 2746198668418962738}
-  skillCoolTimes: []
-  skillCoolTimeList: []
-  skillDataList: []
 --- !u!1 &1127888523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,7 +1275,7 @@ RectTransform:
   - {fileID: 1945179363}
   - {fileID: 721595210}
   m_Father: {fileID: 1784063669}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1521,8 +1518,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8421801766501513630}
-  - {fileID: 2132829942}
+  - {fileID: 7395180470117285873}
   - {fileID: 1500158397}
   m_Father: {fileID: 1190899235}
   m_RootOrder: 1
@@ -1811,7 +1807,7 @@ RectTransform:
   - {fileID: 901681360}
   - {fileID: 382229151}
   - {fileID: 1898676140}
-  m_Father: {fileID: 1784063669}
+  m_Father: {fileID: 7395180470117285873}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1901,7 +1897,7 @@ RectTransform:
   - {fileID: 2643128571005125208}
   - {fileID: 8110319515630131306}
   - {fileID: 7740726771416135598}
-  m_Father: {fileID: 1784063669}
+  m_Father: {fileID: 7395180470117285873}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2873,6 +2869,43 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6007625741661051364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7395180470117285873}
+  m_Layer: 5
+  m_Name: HPbar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7395180470117285873
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007625741661051364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8421801766501513630}
+  - {fileID: 2132829942}
+  m_Father: {fileID: 1784063669}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6838401626818056383
 GameObject:
   m_ObjectHideFlags: 0

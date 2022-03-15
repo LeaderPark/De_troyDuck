@@ -121,5 +121,4 @@ public enum KeyType
     E,
     R,
     F
-
 }

@@ -22,5 +22,20 @@ public class EventManager : Manager
         eventTriggerTable.Add(typeof(HitEventTrigger), new HitEventTrigger());
         eventTriggerTable.Add(typeof(DieEventTrigger), new DieEventTrigger());
         eventTriggerTable.Add(typeof(SkillEventTrigger), new SkillEventTrigger());
+        TriggerSetting();
+    }
+
+    void TriggerSetting()
+    {
+        GetEventTrigger(typeof(StatEventTrigger)).Add(new GlobalEventTrigger.StatEvent((entity, category, oldValue, value) =>
+        {
+            if (category == StatCategory.Stamina)
+            {
+                if (value < oldValue)
+                {
+                    entity.ResetStaminaCount();
+                }
+            }
+        }));
     }
 }

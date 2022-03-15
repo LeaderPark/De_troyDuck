@@ -96,4 +96,24 @@ public class Entity : MonoBehaviour
     {
         Process();
     }
+
+
+    float staminaCount;
+    void Update()
+    {
+        if (staminaCount <= 0f)
+        {
+            int temp = Mathf.RoundToInt((clone.GetMaxStat(StatCategory.Stamina) - clone.GetStat(StatCategory.Stamina)) * Time.deltaTime * (1f / 2f));
+            clone.AddStat(StatCategory.Stamina, Mathf.Clamp(temp, 1, temp));
+        }
+        else
+        {
+            staminaCount -= Time.deltaTime;
+        }
+    }
+
+    public void ResetStaminaCount()
+    {
+        staminaCount = 2f;
+    }
 }

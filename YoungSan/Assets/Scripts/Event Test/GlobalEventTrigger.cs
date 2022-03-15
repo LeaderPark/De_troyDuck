@@ -33,8 +33,6 @@ public class GlobalEventTrigger
 
     public void Invoke(object[] args)
     {
-        if (onTrigger != null)
-        // onTrigger.Method.Invoke(onTrigger.Target, args);
-        onTrigger.DynamicInvoke(args);
+        onTrigger?.DynamicInvoke(args);
     }
 }

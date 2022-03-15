@@ -74,6 +74,10 @@ public class SkillSet : MonoBehaviour
             action();
             SkillData data = skillDatas[category][index];
             data.direction = direction;
+            
+            EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
+            eventManager.GetEventTrigger(typeof(SkillEventTrigger)).Invoke(new object[]{ entity, data });
+
             StartCoroutine(CheckActiveTime(data, isRight));
             StartCoroutine(attackSound(data));
         }

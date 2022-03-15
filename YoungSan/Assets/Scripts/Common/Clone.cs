@@ -35,11 +35,11 @@ public class Clone
     {
         if (StatTable.ContainsKey(category))
         {
-            StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] + value, 0, (int)MaxStatTable[category]);
+            EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
+            int temp = (int)StatTable[category];
 
-            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uiManager.statbar.UpdateStatBar();
-            uiManager.statbar.UpdateStatText();
+            StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] + value, 0, (int)MaxStatTable[category]);
+            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[]{ entity, category, temp, (int)StatTable[category] });
         }
     }
 
@@ -47,16 +47,11 @@ public class Clone
     {
         if (StatTable.ContainsKey(category))
         {
-            int temp = (int)StatTable[category] - value;
-            StatTable[category] = (int)Mathf.Clamp(temp, 0, (int)MaxStatTable[category]);
+            EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
+            int temp = (int)StatTable[category];
 
-            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uiManager.statbar.UpdateStatBar();
-            uiManager.statbar.UpdateStatText();
-
-            if(category == StatCategory.Health)
-            uiManager.EnemyHpBarUpdate(entity);
-
+            StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] - value, 0, (int)MaxStatTable[category]);
+            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[]{ entity, category, temp, (int)StatTable[category] });
         }
     }
 
@@ -66,10 +61,6 @@ public class Clone
         {
             MaxStatTable[category] = value;
             SetStat(category, GetStat(category));
-
-            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uiManager.statbar.SetStatBar();
-            uiManager.statbar.UpdateStatText();
         }
     }
 
@@ -78,11 +69,11 @@ public class Clone
     {
         if (StatTable.ContainsKey(category))
         {
-            StatTable[category] = (int)Mathf.Clamp(value, 0, (int)MaxStatTable[category]);
+            EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
+            int temp = (int)StatTable[category];
 
-            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uiManager.statbar.SetStatBar();
-            uiManager.statbar.UpdateStatText();
+            StatTable[category] = (int)Mathf.Clamp(value, 0, (int)MaxStatTable[category]);
+            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[]{ entity, category, temp, (int)StatTable[category] });
         }
     }
 

@@ -10,8 +10,17 @@ public class EventManager : Manager
     {
         if (eventTriggerTable.ContainsKey(type))
         {
-
+            return eventTriggerTable[type] as GlobalEventTrigger;
         }
         return null;
+    }
+
+    void Awake()
+    {
+        eventTriggerTable = new Hashtable();
+        eventTriggerTable.Add(typeof(StatEventTrigger), new StatEventTrigger());
+        eventTriggerTable.Add(typeof(HitEventTrigger), new HitEventTrigger());
+        eventTriggerTable.Add(typeof(DieEventTrigger), new DieEventTrigger());
+        eventTriggerTable.Add(typeof(SkillEventTrigger), new SkillEventTrigger());
     }
 }

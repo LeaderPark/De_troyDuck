@@ -23,6 +23,15 @@ public class UIManager : Manager
     {
         statbar = transform.GetComponentInChildren<Statbar>();
         skillinterface = transform.GetComponentInChildren<Skillinterface>();
+
+        EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
+        eventManager.GetEventTrigger(typeof(StatEventTrigger)).Add(new GlobalEventTrigger.StatEvent((entity, category, oldValue, value) =>
+        {
+            statbar.UpdateStatBar();
+            statbar.UpdateStatText();
+
+            if(category == StatCategory.Health) EnemyHpBarUpdate(entity);
+        }));
     }
 
     public (float, float) UpdateMaxStat()

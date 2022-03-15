@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlobalEventTrigger
 {
     public delegate void GlobalEvent();
-    public delegate void StatEvent(Entity entity, int oldVale, int value);
+    public delegate void StatEvent(Entity entity, StatCategory category, int oldVale, int value);
     public delegate void HitEvent(Entity hitEntity, Entity attackEntity, int damage);
     public delegate void DieEvent(Entity hitEntity, Entity attackEntity);
     public delegate void SkillEvent(Entity entity, SkillData skillData);
@@ -13,12 +13,12 @@ public class GlobalEventTrigger
     protected System.Delegate onTrigger;
 
 
-    public void Add(GlobalEvent action)
+    public void Add(System.Delegate action)
     {
         onTrigger = System.Delegate.Combine(onTrigger, action);
     }
 
-    public void Remove(GlobalEvent action)
+    public void Remove(System.Delegate action)
     {
         onTrigger = System.Delegate.Remove(onTrigger, action);
     }
@@ -31,8 +31,10 @@ public class GlobalEventTrigger
         }
     }
 
-    public void Invoke(params object[] args)
+    public void Invoke(object[] args)
     {
+        if (onTrigger != null)
+        // onTrigger.Method.Invoke(onTrigger.Target, args);
         onTrigger.DynamicInvoke(args);
     }
 }

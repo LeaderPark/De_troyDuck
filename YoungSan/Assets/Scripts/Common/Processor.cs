@@ -47,7 +47,7 @@ namespace Processor
         {
             if (!Locker)
             {
-                LockTimer = time;
+                if (LockTimer < time) LockTimer = time;
                 StartLock();
                 Locker = true;
             }

@@ -24,11 +24,11 @@ public class EnemyStatUi : MonoBehaviour
 	}
 	public void SetHpBarValue(float maxHp, float currentHp)
 	{
-		Debug.Log(currentHp);
+		Debug.Log(entity.isDead);
 		Vector3 origin = hpBar.transform.localScale;
 		hpBar.transform.localScale = new Vector3(currentHp / maxHp, origin.y, origin.z);
 		StartCoroutine(FakeHpSet(maxHp, currentHp));
-		if (entity.isDead)
+		if (currentHp <= 0|| entity.isDead)
 		{
 			transform.parent.gameObject.SetActive(false);
 		}

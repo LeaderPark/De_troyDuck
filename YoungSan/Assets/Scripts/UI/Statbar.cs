@@ -12,9 +12,10 @@ public class Statbar : MonoBehaviour
     private float minStamina;
 
 
-    public Slider hpSlider;
-    public Slider fakeHpSlider;
-    public Slider staminaSlider;
+    public Image hpStain;
+    public Image staminaStain;
+    //public Slider fakeHpSlider;
+    //public Slider staminaSlider;
     public Text hpText;
     public Text staminaText;
 
@@ -45,6 +46,9 @@ public class Statbar : MonoBehaviour
         float currentStamina = minStamina * (1 - (currentStat.Item2 / maxStat.Item2));
         hpRect.anchoredPosition = new Vector2(currentHp, 0);
         staminaRect.anchoredPosition = new Vector2(currentStamina, 0);
+
+        hpStain.fillAmount = (currentStat.Item1 / maxStat.Item1) - 0.02f;
+        staminaStain.fillAmount = (currentStat.Item2 / maxStat.Item2) - 0.02f;
 
         StartCoroutine(FakeHpSet(hpRect.anchoredPosition.x));
 

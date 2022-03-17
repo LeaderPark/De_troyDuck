@@ -19,20 +19,11 @@ public class NotePad : MonoBehaviour
     void OnEnable()
     {
         SceneView.duringSceneGui += OnSceneGUI;
-        int i = 30000;
-        foreach (NotePadData data in notePadDatas)
-        {
-            data.id = new Vector3Int(i++, i++, i++);
-        }
     }
 
     void OnDisable()
     {
         SceneView.duringSceneGui -= OnSceneGUI;
-        foreach (NotePadData data in notePadDatas)
-        {
-            data.id = Vector3Int.zero;
-        }
     }
 
     
@@ -41,7 +32,7 @@ public class NotePad : MonoBehaviour
         switch (Event.current.type)
         {
             case EventType.MouseDown:
-            if (!mouseDown)
+            if (!mouseDown && Event.current.button == 0)
             {
                 int id = HandleUtility.nearestControl;
                 mousePos = Event.current.mousePosition;
@@ -198,6 +189,28 @@ public class NotePad : MonoBehaviour
             Handles.DrawSolidRectangleWithOutline(rect, data.backgroundColor, data.outlineColor);
             GUI.Box(rect, data.text, guiStyle);
             Handles.EndGUI();
+        }
+    }
+}
+
+[CustomEditor(typeof(NotePad))]
+public class NotePadEditor : Editor
+{
+    SerializedProperty notePadDatas;
+
+    void OnEnable()
+    {
+        notePadDatas = serializedObject.FindProperty("notePadDatas");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        
+        int idx = 30000;
+        for (int i = 0; i < notePadDatas.arraySize; i++)
+        {
+            ((NotePad)serializedObject.targetObject).notePadDatas[i].id = new Vector3Int(idx++, idx++, idx++);
         }
     }
 }

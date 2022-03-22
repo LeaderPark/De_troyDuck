@@ -86,7 +86,7 @@ namespace MapEditor
 
             GUILayout.BeginVertical();
 
-            MapEditor.objects["brushSize"] = Mathf.Clamp(EditorGUILayout.FloatField("Brush Size", (float)MapEditor.objects["brushSize"], GUILayout.Width(200)), 0.1f, 10f);
+            MapEditor.objects["brushSize"] = Mathf.Clamp(EditorGUILayout.FloatField("Brush Size", (float)MapEditor.objects["brushSize"], GUILayout.Width(200)), 0.1f, 100f);
 
 
             Vector2 temp = EditorGUILayout.Vector2Field("Grid Interval", (Vector2)MapEditor.objects["gridInterval"], GUILayout.Width(200));

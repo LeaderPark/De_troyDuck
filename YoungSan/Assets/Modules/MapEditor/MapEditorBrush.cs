@@ -29,14 +29,18 @@ namespace MapEditor
             for (;queue.Count > 0;)
             {
                 (GameObject, Vector3) temp = ((GameObject, Vector3))queue.Dequeue();
-                GameObject obj = GameObject.Instantiate(temp.Item1);
+                GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(temp.Item1);
+                
                 obj.transform.position = temp.Item2;
+                if ((Transform)MapEditor.objects["brushParent"] == null)
+                {
+                    MapEditor.objects["brushParent"] = new GameObject("brushParent").transform;
+                }
                 obj.transform.parent = (Transform)MapEditor.objects["brushParent"];
             }
         }
 
         private bool mouseDown = false;
-        private bool removeTile = false;
 
         void OnSceneGUI(SceneView sceneView)
         {
@@ -61,18 +65,6 @@ namespace MapEditor
                 if (mouseDown)
                 {
                     DrawTile();
-                }
-                break;
-                case EventType.KeyDown:
-                if (Event.current.keyCode == KeyCode.R)
-                {
-                    removeTile = true;
-                }
-                break;
-                case EventType.KeyUp:
-                if (Event.current.keyCode == KeyCode.R)
-                {
-                    removeTile = false;
                 }
                 break;
             }
@@ -144,68 +136,47 @@ namespace MapEditor
             System.Action<Vector2> setTile = (center) =>
             {
                 Vector3 targetPos = new Vector3(center.x, hitPoint.y, center.y);
-                if (removeTile)
+                
+                if (((Transform)MapEditor.objects["brushParent"]))
                 {
-                    if (((Transform)MapEditor.objects["brushParent"]))
+                    foreach (var item in ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>())
                     {
-                        foreach (var item in ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>())
-                        {
-                            if (item.position == targetPos) DestroyImmediate(item.gameObject);
-                        }
-                    }
-                    else
-                    {
-                        foreach (var item in FindObjectsOfType<Transform>())
-                        {
-                            if (item.position == targetPos) DestroyImmediate(item.gameObject);
-                        }
+                        if (item.position == targetPos) return;
                     }
                 }
-                else
-                {
-                    if (((Transform)MapEditor.objects["brushParent"]))
-                    {
-                        foreach (var item in ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>())
-                        {
-                            if (item.position == targetPos) return;
-                        }
-                    }
-                    else
-                    {
-                        foreach (var item in FindObjectsOfType<Transform>())
-                        {
-                            if (item.position == targetPos) return;
-                        }
-                    }
 
-                    if (MapEditor.resources.Count > (int)MapEditor.objects["ResourceIndex"])
-                    {
-                        (GameObject, Vector3) temp;
-                        temp.Item1 = MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]];
-                        temp.Item2 = targetPos;
-                        queue.Enqueue(temp);
-                    }
+                if (MapEditor.resources.Count > (int)MapEditor.objects["ResourceIndex"])
+                {
+                    (GameObject, Vector3) temp;
+                    temp.Item1 = MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]];
+                    temp.Item2 = targetPos;
+                    queue.Enqueue(temp);
                 }
             };
 
+            Vector3 cameraPos = SceneView.GetAllSceneCameras()[0].transform.position;
+            cameraPos.y = 0;
+            Vector2 gridPivot = new Vector3((int)(cameraPos.x / ((Vector2)MapEditor.objects["gridInterval"]).x), (int)(cameraPos.z / ((Vector2)MapEditor.objects["gridInterval"]).y));
+            gridPivot.x *= ((Vector2)MapEditor.objects["gridInterval"]).x;
+            gridPivot.y *= ((Vector2)MapEditor.objects["gridInterval"]).y;
             for (float i = 0; i <= 100; i += gridInterval.x)
             {
                 for (float j = 0; j <= 100; j += gridInterval.y)
                 {
                     Vector2 pos;
-                    if (new Rect((pos = new Vector2(i, j) + rectPosDuration), rectSize).Contains(brushPos))
+                    if (new Rect((pos = gridPivot + new Vector2(i, j) + rectPosDuration), rectSize).Contains(brushPos))
                     {
                         setTile(pos + rectSize / 2f);
                     }
-                    if (new Rect((pos = new Vector2(-i, j) + rectPosDuration), rectSize).Contains(brushPos))
+                    if (new Rect((pos = gridPivot + new Vector2(-i, j) + rectPosDuration), rectSize).Contains(brushPos))
                     {
                         setTile(pos + rectSize / 2f);
                     }
-                    if (new Rect((pos = new Vector2(i, -j) + rectPosDuration), rectSize).Contains(brushPos))
+                    if (new Rect((pos = gridPivot + new Vector2(i, -j) + rectPosDuration), rectSize).Contains(brushPos))
                     {
                         setTile(pos + rectSize / 2f);
                     }
-                    if (new Rect((pos = new Vector2(-i, -j) + rectPosDuration), rectSize).Contains(brushPos))
+                    if (new Rect((pos = gridPivot + new Vector2(-i, -j) + rectPosDuration), rectSize).Contains(brushPos))
                     {
                         setTile(pos + rectSize / 2f);
                     }
@@ -214,11 +185,44 @@ namespace MapEditor
         }
         void DrawBrush2()
         {
-            Debug.Log("hmm2");
+            float brushSize = (float)MapEditor.objects["brushSize"];
+            float min = -brushSize / 2;
+            float max = brushSize / 2;
+
+            for (int i = (int)MapEditor.objects["brushDensity"]; i > 0; i--)
+            {
+                Vector2 randPos = new Vector2(Random.Range(min, max), Random.Range(min, max));
+                if (max * max < randPos.sqrMagnitude)
+                {
+                    i++;
+                }
+                else
+                {
+                    Vector3 targetPos = new Vector3(randPos.x + hitPoint.x, hitPoint.y, randPos.y + hitPoint.z);
+                    if (MapEditor.resources.Count > (int)MapEditor.objects["ResourceIndex"])
+                    {
+                        (GameObject, Vector3) temp;
+                        temp.Item1 = MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]];
+                        temp.Item2 = targetPos;
+                        queue.Enqueue(temp);
+                    }
+                }
+            }
         }
         void DrawBrush3()
         {
-            Debug.Log("hmm3");
+            float brushSize = (float)MapEditor.objects["brushSize"];
+            float max = brushSize / 2;
+
+            if (((Transform)MapEditor.objects["brushParent"]))
+            {
+                foreach (var item in ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>())
+                {
+                    if (item == null) continue;
+                    Vector3 objPos = item.position - hitPoint;
+                    if (max * max > new Vector2(objPos.x, objPos.z).sqrMagnitude) DestroyImmediate(item.gameObject);
+                }
+            }
         }
     }
 }

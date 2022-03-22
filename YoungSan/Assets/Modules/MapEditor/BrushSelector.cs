@@ -24,6 +24,7 @@ namespace MapEditor
             MapEditor.objects["gridInterval"] = Vector2.one;
             MapEditor.objects["gridHeight"] = 0;
             MapEditor.objects["brushParent"] = null;
+            MapEditor.objects["brushDensity"] = 1;
 
             brushes = new Dictionary<string, Brush>();
             green = new GUIStyle();
@@ -94,6 +95,7 @@ namespace MapEditor
             GUILayout.BeginVertical();
             MapEditor.objects["gridHeight"] = Mathf.Clamp(EditorGUILayout.IntField("Grid Height", (int)MapEditor.objects["gridHeight"], GUILayout.Width(200)), 0, 100);
             MapEditor.objects["brushParent"] = EditorGUILayout.ObjectField("BrushParent", (Object)MapEditor.objects["brushParent"], typeof(Transform), true);
+            MapEditor.objects["brushDensity"] = Mathf.Clamp(EditorGUILayout.IntField("Brush Density", (int)MapEditor.objects["brushDensity"], GUILayout.Width(200)), 1, 100);
             GUILayout.EndVertical();
 
             GUILayout.EndHorizontal();

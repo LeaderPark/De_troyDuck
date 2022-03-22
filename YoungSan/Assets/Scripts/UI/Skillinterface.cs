@@ -37,16 +37,16 @@ public class Skillinterface : MonoBehaviour
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
         StopAllCoroutines();
-	    for (int j = 0; j < Enum.GetValues(typeof(EventCategory)).Length; j++)
+	    foreach (EventCategory category in skillSet.skillDatas.Keys)
 		{
-            Set_FillAmount(0, 0, j, Enum.GetName(typeof(KeyType),j));
+            //Set_FillAmount(0, 0, j, Enum.GetName(typeof(KeyType),j));
 
 
-            if (skillSet.skillCoolTimes.ContainsKey((EventCategory)Enum.GetValues(typeof(EventCategory)).GetValue(j)))
+            if (skillSet.skillCoolTimes.ContainsKey(category))
             {
-                for (int i = 0; i < skillSet.skillCoolTimes[(EventCategory)Enum.GetValues(typeof(EventCategory)).GetValue(j)].Length; i++)
+                for (int i = 0; i < skillSet.skillCoolTimes[category].Length; i++)
                 {
-                    CoolDown((EventCategory)Enum.GetValues(typeof(EventCategory)).GetValue(j), i);
+                    CoolDown(category, i);
 
                 }
             }

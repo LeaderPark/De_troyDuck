@@ -182,6 +182,10 @@ public class NotePad : MonoBehaviour
 
 
                 guiStyle = GUI.skin.box;
+                int defaultFontSize = guiStyle.fontSize;
+                Color normalTextColor = guiStyle.normal.textColor;
+                Color hoverTextColor = guiStyle.hover.textColor;
+
                 guiStyle.fontSize = (int)(data.fontSize * defaultDistance / cameraDistance);
                 guiStyle.normal.textColor = Color.white;
                 guiStyle.hover.textColor = Color.white;
@@ -196,6 +200,9 @@ public class NotePad : MonoBehaviour
                 GUI.Label(rect, data.text, guiStyle);
                 Handles.EndGUI();
                 
+                guiStyle.fontSize = defaultFontSize;
+                guiStyle.normal.textColor = normalTextColor;
+                guiStyle.hover.textColor = hoverTextColor;
             }
         }
     }

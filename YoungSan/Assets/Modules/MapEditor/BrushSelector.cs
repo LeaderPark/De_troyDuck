@@ -21,8 +21,9 @@ namespace MapEditor
             brushing = false;
             MapEditor.objects["brushSize"] = 0.1f;
             MapEditor.objects["brushIndex"] = 0;
-            MapEditor.objects["gridInterver"] = Vector2.one;
+            MapEditor.objects["gridInterval"] = Vector2.one;
             MapEditor.objects["gridHeight"] = 0;
+            MapEditor.objects["brushParent"] = null;
 
             brushes = new Dictionary<string, Brush>();
             green = new GUIStyle();
@@ -81,14 +82,18 @@ namespace MapEditor
             }
             GUILayout.Space(5);
 
-            MapEditor.objects["brushSize"] = Mathf.Clamp(EditorGUILayout.FloatField("Brush Size", (float)MapEditor.objects["brushSize"], GUILayout.Width(200)), 0.1f, 10f);
-
             GUILayout.BeginVertical();
 
-            Vector2 temp = EditorGUILayout.Vector2Field("Grid Inverter", (Vector2)MapEditor.objects["gridInterver"], GUILayout.Width(200));
-            MapEditor.objects["gridInterver"] = new Vector2(Mathf.Clamp(temp.x, 0.1f, 100f), Mathf.Clamp(temp.y, 0.1f, 100f));
-            MapEditor.objects["gridHeight"] = Mathf.Clamp(EditorGUILayout.IntField("Grid Height", (int)MapEditor.objects["gridHeight"], GUILayout.Width(200)), 0, 100);
+            MapEditor.objects["brushSize"] = Mathf.Clamp(EditorGUILayout.FloatField("Brush Size", (float)MapEditor.objects["brushSize"], GUILayout.Width(200)), 0.1f, 10f);
 
+
+            Vector2 temp = EditorGUILayout.Vector2Field("Grid Interval", (Vector2)MapEditor.objects["gridInterval"], GUILayout.Width(200));
+            MapEditor.objects["gridInterval"] = new Vector2(Mathf.Clamp(temp.x, 0.1f, 100f), Mathf.Clamp(temp.y, 0.1f, 100f));
+            
+            GUILayout.EndVertical();
+            GUILayout.BeginVertical();
+            MapEditor.objects["gridHeight"] = Mathf.Clamp(EditorGUILayout.IntField("Grid Height", (int)MapEditor.objects["gridHeight"], GUILayout.Width(200)), 0, 100);
+            MapEditor.objects["brushParent"] = EditorGUILayout.ObjectField("BrushParent", (Object)MapEditor.objects["brushParent"], typeof(Transform), true);
             GUILayout.EndVertical();
 
             GUILayout.EndHorizontal();

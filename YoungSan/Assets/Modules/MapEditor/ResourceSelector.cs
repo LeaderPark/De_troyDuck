@@ -127,13 +127,16 @@ namespace MapEditor
             {
                 if (MapEditor.resources.Count > 0)
                 {
-                    string path = AssetDatabase.GetAssetPath(MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]]);
-                    System.IO.File.Delete(path);
-                    System.IO.File.Delete(string.Concat(path, ".meta"));
-                    AssetDatabase.Refresh();
-                    MapEditor.resources.RemoveAt((int)MapEditor.objects["ResourceIndex"]);
-                    MapEditor.objects["ResourceIndex"] = Mathf.Clamp((int)MapEditor.objects["ResourceIndex"], 0, MapEditor.resources.Count - 1);
-                    if (MapEditor.resources.Count > 0) Selection.activeGameObject = MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]];
+                    if (EditorUtility.DisplayDialog("정말 삭제할거야?", "이걸 삭제한다고? 진짜?\n" + MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]].name + " 이거 맞지? 맞는거지?", "응", "아니"))
+                    {
+                        string path = AssetDatabase.GetAssetPath(MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]]);
+                        System.IO.File.Delete(path);
+                        System.IO.File.Delete(string.Concat(path, ".meta"));
+                        AssetDatabase.Refresh();
+                        MapEditor.resources.RemoveAt((int)MapEditor.objects["ResourceIndex"]);
+                        MapEditor.objects["ResourceIndex"] = Mathf.Clamp((int)MapEditor.objects["ResourceIndex"], 0, MapEditor.resources.Count - 1);
+                        if (MapEditor.resources.Count > 0) Selection.activeGameObject = MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]];
+                    }
                 }
             }
         }

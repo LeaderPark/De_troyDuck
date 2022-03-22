@@ -2642,7 +2642,7 @@ GameObject:
   - component: {fileID: 92717624}
   - component: {fileID: 92717623}
   - component: {fileID: 92717625}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalacePillar_0 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2809,63 +2809,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &98289547
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4630027691702936259, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_Name
-      value: BatMountainBandit (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
 --- !u!1 &108312053
 GameObject:
   m_ObjectHideFlags: 0
@@ -3873,7 +3816,7 @@ GameObject:
   - component: {fileID: 136725153}
   - component: {fileID: 136725154}
   - component: {fileID: 136725155}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalacePillar_0 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8740,7 +8683,7 @@ GameObject:
   - component: {fileID: 273110478}
   - component: {fileID: 273110477}
   - component: {fileID: 273110479}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalaceWall_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10506,7 +10449,7 @@ GameObject:
   - component: {fileID: 320334524}
   - component: {fileID: 320334523}
   - component: {fileID: 320334525}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalacePillar_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14314,6 +14257,7 @@ GameObject:
   - component: {fileID: 473791937}
   - component: {fileID: 473791940}
   - component: {fileID: 473791941}
+  - component: {fileID: 473791936}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14321,6 +14265,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &473791936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473791935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b0a818df9439f49bf0f7edc85cf676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
+  ObstructionFadingSpeed: 2
 --- !u!20 &473791937
 Camera:
   m_ObjectHideFlags: 0
@@ -17069,63 +17027,6 @@ Transform:
   m_Father: {fileID: 212771076}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1001 &550288362
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4630027691702936259, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_Name
-      value: BatMountainBandit
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
 --- !u!1 &551064894
 GameObject:
   m_ObjectHideFlags: 0
@@ -20479,13 +20380,13 @@ GameObject:
   m_Component:
   - component: {fileID: 679016892}
   - component: {fileID: 679016893}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Roof_fake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &679016892
 Transform:
   m_ObjectHideFlags: 0
@@ -20937,7 +20838,7 @@ GameObject:
   - component: {fileID: 715264701}
   - component: {fileID: 715264700}
   - component: {fileID: 715264702}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalacePillar_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22141,7 +22042,7 @@ GameObject:
   - component: {fileID: 743499412}
   - component: {fileID: 743499411}
   - component: {fileID: 743499413}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalaceWall_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25963,7 +25864,7 @@ GameObject:
   - component: {fileID: 910507215}
   - component: {fileID: 910507214}
   - component: {fileID: 910507216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalaceWall_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26928,63 +26829,6 @@ Transform:
   m_Father: {fileID: 671739669}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &935501326
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4630027691702936259, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_Name
-      value: BatMountainBandit (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
 --- !u!1 &938738042
 GameObject:
   m_ObjectHideFlags: 0
@@ -31648,63 +31492,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1106938985
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4630027691702936259, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_Name
-      value: BatMountainBandit (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4630027691702936261, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
 --- !u!1 &1108907690
 GameObject:
   m_ObjectHideFlags: 0
@@ -33040,7 +32827,7 @@ GameObject:
   - component: {fileID: 1173252146}
   - component: {fileID: 1173252145}
   - component: {fileID: 1173252147}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalacePillar_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41781,7 +41568,7 @@ GameObject:
   - component: {fileID: 1526993411}
   - component: {fileID: 1526993412}
   - component: {fileID: 1526993413}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalacePillar_0 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45323,7 +45110,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1649137582}
   - component: {fileID: 1649137583}
-  m_Layer: 0
+  - component: {fileID: 1649137584}
+  m_Layer: 9
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45395,6 +45183,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1649137584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649137581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 19.4, y: 8.7, z: 0.2}
+  m_Center: {x: 0, y: -0.00000047683716, z: 0}
 --- !u!1 &1657668020
 GameObject:
   m_ObjectHideFlags: 0
@@ -46722,7 +46523,7 @@ GameObject:
   - component: {fileID: 1700735026}
   - component: {fileID: 1700735025}
   - component: {fileID: 1700735027}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalacePillar_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48353,7 +48154,7 @@ GameObject:
   - component: {fileID: 1750021577}
   - component: {fileID: 1750021576}
   - component: {fileID: 1750021578}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalaceWall_0 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50609,7 +50410,7 @@ GameObject:
   - component: {fileID: 1842065700}
   - component: {fileID: 1842065699}
   - component: {fileID: 1842065701}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PalacePillar_0 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -41,7 +41,7 @@ public class Statbar : MonoBehaviour
     {
         currentStat = uiManager.UpdateCurrentStat();
         maxStat = uiManager.UpdateMaxStat();
-        Debug.Log(1-(currentStat.Item1/maxStat.Item1));
+        //Debug.Log(1-(currentStat.Item1/maxStat.Item1));
         float currentHp = minHealth * (1 - (currentStat.Item1 / maxStat.Item1));
         float currentStamina = minStamina * (1 - (currentStat.Item2 / maxStat.Item2));
         hpRect.anchoredPosition = new Vector2(currentHp, 0);

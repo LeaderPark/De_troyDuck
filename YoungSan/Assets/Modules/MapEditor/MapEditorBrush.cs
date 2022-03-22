@@ -220,11 +220,12 @@ namespace MapEditor
 
             if (((Transform)MapEditor.objects["brushParent"]))
             {
-                foreach (var item in ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>())
+                Transform[] childs = ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>();
+                for (int i = 1; i < childs.Length; i++)
                 {
-                    if (item == null) continue;
-                    Vector3 objPos = item.position - hitPoint;
-                    if (max * max > new Vector2(objPos.x, objPos.z).sqrMagnitude) DestroyImmediate(item.gameObject);
+                    if (childs[i] == null) continue;
+                    Vector3 objPos = childs[i].position - hitPoint;
+                    if (max * max > new Vector2(objPos.x, objPos.z).sqrMagnitude) DestroyImmediate(childs[i].gameObject);
                 }
             }
         }

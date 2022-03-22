@@ -26,21 +26,25 @@ namespace MapEditor
 
         void Update()
         {
-            foreach ((GameObject, Vector3) item in table.Values)
+            lock(lockObject)
             {
-                GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(item.Item1);
-                
-                obj.transform.position = item.Item2;
-                if ((Transform)MapEditor.objects["brushParent"] == null)
+                foreach ((GameObject, Vector3) item in table.Values)
                 {
-                    MapEditor.objects["brushParent"] = new GameObject("brushParent").transform;
+                    GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(item.Item1);
+                    
+                    obj.transform.position = item.Item2;
+                    if ((Transform)MapEditor.objects["brushParent"] == null)
+                    {
+                        MapEditor.objects["brushParent"] = new GameObject("brushParent").transform;
+                    }
+                    obj.transform.parent = (Transform)MapEditor.objects["brushParent"];
                 }
-                obj.transform.parent = (Transform)MapEditor.objects["brushParent"];
+                table.Clear();
             }
-            table.Clear();
         }
 
         private bool mouseDown = false;
+        private object lockObject = new object();
 
         void OnSceneGUI(SceneView sceneView)
         {
@@ -64,7 +68,10 @@ namespace MapEditor
                 case EventType.MouseDrag:
                 if (mouseDown)
                 {
-                    DrawTile();
+                    lock (lockObject)
+                    {
+                        DrawTile();
+                    }
                 }
                 break;
             }

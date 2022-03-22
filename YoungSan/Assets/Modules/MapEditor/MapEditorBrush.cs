@@ -15,11 +15,27 @@ namespace MapEditor
         {
             SceneView.duringSceneGui += OnSceneGUI;
             table = new Hashtable();
+
+            StartCoroutine(Brush2Lock());
         }
 
         void OnDisable()
         {
             SceneView.duringSceneGui -= OnSceneGUI;
+            StopAllCoroutines();
+        }
+
+        IEnumerator Brush2Lock()
+        {
+            while (true)
+            {
+                if (brush2lock)
+                {
+                    yield return new WaitForSeconds(0.2f);
+                    brush2lock = false;
+                }
+                yield return null;
+            }
         }
 
         Hashtable table;
@@ -45,6 +61,8 @@ namespace MapEditor
 
         private bool mouseDown = false;
         private object lockObject = new object();
+
+        private bool brush2lock = false;
 
         void OnSceneGUI(SceneView sceneView)
         {
@@ -196,6 +214,7 @@ namespace MapEditor
         }
         void DrawBrush2()
         {
+            if (brush2lock) return;
             float brushSize = (float)MapEditor.objects["brushSize"];
             float min = -brushSize / 2;
             float max = brushSize / 2;
@@ -219,6 +238,7 @@ namespace MapEditor
                     }
                 }
             }
+            brush2lock = true;
         }
         void DrawBrush3()
         {

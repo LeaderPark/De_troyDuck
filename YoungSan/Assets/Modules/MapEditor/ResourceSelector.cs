@@ -49,13 +49,17 @@ namespace MapEditor
                     int index = i * row + j;
                     if ((int)MapEditor.objects["ResourceIndex"] == index)
                     {
-                        GUI.Box(new Rect(15f + j * 83f, 15f + i * 82f, 70, 70), "", GUI.skin.window);
+                        GUI.Box(new Rect(18.5f + j * 88f, 15f + i * 110f, 70, 70), "", GUI.skin.window);
                     }
+                    GUILayout.BeginVertical(GUILayout.Width(60), GUILayout.Height(80));
                     if (GUILayout.Button(AssetPreview.GetAssetPreview(MapEditor.resources[index]), GUILayout.Width(60), GUILayout.Height(60)))
                     {
                         MapEditor.objects["ResourceIndex"] = index;
                         Selection.activeGameObject = MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]];
                     }
+                    GUILayout.Box(MapEditor.resources[index].name, GUILayout.Width(60), GUILayout.Height(20));
+                    
+                    GUILayout.EndVertical();
                     GUILayout.Space(20);
                 }
                 GUILayout.EndHorizontal();

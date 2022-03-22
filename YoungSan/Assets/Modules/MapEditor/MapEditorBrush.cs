@@ -14,7 +14,7 @@ namespace MapEditor
         void OnEnable()
         {
             SceneView.duringSceneGui += OnSceneGUI;
-            queue = new Queue();
+            table = new Hashtable();
         }
 
         void OnDisable()
@@ -22,22 +22,22 @@ namespace MapEditor
             SceneView.duringSceneGui -= OnSceneGUI;
         }
 
-        Queue queue;
+        Hashtable table;
 
         void Update()
         {
-            for (;queue.Count > 0;)
+            foreach ((GameObject, Vector3) item in table.Values)
             {
-                (GameObject, Vector3) temp = ((GameObject, Vector3))queue.Dequeue();
-                GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(temp.Item1);
+                GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(item.Item1);
                 
-                obj.transform.position = temp.Item2;
+                obj.transform.position = item.Item2;
                 if ((Transform)MapEditor.objects["brushParent"] == null)
                 {
                     MapEditor.objects["brushParent"] = new GameObject("brushParent").transform;
                 }
                 obj.transform.parent = (Transform)MapEditor.objects["brushParent"];
             }
+            table.Clear();
         }
 
         private bool mouseDown = false;
@@ -76,33 +76,36 @@ namespace MapEditor
             ray = HandleUtility.GUIPointToWorldRay(mousepos);
             
             Vector3 pos100 = ray.origin + ray.direction * 100;
-            float distance = 100 * (Mathf.Abs(ray.origin.y) - (int)MapEditor.objects["gridHeight"]) / Mathf.Abs(ray.origin.y - pos100.y);
+            float distance = 100 * (Mathf.Abs(ray.origin.y) - (float)MapEditor.objects["gridHeight"]) / Mathf.Abs(ray.origin.y - pos100.y);
             
             hitPoint = ray.origin + ray.direction * distance;
-            hitPoint.y = (int)MapEditor.objects["gridHeight"];
+            hitPoint.y = (float)MapEditor.objects["gridHeight"];
         }
 
         void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(hitPoint, (float)MapEditor.objects["brushSize"] / 2f);
 
-            Gizmos.color = Color.grey;
-            int height = (int)MapEditor.objects["gridHeight"];
-            
-            Vector3 cameraPos = SceneView.GetAllSceneCameras()[0].transform.position;
-            cameraPos.y = 0;
-            Vector3 gridPivot = new Vector3((int)(cameraPos.x / ((Vector2)MapEditor.objects["gridInterval"]).x), 0, (int)(cameraPos.z / ((Vector2)MapEditor.objects["gridInterval"]).y));
-            gridPivot.x *= ((Vector2)MapEditor.objects["gridInterval"]).x;
-            gridPivot.z *= ((Vector2)MapEditor.objects["gridInterval"]).y;
-            for (float i = 0; i <= 100; i += ((Vector2)MapEditor.objects["gridInterval"]).x)
+            if ((bool)MapEditor.objects["gridActive"])
             {
-                Gizmos.DrawLine(gridPivot + new Vector3(i, height, -100), gridPivot + new Vector3(i, height, 100));
-                Gizmos.DrawLine(gridPivot + new Vector3(-i, height, -100), gridPivot + new Vector3(-i, height, 100));
-            }
-            for (float i = 0; i <= 100; i += ((Vector2)MapEditor.objects["gridInterval"]).y)
-            {
-                Gizmos.DrawLine(gridPivot + new Vector3(-100, height, i), gridPivot + new Vector3(100, height, i));
-                Gizmos.DrawLine(gridPivot + new Vector3(-100, height, -i), gridPivot + new Vector3(100, height, -i));
+                Gizmos.color = Color.grey;
+                float height = (float)MapEditor.objects["gridHeight"];
+                
+                Vector3 cameraPos = SceneView.GetAllSceneCameras()[0].transform.position;
+                cameraPos.y = 0;
+                Vector3 gridPivot = new Vector3((int)(cameraPos.x / ((Vector2)MapEditor.objects["gridInterval"]).x), 0, (int)(cameraPos.z / ((Vector2)MapEditor.objects["gridInterval"]).y));
+                gridPivot.x *= ((Vector2)MapEditor.objects["gridInterval"]).x;
+                gridPivot.z *= ((Vector2)MapEditor.objects["gridInterval"]).y;
+                for (float i = 0; i <= 100; i += ((Vector2)MapEditor.objects["gridInterval"]).x)
+                {
+                    Gizmos.DrawLine(gridPivot + new Vector3(i, height, -100), gridPivot + new Vector3(i, height, 100));
+                    Gizmos.DrawLine(gridPivot + new Vector3(-i, height, -100), gridPivot + new Vector3(-i, height, 100));
+                }
+                for (float i = 0; i <= 100; i += ((Vector2)MapEditor.objects["gridInterval"]).y)
+                {
+                    Gizmos.DrawLine(gridPivot + new Vector3(-100, height, i), gridPivot + new Vector3(100, height, i));
+                    Gizmos.DrawLine(gridPivot + new Vector3(-100, height, -i), gridPivot + new Vector3(100, height, -i));
+                }
             }
         }
 
@@ -127,7 +130,7 @@ namespace MapEditor
             Vector2 brushPos = new Vector2(hitPoint.x, hitPoint.z);
             Vector2 gridInterval = (Vector2)MapEditor.objects["gridInterval"];
             
-            int height = (int)MapEditor.objects["gridHeight"];
+            float height = (float)MapEditor.objects["gridHeight"];
             float brushSize = (float)MapEditor.objects["brushSize"];
 
             Vector2 rectPosDuration =  - Vector2.one * brushSize / 2f;
@@ -144,13 +147,14 @@ namespace MapEditor
                         if (item.position == targetPos) return;
                     }
                 }
+                if (table.ContainsKey(targetPos)) return;
 
                 if (MapEditor.resources.Count > (int)MapEditor.objects["ResourceIndex"])
                 {
                     (GameObject, Vector3) temp;
                     temp.Item1 = MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]];
                     temp.Item2 = targetPos;
-                    queue.Enqueue(temp);
+                    table.Add(targetPos, temp);
                 }
             };
 
@@ -204,7 +208,7 @@ namespace MapEditor
                         (GameObject, Vector3) temp;
                         temp.Item1 = MapEditor.resources[(int)MapEditor.objects["ResourceIndex"]];
                         temp.Item2 = targetPos;
-                        queue.Enqueue(temp);
+                        table.Add(targetPos, temp);
                     }
                 }
             }

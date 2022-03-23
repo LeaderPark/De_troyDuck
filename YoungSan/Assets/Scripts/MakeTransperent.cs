@@ -11,6 +11,7 @@ public class MakeTransperent : MonoBehaviour
     [SerializeField] private HashSet<Transform> ObjectToShow = new HashSet<Transform>();
 
     List<Transform> Remove = new List<Transform>();
+    public LayerMask layerMask;
 
     void Update()
     {
@@ -38,13 +39,8 @@ public class MakeTransperent : MonoBehaviour
         GameManager gm = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         Vector3 playerPosition = gm.Player.transform.position + offset;
         float characterDistance = Vector3.Distance(transform.position, playerPosition);
-        int layerNumber = LayerMask.NameToLayer("Wall");
-        int layerMask = 1 << layerNumber;
         RaycastHit[] hits = Physics.RaycastAll(transform.position, playerPosition - transform.position, characterDistance,layerMask);
-        foreach(var hit in hits)
-        {
-            Debug.LogError(hit.collider.gameObject.name);
-        }
+
         if (hits.Length > 0)
         {
             // Repaint all the previous obstructions. Because some of the stuff might be not blocking anymore

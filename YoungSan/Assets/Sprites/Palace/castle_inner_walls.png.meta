@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: 2094958096541627573
     second: castle_inner_walls_3
+  - first:
+      213: 7084098815043352049
+    second: castle_inner_walls_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -79,7 +82,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -91,7 +94,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -103,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: castle_inner_walls_0
+      name: castle_inner_walls_1
       rect:
         serializedVersion: 2
         x: 245
@@ -111,28 +114,7 @@ TextureImporter:
         width: 145
         height: 305
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41fd5f85fc0d078b0800000000000000
-      internalID: -5156391984369901804
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: castle_inner_walls_1
-      rect:
-        serializedVersion: 2
-        x: 820
-        y: 825
-        width: 280
-        height: 305
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -148,12 +130,12 @@ TextureImporter:
       name: castle_inner_walls_2
       rect:
         serializedVersion: 2
-        x: 300
-        y: 185
-        width: 40
-        height: 325
+        x: 820
+        y: 825
+        width: 280
+        height: 305
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,12 +151,12 @@ TextureImporter:
       name: castle_inner_walls_3
       rect:
         serializedVersion: 2
-        x: 940
-        y: 30
+        x: 300
+        y: 185
         width: 40
-        height: 585
+        height: 325
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,6 +164,27 @@ TextureImporter:
       bones: []
       spriteID: 5b431bb0a49c21d10800000000000000
       internalID: 2094958096541627573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_inner_walls_4
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 30
+        width: 30
+        height: 585
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 25, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f5bc60d656cf4260800000000000000
+      internalID: 7084098815043352049
       vertices: []
       indices: 
       edges: []

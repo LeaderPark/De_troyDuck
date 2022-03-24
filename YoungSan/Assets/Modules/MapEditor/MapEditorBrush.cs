@@ -169,7 +169,7 @@ namespace MapEditor
                 {
                     foreach (var item in ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>())
                     {
-                        if (item.position == targetPos) return;
+                        if ((item.position - targetPos).sqrMagnitude < 0.01f) return;
                     }
                 }
                 if (table.ContainsKey(targetPos)) return;

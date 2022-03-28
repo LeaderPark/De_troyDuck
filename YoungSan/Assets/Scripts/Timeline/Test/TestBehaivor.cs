@@ -16,6 +16,7 @@ public class TestBehaivor : PlayableBehaviour
 	private PoolManager poolManager;
 	private float time = 0;
 	private int idx = 0;
+	private EntityData entityData;
 
 	public override void OnGraphStart(Playable playable)
 	{
@@ -62,6 +63,7 @@ public class TestBehaivor : PlayableBehaviour
 		}
 		talkBox = talkObj.transform.Find("Text").GetComponent<Text>();
 		fakeTalkbox = talkObj.transform.Find("fakeText").GetComponent<Text>();
+		entityData = talker.GetComponent<Entity>().entityData;
 		talkBox.text = "";
 		fakeTalkbox.text = txt;
 		Debug.Log("Play");
@@ -87,7 +89,8 @@ public class TestBehaivor : PlayableBehaviour
 	{
 		if (Application.isPlaying)
 		{
-			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position);
+
+			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position+new Vector3(0,entityData.uiPos,0));
 			time += Time.deltaTime;
 			for (bool b = true; b;)
 			{
@@ -106,6 +109,8 @@ public class TestBehaivor : PlayableBehaviour
 		}
 		else
 		{
+			try
+			{
 			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position);
 			time += Time.deltaTime;
 			for (bool b = true; b;)
@@ -121,6 +126,11 @@ public class TestBehaivor : PlayableBehaviour
 						idx = Mathf.Clamp(idx + 1, 0, txt.Length);
 					}
 				}
+			}
+			}
+			catch
+			{
+				
 			}
 		}
 	}

@@ -5,7 +5,8 @@ using UnityEngine;
 public class MakeTransperent : MonoBehaviour
 {
     public Vector3 offset = Vector3.zero; 
-    public float ObstructionFadingSpeed = 2;
+    public float obstructionFadingSpeed = 2;
+    public float transperentValue = 0.5f;
 
     [SerializeField] private HashSet<Transform> ObjectToHide = new HashSet<Transform>();
     [SerializeField] private HashSet<Transform> ObjectToShow = new HashSet<Transform>();
@@ -73,8 +74,9 @@ public class MakeTransperent : MonoBehaviour
 
     private void HideObstruction(Transform obj)
     {
+        // obj.GetComponent<SpriteRenderer>().re
         Color color = obj.GetComponent<SpriteRenderer>().color;
-        color.a = Mathf.Max(0.5f, color.a - ObstructionFadingSpeed * Time.deltaTime);
+        color.a = Mathf.Max(transperentValue, color.a - obstructionFadingSpeed * Time.deltaTime);
         obj.GetComponent<SpriteRenderer>().color = color;
  
     }
@@ -82,7 +84,7 @@ public class MakeTransperent : MonoBehaviour
     private void ShowObstruction(Transform obj)
     {
         var color = obj.GetComponent<SpriteRenderer>().color;
-        color.a = Mathf.Min(1, color.a + ObstructionFadingSpeed * Time.deltaTime);
+        color.a = Mathf.Min(1, color.a + obstructionFadingSpeed * Time.deltaTime);
         obj.GetComponent<SpriteRenderer>().color = color;
 
         if (obj.GetComponent<SpriteRenderer>().color.a == 1f)

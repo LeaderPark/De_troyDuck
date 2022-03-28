@@ -3,8 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public enum GameKey
+{
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight,
+    Attack,
+    Dash,
+    Skill1,
+    Skill2,
+    Skill3,
+}
+
 public class InputManager : Manager
 {
+    private Hashtable keyMappingTable; // 나중에 꼭 수정하자
     private Dictionary<KeyCode, ButtonState> keyTable;
     private Dictionary<MouseButton, ButtonState> mouseTable;
 

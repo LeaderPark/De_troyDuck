@@ -38,11 +38,11 @@ public class TestBehaivor : PlayableBehaviour
 		else
 		{
 			List<GameObject> pool = new List<GameObject>();
-			GameObject canvas = GameObject.Find("TestCanvas");
+			GameObject canvas = GameObject.Find("CutSceneCanvas");
 
 			time = 0;
 			idx = 0;
-			for (int i = 0; i < canvas.transform.childCount; i++)
+			for (int i = 0; i < canvas.transform.childCount-1; i++)
 			{
 				pool.Add(canvas.transform.GetChild(i).gameObject);
 			}
@@ -61,7 +61,7 @@ public class TestBehaivor : PlayableBehaviour
 			}
 			
 		}
-		talkBox = talkObj.transform.Find("Text").GetComponent<Text>();
+		talkBox = talkObj.transform.Find("text").GetComponent<Text>();
 		fakeTalkbox = talkObj.transform.Find("fakeText").GetComponent<Text>();
 		entityData = talker.GetComponent<Entity>().entityData;
 		talkBox.text = "";
@@ -111,7 +111,7 @@ public class TestBehaivor : PlayableBehaviour
 		{
 			try
 			{
-			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position);
+			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position + new Vector3(0, entityData.uiPos, 0));
 			time += Time.deltaTime;
 			for (bool b = true; b;)
 			{

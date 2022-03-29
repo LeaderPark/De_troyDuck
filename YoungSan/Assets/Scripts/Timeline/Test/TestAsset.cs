@@ -79,8 +79,8 @@ public class TestAssetEditor : Editor
 			Keyframe[] keyframes = new Keyframe[ta.dialogueMessage.Length];
 			for (int i = 0; i < ta.dialogueMessage.Length; i++)
 			{
-				keyframes[i].time = 0.1f * i;
-				keyframes[i].value = 0.1f;
+				keyframes[i].time = 0.05f * i;
+				keyframes[i].value = 0.05f;
 			}
 			ta.delayCurve.keys = keyframes;
 			for (int i = 0; i < ta.dialogueMessage.Length; i++)

@@ -18,6 +18,6 @@ public class ClickToPlay : MonoBehaviour
     {
         GetComponent<FadeInOut>().FadeInOut1(true);
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("Maps");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Maps");
     }
 }

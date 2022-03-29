@@ -2,6 +2,8 @@ using System.Net.Mail;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class UIManager : Manager
 {
@@ -12,6 +14,10 @@ public class UIManager : Manager
     private float hp;
     private float stamina;
     private Entity entity;
+    private CanvasGroup canvas;
+
+    [SerializeField]
+    private Image fade;
 
     [HideInInspector] public Statbar statbar;
     [HideInInspector] public Skillinterface skillinterface;
@@ -23,6 +29,7 @@ public class UIManager : Manager
     {
         statbar = transform.GetComponentInChildren<Statbar>();
         skillinterface = transform.GetComponentInChildren<Skillinterface>();
+        canvas = transform.GetComponentInChildren<CanvasGroup>();
 
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
         eventManager.GetEventTrigger(typeof(StatEventTrigger)).Add(new GlobalEventTrigger.StatEvent((entity, category, oldValue, value) =>
@@ -98,7 +105,13 @@ public class UIManager : Manager
             }
         }
     }
-
+    public void UISetActive(bool active)
+    {
+        if (active)
+            canvas.alpha = 1;
+        else
+            canvas.alpha = 0;
+    }
 	public (float, float) UpdateCurrentStat()
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
@@ -127,4 +140,53 @@ public class UIManager : Manager
 
         return stamina;
     }
+    public void FadeInOut(bool fadeOut, Action endAction = null)
+    {
+        if (fadeOut)
+        {
+            StartCoroutine(FadeOut(endAction));
+        }
+        else
+        {
+            StartCoroutine(FadeIn(endAction));
+        }
+    }
+
+    private IEnumerator FadeOut(Action endAction)
+	{
+		float alpha = 0f;
+		while (true)
+		{
+			if (alpha < 1f)
+			{
+				alpha += Time.deltaTime * 1;
+			}
+			else
+			{
+                endAction();
+                yield break;
+			}
+			alpha = Mathf.Clamp(alpha, 0, 1);
+			fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, alpha);
+			yield return null;
+		}
+	}
+	private IEnumerator FadeIn(Action endAction)
+	{
+		float alpha = 1f;
+		while (true)
+		{
+			if (alpha > 0f)
+			{
+				alpha -= Time.deltaTime * 1;
+			}
+			else
+			{
+				yield break;
+			}
+			alpha = Mathf.Clamp(alpha, 0, 1);
+			fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, alpha);
+			yield return null;
+		}
+	}
 }

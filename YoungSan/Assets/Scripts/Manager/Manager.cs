@@ -16,4 +16,5 @@ public enum ManagerType
     UIManager,
     TimelineManager,
     EventManager,
+    SceneManager
 }

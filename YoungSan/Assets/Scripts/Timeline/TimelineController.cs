@@ -25,6 +25,17 @@ public class TimelineController : MonoBehaviour
 		director.playableGraph.GetRootPlayable(0).SetSpeed(0);
 		print("∏ÿ√„");
 	}
+	public void UISetActiveFalse()
+	{
+		UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+		uIManager.UISetActive(false);
+	}
+	public void UISetActiveTrue()
+	{
+		UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+		uIManager.UISetActive(true);
+
+	}
 	public void FadeInOut(bool fadeOut)
 	{
 		if (fadeOut)

@@ -30,14 +30,14 @@ public class Dialogue : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        timelineController = GetComponent<TimelineController>();
-        talkBoxTxt = talkBoxTrm.gameObject.transform.Find("text").gameObject.GetComponent<Text>();
-        fakeTalkBoxTxt = talkBoxTrm.gameObject.transform.Find("fakeText").gameObject.GetComponent<Text>();
+        //timelineController = GetComponent<TimelineController>();
+        //talkBoxTxt = talkBoxTrm.gameObject.transform.Find("text").gameObject.GetComponent<Text>();
+        //fakeTalkBoxTxt = talkBoxTrm.gameObject.transform.Find("fakeText").gameObject.GetComponent<Text>();
     }
     void Start()
     {
-        talkBoxTrm.gameObject.SetActive(false);
-        fakeTalkBoxTxt.gameObject.SetActive(false);
+        //talkBoxTrm.gameObject.SetActive(false);
+        //fakeTalkBoxTxt.gameObject.SetActive(false);
 
     }
     private void Update()

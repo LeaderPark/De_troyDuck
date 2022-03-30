@@ -836,7 +836,8 @@ MonoBehaviour:
   m_Children: []
   m_Clips: []
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: 3650016597056777056}
 --- !u!114 &-7658339483066827637
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7085,6 +7086,20 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   activeTime: 1
+--- !u!114 &3650016597056777056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e19dd01e3b546448a36128851ab088, type: 3}
+  m_Name: Scene Load Marker
+  m_EditorClassIdentifier: 
+  m_Time: 66.9500000588596
+  sceneName: None
 --- !u!114 &3876933276391582561
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8596,7 +8611,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -8680,7 +8713,7 @@ MonoBehaviour:
     m_Start: 55.333333333333336
     m_ClipIn: 0
     m_Asset: {fileID: 2028877404488238156}
-    m_Duration: 11.616666725526265
+    m_Duration: 26.300000000000004
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8613319210780773830}
     m_EaseInDuration: 0

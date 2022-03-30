@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2289989693407090793}
   - component: {fileID: 2289989693407090794}
   - component: {fileID: 2289989693407090797}
+  - component: {fileID: 5535788953435136891}
+  - component: {fileID: 3227817246374541617}
   m_Layer: 0
   m_Name: CutScenePrefab
   m_TagString: Untagged
@@ -221,6 +223,30 @@ MonoBehaviour:
   talkBoxTrm: {fileID: 0}
   talker: {fileID: 0}
   dialogueEnd: 0
+--- !u!114 &5535788953435136891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289989693407090796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de764a5eea49264e86215e702c0d295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3227817246374541617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289989693407090796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f182e061c1fd78429d75b31624d1116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5414151400569618528
 GameObject:
   m_ObjectHideFlags: 0

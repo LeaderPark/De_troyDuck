@@ -47,8 +47,10 @@ public class Skillinterface : MonoBehaviour
                 for (int i = 0; i < skillSet.skillCoolTimes[category].Length; i++)
                 {
                     CoolDown(category, i);
+                    Debug.Log(skillSet.skillCoolTimes[category][i]);
 
                 }
+                Debug.Log(skillSet.skillCoolTimes[category].Length + "aaaaaaaaaaaaaaaa");
             }
 
         }
@@ -79,12 +81,11 @@ public class Skillinterface : MonoBehaviour
     IEnumerator Cool(EventCategory eventCategory, float cool, int index)
     {
         float time = cool;
-        string keyName = text_CoolTime[index].text;
         Debug.Log(time);
         while (true)
         {
             time -= Time.deltaTime;
-            Set_FillAmount(time, cool, index,keyName);
+            Set_FillAmount(time, cool, (int)eventCategory);
             if (time <= 0)
             {
                 //skillCoolTimes.RemoveAt(index);
@@ -95,7 +96,7 @@ public class Skillinterface : MonoBehaviour
         }
     }
 
-    public void Set_FillAmount(float cool, float maxCool, int index,string keyName)
+    public void Set_FillAmount(float cool, float maxCool, int index)
     {
         string txt;
 
@@ -108,7 +109,7 @@ public class Skillinterface : MonoBehaviour
         }
         else
         {
-            txt = keyName;
+            txt = Enum.GetName(typeof(KeyType),index);
             image_fill[index].fillAmount = 0;
         }
         text_CoolTime[index].text = txt;

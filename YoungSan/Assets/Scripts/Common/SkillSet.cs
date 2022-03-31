@@ -65,11 +65,15 @@ public class SkillSet : MonoBehaviour
             if (skillCools[category][index]) return;
             int useStamina = skillDatas[category][index].CalculateUseStamina();
             if (useStamina > entity.clone.GetStat(StatCategory.Stamina)) return;
-            CoolDown(category, index);
             StopSkill();
             
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            if (entity.CompareTag("Player")) gameManager.AfterImage(entity, skillDatas[category][index].startTime + skillDatas[category][index].time);
+            if (entity.CompareTag("Player"))
+            {
+                gameManager.AfterImage(entity, skillDatas[category][index].startTime + skillDatas[category][index].time);
+                CoolDown(category, index);
+
+            }
             entity.clone.SubStat(StatCategory.Stamina, useStamina);
             action();
             SkillData data = skillDatas[category][index];

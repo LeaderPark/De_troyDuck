@@ -17,7 +17,7 @@ public class UIManager : Manager
     private CanvasGroup canvas;
 
     [SerializeField]
-    private Image fade;
+    public Image fade;
 
     [HideInInspector] public Statbar statbar;
     [HideInInspector] public Skillinterface skillinterface;

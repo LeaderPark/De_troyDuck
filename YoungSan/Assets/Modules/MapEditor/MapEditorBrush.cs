@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+#if UNITY_EDITOR
 namespace MapEditor
 {
     [ExecuteAlways]
@@ -63,7 +63,8 @@ namespace MapEditor
         private object lockObject = new object();
 
         private bool brush2lock = false;
-
+            #endif
+#if UNITY_EDITOR
         void OnSceneGUI(SceneView sceneView)
         {
             DrawDefaultPreview();
@@ -94,7 +95,8 @@ namespace MapEditor
                 break;
             }
         }
-
+        #endif
+#if UNITY_EDITOR
         void DrawDefaultPreview()
         {
             Vector3 mousepos = Event.current.mousePosition;
@@ -258,3 +260,4 @@ namespace MapEditor
         }
     }
 }
+    #endif

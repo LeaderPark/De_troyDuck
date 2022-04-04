@@ -6,7 +6,9 @@ using UnityEditor;
 [ExecuteAlways]
 public class NotePad : MonoBehaviour
 {
+#if UNITY_EDITOR
     public NotePadData[] notePadDatas;
+
 
     const float defaultDistance = 50;
     
@@ -15,7 +17,6 @@ public class NotePad : MonoBehaviour
     int useId;
     private Vector2 mousePos;
     bool mouseDown;
-
     void OnEnable()
     {
         SceneView.duringSceneGui += OnSceneGUI;
@@ -25,8 +26,8 @@ public class NotePad : MonoBehaviour
     {
         SceneView.duringSceneGui -= OnSceneGUI;
     }
-
-    
+    #endif
+    #if UNITY_EDITOR
     void OnSceneGUI(SceneView sceneView)
     {
         switch (Event.current.type)
@@ -206,8 +207,9 @@ public class NotePad : MonoBehaviour
             }
         }
     }
+    #endif
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(NotePad))]
 public class NotePadEditor : Editor
 {
@@ -229,7 +231,7 @@ public class NotePadEditor : Editor
         }
     }
 }
-
+#endif
 [System.Serializable]
 public class NotePadData
 {

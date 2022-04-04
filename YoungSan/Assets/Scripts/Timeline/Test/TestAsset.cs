@@ -43,7 +43,7 @@ public class TestAsset : PlayableAsset
 		return playable;
 	}
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(TestAsset))]
 public class TestAssetEditor : Editor
 {
@@ -91,3 +91,4 @@ public class TestAssetEditor : Editor
 		}
 	}
 }
+#endif

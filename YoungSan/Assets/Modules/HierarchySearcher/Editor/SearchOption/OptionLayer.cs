@@ -11,7 +11,7 @@ public class OptionLayer : SearchOption
             int value = (obj as int?).Value;
             if (first)
             {
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     if (item.layer == value)

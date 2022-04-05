@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace MapEditor
 {
-    #if UNITY_EDITOR
+     #if UNITY_EDITOR
     public class ResourceSelector : EditorWindow
     {
 

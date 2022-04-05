@@ -95,7 +95,7 @@ namespace MapEditor
             GUILayout.EndVertical();
             GUILayout.BeginVertical();
             MapEditor.objects["gridHeight"] = Mathf.Clamp(EditorGUILayout.FloatField("Grid Height", (float)MapEditor.objects["gridHeight"], GUILayout.Width(200)), 0.0f, 100f);
-            MapEditor.objects["brushParent"] = EditorGUILayout.ObjectField("BrushParent", (Object)MapEditor.objects["brushParent"], typeof(Transform), true, GUILayout.Width(200));
+            //MapEditor.objects["brushParent"] = EditorGUILayout.ObjectField("BrushParent", (Object)MapEditor.objects["brushParent"], typeof(Transform), true, GUILayout.Width(200));
             MapEditor.objects["brushDensity"] = Mathf.Clamp(EditorGUILayout.IntField("Brush Density", (int)MapEditor.objects["brushDensity"], GUILayout.Width(200)), 1, 100);
             GUILayout.EndVertical();
             GUILayout.BeginVertical();

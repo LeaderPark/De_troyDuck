@@ -15,7 +15,7 @@ namespace MapEditor
         [MenuItem("MapEditor/Resource Selector")]
         public static void MapEditor_ResourceSelector_Show()
         {
-            EditorWindow.GetWindow<ResourceSelector>().titleContent = new GUIContent("Resource Selector");
+            //EditorWindow.GetWindow<ResourceSelector>().titleContent = new GUIContent("Resource Selector");
         }
 
         [MenuItem("MapEditor/Brush Selector")]

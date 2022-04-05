@@ -10,7 +10,7 @@ public class OptionComponent : SearchOption
         {
             if (first)
             {
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     bool contains = false;

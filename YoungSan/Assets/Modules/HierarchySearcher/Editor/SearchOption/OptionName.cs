@@ -10,8 +10,8 @@ public class OptionName : SearchOption
         {
             if (first)
             {
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
-                foreach (Object item in objects)
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                foreach (GameObject item in objects)
                 {
                     if (item.name.ToLower().Contains((obj as string).ToLower()))
                     {

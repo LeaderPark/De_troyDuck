@@ -6,7 +6,7 @@ using UnityEditor;
 [ExecuteAlways]
 public class NotePad : MonoBehaviour
 {
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     public NotePadData[] notePadDatas;
 
 
@@ -26,7 +26,7 @@ public class NotePad : MonoBehaviour
     {
         SceneView.duringSceneGui -= OnSceneGUI;
     }
-    #endif
+#endif
     #if UNITY_EDITOR
     void OnSceneGUI(SceneView sceneView)
     {
@@ -207,7 +207,7 @@ public class NotePad : MonoBehaviour
             }
         }
     }
-    #endif
+#endif
 }
 #if UNITY_EDITOR
 [CustomEditor(typeof(NotePad))]

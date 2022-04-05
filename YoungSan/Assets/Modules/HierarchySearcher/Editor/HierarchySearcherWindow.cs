@@ -328,7 +328,8 @@ public class HierarchySearcherWindow : EditorWindow
             if (pressed)
             {
                 HashSet<string> items = new HashSet<string>();
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+               // Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects =  GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     Component[] components = item.GetComponents<Component>();
@@ -372,7 +373,7 @@ public class HierarchySearcherWindow : EditorWindow
             if (pressed)
             {
                 HashSet<string> items = new HashSet<string>();
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     Component[] components = item.GetComponents<Component>();
@@ -416,7 +417,7 @@ public class HierarchySearcherWindow : EditorWindow
             if (pressed)
             {
                 HashSet<string> items = new HashSet<string>();
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     Component[] components = item.GetComponents<Component>();
@@ -479,7 +480,7 @@ public class HierarchySearcherWindow : EditorWindow
             if (pressed)
             {
                 HashSet<string> items = new HashSet<string>();
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     Component[] components = item.GetComponents<Component>();

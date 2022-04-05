@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class Skillinterface : MonoBehaviour
 {
@@ -18,8 +19,7 @@ public class Skillinterface : MonoBehaviour
         SetSkillDatas();
         Init_UI();
     }
-
-    private void Init_UI()
+	private void Init_UI()
     {
         for (int i = 0; i < transform.childCount; i++)
         {

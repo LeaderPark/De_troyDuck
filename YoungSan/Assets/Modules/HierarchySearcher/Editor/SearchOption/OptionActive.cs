@@ -11,7 +11,7 @@ public class OptionActive : SearchOption
         {
             if (first)
             {
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     if (item.activeSelf == (obj as bool?).Value)

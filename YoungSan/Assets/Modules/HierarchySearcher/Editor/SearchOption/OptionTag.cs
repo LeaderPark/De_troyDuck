@@ -10,7 +10,7 @@ public class OptionTag : SearchOption
         {
             if (first)
             {
-                Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     if (item.CompareTag(obj as string))

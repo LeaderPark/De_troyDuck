@@ -14,7 +14,6 @@ public class GameManager : Manager
             {
                 Player = GameObject.FindWithTag("Player").GetComponent<Player>();
             }
-
             return player;
         }
         set
@@ -30,8 +29,22 @@ public class GameManager : Manager
         }
     }
 
-    private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
-    
+	private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
+	private void Update()
+	{
+        Debug.Log(player);
+	}
+	private void Awake()
+	{
+        PlayerFind();
+	}
+	public void PlayerFind()
+    {
+      if (player == null)
+      {
+           Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+      }
+    }
     public void AfterImage(Entity entity, float time)
     {
         afterImageState[entity] = false;

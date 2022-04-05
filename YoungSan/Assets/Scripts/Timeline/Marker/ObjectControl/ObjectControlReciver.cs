@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,30 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 
 				Animator objAnimator = obj.GetComponent<Animator>();
 				objAnimator.Play(clip.name);
+			}
+			for (int i = 0; i < marker.objectData.Length; i++)
+			{
+				GameObject obj;
+				bool _active = marker.objectData[i].active;
+				if (marker.objectData[i].mainChar)
+				{
+					GameManager gameManager =  ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+					obj = gameManager.Player.gameObject;
+					obj.GetComponent<Entity>().enabled = _active;
+					obj.GetComponent<Player>().enabled = _active;
+					obj.GetComponent<MainCharEvent>().enabled = _active;
+					obj.GetComponent<SpriteRenderer>().enabled = _active;
+					Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.SetActive(_active);
+					Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = obj.transform;
+				}
+				else
+				{
+					obj = marker.objectData[i].obj.Resolve(origin.GetGraph().GetResolver());
+
+					obj.SetActive(_active);
+
+				}
+				obj.transform.position = marker.objectData[i].objPos;
 			}
 			
 			//GameObject obj = marker.contorolObject.Resolve(origin.GetGraph().GetResolver());

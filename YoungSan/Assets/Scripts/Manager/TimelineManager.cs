@@ -14,7 +14,7 @@ public class TimelineManager : Manager
 	}
 	public void StartCutScene(string cutSceneName)
 	{
-		directorObj = transform.Find("CutScenePrefab").gameObject;
+		directorObj = GameObject.Find("CutScenePrefab").gameObject;
 		PlayableAsset cutScene = Resources.Load("Timeline/"+cutSceneName) as PlayableAsset;
 		PlayableDirector director = directorObj.GetComponent<PlayableDirector>();
 		director.playableAsset = cutScene;

@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8939986355071634880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cd92ffc29383742932b27ca414c80f, type: 3}
+  m_Name: Playable Track (1)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
 --- !u!114 &-8445632213325093179
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -811,6 +834,48 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: b3cf933f4fe6aa745a02f19cfdf80b00
     defaultValue: {fileID: 0}
+--- !u!114 &-5095696498909184818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0.9666666666666667
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: 8dab67fd7ff702d459f07f94790215e0
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+--- !u!114 &-4862205869726717537
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  animationDatas: []
+  objectData:
+  - mainChar: 1
+    obj:
+      exposedName: 038414afedd2d3149a7c3848d5a9dabb
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
 --- !u!114 &-4754384912150597551
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1186,6 +1251,8 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -3777971042766813148}
+    - {fileID: -4862205869726717537}
+    - {fileID: -5095696498909184818}
 --- !u!114 &-2211886493813478412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1999,6 +2066,7 @@ MonoBehaviour:
   - {fileID: -3291959531460311284}
   - {fileID: 1435350953369097350}
   - {fileID: 2324868321042107381}
+  - {fileID: -8939986355071634880}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60

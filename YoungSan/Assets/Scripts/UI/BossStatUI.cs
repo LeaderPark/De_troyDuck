@@ -17,16 +17,16 @@ public class BossStatUI : MonoBehaviour
 	{
         minHealth = hpRect.anchoredPosition.x - hpRect.rect.width;
     }
-	public void UpdateStatBar()
+	public void UpdateStatBar(float curHp)
     {
         float maxHp = entity.clone.GetMaxStat(StatCategory.Health);
-        float hp = entity.clone.GetStat(StatCategory.Health);
+        float hp = curHp;
 
         float currentHp = minHealth * (1 - (hp / maxHp));
         hpRect.anchoredPosition = new Vector2(currentHp, 0);
         hpStain.fillAmount = (hp / maxHp) - 0.02f;
 
-        if (hp <= 0)
+        if (entity.clone.GetStat(StatCategory.Health) <= 0)
         {
             Invoke("uiActiveFalse", 1f);
         }

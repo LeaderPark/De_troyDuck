@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
 
     public bool isDead;
     public bool hitable;
+    public Action dead = null;
         
     public Processor.Processor GetProcessor(Type processor)
     {
@@ -42,6 +43,8 @@ public class Entity : MonoBehaviour
     public void Die()
     {
         isDead = true;
+        dead?.Invoke();
+
         if (GetComponent<Player>() != null)
         {
             GetComponent<Player>().enabled = false;

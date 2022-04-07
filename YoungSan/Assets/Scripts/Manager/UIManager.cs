@@ -109,7 +109,7 @@ public class UIManager : Manager
         else if(entity.gameObject.tag == "Boss")
         {
             bossStatbar.entity = entity;
-            bossStatbar.UpdateStatBar();
+            bossStatbar.UpdateStatBar(entity.clone.GetStat(StatCategory.Health));
         }
     }
     public void UISetActive(bool active)

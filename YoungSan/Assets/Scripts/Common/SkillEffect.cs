@@ -30,6 +30,7 @@ public abstract class SkillEffect : MonoBehaviour
             ShowPlayerEffect(attackEntity, hitEntity, direction);
             break;
             case "Enemy": // enemy
+            case "Boss": // enemy
             ShowEnemyEffect(attackEntity, hitEntity, direction);
             break;
         }

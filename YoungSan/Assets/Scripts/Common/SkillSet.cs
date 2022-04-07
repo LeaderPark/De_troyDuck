@@ -68,12 +68,12 @@ public class SkillSet : MonoBehaviour
             StopSkill();
             
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            if (entity.CompareTag("Player"))
-            {
-                gameManager.AfterImage(entity, skillDatas[category][index].startTime + skillDatas[category][index].time);
-                CoolDown(category, index);
+			if (entity.CompareTag("Player"))
+			{
+				gameManager.AfterImage(entity, skillDatas[category][index].startTime + skillDatas[category][index].time);
 
-            }
+    		}
+            CoolDown(category, index);
             entity.clone.SubStat(StatCategory.Stamina, useStamina);
             action();
             SkillData data = skillDatas[category][index];

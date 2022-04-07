@@ -43,6 +43,7 @@ public class HitBox : MonoBehaviour
 
                     break;
                     case "Enemy": // enemy
+                    case "Boss": // enemy
                     CameraShake.Instance.Shake();
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.skillSet.entity});

@@ -20,6 +20,7 @@ public class UIManager : Manager
     public Image fade;
 
     [HideInInspector] public Statbar statbar;
+    public BossStatUI bossStatbar;
     [HideInInspector] public Skillinterface skillinterface;
 
     (float, float) currentStat;
@@ -28,6 +29,7 @@ public class UIManager : Manager
     void Awake()
     {
         statbar = transform.GetComponentInChildren<Statbar>();
+        Debug.Log(bossStatbar);
         skillinterface = transform.GetComponentInChildren<Skillinterface>();
         canvas = transform.GetComponentInChildren<CanvasGroup>();
 
@@ -89,7 +91,7 @@ public class UIManager : Manager
     }
     public void EnemyHpBarUpdate(Entity entity)
     {
-        if (entity.gameObject.tag != "Player")
+        if (entity.gameObject.tag == "Enemy")
         {
             Transform enemyHp = entity.gameObject.transform.Find("EnemyHp(Clone)");
             if (enemyHp != null)
@@ -103,6 +105,11 @@ public class UIManager : Manager
             {
                 GetEnemyHpBar(entity);
             }
+        }
+        else if(entity.gameObject.tag == "Boss")
+        {
+            bossStatbar.entity = entity;
+            bossStatbar.UpdateStatBar();
         }
     }
     public void UISetActive(bool active)

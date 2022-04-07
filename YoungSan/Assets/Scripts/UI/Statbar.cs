@@ -14,8 +14,6 @@ public class Statbar : MonoBehaviour
 
     public Image hpStain;
     public Image staminaStain;
-    //public Slider fakeHpSlider;
-    //public Slider staminaSlider;
     public Text hpText;
     public Text staminaText;
 
@@ -34,14 +32,12 @@ public class Statbar : MonoBehaviour
         uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         SetStatBar();
         UpdateStatBar();
-        //UpdateStatText();
     }
 
     public void UpdateStatBar()
     {
         currentStat = uiManager.UpdateCurrentStat();
         maxStat = uiManager.UpdateMaxStat();
-        //Debug.Log(1-(currentStat.Item1/maxStat.Item1));
         float currentHp = minHealth * (1 - (currentStat.Item1 / maxStat.Item1));
         float currentStamina = minStamina * (1 - (currentStat.Item2 / maxStat.Item2));
         hpRect.anchoredPosition = new Vector2(currentHp, 0);
@@ -51,28 +47,12 @@ public class Statbar : MonoBehaviour
         staminaStain.fillAmount = (currentStat.Item2 / maxStat.Item2) - 0.02f;
 
         StartCoroutine(FakeHpSet(hpRect.anchoredPosition.x));
-
-        //hpSlider.maxValue = maxStat.Item1;
-        //staminaSlider.maxValue = maxStat.Item2;
-        //fakeHpSlider.maxValue = maxStat.Item1;
-        //hpSlider.value = currentStat.Item1;
-        //staminaSlider.value = currentStat.Item2;
-        //StartCoroutine(FakeHpSet(hpSlider.value));
     }
     public void SetStatBar()
     {
-
-
-
         StopAllCoroutines();
         currentStat = uiManager.UpdateCurrentStat();
         maxStat = uiManager.UpdateMaxStat();
-        //hpSlider.maxValue = maxStat.Item1;
-        //staminaSlider.maxValue = maxStat.Item2;
-        //fakeHpSlider.maxValue = hpSlider.maxValue;
-        //hpSlider.value = currentStat.Item1;
-        //staminaSlider.value = currentStat.Item2;
-        //fakeHpSlider.value = hpSlider.value;
 
     }
 
@@ -84,20 +64,6 @@ public class Statbar : MonoBehaviour
 
     private IEnumerator FakeHpSet(float curretnHp)
     {
-		//float fill = fakeHpSlider.value;
-
-		//float time = 0;
-		//while (true)
-		//{
-		//    time += Time.deltaTime;
-		//    fakeHpSlider.value = Mathf.Lerp(fill, curretnHp, time / 1f);
-		//    yield return null;
-		//    if (time >= 1f)
-		//    {
-		//        fakeHpSlider.value = Mathf.Lerp(fill, curretnHp, 1);
-		//        break;
-		//    }
-
 		float fill = fakeHpRect.anchoredPosition.x;
 
 		float time = 0;

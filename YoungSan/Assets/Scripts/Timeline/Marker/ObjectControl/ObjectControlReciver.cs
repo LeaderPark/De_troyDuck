@@ -37,6 +37,7 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 					obj.GetComponent<Player>().enabled = _active;
 					obj.GetComponent<MainCharEvent>().enabled = _active;
 					obj.GetComponent<SpriteRenderer>().enabled = _active;
+					obj.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
 				}
 				else
 				{

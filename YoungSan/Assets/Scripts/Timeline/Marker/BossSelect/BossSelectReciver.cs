@@ -14,11 +14,11 @@ public class BossSelectReciver : MonoBehaviour, INotificationReceiver
 	public void OnNotify(Playable origin, INotification notification, object context)
 	{
 		BossSelectMarker marker = notification as BossSelectMarker;
+
 		if (marker != null)
 		{
 			GameObject bossObj = marker.bossObj.Resolve(origin.GetGraph().GetResolver());
 			bossEntity = bossObj.GetComponent<Entity>();
-			Debug.Log(bossEntity);
 			uIManager.bossStatbar.entity = bossEntity;
 			uIManager.bossStatbar.gameObject.SetActive(true);
 			StartCoroutine(OpenHpBar(uIManager.bossStatbar.transform.localScale));

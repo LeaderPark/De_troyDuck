@@ -2111,6 +2111,27 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   activeTime: 1
+--- !u!114 &1535915756948137194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 15.55
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: 6c8bce461d37f684e96e375ce8e56301
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1537733514239720172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2398,7 +2419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
   m_Name: Object Control Marker
   m_EditorClassIdentifier: 
-  m_Time: 15.550000002235175
+  m_Time: 15.55
   animationDatas: []
   objectData:
   - mainChar: 1
@@ -3078,7 +3099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
   m_Name: Search Enemy Marker
   m_EditorClassIdentifier: 
-  m_Time: 15.550000002235175
+  m_Time: 15.55
   enemys:
   - enemy:
       exposedName: e2ee2af41ba620244823baf659fc2d9c
@@ -3092,7 +3113,7 @@ MonoBehaviour:
   - enemy:
       exposedName: 66858a4f856ce1b4aa57b51a6d4d8f28
       defaultValue: {fileID: 0}
-  nextTimeLine: {fileID: 0}
+  nextTimeLine: {fileID: 11400000, guid: 51bd9b6d8df019c4783cfcb8a864f52e, type: 2}
 --- !u!114 &7254907506558858788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3764,6 +3785,8 @@ MonoBehaviour:
     - {fileID: -2009598183471319602}
     - {fileID: 6527046212822580571}
     - {fileID: 4842132488023766694}
+    - {fileID: 1535915756948137194}
+    - {fileID: 8828198713328404223}
 --- !u!74 &8679651486010537350
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -4107,3 +4130,24 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &8828198713328404223
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0.5
+  animationDatas: []
+  objectData:
+  - mainChar: 1
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 24.8, y: 0, z: -8.4}

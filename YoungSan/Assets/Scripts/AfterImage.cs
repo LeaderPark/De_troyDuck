@@ -22,6 +22,7 @@ public class AfterImage : MonoBehaviour
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         spriteRenderer.sprite = targetRenderer.sprite;
+        spriteRenderer.transform.localScale = targetRenderer.transform.localScale;
         spriteRenderer.flipX = targetRenderer.flipX;
         transform.position = targetRenderer.transform.position;
     }

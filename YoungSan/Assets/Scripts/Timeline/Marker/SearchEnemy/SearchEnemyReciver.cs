@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class SearcgEnemyReciver : MonoBehaviour, INotificationReceiver
+public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 {
-	public TimelineAsset nextTimeLine;
+	private TimelineAsset nextTimeLine;
 	List<Entity> enemys = new List<Entity>();
 	public void OnNotify(Playable origin, INotification notification, object context)
 	{

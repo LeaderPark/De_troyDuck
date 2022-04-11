@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,5 +25,6 @@ public class SceneManager : Manager
 	{
 		UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 		uiManager.FadeInOut(false);
+	//	Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = .transform;
 	}
 }

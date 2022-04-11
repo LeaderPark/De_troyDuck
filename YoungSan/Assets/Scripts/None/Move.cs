@@ -22,7 +22,7 @@ namespace StateMachine
             if (backSpawnPoint)
             {
                 timeStack += Time.deltaTime;
-                Vector2 dirVec = stateMachine.Enemy.spawnPoint - new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z);
+                Vector2 dirVec = (Vector2)stateMachine.Enemy.spawnPoint - new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z);
                 
                 if (dirVec.x > 0)
                 {

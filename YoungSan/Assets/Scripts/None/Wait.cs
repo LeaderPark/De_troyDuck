@@ -36,7 +36,7 @@ namespace StateMachine
                 stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{dirVec.x, dirVec.z, stateMachine.Enemy.direction});
                 if (moveDir > 1)
                 {
-                    if (stateMachine.stateMachineData.waitTime + 1f <= timeStack)
+                    if (stateMachine.stateMachineData.waitTime + stateMachine.stateMachineData.stopTime <= timeStack)
                     {
                         start = false;
                         return stateMachine.GetStateTable(typeof(SkillCheck));

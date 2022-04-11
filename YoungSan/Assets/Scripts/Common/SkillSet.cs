@@ -15,9 +15,11 @@ public class SkillSet : MonoBehaviour
     public SkillDataCategory[] skillDataCategories;
     public Dictionary<EventCategory, SkillData[]> skillDatas;
     public Dictionary<EventCategory, float[]> skillCoolTimes {get; set;}
-    private Dictionary<EventCategory,bool[]> skillCools;
+    public Dictionary<EventCategory, bool[]> skillCools {get; private set;}
 
     public Entity entity {get; private set;}
+
+    bool useSkill;
 
     void Awake()
     {
@@ -52,6 +54,7 @@ public class SkillSet : MonoBehaviour
                 item.gameObject.SetActive(false);
             }
         }
+        useSkill = false;
         
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         gameManager.StopAfterImage(entity);
@@ -60,12 +63,13 @@ public class SkillSet : MonoBehaviour
     public void ActiveSkill(EventCategory category, int index, Vector2 direction, bool isRight, System.Action action)
     {
         if (!skillDatas.ContainsKey(category)) return;
+        if (useSkill) return;
         if (skillDatas[category].Length > index)
         {
             if (skillCools[category][index]) return;
             int useStamina = skillDatas[category][index].CalculateUseStamina();
             if (useStamina > entity.clone.GetStat(StatCategory.Stamina)) return;
-            StopSkill();
+            useSkill = true;
             
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 			if (entity.CompareTag("Player"))
@@ -94,6 +98,7 @@ public class SkillSet : MonoBehaviour
         data.ActiveHitBox(isRight);
         yield return new WaitForSeconds(data.time);
         data.gameObject.SetActive(false);
+        useSkill = false;
         yield return null;
     }
     IEnumerator attackSound(SkillData data)

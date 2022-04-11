@@ -18,4 +18,9 @@ public class BatMountainBandit_Attack : SkillEffect
         ChangeColor(hitEntity, Color.white, 0.1f);
         KnockBack(hitEntity, direction, 0.2f, 8);
     }
+
+    protected override void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
+    {
+        ChangeColor(hitEntity, Color.white, 0.1f);
+    }
 }

@@ -22,6 +22,7 @@ public class StateMachineData : ScriptableObject
 
     [Space(20)]
     public float waitTime;
+    public float stopTime;
 
     [Space(20)]
     public float searchDelay;

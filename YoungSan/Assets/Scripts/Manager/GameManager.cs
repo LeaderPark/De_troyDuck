@@ -31,10 +31,6 @@ public class GameManager : Manager
 
     public CinemachineVirtualCamera playerFollowCam;
 	private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
-	private void Update()
-	{
-        Debug.Log(player);
-	}
 	private void Awake()
 	{
         PlayerFind();

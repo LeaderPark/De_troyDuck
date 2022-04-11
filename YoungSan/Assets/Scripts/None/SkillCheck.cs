@@ -13,6 +13,15 @@ namespace StateMachine
             float distance = Vector2.Distance(new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z));
             foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
             {
+                bool b = false;
+                foreach (var item in stateMachine.Enemy.GetComponentInChildren<SkillSet>().skillCools[skillAreaBundle.eventCategory])
+                {
+                    if (item)
+                    {
+                        b = true;
+                    }
+                }
+                if (b) continue;
                 foreach (var item in skillAreaBundle.skillAreaDatas)
                 {
                     if (item.inLeftSkillArea || item.inRightSkillArea)

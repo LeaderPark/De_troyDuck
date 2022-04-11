@@ -21,15 +21,15 @@ public class MainCharEvent : EntityEvent
         attackProcess[EventCategory.DefaultAttack] = new System.Action<float, float>[]{ 
         (inputX, inputY) =>
         {
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.08f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0, 0.08f);
         },
         (inputX, inputY) =>
         {
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.08f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0, 0.08f);
         },
         (inputX, inputY) =>
         {
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.08f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0, 0.08f);
         }
         };
     }

@@ -123,13 +123,14 @@ public class EntityEvent : MonoBehaviour
         }
     }
 
-    protected void Dash(float inputX, float inputY, float speed, float time)
+    protected void Dash(float inputX, float inputY, float speed, float startTime, float time)
     {
-        StartCoroutine(AttackVelocityTime(inputX, inputY, speed, time));
+        StartCoroutine(AttackVelocityTime(inputX, inputY, speed, startTime, time));
     }
 
-    private IEnumerator AttackVelocityTime(float inputX, float inputY, float speed, float time)
+    private IEnumerator AttackVelocityTime(float inputX, float inputY, float speed, float startTime, float time)
     {
+        yield return new WaitForSeconds(startTime);
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, speed});
         yield return new WaitForSeconds(time);
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});

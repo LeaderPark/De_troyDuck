@@ -23,13 +23,14 @@ namespace StateMachine
             {
                 foreach (var item in skillAreaBundle.skillAreaDatas)
                 {
-                    bundles.Add(skillAreaBundle);
                     if (item.inLeftSkillArea)
                     {
+                        bundles.Add(skillAreaBundle);
                         directions.Add(false);
                     }
                     if (item.inRightSkillArea)
                     {
+                        bundles.Add(skillAreaBundle);
                         directions.Add(true);
                     }
                 }

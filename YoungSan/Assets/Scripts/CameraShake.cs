@@ -21,8 +21,7 @@ public class CameraShake : MonoBehaviour
 
     public void Shake()
     {
-        CinemachineVirtualCamera virtualCam = FindObjectOfType<CinemachineVirtualCamera>();
-        StartCoroutine(ShakeRepeat(virtualCam, 2, 0.1f));
+        StartCoroutine(ShakeRepeat(Camera.main.GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>(), 2, 0.1f));
     }
 
     IEnumerator ShakeRepeat(CinemachineVirtualCamera virtualCam, int count, float delay)

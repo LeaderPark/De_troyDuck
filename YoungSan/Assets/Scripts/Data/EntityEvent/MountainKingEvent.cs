@@ -30,8 +30,8 @@ public class MountainKingEvent : EntityEvent
         attackProcess[EventCategory.Skill1] = new System.Action<float, float>[]{
         (inputX, inputY) =>
         {
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 8
-                , 0.6f, 0.15f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 16
+                , 1f, 0.15f);
         }
         };
     }

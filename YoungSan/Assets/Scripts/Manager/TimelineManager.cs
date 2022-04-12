@@ -8,10 +8,11 @@ public class TimelineManager : Manager
 {
 	[SerializeField]
 	private GameObject directorObj;
-	private void Start()
+	void Start()
 	{
-		//StartCutScene("Test1");
+
 	}
+
 	public void StartCutScene(string cutSceneName)
 	{
 		directorObj = GameObject.Find("CutScenePrefab").gameObject;

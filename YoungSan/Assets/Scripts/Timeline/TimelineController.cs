@@ -11,6 +11,11 @@ public class TimelineController : MonoBehaviour
 	PlayableDirector director;
 	[SerializeField] private Image fade;
 	private bool timelinePause = false;
+	
+	private float currentSkipTime = 0;
+	private bool isKeyDown = false;
+	private bool currentIsSkip = true;
+	public float maxSkipTime;
 
 	private void Update()
 	{
@@ -21,6 +26,29 @@ public class TimelineController : MonoBehaviour
 				StartTimeline();
 			}
 		}
+
+		if(Input.GetKeyDown(KeyCode.Space) && director.state == PlayState.Playing)
+		{	
+			isKeyDown = true;
+		}
+		else if(Input.GetKeyUp(KeyCode.Space))
+		{
+			currentSkipTime = 0;
+			isKeyDown = false;
+			currentIsSkip = true;
+		}
+
+		if(isKeyDown)
+		{
+			currentSkipTime += Time.deltaTime;
+			Debug.Log(currentSkipTime);
+		}
+
+		if(currentSkipTime >= maxSkipTime && currentIsSkip)
+		{
+			currentIsSkip = false;
+			StartCoroutine(CurrentCutScene());
+		}
 	}
 	private void Awake()
 	{
@@ -30,13 +58,13 @@ public class TimelineController : MonoBehaviour
 	public void StartTimeline()
 	{
 		director.Play();
-		print("½ÃÀÛ");
+		print("ï¿½ï¿½ï¿½ï¿½");
 		timelinePause = false;
 	}
 	public void PauseTimeline()
 	{
 		director.Pause();
-		print("¸ØÃã");
+		print("ï¿½ï¿½ï¿½ï¿½");
 		timelinePause = true;
 	}
 	public void UISetActiveFalse()
@@ -100,5 +128,16 @@ public class TimelineController : MonoBehaviour
 			fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, alpha);
 			yield return null;
 		}
+	}
+	
+	public IEnumerator CurrentCutScene()
+	{
+		StartCoroutine(FadeOut());
+		yield return new WaitForSeconds(2f);
+		double durationTime = director.duration;
+		director.time = durationTime - 0.1f;
+		StartCoroutine(FadeIn());
+		currentSkipTime = 0;
+		isKeyDown = false;
 	}
 }

@@ -23,6 +23,8 @@ public class UIManager : Manager
     public BossStatUI bossStatbar;
     [HideInInspector] public Skillinterface skillinterface;
 
+    public TimeLineSkipGage timeLineSkipGage;
+
     (float, float) currentStat;
     (float, float) maxStat;
 
@@ -32,6 +34,7 @@ public class UIManager : Manager
         Debug.Log(bossStatbar);
         skillinterface = transform.GetComponentInChildren<Skillinterface>();
         canvas = transform.GetComponentInChildren<CanvasGroup>();
+        timeLineSkipGage = transform.GetComponentInChildren<TimeLineSkipGage>();
 
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
         eventManager.GetEventTrigger(typeof(StatEventTrigger)).Add(new GlobalEventTrigger.StatEvent((entity, category, oldValue, value) =>
@@ -196,4 +199,9 @@ public class UIManager : Manager
 			yield return null;
 		}
 	}
+
+    private void TimeLineSkip()
+    {
+        //미래에 누군가에게 이거를 넘겨요 
+    }
 }

@@ -724,8 +724,8 @@ MonoBehaviour:
   - {fileID: 1236690625197313510}
   RightHitBox:
   - {fileID: 1236690624319435011}
-  startTime: 0.6
-  time: 0.4
+  startTime: 1
+  time: 0.6
   soundStartTime: 0.55
   skillDamageForm: '{Attack}*10'
   coolTime: 10
@@ -840,11 +840,11 @@ MonoBehaviour:
   - {fileID: 1236690625879922861}
   RightHitBox:
   - {fileID: 1236690624656022762}
-  startTime: 0.3
-  time: 0.3
+  startTime: 0.7
+  time: 0.5
   soundStartTime: 0
   skillDamageForm: '{Attack}'
-  coolTime: 0
+  coolTime: 5
   useStaminaForm: 0
   skillEffect: {fileID: 1236690624832364745}
   attackSound: {fileID: 8300000, guid: e9c4dd860c8c44d4db4750d323bfae07, type: 3}
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236690625908380985}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a67f28f40f79af9448bf51099f66280e, type: 3}
   m_Name: 

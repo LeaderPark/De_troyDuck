@@ -69,6 +69,7 @@ public class SkillSet : MonoBehaviour
             if (skillCools[category][index]) return;
             int useStamina = skillDatas[category][index].CalculateUseStamina();
             if (useStamina > entity.clone.GetStat(StatCategory.Stamina)) return;
+            StopSkill();
             useSkill = true;
             
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;

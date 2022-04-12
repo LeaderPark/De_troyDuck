@@ -18,6 +18,7 @@ public class TimelineManager : Manager
 		PlayableAsset cutScene = Resources.Load("Timeline/"+cutSceneName) as PlayableAsset;
 		PlayableDirector director = directorObj.GetComponent<PlayableDirector>();
 		director.playableAsset = cutScene;
+		Debug.Log(director.playableAsset);
 		director.Play();
 	}
 }

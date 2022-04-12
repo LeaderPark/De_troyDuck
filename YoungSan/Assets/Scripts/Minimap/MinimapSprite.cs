@@ -21,12 +21,12 @@ public class MinimapSprite : MonoBehaviour
         if(spriteRenderer.isVisible == false)
         {
             minimapCamera.ShowBorderIndicator(transform.position);
-            Debug.Log("false");
+            //Debug.Log("false");
         }
         else
         {
             minimapCamera.HideBorderIncitator();
-            Debug.Log("true");
+            //Debug.Log("true");
         }  
     }
 }

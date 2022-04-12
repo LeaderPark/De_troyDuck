@@ -27,7 +27,7 @@ public class Skillinterface : MonoBehaviour
             image_fill[i].fillMethod = Image.FillMethod.Radial360;
             image_fill[i].fillOrigin = (int)Image.Origin360.Top;
             image_fill[i].fillClockwise = false;
-            Debug.Log("setting UI" + i);
+            //Debug.Log("setting UI" + i);
         }
     }
 
@@ -47,10 +47,10 @@ public class Skillinterface : MonoBehaviour
                 for (int i = 0; i < skillSet.skillCoolTimes[category].Length; i++)
                 {
                     CoolDown(category, i);
-                    Debug.Log(skillSet.skillCoolTimes[category][i]);
+                    //Debug.Log(skillSet.skillCoolTimes[category][i]);
 
                 }
-                Debug.Log(skillSet.skillCoolTimes[category].Length + "aaaaaaaaaaaaaaaa");
+                //Debug.Log(skillSet.skillCoolTimes[category].Length + "aaaaaaaaaaaaaaaa");
             }
 
         }
@@ -81,7 +81,7 @@ public class Skillinterface : MonoBehaviour
     IEnumerator Cool(EventCategory eventCategory, float cool, int index)
     {
         float time = cool;
-        Debug.Log(time);
+        //Debug.Log(time);
         while (true)
         {
             time -= Time.deltaTime;

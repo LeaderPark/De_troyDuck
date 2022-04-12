@@ -31,7 +31,7 @@ public class UIManager : Manager
     void Awake()
     {
         statbar = transform.GetComponentInChildren<Statbar>();
-        Debug.Log(bossStatbar);
+        //Debug.Log(bossStatbar);
         skillinterface = transform.GetComponentInChildren<Skillinterface>();
         canvas = transform.GetComponentInChildren<CanvasGroup>();
         timeLineSkipGage = transform.GetComponentInChildren<TimeLineSkipGage>();

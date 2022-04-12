@@ -56,7 +56,7 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 		}
 		else
 		{
-			Debug.Log("¾ÏÆ° ´ÙÀ½°É·Î ³Ñ¾î°¬À½");
+			//Debug.Log("ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½É·ï¿½ ï¿½Ñ¾î°¬ï¿½ï¿½");
 		}
 	}
 	private IEnumerator TestSlow()

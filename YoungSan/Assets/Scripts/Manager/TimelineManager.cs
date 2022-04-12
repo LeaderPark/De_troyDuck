@@ -20,8 +20,8 @@ public class TimelineManager : Manager
 		PlayableDirector director = directorObj.GetComponent<PlayableDirector>();
 		director.Stop();
 		director.playableAsset = cutScene;
-		Debug.Log(director.playableAsset);
+		//Debug.Log(director.playableAsset);
 		director.Play();
-		Debug.Log(director.playableGraph.GetRootPlayable(0).GetSpeed());
+		//Debug.Log(director.playableGraph.GetRootPlayable(0).GetSpeed());
 	}
 }

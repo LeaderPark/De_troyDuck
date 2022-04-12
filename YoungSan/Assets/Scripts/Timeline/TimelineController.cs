@@ -48,7 +48,7 @@ public class TimelineController : MonoBehaviour
 		if(isKeyDown)
 		{
 			currentSkipTime += Time.deltaTime;
-			Debug.Log(currentSkipTime);
+			//Debug.Log(currentSkipTime);
 			if(currentSkipTime >= maxSkipTime)
 			{
 				currentIsSkip = true;
@@ -88,7 +88,7 @@ public class TimelineController : MonoBehaviour
 	}
 	public void TEst(string a)
 	{
-		Debug.LogError(a);
+		//Debug.LogError(a);
 	}
 	public void FadeInOut(bool fadeOut)
 	{

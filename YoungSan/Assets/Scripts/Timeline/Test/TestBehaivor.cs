@@ -27,7 +27,7 @@ public class TestBehaivor : PlayableBehaviour
 				poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
 			}
 		}
-		Debug.Log("AAA");
+		//Debug.Log("AAA");
 	}
 	public override void OnBehaviourPlay(Playable playable, FrameData info)
 	{
@@ -66,7 +66,7 @@ public class TestBehaivor : PlayableBehaviour
 		entityData = talker.GetComponent<Entity>().entityData;
 		talkBox.text = "";
 		fakeTalkbox.text = txt;
-		Debug.Log("Play");
+		//Debug.Log("Play");
 		talkObj.SetActive(true);
 		SetBoxSize();
 

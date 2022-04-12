@@ -25,7 +25,7 @@ public class SoundManager : Manager
         AudioClip[] prefabs = Resources.LoadAll<AudioClip>("Sounds");
         foreach (AudioClip item in prefabs)
         {
-            print(item + item.name);
+            //print(item + item.name);
             SoundTable.Add(item.name, item);
         }
     }

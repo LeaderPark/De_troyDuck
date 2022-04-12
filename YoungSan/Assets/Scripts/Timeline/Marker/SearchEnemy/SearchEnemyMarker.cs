@@ -10,6 +10,7 @@ public class SearchEnemyMarker : Marker, INotification
 	public Enemys[] enemys;
 	public TimelineAsset nextTimeLine;
 }
+
 [System.Serializable]
 
 public struct Enemys

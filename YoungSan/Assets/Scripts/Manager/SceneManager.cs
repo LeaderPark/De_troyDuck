@@ -25,6 +25,14 @@ public class SceneManager : Manager
 	{
 		UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 		uiManager.FadeInOut(false);
-	//	Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = .transform;
+		//Debug.LogError(gameManager.Player);
+		StartCoroutine(test1());
+	}
+	private IEnumerator test1()
+	{
+		yield return null;
+		GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+		Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = gameManager.Player.transform;
+
 	}
 }

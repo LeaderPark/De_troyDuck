@@ -35,7 +35,7 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 					obj = gameManager.Player.gameObject;
 					obj.GetComponent<Entity>().enabled = _active;
 					obj.GetComponent<Player>().enabled = _active;
-					obj.GetComponent<MainCharEvent>().enabled = _active;
+					obj.GetComponent<EntityEvent>().enabled = _active;
 					obj.GetComponent<SpriteRenderer>().enabled = _active;
 					obj.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
 				}

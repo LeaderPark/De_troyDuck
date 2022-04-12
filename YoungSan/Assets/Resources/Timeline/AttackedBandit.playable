@@ -1392,6 +1392,27 @@ MonoBehaviour:
     m_DisplayName: TestAsset
   m_Markers:
     m_Objects: []
+--- !u!114 &-2213213202588620945
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: 60e1c2641731bee42b415087474a9416
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 24.8, y: 0, z: -8.4}
 --- !u!114 &-2208359339342658389
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3787,6 +3808,7 @@ MonoBehaviour:
     - {fileID: 4842132488023766694}
     - {fileID: 1535915756948137194}
     - {fileID: 8828198713328404223}
+    - {fileID: -2213213202588620945}
 --- !u!74 &8679651486010537350
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -4142,7 +4164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
   m_Name: Object Control Marker
   m_EditorClassIdentifier: 
-  m_Time: 0.5
+  m_Time: 0
   animationDatas: []
   objectData:
   - mainChar: 1

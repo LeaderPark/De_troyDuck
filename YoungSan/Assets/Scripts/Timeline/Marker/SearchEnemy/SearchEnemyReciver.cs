@@ -36,6 +36,13 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 						}
 						enemyEntity.dead = null;
 					};
+					if (enemyEntity.gameObject.CompareTag("Boss"))
+					{
+						enemyEntity.dead += () =>
+						{
+							//StartCoroutine(TestSlow());
+						};
+					}
 				}
 			}
 		}
@@ -51,5 +58,12 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 		{
 			Debug.Log("암튼 다음걸로 넘어갔음");
 		}
+	}
+	private IEnumerator TestSlow()
+	{
+		Time.timeScale = 0.2f;
+		yield return new WaitForSecondsRealtime(3f);
+		Time.timeScale = 1f;
+
 	}
 }

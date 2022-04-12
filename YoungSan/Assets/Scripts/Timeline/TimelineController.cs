@@ -12,11 +12,18 @@ public class TimelineController : MonoBehaviour
 	[SerializeField] private Image fade;
 	private bool timelinePause = false;
 	
+
+	//컷씬 스킵 부분
 	private float currentSkipTime = 0;
 	private bool isKeyDown = false;
 	private bool currentIsSkip = false;
-	public float maxSkipTime;
+	public float maxSkipTime = 1.5f;
 
+	private void Awake()
+	{
+		director = GetComponent<PlayableDirector>();
+		TextAsset fileData = Resources.Load("TestDialogue") as TextAsset;
+	}
 	private void Update()
 	{
 		if (timelinePause)
@@ -52,13 +59,9 @@ public class TimelineController : MonoBehaviour
 		{
 			currentSkipTime = 0;
 			currentIsSkip = false;
+			isKeyDown = false;
 			StartCoroutine(CurrentCutScene());
 		}
-	}
-	private void Awake()
-	{
-		director = GetComponent<PlayableDirector>();
-		TextAsset fileData = Resources.Load("TestDialogue") as TextAsset;
 	}
 	public void StartTimeline()
 	{
@@ -142,6 +145,7 @@ public class TimelineController : MonoBehaviour
 		double durationTime = director.duration;
 		director.time = durationTime - 0.1f;
 		StartCoroutine(FadeIn());
+		yield return new WaitForSeconds(1f);
 		currentSkipTime = 0;
 		isKeyDown = false;
 	}

@@ -29,12 +29,13 @@ public class TimelineController : MonoBehaviour
 	}
 	public void StartTimeline()
 	{
-		director.playableGraph.GetRootPlayable(0).SetSpeed(1);
+		director.Play();
 		print("Ω√¿€");
+		timelinePause = false;
 	}
 	public void PauseTimeline()
 	{
-		director.playableGraph.GetRootPlayable(0).SetSpeed(0);
+		director.Pause();
 		print("∏ÿ√„");
 		timelinePause = true;
 	}

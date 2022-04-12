@@ -42,14 +42,16 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 				else
 				{
 					obj = marker.objectData[i].obj.Resolve(origin.GetGraph().GetResolver());
-
-					obj.SetActive(_active);
+					if (obj != null)
+						obj.SetActive(_active);
 
 				}
+				if(obj!=null)
 				obj.transform.position = marker.objectData[i].objPos;
 			}
 			
 			//GameObject obj = marker.contorolObject.Resolve(origin.GetGraph().GetResolver());
 		}
 	}
+
 }

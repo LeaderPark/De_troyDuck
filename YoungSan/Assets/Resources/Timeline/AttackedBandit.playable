@@ -1412,7 +1412,7 @@ MonoBehaviour:
       exposedName: 60e1c2641731bee42b415087474a9416
       defaultValue: {fileID: 0}
     active: 0
-    objPos: {x: 24.8, y: 0, z: -8.4}
+    objPos: {x: 44.38, y: 0.05, z: -4.8}
 --- !u!114 &-2208359339342658389
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3780,6 +3780,33 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &8272205852626121878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: 409ac7beed0246c4ba5c4b6065861a5f
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
+  - mainChar: 0
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
 --- !u!114 &8304329978230755098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3807,8 +3834,8 @@ MonoBehaviour:
     - {fileID: 6527046212822580571}
     - {fileID: 4842132488023766694}
     - {fileID: 1535915756948137194}
-    - {fileID: 8828198713328404223}
     - {fileID: -2213213202588620945}
+    - {fileID: 8272205852626121878}
 --- !u!74 &8679651486010537350
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -4152,24 +4179,3 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
---- !u!114 &8828198713328404223
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
-  m_Name: Object Control Marker
-  m_EditorClassIdentifier: 
-  m_Time: 0
-  animationDatas: []
-  objectData:
-  - mainChar: 1
-    obj:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    active: 0
-    objPos: {x: 24.8, y: 0, z: -8.4}

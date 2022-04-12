@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
@@ -9,7 +10,18 @@ public class TimelineController : MonoBehaviour
 {
 	PlayableDirector director;
 	[SerializeField] private Image fade;
+	private bool timelinePause = false;
 
+	private void Update()
+	{
+		if (timelinePause)
+		{
+			if (Input.anyKeyDown)
+			{
+				StartTimeline();
+			}
+		}
+	}
 	private void Awake()
 	{
 		director = GetComponent<PlayableDirector>();
@@ -24,6 +36,7 @@ public class TimelineController : MonoBehaviour
 	{
 		director.playableGraph.GetRootPlayable(0).SetSpeed(0);
 		print("∏ÿ√„");
+		timelinePause = true;
 	}
 	public void UISetActiveFalse()
 	{
@@ -35,6 +48,10 @@ public class TimelineController : MonoBehaviour
 		UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 		uIManager.UISetActive(true);
 
+	}
+	public void TEst(string a)
+	{
+		Debug.LogError(a);
 	}
 	public void FadeInOut(bool fadeOut)
 	{

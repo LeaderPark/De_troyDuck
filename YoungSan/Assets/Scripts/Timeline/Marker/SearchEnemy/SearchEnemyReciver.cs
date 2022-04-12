@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
@@ -14,20 +15,28 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 		if (marker != null)
 		{
 			nextTimeLine = marker.nextTimeLine;
-			for (int i = 0; i < marker.enemys.Length; i++)
+			if (marker.enemys.Length == 0)
 			{
-				Entity enemyEntity = marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>();
-				int a = i;
-				enemyEntity.dead += () =>
+				NextTimeLine();
+			}
+			else
+			{
+				
+				for (int i = 0; i < marker.enemys.Length; i++)
 				{
-					enemys.Add(enemyEntity);
-					if (enemys.Count >= marker.enemys.Length)
+					Entity enemyEntity = marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>();
+					int a = i;
+					enemyEntity.dead += () =>
 					{
-						enemys.Clear();
-						NextTimeLine();
-					}
-					enemyEntity.dead = null;
-				};
+						enemys.Add(enemyEntity);
+						if (enemys.Count >= marker.enemys.Length)
+						{
+							enemys.Clear();
+							NextTimeLine();
+						}
+						enemyEntity.dead = null;
+					};
+				}
 			}
 		}
 	}

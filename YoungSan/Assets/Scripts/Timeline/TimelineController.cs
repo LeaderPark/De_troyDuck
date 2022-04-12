@@ -14,7 +14,7 @@ public class TimelineController : MonoBehaviour
 	
 	private float currentSkipTime = 0;
 	private bool isKeyDown = false;
-	private bool currentIsSkip = true;
+	private bool currentIsSkip = false;
 	public float maxSkipTime;
 
 	private void Update()
@@ -35,17 +35,22 @@ public class TimelineController : MonoBehaviour
 		{
 			currentSkipTime = 0;
 			isKeyDown = false;
-			currentIsSkip = true;
+			currentIsSkip = false;
 		}
 
 		if(isKeyDown)
 		{
 			currentSkipTime += Time.deltaTime;
 			Debug.Log(currentSkipTime);
+			if(currentSkipTime >= maxSkipTime)
+			{
+				currentIsSkip = true;
+			}
 		}
 
-		if(currentSkipTime >= maxSkipTime && currentIsSkip)
+		if(currentIsSkip)
 		{
+			currentSkipTime = 0;
 			currentIsSkip = false;
 			StartCoroutine(CurrentCutScene());
 		}

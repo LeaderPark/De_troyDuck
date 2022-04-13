@@ -19,6 +19,10 @@ public class BossStatUI : MonoBehaviour
     }
 	public void UpdateStatBar(float curHp)
     {
+        if (entity.isDead)
+        {
+            return;
+        }
         float maxHp = entity.clone.GetMaxStat(StatCategory.Health);
         float hp = curHp;
 
@@ -30,7 +34,7 @@ public class BossStatUI : MonoBehaviour
         {
             Invoke("uiActiveFalse", 1f);
         }
-
+        if(gameObject.activeSelf)
         StartCoroutine(FakeHpSet(hpRect.anchoredPosition.x));
     }
     private IEnumerator FakeHpSet(float curretnHp)
@@ -53,6 +57,7 @@ public class BossStatUI : MonoBehaviour
     }
     private void uiActiveFalse()
     {
+        StopAllCoroutines();
         gameObject.SetActive(false);
     }
 }

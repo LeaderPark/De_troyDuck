@@ -87,6 +87,8 @@ public class TestBehaivor : PlayableBehaviour
 	}
 	public override void ProcessFrame(Playable playable, FrameData info, object playerData)
 	{
+		if (talker == null || delayCurve.length == 0)
+			return;
 		if (Application.isPlaying)
 		{
 

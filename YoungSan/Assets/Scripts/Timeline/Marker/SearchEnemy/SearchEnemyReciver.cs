@@ -8,16 +8,21 @@ using UnityEngine.Timeline;
 public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 {
 	private TimelineAsset nextTimeLine;
+	GameManager gameManager;
 	List<Entity> enemys = new List<Entity>();
+	float waitTime;
 	public void OnNotify(Playable origin, INotification notification, object context)
 	{
+		 gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+		
 		SearchEnemyMarker marker = notification as SearchEnemyMarker;
 		if (marker != null)
 		{
 			nextTimeLine = marker.nextTimeLine;
+			waitTime = marker.waitTime;
 			if (marker.enemys.Length == 0)
 			{
-				NextTimeLine();
+				StartCoroutine(NextTimeLine(0));
 			}
 			else
 			{
@@ -32,7 +37,7 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 						if (enemys.Count >= marker.enemys.Length)
 						{
 							enemys.Clear();
-							NextTimeLine();
+							StartCoroutine(NextTimeLine(waitTime));
 						}
 						enemyEntity.dead = null;
 					};
@@ -40,15 +45,16 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 					{
 						enemyEntity.dead += () =>
 						{
-							//StartCoroutine(TestSlow());
+							StartCoroutine(TestSlow());
 						};
 					}
 				}
 			}
 		}
 	}
-	private void NextTimeLine()
+	private IEnumerator NextTimeLine(float waitTime)
 	{
+		yield return new WaitForSecondsRealtime(waitTime);
 		if (nextTimeLine != null)
 		{
 			TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
@@ -61,8 +67,11 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 	}
 	private IEnumerator TestSlow()
 	{
+		gameManager.Player.ActiveScript(false);
 		Time.timeScale = 0.2f;
 		yield return new WaitForSecondsRealtime(3f);
+		if(waitTime<=0)
+		gameManager.Player.ActiveScript(true);
 		Time.timeScale = 1f;
 
 	}

@@ -9,6 +9,7 @@ public class SearchEnemyMarker : Marker, INotification
 	public PropertyName id { get { return new PropertyName(); } }
 	public Enemys[] enemys;
 	public TimelineAsset nextTimeLine;
+	public float waitTime;
 }
 
 [System.Serializable]

@@ -15,11 +15,22 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 	public void OnNotify(Playable origin, INotification notification, object context)
 	{
 		ObjectControlMarker marker = notification as ObjectControlMarker;
+		GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 		if (marker != null)
 		{
 			for (int i = 0; i < marker.animationDatas.Length; i++)
 			{
-				GameObject obj = marker.animationDatas[i].contorolObject.Resolve(origin.GetGraph().GetResolver());
+				GameObject obj;
+
+				if (marker.animationDatas[i].mainChar)
+				{
+					obj = gameManager.Player.gameObject;
+					obj.GetComponent<SpriteRenderer>().flipX = marker.animationDatas[i].flipX;
+				}
+				else
+				{
+					obj = marker.animationDatas[i].contorolObject.Resolve(origin.GetGraph().GetResolver());
+				}
 				AnimationClip clip = marker.animationDatas[i].animation.Resolve(origin.GetGraph().GetResolver());
 
 				Animator objAnimator = obj.GetComponent<Animator>();
@@ -31,7 +42,6 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 				bool _active = marker.objectData[i].active;
 				if (marker.objectData[i].mainChar)
 				{
-					GameManager gameManager =  ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 					obj = gameManager.Player.gameObject;
 					obj.GetComponent<Entity>().enabled = _active;
 					obj.GetComponent<Player>().enabled = _active;

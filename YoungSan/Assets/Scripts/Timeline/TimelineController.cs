@@ -86,9 +86,10 @@ public class TimelineController : MonoBehaviour
 		uIManager.UISetActive(true);
 
 	}
-	public void TEst(string a)
+	public void PlayerScriptActive(bool active)
 	{
-		//Debug.LogError(a);
+		GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+		gameManager.Player.ActiveScript(active);
 	}
 	public void FadeInOut(bool fadeOut)
 	{

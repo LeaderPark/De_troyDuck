@@ -19,8 +19,10 @@ public class ObjectControlMarker : Marker, INotification
 [System.Serializable]
 public struct AnimationData
 {
+	public bool mainChar;
 	public ExposedReference<GameObject> contorolObject;
 	public ExposedReference<AnimationClip> animation;
+	public bool flipX;
 }
 [System.Serializable]
 public struct ObjectData

@@ -215,6 +215,13 @@ public class Player : MonoBehaviour
 
         dashCool = false;
     }
+    public void ActiveScript(bool active)
+    {
+        gameObject.GetComponent<Player>().enabled = active;
+        gameObject.GetComponent<Entity>().enabled = active;
+        gameObject.GetComponent<EntityEvent>().enabled = active;
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;

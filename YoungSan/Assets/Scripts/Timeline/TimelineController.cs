@@ -13,6 +13,8 @@ public class TimelineController : MonoBehaviour
 	private bool timelinePause = false;
 	
 
+
+
 	//컷씬 스킵 부분
 	private float currentSkipTime = 0;
 	private bool isKeyDown = false;
@@ -141,9 +143,21 @@ public class TimelineController : MonoBehaviour
 	
 	public IEnumerator CurrentCutScene()
 	{
+		double durationTime = director.duration;
+		TimelineAsset timelineAsset = (TimelineAsset)director.playableAsset;
+		for (int i = 0; i < timelineAsset.markerTrack.GetMarkerCount(); i++)
+		{
+			SceneLoadMarker marker = timelineAsset.markerTrack.GetMarker(i) as SceneLoadMarker;
+			if(marker != null)
+			{
+				Debug.Log("아니 슈발 마커가 있다니깐");
+				durationTime = marker.time - 0.1f;
+			}
+		}
+
+		Debug.Log(durationTime);
 		StartCoroutine(FadeOut());
 		yield return new WaitForSeconds(2f);
-		double durationTime = director.duration;
 		director.time = durationTime - 0.1f;
 		StartCoroutine(FadeIn());
 		yield return new WaitForSeconds(1f);

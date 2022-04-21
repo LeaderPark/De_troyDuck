@@ -5,19 +5,17 @@ using UnityEngine;
 
 public class SkillData : MonoBehaviour
 {
-    public string skillName;
+    public AnimationClip skill;
     public HitBox[] LeftHitBox;
     public HitBox[] RightHitBox;
 
     public SkillSet skillSet {get; set;}
-
-    public float startTime;
-    public float time;
     public float soundStartTime;
 
     public string skillDamageForm;
 
     public float coolTime;
+    public float waitTime;
     public string useStaminaForm;
 
     public SkillEffect skillEffect;

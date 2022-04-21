@@ -402,6 +402,8 @@ MonoBehaviour:
   - category: 2
     skillDatas:
     - {fileID: 1236690625540269811}
+  useSkill: 0
+  active: 0
 --- !u!1 &1236690625197313508
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,16 +721,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17643a34a2649247891d44de29ac90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Attack
+  skill: {fileID: 7400000, guid: 7579b776b8b24534291799f61bbe1f74, type: 2}
   LeftHitBox:
   - {fileID: 1236690625197313510}
   RightHitBox:
   - {fileID: 1236690624319435011}
-  startTime: 1
-  time: 0.6
   soundStartTime: 0.55
   skillDamageForm: '{Attack}*10'
   coolTime: 10
+  waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 1236690624826602821}
   attackSound: {fileID: 8300000, guid: e9c4dd860c8c44d4db4750d323bfae07, type: 3}
@@ -835,16 +836,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17643a34a2649247891d44de29ac90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Attack
+  skill: {fileID: 7400000, guid: f037e16dd130f7443b2342f62433de97, type: 2}
   LeftHitBox:
   - {fileID: 1236690625879922861}
   RightHitBox:
   - {fileID: 1236690624656022762}
-  startTime: 0.7
-  time: 0.5
   soundStartTime: 0
   skillDamageForm: '{Attack}'
   coolTime: 5
+  waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 1236690624832364745}
   attackSound: {fileID: 8300000, guid: e9c4dd860c8c44d4db4750d323bfae07, type: 3}
@@ -989,7 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaba35ddf9b34ec4391f653cd6253372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashCoolTime: 1
+  dashCoolTime: 0
 --- !u!65 &1236690625908380991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1058,6 +1058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 1236690625908380961}
+  dontmove: 0
 --- !u!81 &1236690625908380986
 AudioListener:
   m_ObjectHideFlags: 0

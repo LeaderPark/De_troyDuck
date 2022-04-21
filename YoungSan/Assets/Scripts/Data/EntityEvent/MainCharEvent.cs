@@ -15,8 +15,6 @@ public class MainCharEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 3;
-        attackAnimation[EventCategory.DefaultAttack] = new string[]{ "Attack1", "Attack2", "Attack3" };
-        attackTransitionTime[EventCategory.DefaultAttack] = new (float, float)[]{ (0.4f, 0.9f), (0.4f, 0.9f) };
         attackIndex[EventCategory.DefaultAttack] = new int[]{ 0, 1, 2 };
         attackProcess[EventCategory.DefaultAttack] = new System.Action<float, float>[]{ 
         (inputX, inputY) =>

@@ -42,8 +42,8 @@ public class Entity : MonoBehaviour
 
     public void Die()
     {
-        isDead = true;
         dead?.Invoke();
+        hitable = false;
 
         if (GetComponent<Player>() != null)
         {
@@ -57,10 +57,31 @@ public class Entity : MonoBehaviour
         {
             GetComponent<StateMachine.StateMachine>().enabled = false;
         }
+        GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{ 1f });
         GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{ Vector3.zero, 0 });
+        GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[]{});
         GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
         GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0f});
         GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Die"});
+        StartCoroutine(DieAnimationComplete());
+    }
+
+    IEnumerator DieAnimationComplete()
+    {
+        bool b = false;
+        while (!b)
+        {
+            GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Die", (System.Action<bool, float>)((bool transition, float time) => 
+            {
+                if (!transition && time >= 1f)
+                {
+                    b = true;
+                }
+            })});
+            yield return null;
+        }
+        hitable = true;
+        isDead = true;
     }
 
 	private void OnDrawGizmos()

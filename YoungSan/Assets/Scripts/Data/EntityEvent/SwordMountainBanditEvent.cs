@@ -14,8 +14,6 @@ public class SwordMountainBanditEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 2;
-        attackAnimation[EventCategory.DefaultAttack] = new string[]{ "Attack1", "Attack2" };
-        attackTransitionTime[EventCategory.DefaultAttack] = new (float, float)[]{ (0.6f, 0.9f) };
         attackIndex[EventCategory.DefaultAttack] = new int[]{ 0, 1 };
         attackProcess[EventCategory.DefaultAttack] = new System.Action<float, float>[]{ 
         null,

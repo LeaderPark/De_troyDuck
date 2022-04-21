@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     private bool dash;
     private bool dashCool;
 
+
+    private bool skipMove;
     private void Process()
     {
         InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour
         {
             inputY = -1f;
         }
-
+    
 
         //if (Input.GetMouseButtonDown(0))
         if(Input.GetKeyDown(KeyCode.Z))
@@ -71,6 +73,7 @@ public class Player : MonoBehaviour
 				bool attackDirection = (mousePos.x > 0f);
 				direction = attackDirection;
 				entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { mousePos.x, mousePos.z, attackDirection });
+                skipMove = true;
 			}
 		}
         if (inputManager.CheckKeyState(KeyCode.E, ButtonState.Down))
@@ -82,7 +85,7 @@ public class Player : MonoBehaviour
                 bool attackDirection = (mousePos.x > 0f);
                 direction = attackDirection;
                 entityEvent.CallEvent(EventCategory.Skill1, new object[] { mousePos.x, mousePos.z, attackDirection });
-
+                skipMove = true;
             }
         }
         if (inputManager.CheckKeyState(KeyCode.R, ButtonState.Down))
@@ -94,6 +97,7 @@ public class Player : MonoBehaviour
                 bool attackDirection = (mousePos.x > 0f);
                 direction = attackDirection;
                 entityEvent.CallEvent(EventCategory.Skill2, new object[] { mousePos.x, mousePos.z, attackDirection });
+                skipMove = true;
             }
         }
         if (inputManager.CheckKeyState(KeyCode.F, ButtonState.Down))
@@ -105,6 +109,7 @@ public class Player : MonoBehaviour
                 bool attackDirection = (mousePos.x > 0f);
                 direction = attackDirection;
                 entityEvent.CallEvent(EventCategory.Skill3, new object[] { mousePos.x, mousePos.z, attackDirection });
+                skipMove = true;
             }
         }
 
@@ -173,7 +178,7 @@ public class Player : MonoBehaviour
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             entity.hitable = false;
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.35f});
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.0f});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Dash"});
             entity.clone.SubStat(StatCategory.Stamina, 50);
             StartCoroutine(AttackVelocityTime(0.08f));
@@ -184,6 +189,12 @@ public class Player : MonoBehaviour
 
         }
         if (dash) return;
+
+        if (skipMove && entityEvent.dontmove)
+        {
+            skipMove = false;
+            return;
+        }
 
         if (inputX > 0)
         {

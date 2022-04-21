@@ -15,17 +15,22 @@ namespace Processor
             this.animator = animator;
         }
 
-        private void Play(string stateName)
+        private void Play(string stateName, bool cancel)
         {
             if (Locker) return;
-            var animatorState = animator.GetCurrentAnimatorStateInfo(0);
-            animator.Play(stateName);
+            if (cancel)
+            {
+                animator.Play(stateName, -1, 0.0f);
+            }
+            else
+            {
+                animator.Play(stateName);
+            }
         }
 
         private void PlayNoLock(string stateName)
         {
             animator.speed = 1f;
-            var animatorState = animator.GetCurrentAnimatorStateInfo(0);
             animator.Play(stateName);
         }
 

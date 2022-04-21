@@ -21,6 +21,11 @@ namespace Processor
             skillSet.ActiveSkill(category, index, direction, isRight, action);
         }
 
+        private void Reset()
+        {
+            skillSet.Reset();
+        }
+
         private void StopSkill()
         {
             skillSet.StopSkill();

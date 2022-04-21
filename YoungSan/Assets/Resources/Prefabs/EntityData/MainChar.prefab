@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaba35ddf9b34ec4391f653cd6253372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashCoolTime: 1
+  dashCoolTime: 0
 --- !u!65 &2075073055555241497
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -534,6 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 2075073055555241508}
+  dontmove: 0
 --- !u!114 &4580442240323297771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,16 +879,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17643a34a2649247891d44de29ac90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Attack1
+  skill: {fileID: 7400000, guid: 329df7e17fcd5814eb9cd9ec4e4e066e, type: 2}
   LeftHitBox:
   - {fileID: 7691739279760309532}
   RightHitBox:
   - {fileID: 507352122581545443}
-  startTime: 0.03
-  time: 0.03
   soundStartTime: 0
   skillDamageForm: ({Attack} + 2) * 2 + 10
   coolTime: 0
+  waitTime: 0
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 276663892}
   attackSound: {fileID: 0}
@@ -994,16 +994,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17643a34a2649247891d44de29ac90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Attack3
+  skill: {fileID: 7400000, guid: 531731600e259db4fbac11ae4ad98b57, type: 2}
   LeftHitBox:
   - {fileID: 2319936938538445956}
   RightHitBox:
   - {fileID: 2751635251116658996}
-  startTime: 0
-  time: 0.4
   soundStartTime: 0
   skillDamageForm: '{Attack} * 6'
   coolTime: 0
+  waitTime: 0
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 7137876916191949852}
   attackSound: {fileID: 0}
@@ -1117,6 +1116,8 @@ MonoBehaviour:
     - {fileID: 988483909742197261}
     - {fileID: 8776134104244395766}
     - {fileID: 8395010891160245862}
+  useSkill: 0
+  active: 0
 --- !u!1 &6054046773418771585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,16 +1484,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17643a34a2649247891d44de29ac90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Attack2
+  skill: {fileID: 7400000, guid: 216e759c948cd5542a4197c608c9d9f9, type: 2}
   LeftHitBox:
   - {fileID: 7657160944296407772}
   RightHitBox:
   - {fileID: 7952806635551821888}
-  startTime: 0.1
-  time: 0.2
   soundStartTime: 0
   skillDamageForm: '{Speed} * 2'
   coolTime: 0
+  waitTime: 0
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 6512122961216048893}
   attackSound: {fileID: 0}

@@ -74,7 +74,6 @@ public class SkillSet : MonoBehaviour
         useSkill = false;
         running = false;
         canAttack = false;
-        skillData = null;
         
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         gameManager.StopAfterImage(entity);
@@ -129,8 +128,6 @@ public class SkillSet : MonoBehaviour
     IEnumerator CheckRunning(SkillData data)
     {
         yield return new WaitForSeconds(data.skill.length);
-        skillData?.gameObject.SetActive(false);
-        skillData = null;
         running = false;
     }
 

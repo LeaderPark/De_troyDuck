@@ -75,21 +75,39 @@ public class MakeTransperent : MonoBehaviour
     private void HideObstruction(Transform obj)
     {
         // obj.GetComponent<SpriteRenderer>().re
-        Color color = obj.GetComponent<SpriteRenderer>().color;
-        color.a = Mathf.Max(transperentValue, color.a - obstructionFadingSpeed * Time.deltaTime);
-        obj.GetComponent<SpriteRenderer>().color = color;
+        // Color color = obj.GetComponent<SpriteRenderer>().color;
+        SpriteRenderer[] renders = obj.GetComponentsInChildren<SpriteRenderer>();
+		for (int i = 0; i < renders.Length; i++)
+		{
+            Color color = renders[i].color;
+            color.a = Mathf.Max(transperentValue, color.a - obstructionFadingSpeed * Time.deltaTime);
+            renders[i].color = color;
+
+        }
+        //color.a = Mathf.Max(transperentValue, color.a - obstructionFadingSpeed * Time.deltaTime);
+        //obj.GetComponent<SpriteRenderer>().color = color;
  
     }
 
     private void ShowObstruction(Transform obj)
     {
-        var color = obj.GetComponent<SpriteRenderer>().color;
-        color.a = Mathf.Min(1, color.a + obstructionFadingSpeed * Time.deltaTime);
-        obj.GetComponent<SpriteRenderer>().color = color;
+        //var color = obj.GetComponent<SpriteRenderer>().color;
+        //color.a = Mathf.Min(1, color.a + obstructionFadingSpeed * Time.deltaTime);
+        //obj.GetComponent<SpriteRenderer>().color = color;
 
-        if (obj.GetComponent<SpriteRenderer>().color.a == 1f)
+        //if (obj.GetComponent<SpriteRenderer>().color.a == 1f)
+        //{
+        //    Remove.Add(obj);
+        //}
+        SpriteRenderer[] renders = obj.GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < renders.Length; i++)
         {
-            Remove.Add(obj);
+            Color color = renders[i].color;
+            color.a = Mathf.Min(1, color.a + obstructionFadingSpeed * Time.deltaTime);
+            renders[i].color = color;
+            if (renders[i].color.a == 1)
+                Remove.Add(obj);
+
         }
     }
 }

@@ -22,18 +22,10 @@ namespace StateMachine
                 moveDir = Random.Range(0, 5);
                 start = true;
             }
-            if (start)
+            else
             {
                 timeStack += Time.deltaTime;
                 
-                Vector3 dirVec = stateMachine.Enemy.transform.position - gameManager.Player.transform.position;
-                dirVec.y = 0;
-                
-                dirVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;
-                if (moveDir == 1) dirVec *= -1;
-                if (moveDir > 1) dirVec *= 0;
-
-                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{dirVec.x, dirVec.z, stateMachine.Enemy.direction});
                 if (moveDir > 1)
                 {
                     if (stateMachine.stateMachineData.waitTime + stateMachine.stateMachineData.stopTime <= timeStack)
@@ -50,6 +42,15 @@ namespace StateMachine
                         return stateMachine.GetStateTable(typeof(SkillCheck));
                     }
                 }
+                
+                Vector3 dirVec = stateMachine.Enemy.transform.position - gameManager.Player.transform.position;
+                dirVec.y = 0;
+                
+                dirVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;
+                if (moveDir == 1) dirVec *= -1;
+                if (moveDir > 1) dirVec *= 0;
+
+                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{dirVec.x, dirVec.z, stateMachine.Enemy.direction});
             }
             return this;
         }

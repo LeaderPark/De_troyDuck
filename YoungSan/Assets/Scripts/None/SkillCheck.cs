@@ -14,9 +14,9 @@ namespace StateMachine
             SkillSet skillSet = stateMachine.Enemy.GetComponentInChildren<SkillSet>();
             foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
             {
-                if (skillSet.skillStacks[skillAreaBundle.eventCategory] < skillSet.skillCoolTimes[skillAreaBundle.eventCategory].Length)
+                if (skillSet.skillStackAmount[skillAreaBundle.eventCategory] < skillSet.skillCoolTimes[skillAreaBundle.eventCategory].Length)
                 {
-                    if (skillSet.skillCoolTimes[skillAreaBundle.eventCategory][skillSet.skillStacks[skillAreaBundle.eventCategory]] > 0) continue;
+                    if (skillSet.skillCoolTimes[skillAreaBundle.eventCategory][skillSet.skillStackAmount[skillAreaBundle.eventCategory]] > 0) continue;
                 }
 
                 foreach (var item in skillAreaBundle.skillAreaDatas)

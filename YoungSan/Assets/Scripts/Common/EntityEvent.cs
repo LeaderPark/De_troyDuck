@@ -26,7 +26,6 @@ public class EntityEvent : MonoBehaviour
     {
         foreach (EventCategory category in maxAttackStack.Keys)
         {
-            skillSet.skillStacks[category] = 0;
             StartCoroutine(AttackEndCheck(category));
         }
     }
@@ -76,17 +75,17 @@ public class EntityEvent : MonoBehaviour
 
     private void AttackSkillEvent(float inputX, float inputY, bool direction, EventCategory category)
     {
-        if (!skillSet.skillStacks.ContainsKey(category)) return;
+        if (!skillSet.skillStackAmount.ContainsKey(category)) return;
 
-        entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{category, attackIndex[category][skillSet.skillStacks[category]], new Vector2(inputX, inputY), direction, (System.Action)(() =>
+        entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{category, attackIndex[category][skillSet.skillStackAmount[category]], new Vector2(inputX, inputY), direction, (System.Action)(() =>
         {
             entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{skillSet.skillDatas[category][skillSet.skillStacks[category]].skill.name, true});
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{skillSet.skillDatas[category][skillSet.skillStackAmount[category]].skill.name, true});
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
-            attackProcess[category][skillSet.skillStacks[category]]?.Invoke(inputX, inputY);
+            attackProcess[category][skillSet.skillStackAmount[category]]?.Invoke(inputX, inputY);
             dontmove = true;
             reservate = true;
-            skillSet.skillStacks[category] = (skillSet.skillStacks[category] + 1) % maxAttackStack[category];
+            skillSet.skillStackAmount[category] = (skillSet.skillStackAmount[category] + 1) % maxAttackStack[category];
         })});
     }
 
@@ -117,7 +116,7 @@ public class EntityEvent : MonoBehaviour
                 else if (!transition && time >= 1f || transition)
                 {
                     if (reservate) return;
-                    skillSet.skillStacks[category] = 0;
+                    skillSet.skillStackAmount[category] = 0;
                     dontmove = false;
                 }
             });

@@ -16,7 +16,8 @@ public class SkillSet : MonoBehaviour
     public Dictionary<EventCategory, SkillData[]> skillDatas;
     public Dictionary<EventCategory, float[]> skillCoolTimes {get; set;}
     public Dictionary<EventCategory, float[]> skillWaitTimes {get; set;}
-    public Dictionary<EventCategory, int> skillStacks {get; set;}
+    public Dictionary<EventCategory, int> skillChargeAmount {get; set;}
+    public Dictionary<EventCategory, int> skillStackAmount {get; set;}
 
     public Entity entity {get; private set;}
 
@@ -32,7 +33,8 @@ public class SkillSet : MonoBehaviour
         skillDatas = new Dictionary<EventCategory, SkillData[]>();
         skillCoolTimes = new Dictionary<EventCategory, float[]>();
         skillWaitTimes = new Dictionary<EventCategory, float[]>();
-        skillStacks = new Dictionary<EventCategory, int>();
+        skillChargeAmount = new Dictionary<EventCategory, int>();
+        skillStackAmount = new Dictionary<EventCategory, int>();
         entity = GetComponentInParent<Entity>();
 
         foreach (SkillDataCategory category in skillDataCategories)
@@ -43,6 +45,8 @@ public class SkillSet : MonoBehaviour
         {
             skillCoolTimes[key] = new float[skillDatas[key].Length];
             skillWaitTimes[key] = new float[skillDatas[key].Length];
+            skillStackAmount[key] = 0;
+            skillChargeAmount[key] = 0;
             foreach (var item in skillDatas[key])
             {
                 item.gameObject.SetActive(false);
@@ -63,6 +67,8 @@ public class SkillSet : MonoBehaviour
             {
                 skillWaitTimes[key][i] = 0;
             }
+            skillStackAmount[key] = 0;
+            skillChargeAmount[key] = 0;
         }
     }
 

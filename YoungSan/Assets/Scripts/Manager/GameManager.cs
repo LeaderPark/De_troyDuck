@@ -64,7 +64,7 @@ public class GameManager : Manager
             AfterImage afterImage = obj.GetComponent<AfterImage>();
             afterImage.SetTarget(spriteRenderer);
             afterImage.Play();
-            StartCoroutine(AfterImageInActive(obj, i * 0.1f));
+            StartCoroutine(AfterImageInActive(obj, 0.2f));
             yield return new WaitForSeconds(0.1f);
         }
     }

@@ -113,9 +113,15 @@ public class EntityEvent : MonoBehaviour
                 {
                     reservate = false;
                 }
-                else if (!transition && time >= 1f || transition)
+                else if (!transition && time >= 1f)
                 {
                     if (reservate) return;
+                    skillSet.skillStackAmount[category] = 0;
+                    dontmove = false;
+                }
+                else if (transition)
+                {
+                    reservate = false;
                     skillSet.skillStackAmount[category] = 0;
                     dontmove = false;
                 }

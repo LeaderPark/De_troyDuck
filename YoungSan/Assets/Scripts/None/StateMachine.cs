@@ -71,7 +71,7 @@ namespace StateMachine
             if (enemy != null && stateMachineData != null)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(enemy.spawnPoint, stateMachineData.activityRadius);
+                Gizmos.DrawWireSphere(new Vector3(enemy.spawnPoint.x,0, enemy.spawnPoint.y), stateMachineData.activityRadius);
                 Gizmos.color = Color.blue;
                 Vector3 temp = transform.position;
                 temp.y = 0;

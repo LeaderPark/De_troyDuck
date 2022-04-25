@@ -127,7 +127,6 @@ public class SkillSet : MonoBehaviour
             gameManager.AfterImage(entity, skillDatas[category][index].skill.length);
         }
         SetCoolDown(category, index, skillDatas[category][index].coolTime);
-        SetWaitTime(category, index, skillDatas[category][index].waitTime);
         entity.clone.SubStat(StatCategory.Stamina, useStamina);
         action();
         SkillData data = skillDatas[category][index];
@@ -174,9 +173,14 @@ public class SkillSet : MonoBehaviour
         uiManager.skillinterface.CoolDown(category, index);
     }
 
-    private void SetWaitTime(EventCategory category, int index, float time)
+    public void SetWaitTime(EventCategory category, float time)
     {
-        skillWaitTimes[category][index] = time;
+        skillWaitTimes[category][skillStackAmount[category]] = time;
+    }
+
+    public void SetChargeAmount(EventCategory category, float value)
+    {
+        skillWaitTimes[category][skillStackAmount[category]] = value;
     }
 
     private void Update()

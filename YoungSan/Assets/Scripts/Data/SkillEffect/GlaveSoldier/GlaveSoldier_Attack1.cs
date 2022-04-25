@@ -13,6 +13,7 @@ public class GlaveSoldier_Attack1 : SkillEffect
             case 1:
             case 2:
             Stiff(hitEntity, 0.2f);
+            KnockBack(hitEntity, direction, 0f, 0);
             break;
             case 3:
             Stiff(hitEntity, 0.5f);
@@ -30,6 +31,7 @@ public class GlaveSoldier_Attack1 : SkillEffect
             case 1:
             case 2:
             Stiff(hitEntity, 0.4f);
+            KnockBack(hitEntity, direction, 0f, 0);
             break;
             case 3:
             Stiff(hitEntity, 0.8f);

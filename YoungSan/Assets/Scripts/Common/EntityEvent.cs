@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EntityEvent : MonoBehaviour
 {
+    [HideInInspector]
     public Entity entity;
-    private SkillSet skillSet;
+    [HideInInspector]
+    public SkillSet skillSet;
 
     public void CallEvent(EventCategory eventCategory, object[] parameters)
     {
@@ -101,7 +103,6 @@ public class EntityEvent : MonoBehaviour
         yield return new WaitForSeconds(time);
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
     }
-
 
     private IEnumerator AttackEndCheck(EventCategory category)
     {

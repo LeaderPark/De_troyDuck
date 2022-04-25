@@ -39,19 +39,19 @@ public class HitBox : MonoBehaviour
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.skillSet.entity});
                     DamageEffect.Instance?.OnDamageEffect();
-                    skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction);
+                    skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction, skillData.targetIndex);
 
                     break;
                     case "Enemy": // enemy
                     CameraShake.Instance.Shake();
                     entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.skillSet.entity});
-                    skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction);
+                    skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction, skillData.targetIndex);
                     break;
                     case "Boss": // enemy
                     CameraShake.Instance.Shake();
                     entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("DamageOnBody", new object[]{skillData.CalculateSkillDamage(), skillData.skillSet.entity});
-                    skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction);
+                    skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction, skillData.targetIndex);
                     break;
                 }
             }

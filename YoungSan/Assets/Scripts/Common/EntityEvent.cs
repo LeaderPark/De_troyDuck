@@ -31,7 +31,7 @@ public class EntityEvent : MonoBehaviour
     }
     
     public bool dontmove;
-    bool reservate;
+    public bool reservate;
     protected void CallMove(float inputX, float inputY, bool direction)
     {
         if (!dontmove)

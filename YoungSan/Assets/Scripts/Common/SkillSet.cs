@@ -49,8 +49,11 @@ public class SkillSet : MonoBehaviour
             skillChargeAmount[key] = 0;
             foreach (var item in skillDatas[key])
             {
-                item.gameObject.SetActive(false);
                 item.skillSet = this;
+                foreach (var i in item.hitBoxDatas)
+                {
+                    i.LeftHitBox.transform.parent.gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -76,10 +79,17 @@ public class SkillSet : MonoBehaviour
     {
         StopAllCoroutines();
         active = false;
-        skillData?.gameObject.SetActive(false);
+        if (skillData != null)
+        {
+            skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox.transform.parent.gameObject.SetActive(false);
+        }
         useSkill = false;
         running = false;
         canAttack = false;
+
+        EntityEvent entityEvent = entity.GetComponent<EntityEvent>();
+        entityEvent.dontmove = false;
+        entityEvent.reservate = false;
         
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         gameManager.StopAfterImage(entity);
@@ -140,9 +150,20 @@ public class SkillSet : MonoBehaviour
     IEnumerator attackSound(SkillData data)
     {
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-        yield return new WaitForSeconds(data.soundStartTime);
-        if(data.attackSound!=null)
-        soundManager.SoundStart(data.attackSound.name, transform);
+        for (int i = 0; i < data.soundStartTimes.Length; i++)
+        {
+            if (i == 0)
+            {
+                yield return new WaitForSeconds(data.soundStartTimes[i]);
+            }
+            else
+            {
+                yield return new WaitForSeconds(data.soundStartTimes[i] - data.soundStartTimes[i - 1]);
+            }
+            if (data.attackSounds.Length > i)
+            if(data.attackSounds[i] != null)
+            soundManager.SoundStart(data.attackSounds[i].name, transform);
+        }
     }
 
     private void SetCoolDown(EventCategory category, int index, float time)
@@ -163,12 +184,18 @@ public class SkillSet : MonoBehaviour
         if (!canAttack && (useSkill == running)) canAttack = true; 
         if (active)
         {
-            skillData?.gameObject.SetActive(true);
-            skillData?.ActiveHitBox(isRight);
+            if (skillData != null)
+            {
+                skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox.transform.parent.gameObject.SetActive(true);
+                skillData.ActiveHitBox(isRight);
+            }
         }
         else
         {
-            skillData?.gameObject.SetActive(false);
+            if (skillData != null)
+            {
+                skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox.transform.parent.gameObject.SetActive(false);
+            }
         }
         foreach (var key in skillDatas.Keys)
         {

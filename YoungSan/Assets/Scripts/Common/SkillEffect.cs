@@ -4,43 +4,44 @@ using UnityEngine;
 
 public abstract class SkillEffect : MonoBehaviour
 {
-    public AnimationClip hitEffectClip;
-    public AudioClip hitSoundClip;
+    public AnimationClip[] hitEffectClips;
+    public AudioClip[] hitSoundClips;
 
-    public void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction)
+    public void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index)
     {
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-        if(hitSoundClip!=null)
-        soundManager.SoundStart(hitSoundClip.name, transform);
+        if(hitSoundClips[index] != null)
+        soundManager.SoundStart(hitSoundClips[index].name, transform);
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         if (hitEntity != null)
         {
             HitEffect hitEffect = poolManager.GetObject("HitEffect").GetComponent<HitEffect>();
             hitEffect.transform.position = hitEntity.transform.position + Vector3.up * 0.5f;
-            hitEffect.Play(hitEffectClip);
+            hitEffect.Play(hitEffectClips[index]);
             BloodEffect bloodEffect = poolManager.GetObject("BloodEffect").GetComponent<BloodEffect>();
             bloodEffect.transform.position = hitEntity.transform.position;
             bloodEffect.Play();
         }
-        hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
 
         switch (hitEntity?.gameObject.tag)
         {
             case "Player": // player
-            ShowPlayerEffect(attackEntity, hitEntity, direction);
+            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
+            ShowPlayerEffect(attackEntity, hitEntity, direction, index);
             break;
             case "Enemy": // enemy
-            ShowEnemyEffect(attackEntity, hitEntity, direction);
+            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
+            ShowEnemyEffect(attackEntity, hitEntity, direction, index);
             break;
             case "Boss": // enemy
-            ShowBossEffect(attackEntity, hitEntity, direction);
+            ShowBossEffect(attackEntity, hitEntity, direction, index);
             break;
         }
     }
 
-    protected abstract void ShowPlayerEffect(Entity attackEntity, Entity hitEntity, Vector2 direction);
-    protected abstract void ShowEnemyEffect(Entity attackEntity, Entity hitEntity, Vector2 direction);
-    protected abstract void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector2 direction);
+    protected abstract void ShowPlayerEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
+    protected abstract void ShowEnemyEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
+    protected abstract void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
 
     protected void Stiff(Entity entity, float time)
     {

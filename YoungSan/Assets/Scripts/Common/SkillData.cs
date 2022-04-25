@@ -6,25 +6,26 @@ using UnityEngine;
 public class SkillData : MonoBehaviour
 {
     public AnimationClip skill;
-    public HitBox[] LeftHitBox;
-    public HitBox[] RightHitBox;
+    public int targetIndex;
+
+    public HitBoxData[] hitBoxDatas;
 
     public SkillSet skillSet {get; set;}
-    public float soundStartTime;
+    public float[] soundStartTimes;
 
-    public string skillDamageForm;
+    public string[] skillDamageForms;
 
     public float coolTime;
     public float waitTime;
     public string useStaminaForm;
 
     public SkillEffect skillEffect;
-    public AudioClip attackSound;
+    public AudioClip[] attackSounds;
     public Vector2 direction;
 
     public int CalculateSkillDamage()
     {
-        string temp = skillDamageForm;
+        string temp = skillDamageForms[targetIndex];
         foreach (var item in System.Enum.GetNames(typeof(StatCategory)))
         {
             temp = temp.Replace("{" + item + "}", skillSet.entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
@@ -50,13 +51,13 @@ public class SkillData : MonoBehaviour
 
     void Awake()
     {
-        foreach (var item in LeftHitBox)
+        for(int i = 0; i < hitBoxDatas.Length; i++)
         {
-            item.skillData = this;
+            hitBoxDatas[i].LeftHitBox.skillData = this;
         }
-        foreach (var item in RightHitBox)
+        for(int i = 0; i < hitBoxDatas.Length; i++)
         {
-            item.skillData = this;
+            hitBoxDatas[i].RightHitBox.skillData = this;
         }
         
     }
@@ -65,26 +66,21 @@ public class SkillData : MonoBehaviour
     {
         if (isRight)
         {
-            foreach (var item in RightHitBox)
-            {
-                item.gameObject.SetActive(true);
-            }
-            foreach (var item in LeftHitBox)
-            {
-                item.gameObject.SetActive(false);
-            }
+            hitBoxDatas[targetIndex].LeftHitBox.gameObject.SetActive(false);
+            hitBoxDatas[targetIndex].RightHitBox.gameObject.SetActive(true);
         }
         else
         {
-            foreach (var item in LeftHitBox)
-            {
-                item.gameObject.SetActive(true);
-            }
-            foreach (var item in RightHitBox)
-            {
-                item.gameObject.SetActive(false);
-            }
+            hitBoxDatas[targetIndex].LeftHitBox.gameObject.SetActive(true);
+            hitBoxDatas[targetIndex].RightHitBox.gameObject.SetActive(false);
         }
     }
 
+}
+
+[System.Serializable]
+public class HitBoxData
+{
+    public HitBox LeftHitBox;
+    public HitBox RightHitBox;
 }

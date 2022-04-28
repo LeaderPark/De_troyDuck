@@ -31,10 +31,13 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 				{
 					obj = marker.animationDatas[i].contorolObject.Resolve(origin.GetGraph().GetResolver());
 				}
-				AnimationClip clip = marker.animationDatas[i].animation.Resolve(origin.GetGraph().GetResolver());
+				string clip = marker.animationDatas[i].animation;
 
-				Animator objAnimator = obj.GetComponent<Animator>();
-				objAnimator.Play(clip.name);
+				if (obj != null)
+				{
+					Animator objAnimator = obj.GetComponent<Animator>();
+					objAnimator.Play(clip);
+				}
 			}
 			for (int i = 0; i < marker.objectData.Length; i++)
 			{

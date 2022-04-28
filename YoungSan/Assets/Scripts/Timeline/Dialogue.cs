@@ -192,7 +192,7 @@ public class Dialogue : MonoBehaviour
     }
     public void EndTalk()
     {
-        timelineController.PauseTimeline();
+       // timelineController.PauseTimeline();
         dialogueEnd = true;
         timeLineStart = false;
         //대화창 넘기는 ▽이런거 추가 예정

@@ -10,11 +10,11 @@ public class TimelineController : MonoBehaviour
 {
 	PlayableDirector director;
 	[SerializeField] private Image fade;
-	private bool timelinePause = false;
-	
+	public bool timelinePause = false;
+	public bool talkLoop = true;
 
-
-
+	[HideInInspector]
+	public JumpMarker jumpMarker;
 	//컷씬 스킵 부분
 	private float currentSkipTime = 0;
 	private bool isKeyDown = false;
@@ -24,13 +24,13 @@ public class TimelineController : MonoBehaviour
 	private void Awake()
 	{
 		director = GetComponent<PlayableDirector>();
-		TextAsset fileData = Resources.Load("TestDialogue") as TextAsset;
+		UnityEngine.TextAsset fileData = Resources.Load("TestDialogue") as UnityEngine.TextAsset;
 	}
 	private void Update()
 	{
-		if (timelinePause)
+		if (jumpMarker!=null)
 		{
-			if (Input.anyKeyDown)
+			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				StartTimeline();
 			}
@@ -67,14 +67,29 @@ public class TimelineController : MonoBehaviour
 	}
 	public void StartTimeline()
 	{
-		director.Play();
-		print("����");
-		timelinePause = false;
+		//director.Play();
+		if (timelinePause)
+		{
+			director.Play();
+			director.playableGraph.GetRootPlayable(0).SetSpeed(1);
+			timelinePause = false;
+		}
+		if (jumpMarker != null&& talkLoop)
+		{
+			Debug.Log(director.time);
+			talkLoop = false;
+			director.time = jumpMarker.time;
+			jumpMarker = null;
+		}
 	}
 	public void PauseTimeline()
 	{
-		director.Pause();
-		print("����");
+		//director.playableGraph.Stop();
+
+		director.playableGraph.GetRootPlayable(0).SetSpeed(0);
+
+	//	director.playableGraph.GetRootPlayable(0).SetTime(director.playableGraph.GetRootPlayable(0).GetTime());
+
 		timelinePause = true;
 	}
 	public void UISetActiveFalse()

@@ -24,4 +24,15 @@ public class TimelineManager : Manager
 		director.Play();
 		//Debug.Log(director.playableGraph.GetRootPlayable(0).GetSpeed());
 	}
+	public void StartCutScene(PlayableAsset cutSceneName)
+	{
+		directorObj = GameObject.Find("CutScenePrefab").gameObject;
+		PlayableAsset cutScene = cutSceneName;
+		PlayableDirector director = directorObj.GetComponent<PlayableDirector>();
+		director.Stop();
+		director.playableAsset = cutScene;
+		//Debug.Log(director.playableAsset);
+		director.Play();
+		//Debug.Log(director.playableGraph.GetRootPlayable(0).GetSpeed());
+	}
 }

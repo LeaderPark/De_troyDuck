@@ -492,6 +492,22 @@ MonoBehaviour:
     m_DisplayName: TestAsset
   m_Markers:
     m_Objects: []
+--- !u!114 &-7732383749834516384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 7.266666666666667
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: fb97771438db2cf488f2b3f21e70685b, type: 2}
 --- !u!114 &-7363660600132827139
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -976,6 +992,7 @@ MonoBehaviour:
     exposedName: 02517a49aeb50ad4bbf94a43c6d48b41
     defaultValue: {fileID: 0}
   dialogueMessage: "\uB10C\u2026\u2026 \uB204\uAD6C\u3134\u3151\u2026\u2026"
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -1089,6 +1106,7 @@ MonoBehaviour:
     exposedName: e4118a63b99729a4e90697478d74de27
     defaultValue: {fileID: 0}
   dialogueMessage: ?!
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -1376,6 +1394,7 @@ MonoBehaviour:
     - {fileID: -4862205869726717537}
     - {fileID: 7730577501163251023}
     - {fileID: -340400485386410387}
+    - {fileID: 3411861016583478461}
 --- !u!114 &-2471627646639969327
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1404,6 +1423,7 @@ MonoBehaviour:
     exposedName: ef7b2f946701b7c4f9809eccfb3f8774
     defaultValue: {fileID: 0}
   dialogueMessage: "\uC5B5! \uC5B4\uC73C\uC73C\u2026"
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -1508,49 +1528,13 @@ MonoBehaviour:
     m_BlendOutDuration: 2.433333333333337
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1601,25 +1585,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1679,25 +1645,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1730,49 +1678,13 @@ MonoBehaviour:
     m_BlendOutDuration: 0.3833333527048417
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1967,25 +1879,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2093,25 +1987,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2377,6 +2253,7 @@ MonoBehaviour:
     exposedName: 12d15a55eca22cd48aa5b009ce531e29
     defaultValue: {fileID: 0}
   dialogueMessage: "\uC548\uB3FC!! \uB0B4 \uC9D1\uC774..."
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -2886,6 +2763,7 @@ MonoBehaviour:
     exposedName: 54224c4e318e06d4bb54484da572d3ff
     defaultValue: {fileID: 0}
   dialogueMessage: "\uC5B4?! \uC5B4\uB514\uC11C \uD0C0\uB294 \uB0C4\uC0C8\uAC00 \uB098\uB294\uB370"
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -3315,6 +3193,39 @@ MonoBehaviour:
     - {fileID: -8445632213325093179}
     - {fileID: 41311297569564461}
     - {fileID: 613606225407831413}
+    - {fileID: -7732383749834516384}
+    - {fileID: 7009052868922372455}
+--- !u!114 &3411861016583478461
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 7.25
+  animationDatas:
+  - mainChar: 0
+    contorolObject:
+      exposedName: 66d4917fa0e6c9f429998ce737a872d1
+      defaultValue: {fileID: 0}
+    animation:
+      exposedName: 
+      defaultValue: {fileID: 7400000, guid: c539084d033b5b842a282fcf407dac2e, type: 2}
+    flipX: 0
+  - mainChar: 0
+    contorolObject:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    animation:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    flipX: 0
+  objectData: []
 --- !u!114 &3505848186440142482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3332,6 +3243,7 @@ MonoBehaviour:
     defaultValue: {fileID: 0}
   dialogueMessage: "\uC800\uAE30\uB294 \uC6B0\uB9AC \uC9D1\uC774 \uC788\uB294 \uCABD\uC778\uB370
     \uD639\uC2DC \uBAA8\uB974\uB2C8 \uC11C\uB458\uB7EC\uC57C\uACA0\uB2E4."
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -4078,6 +3990,22 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &7009052868922372455
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 9.149999997019767
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: fb97771438db2cf488f2b3f21e70685b, type: 2}
 --- !u!114 &7239183682402991584
 MonoBehaviour:
   m_ObjectHideFlags: 1

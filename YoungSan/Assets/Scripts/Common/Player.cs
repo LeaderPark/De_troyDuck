@@ -113,6 +113,41 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(inputManager.CheckKeyState(KeyCode.Space,ButtonState.Down))
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position + Vector3.up * 10, 2, Vector3.down, 20, LayerMask.GetMask(new string[] { "Npc" }));
+            float distance = 0;
+            NPCTalk target = null;
+
+            foreach (RaycastHit hit in hits)
+            {
+                NPCTalk hitNpc = hit.transform.GetComponent<NPCTalk>();
+                if (hitNpc != null)
+                {
+                    if (target == null)
+                    {
+                        target = hitNpc;
+                        distance = Vector2.Distance(new Vector2(hitNpc.transform.position.x, hitNpc.transform.position.z), new Vector2(transform.position.x, transform.position.z));
+                    }
+                    else
+                    {
+                        float temp = Vector2.Distance(new Vector2(hitNpc.transform.position.x, hitNpc.transform.position.z), new Vector2(transform.position.x, transform.position.z));
+                        if (distance > temp)
+                        {
+                            target = hitNpc;
+                            distance = temp;
+                        }
+                    }
+
+                }
+            }
+
+            if (target != null)
+            {
+                Debug.Log(target);
+                target.Talk();
+            }
+       }
 
 
         if (inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
@@ -124,7 +159,7 @@ public class Player : MonoBehaviour
             {
                 Entity hitEntity = hit.transform.GetComponent<Entity>();
 
-                if (hitEntity.isDead)
+                if (hitEntity!=null&&hitEntity.isDead)
                 {
                     if (target == null)
                     {

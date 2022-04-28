@@ -21,7 +21,7 @@ public struct AnimationData
 {
 	public bool mainChar;
 	public ExposedReference<GameObject> contorolObject;
-	public ExposedReference<AnimationClip> animation;
+	public string animation;
 	public bool flipX;
 }
 [System.Serializable]

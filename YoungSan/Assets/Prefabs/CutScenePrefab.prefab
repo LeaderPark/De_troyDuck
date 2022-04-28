@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5535788953435136891}
   - component: {fileID: 3227817246374541617}
   - component: {fileID: 7081150145572663342}
+  - component: {fileID: 6724264041005484937}
   m_Layer: 0
   m_Name: CutScenePrefab
   m_TagString: Untagged
@@ -55,19 +56,19 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 1481342848324720235, guid: eeea626c99e579549af4a2966e02044d, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 2289989693407090793}
-  - key: {fileID: 3519549372467362184, guid: eeea626c99e579549af4a2966e02044d, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: 1116664130317054108, guid: eeea626c99e579549af4a2966e02044d, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: 6196409028293066564, guid: eeea626c99e579549af4a2966e02044d, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: -6847687141170453223, guid: eeea626c99e579549af4a2966e02044d, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: -1223911854579832237, guid: eeea626c99e579549af4a2966e02044d, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: 3941280326612748751, guid: eeea626c99e579549af4a2966e02044d, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
   - key: {fileID: 2866090536277658991, guid: 90de961f1983d1849ac6e1f53b39b47a, type: 2}
     value: {fileID: 0}
@@ -111,6 +112,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2d12f47b74fc8184cbf857046d341830, type: 2}
     - {fileID: 11400000, guid: 67850259cb446694aa7a544f06a173bd, type: 2}
     - {fileID: 11400000, guid: 11b0ba2b7716c1e429a9dc804fb84172, type: 2}
+    - {fileID: 11400000, guid: c6e6eeb8d7bdfce4ebd89e2f2632bf6c, type: 2}
+    - {fileID: 11400000, guid: 63c930794035a65408fa33c6f1dceeae, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -196,6 +199,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2289989693407090794}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
+          m_MethodName: PlayerScriptActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2289989693407090794}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
+          m_MethodName: PlayerScriptActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!114 &2289989693407090794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fade: {fileID: 308921952408964684}
+  timelinePause: 0
+  maxSkipTime: 1.5
 --- !u!114 &2289989693407090797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +291,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afce746c26b07b54c97268069b83f979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6724264041005484937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289989693407090796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c045e6a41e8a8e46823217d55f6ff9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5414151400569618528

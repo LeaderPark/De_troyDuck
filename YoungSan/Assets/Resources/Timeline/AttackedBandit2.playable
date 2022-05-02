@@ -172,11 +172,10 @@ MonoBehaviour:
     exposedName: d0768b2ab0643f041a471678fd4d2c88
     defaultValue: {fileID: 0}
   dialogueMessage: ...?
+  inputCheck: 0
   delayCurve:
-    serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
-      time: 0
+    - time: 0
       value: 0.1
       inSlope: 0
       outSlope: 0
@@ -184,8 +183,7 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - serializedVersion: 3
-      time: 0.1
+    - time: 0.1
       value: 0.1
       inSlope: -0
       outSlope: 0
@@ -193,8 +191,7 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - serializedVersion: 3
-      time: 0.2
+    - time: 0.2
       value: 0.1
       inSlope: -0
       outSlope: 0
@@ -202,8 +199,7 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - serializedVersion: 3
-      time: 0.3
+    - time: 0.3
       value: 0.1
       inSlope: -0
       outSlope: 0
@@ -331,7 +327,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: TestAsset
+    m_DisplayName: TextAsset
   - m_Version: 1
     m_Start: 3.4500000067055225
     m_ClipIn: 0
@@ -364,7 +360,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: TestAsset
+    m_DisplayName: TextAsset
   - m_Version: 1
     m_Start: 2.2500000037252903
     m_ClipIn: 0
@@ -397,7 +393,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: TestAsset
+    m_DisplayName: TextAsset
   m_Markers:
     m_Objects: []
 --- !u!114 &-1754412438083313726
@@ -506,13 +502,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83abd2ed98230da4b8baec8254ae0de7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c24211481672314783310c909c6b6c6, type: 3}
   m_Name: TestAsset(Clone)
   m_EditorClassIdentifier: 
   talker:
     exposedName: 073d98d3284aaa3469a3fa914e02a1df
     defaultValue: {fileID: 0}
   dialogueMessage: "\uBC1B\uC544\uB78F!"
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -657,13 +654,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83abd2ed98230da4b8baec8254ae0de7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c24211481672314783310c909c6b6c6, type: 3}
   m_Name: TestAsset(Clone)
   m_EditorClassIdentifier: 
   talker:
     exposedName: a69e4d141577d7949919bf1e758d337d
     defaultValue: {fileID: 0}
   dialogueMessage: "\uD788\uC57C\uC544\uC544\uC544\uC544\uC544!!"
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -1154,13 +1152,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83abd2ed98230da4b8baec8254ae0de7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c24211481672314783310c909c6b6c6, type: 3}
   m_Name: TestAsset
   m_EditorClassIdentifier: 
   talker:
     exposedName: 998d8fe3195e6c3448091c9bed656154
     defaultValue: {fileID: 0}
   dialogueMessage: "\uC73C\uC73C..."
+  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:

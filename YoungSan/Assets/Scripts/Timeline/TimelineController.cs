@@ -13,6 +13,8 @@ public class TimelineController : MonoBehaviour
 	public bool timelinePause = false;
 	public bool talkLoop = true;
 
+	public UnityEvent[] asd;
+
 	[HideInInspector]
 	public JumpMarker jumpMarker;
 	//컷씬 스킵 부분

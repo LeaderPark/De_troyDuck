@@ -6,10 +6,33 @@ using UnityEngine;
 public class QuestTest : MonoBehaviour
 {
     public Quest quest;
-    public Quest currentQuest;
     void Start()
     {
-        for(int i = 0; i < quest.clearValue.values.Count; i++)
+        
+
+    }
+
+    void Update()
+    {
+        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+        quest = questManager.proceedingQuests[2] as Quest;
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            for(int i = 0; i < quest.clearValue.values.Count; i++)
+            {
+                if(quest.clearValue.values[i].type == PropertyType.INT)
+                {
+                    if(quest.clearValue.values[i].intValue > quest.clearValue.values[i].currentIntValue)
+                    {
+                        quest.clearValue.values[i].currentIntValue++;
+                        Debug.Log(quest.clearValue.values[i].currentIntValue);
+                    }
+                }
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.R))
+        {
+                    for(int i = 0; i < quest.clearValue.values.Count; i++)
         {
             if(quest.clearValue.values[i].type == PropertyType.INT)
             {
@@ -30,7 +53,6 @@ public class QuestTest : MonoBehaviour
             if(quest.clear)
             {
                 Debug.Log("이미 진행한 퀘스트 입니다.");
-                //currentQuest = quest.nextQuest;
             }
             else
             {
@@ -44,27 +66,6 @@ public class QuestTest : MonoBehaviour
         {
             Debug.Log("전 퀘스트 " + quest.prevQuest + "를 깨고 오세요");
         }
-    }
-
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            for(int i = 0; i < quest.clearValue.values.Count; i++)
-            {
-                if(quest.clearValue.values[i].type == PropertyType.INT)
-                {
-                    if(quest.clearValue.values[i].intValue > quest.clearValue.values[i].currentIntValue)
-                    {
-                        quest.clearValue.values[i].currentIntValue++;
-                        Debug.Log(quest.clearValue.values[i].currentIntValue);
-                    }
-                }
-            }
-        }
-        else if(Input.GetKeyDown(KeyCode.R))
-        {
-            
         }
 
         for(int i = 0; i < quest.clearValue.values.Count; i++)

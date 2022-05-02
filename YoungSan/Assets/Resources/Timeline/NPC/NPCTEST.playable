@@ -616,6 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 1.05
   loopMarker: {fileID: 3329454278460941691}
+  qeustSelect: 0
   quest: {fileID: 0}
 --- !u!114 &3329454278460941691
 MonoBehaviour:
@@ -897,7 +898,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 1.4433333390702805
   loopMarker: {fileID: 1248827843383389052}
-  quest: {fileID: 0}
+  qeustSelect: 1
+  quest: {fileID: 11400000, guid: 51f1fa4c90d4d614ab3fda346ab53343, type: 2}
 --- !u!114 &5287603136044798621
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -912,6 +914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 0
   loopMarker: {fileID: 0}
+  qeustSelect: 0
   quest: {fileID: 0}
 --- !u!114 &9126969960734856556
 MonoBehaviour:

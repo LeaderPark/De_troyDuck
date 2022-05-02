@@ -17,9 +17,9 @@ public class JumpReciver : MonoBehaviour, INotificationReceiver
 
 			if (qeustSelect && !loop)
 			{
-				//Äù½ºÆ®ÀÎÁö Ã¼Å©ÇØ³õÀ¸¸é 
+				//ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ø³ï¿½ï¿½ï¿½ï¿½ï¿½ 
 				loop = true;
-				Select();
+				Select(_marker);
 			}
 			if (timelineCon == null)
 			{
@@ -38,12 +38,13 @@ public class JumpReciver : MonoBehaviour, INotificationReceiver
 
 		}
 	}
-	private void Select()
+	private void Select(JumpMarker marker)
 	{
 		PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+		QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 		SelectButton button = poolManager.GetUIObject("Select").GetComponent<SelectButton>();
 		button.gameObject.SetActive(true);
-		button.ButtonsSetting(0, "¼ö¶ô", () => { Debug.Log("¼ö¶ô"); });
-		button.ButtonsSetting(1, "°ÅÀý", () => { Debug.Log("°ÅÀý"); });
+		button.ButtonsSetting(0, "ï¿½ï¿½ï¿½ï¿½", () => { questManager.AddQuest(marker.quest); });
+		button.ButtonsSetting(1, "ï¿½ï¿½ï¿½ï¿½", () => { Debug.Log("ê±°ì ˆí•œë‹¤."); });
 	}
 }

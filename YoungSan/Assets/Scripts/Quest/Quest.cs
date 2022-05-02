@@ -9,8 +9,9 @@ public class Quest : ScriptableObject
     public string title;
     [TextArea()]
     public string context;
+
+    public ClearValue clearValue;
     public Quest prevQuest;
     public Quest nextQuest;
-
-    
+    public bool clear; 
 }

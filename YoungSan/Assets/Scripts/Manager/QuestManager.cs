@@ -6,7 +6,7 @@ public class QuestManager : Manager
 {
     private HashSet<Quest> proceedingQuests;
     private HashSet<Quest> completedQuests;
-
+    
     public System.Action OnChanged; 
 
     public void AddQuest(Quest quest)
@@ -20,4 +20,6 @@ public class QuestManager : Manager
         proceedingQuests.Remove(quest);
         OnChanged?.Invoke();
     }
+
+    
 }

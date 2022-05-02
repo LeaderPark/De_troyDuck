@@ -9,16 +9,15 @@ public class TextAsset : PlayableAsset
 {
 	public ExposedReference<GameObject> talker;
 	public string dialogueMessage;
-	public bool inputCheck;
 
 	public AnimationCurve delayCurve;
 	public float activeTime;
 
-	public ScriptPlayable<TextBehaivor> playable;
+	public ScriptPlayable<TestBehaivor> playable;
 
 	public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
 	{
-		playable = ScriptPlayable<TextBehaivor>.Create(graph);
+		playable = ScriptPlayable<TestBehaivor>.Create(graph);
 		var behaviour = playable.GetBehaviour();
 
 		if (Application.isPlaying)
@@ -37,7 +36,6 @@ public class TextAsset : PlayableAsset
 			//behaviour.talkObj.transform.parent = GameObject.Find("TestCanvas").transform;
 		}
 		//behaviour.talkObj.SetActive(false);
-		behaviour.inputCheck = inputCheck;
 		behaviour.delayCurve = delayCurve;
 		behaviour.talker = talker.Resolve(graph.GetResolver());
 		behaviour.txt = dialogueMessage;
@@ -49,7 +47,6 @@ public class TextAsset : PlayableAsset
 [CustomEditor(typeof(TextAsset))]
 public class TestAssetEditor : Editor
 {
-
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();

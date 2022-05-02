@@ -390,7 +390,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: TestAsset
+    m_DisplayName: 1
   - m_Version: 1
     m_Start: 1.0933333390702804
     m_ClipIn: 0
@@ -459,7 +459,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: TestAsset
+    m_DisplayName: Quest Test
   m_Markers:
     m_Objects: []
 --- !u!114 &740760316301696531
@@ -471,14 +471,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83abd2ed98230da4b8baec8254ae0de7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c24211481672314783310c909c6b6c6, type: 3}
   m_Name: TestAsset(Clone)
   m_EditorClassIdentifier: 
   talker:
     exposedName: 2430516bd887e0c45884f41bb2d11d34
     defaultValue: {fileID: 0}
-  dialogueMessage: "\uD558\uD558\uD558 \uC9C4\uC6B0 \uBCD1\uBCD1\uC2E0"
-  inputCheck: 0
+  dialogueMessage: "\uD018\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8\uC6A9 \uD14D\uC2A4\uD2B8"
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -616,7 +615,8 @@ MonoBehaviour:
   m_Name: Jump Marker
   m_EditorClassIdentifier: 
   m_Time: 1.05
-  test: {fileID: 3329454278460941691}
+  loopMarker: {fileID: 3329454278460941691}
+  quest: {fileID: 0}
 --- !u!114 &3329454278460941691
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 753c9143d17060b4986633757de62967, type: 3}
-  m_Name: Loop Marker
+  m_Name: 1
   m_EditorClassIdentifier: 
   m_Time: 0.7166666666666667
 --- !u!74 &3391901728187160438
@@ -896,7 +896,8 @@ MonoBehaviour:
   m_Name: Jump Marker
   m_EditorClassIdentifier: 
   m_Time: 1.4433333390702805
-  test: {fileID: 1248827843383389052}
+  loopMarker: {fileID: 1248827843383389052}
+  quest: {fileID: 0}
 --- !u!114 &5287603136044798621
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -910,7 +911,8 @@ MonoBehaviour:
   m_Name: Jump/JumpMarker
   m_EditorClassIdentifier: 
   m_Time: 0
-  test: {fileID: 0}
+  loopMarker: {fileID: 0}
+  quest: {fileID: 0}
 --- !u!114 &9126969960734856556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -920,14 +922,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83abd2ed98230da4b8baec8254ae0de7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c24211481672314783310c909c6b6c6, type: 3}
   m_Name: TestAsset
   m_EditorClassIdentifier: 
   talker:
     exposedName: 44aed1cdbc966104b98214331b805ea1
     defaultValue: {fileID: 0}
   dialogueMessage: "\uD788\uD788 \uC9C4\uC6B0 \uBCD1\uC2E0"
-  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:

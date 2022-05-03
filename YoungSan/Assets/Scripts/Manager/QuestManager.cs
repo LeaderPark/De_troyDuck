@@ -75,6 +75,10 @@ public class QuestManager : Manager
                     check = true;
                 }
             }
+            if(!check)
+            {
+                break;
+            }
         }
         return check;
     }

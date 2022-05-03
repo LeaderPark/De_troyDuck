@@ -50,6 +50,33 @@ public abstract class SkillEffect : MonoBehaviour
         entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[]{time});
     }
 
+    protected void TickDamage(string tickDamage, Entity sourceEntity, Entity targetEntity, float delay, float time)
+    {
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        TickDamage tick = poolManager.GetObject(tickDamage).GetComponent<TickDamage>();
+        tick.SetData(sourceEntity, targetEntity, delay, time);
+    }
+
+    protected void Grab(Entity sourceEntity, Entity targetEntity, float speed, float startTime, float time)
+    {
+        StartCoroutine(GrabRoutine(sourceEntity, targetEntity, speed, startTime, time));
+    }
+
+    private IEnumerator GrabRoutine(Entity sourceEntity, Entity targetEntity, float speed, float startTime, float time)
+    {
+        yield return new WaitForSeconds(startTime);
+
+        float timeStack = 0;
+        while (timeStack < time && Vector3.Distance(sourceEntity.transform.position, targetEntity.transform.position) > 1f)
+        {
+            timeStack += Time.deltaTime;
+            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{Time.deltaTime});
+            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{(sourceEntity.transform.position - targetEntity.transform.position).normalized, speed});
+            yield return null;
+        }
+        targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
+    }
+
     protected void ChangeColor(Entity entity, Color color, float time)
     {
         StartCoroutine(ChangeColorProcess(entity, color, time));

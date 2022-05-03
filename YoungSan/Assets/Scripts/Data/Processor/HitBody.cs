@@ -16,13 +16,14 @@ namespace Processor
 
         void DamageOnBody(int damage, Entity attackEntity)
         {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
             int oldHealth = entity.clone.GetStat(StatCategory.Health);
             
             PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
 
             DamageCount damageCount = poolManager.GetObject("DamageCount").GetComponent<DamageCount>();
-            damageCount.Play(entity.transform.position + Vector3.up * 0.5f, damage);
+            damageCount.Play(entity.transform.position + Vector3.up * 0.5f, damage, (entity == gameManager.Player.GetComponent<Entity>()) ? true : false);
 
             eventManager.GetEventTrigger(typeof(HitEventTrigger)).Invoke(new object[]{ entity, attackEntity, damage });
 

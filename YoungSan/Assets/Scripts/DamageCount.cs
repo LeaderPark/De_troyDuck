@@ -5,15 +5,17 @@ using UnityEngine;
 [ExecuteAlways()]
 public class DamageCount : MonoBehaviour
 {
+    bool isPlayer;
     string text;
     int fontSize;
     Rect rect = new Rect();
     bool loading;
 
 
-    public void Play(Vector3 position, int damage)
+    public void Play(Vector3 position, int damage, bool isPlayer)
     {
         if (loading) return;
+        this.isPlayer = isPlayer;
         Vector2 screenPoint = Camera.main.WorldToScreenPoint(position);
         text = damage.ToString();
         rect.width = text.Length * 25;
@@ -69,7 +71,14 @@ public class DamageCount : MonoBehaviour
             GUI.Label(rect, text, style);
             rect.position += Vector2.one * 4;
             GUI.Label(rect, text, style);
-            style.normal.textColor = Color.white;
+            if (isPlayer)
+            {
+                style.normal.textColor = Color.red;
+            }
+            else
+            {
+                style.normal.textColor = Color.white;
+            }
             rect.position -= Vector2.one * 2;
             GUI.Label(rect, text, style);
         }
@@ -87,7 +96,7 @@ public class DamageCountEditor : UnityEditor.Editor
         if (GUILayout.Button("Play"))
         {
             DamageCount damageCount = (DamageCount)target;
-            damageCount.Play(damageCount.transform.position, 90);
+            damageCount.Play(damageCount.transform.position, 90, false);
         }
     }
 }

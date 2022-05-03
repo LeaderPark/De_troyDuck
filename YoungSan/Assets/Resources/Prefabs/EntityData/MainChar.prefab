@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 2075073055555241508}
+  skillSet: {fileID: 0}
   dontmove: 0
   reservate: 0
 --- !u!114 &4580442240323297771
@@ -957,7 +958,7 @@ MonoBehaviour:
   skillDamageForms:
   - ({Attack} + 2) * 2 + 10
   coolTime: 0
-  waitTime: 0
+  waitTime: 2
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 276663892}
   attackSounds: []
@@ -1688,7 +1689,7 @@ MonoBehaviour:
   skillDamageForms:
   - '{Speed} * 2'
   coolTime: 0
-  waitTime: 0
+  waitTime: 2
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 6512122961216048893}
   attackSounds: []

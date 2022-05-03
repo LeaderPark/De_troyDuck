@@ -6,9 +6,6 @@ public class Projectile : MonoBehaviour
 {
     Vector3 startPosition;
     Vector3 dirVec;
-    System.Action<Entity> action;
-    int idx;
-    (bool, Coroutine) coroutine;
 
 
     public float speed;
@@ -17,15 +14,11 @@ public class Projectile : MonoBehaviour
 
 
 
-    public void SetData(Vector3 startPosition, Vector3 dirVec, SkillData skillData, System.Action<Entity> action, int idx, (bool, Coroutine) coroutine)
+    public void SetData(Vector3 startPosition, Vector3 dirVec, SkillData skillData)
     {
         timeStack = 0;
         this.startPosition = startPosition;
         this.dirVec = dirVec;
-        this.action = action;
-
-        this.idx = idx;
-        this.coroutine = coroutine;
 
         GetComponent<HitBox>().skillData = skillData;
         if (dirVec.z > 0)
@@ -59,12 +52,6 @@ public class Projectile : MonoBehaviour
             {
                 if (entity.isDead) return;
                 if (!entity.hitable) return;
-                EntityEvent entityEvent = skillData.skillSet.entity.GetComponent<EntityEvent>();
-                if (entityEvent.coroutines.Count <= idx) return;
-                if (entityEvent.coroutines[idx] == coroutine)
-                {
-                    action?.Invoke(entity);
-                }
                 gameObject.SetActive(false);
             }
         }

@@ -127,6 +127,14 @@ public class SkillSet : MonoBehaviour
         {
             return;
         }
+        if ((skillDatas[category][index].waitTime > 0 && skillWaitTimes[category][index] > 0) || skillDatas[category][index].waitTime == 0)
+        {
+            skillWaitTimes[category][index] = 0;
+            index = (index + 1) % skillDatas[category].Length;
+            skillStackAmount[category] = (skillStackAmount[category] + 1) % skillDatas[category].Length;
+            Debug.Log("d" + skillStackAmount[category]);
+        }
+
         int useStamina = skillDatas[category][index].CalculateUseStamina();
         if (useStamina > entity.clone.GetStat(StatCategory.Stamina)) 
         {
@@ -141,6 +149,7 @@ public class SkillSet : MonoBehaviour
             gameManager.AfterImage(entity, skillDatas[category][index].skill.length);
         }
         SetCoolDown(category, index, skillDatas[category][index].coolTime);
+        SetWaitTime(category, index, skillDatas[category][index].waitTime);
         entity.clone.SubStat(StatCategory.Stamina, useStamina);
         action();
         SkillData data = skillDatas[category][index];
@@ -187,14 +196,14 @@ public class SkillSet : MonoBehaviour
         uiManager.skillinterface.CoolDown(category, index);
     }
 
-    public void SetWaitTime(EventCategory category, float time)
+    public void SetWaitTime(EventCategory category, int index, float time)
     {
-        skillWaitTimes[category][skillStackAmount[category]] = time;
+        skillWaitTimes[category][index] = time;
     }
 
-    public void SetChargeAmount(EventCategory category, float value)
+    public void SetChargeAmount(EventCategory category, int value)
     {
-        skillWaitTimes[category][skillStackAmount[category]] = value;
+        skillChargeAmount[category] = value;
     }
 
     private void Update()
@@ -241,6 +250,7 @@ public class SkillSet : MonoBehaviour
                     skillWaitTimes[key][i] -= Time.deltaTime;
                     if (skillWaitTimes[key][i] <= 0)
                     {
+                        skillStackAmount[key] = 0;
                         skillWaitTimes[key][i] = 0;
                     }
                 }

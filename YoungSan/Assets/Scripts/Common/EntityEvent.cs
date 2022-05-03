@@ -108,7 +108,7 @@ public class EntityEvent : MonoBehaviour
             attackProcess[category][skillSet.skillStackAmount[category]]?.Invoke(inputX, inputY, position, skillSet.skillDatas[category][skillSet.skillStackAmount[category]]);
             dontmove = true;
             reservate = true;
-            skillSet.skillStackAmount[category] = (skillSet.skillStackAmount[category] + 1) % maxAttackStack[category];
+            Debug.Log("." + skillSet.skillStackAmount[category]);
         })});
     }
 
@@ -128,44 +128,21 @@ public class EntityEvent : MonoBehaviour
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
     }
 
-    protected void Projectile(float inputX, float inputY, string objectName, SkillData skillData, float startTime, System.Action<Entity> action)
+    protected void Projectile(float inputX, float inputY, string objectName, SkillData skillData, float startTime)
     {
         int idx = coroutines.Count;
-        Coroutine routine = this.StartCoroutine(ProjectileRoutine(idx, inputX, inputY, objectName, skillData, startTime, action));
+        Coroutine routine = this.StartCoroutine(ProjectileRoutine(idx, inputX, inputY, objectName, skillData, startTime));
         coroutines.Add((false, routine));
     }
 
-    private IEnumerator ProjectileRoutine(int idx, float inputX, float inputY, string objectName, SkillData skillData, float startTime, System.Action<Entity> action)
+    private IEnumerator ProjectileRoutine(int idx, float inputX, float inputY, string objectName, SkillData skillData, float startTime)
     {
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
 
         Projectile projectile = poolManager.GetObject(objectName).GetComponent<Projectile>();
-        projectile.SetData(entity.transform.position, new Vector3(inputX, 0, inputY).normalized, skillData, action, idx, coroutines[idx]);
-    }
-    
-    protected void Grab(Entity sourceEntity, Entity targetEntity, float speed, float startTime, float time)
-    {
-        int idx = coroutines.Count;
-        Coroutine routine = this.StartCoroutine(GrabRoutine(idx, sourceEntity, targetEntity, speed, startTime, time));
-        coroutines.Add((false, routine));
-    }
-
-    private IEnumerator GrabRoutine(int idx, Entity sourceEntity, Entity targetEntity, float speed, float startTime, float time)
-    {
-        yield return new WaitForSeconds(startTime);
-
-        float timeStack = 0;
-        while (timeStack < time && Vector3.Distance(sourceEntity.transform.position, targetEntity.transform.position) > 1f)
-        {
-            timeStack += Time.deltaTime;
-            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{Time.deltaTime});
-            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{(sourceEntity.transform.position - targetEntity.transform.position).normalized, speed});
-            yield return null;
-        }
-        coroutines[idx] = (true, coroutines[idx].Item2);
-        targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
+        projectile.SetData(entity.transform.position, new Vector3(inputX, 0, inputY).normalized, skillData);
     }
 
     private IEnumerator AttackEndCheck(EventCategory category)
@@ -181,13 +158,11 @@ public class EntityEvent : MonoBehaviour
                 else if (!transition && time >= 1f)
                 {
                     if (reservate) return;
-                    skillSet.skillStackAmount[category] = 0;
                     dontmove = false;
                 }
                 else if (transition)
                 {
                     reservate = false;
-                    skillSet.skillStackAmount[category] = 0;
                     dontmove = false;
                 }
             });

@@ -160,6 +160,22 @@ public class EntityEvent : MonoBehaviour
         installation.SetData(entity);
     }
 
+    protected void Heal(float startTime, float time, float rate)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(HealRoutine(idx, startTime, time, rate));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator HealRoutine(int idx, float startTime, float time, float rate)
+    {
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+        // 나중에 만들자
+
+        
+    }
+
     protected void Defend(float startTime, float time, float rate)
     {
         int idx = coroutines.Count;

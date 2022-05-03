@@ -47,6 +47,7 @@ public class SelectButton : MonoBehaviour
 	public void ButtonsSetting(int buttonIdx,string text,Action onclickFunc)
 	{
 		Text btnText = buttons[buttonIdx].GetComponentInChildren<Text>();
+		btnText.text = text;
 		buttons[buttonIdx].onClick.AddListener(() => onclickFunc()); ;
 		buttons[buttonIdx].onClick.AddListener(()=>gameObject.SetActive(false)); ;
 

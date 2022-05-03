@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c258b3114e026da42b018b8e74680ec8, type: 3}
   m_Name: Quest2
   m_EditorClassIdentifier: 
+  questId: 2
   title: "\uC815\uC758\uC7AC\uB97C \uC7A1\uC544\uB4E4\uC5EC\uB77C!"
   context: "\uC778\uBBFC\uB2F9 \uD589\uB3D9\uB300\uC7A5 \uC815\uC758\uC7AC\uB97C
     \uD3EC\uD68D\uD55C\uB2E4. ( 0 / 1 )"
+  clearValue:
+    values:
+    - type: 0
+      currentIntValue: 0
+      intValue: 30
+      boolValue: 0
   prevQuest: {fileID: 11400000, guid: 7d352919ae4ab1f4397bec6c7cf9ee91, type: 2}
   nextQuest: {fileID: 11400000, guid: 86d67eeda11df544b8a3e88b143c7c22, type: 2}
+  clear: 0

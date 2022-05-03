@@ -13,7 +13,6 @@ public class BindSlaveEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
-        attackIndex[EventCategory.DefaultAttack] = new int[] { 0 };
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {

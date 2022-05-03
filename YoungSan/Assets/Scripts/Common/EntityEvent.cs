@@ -36,7 +36,6 @@ public class EntityEvent : MonoBehaviour
     {
         dontmove = false;
         maxAttackStack = new Dictionary<EventCategory, int>();
-        attackIndex = new Dictionary<EventCategory, int[]>();
         attackProcess = new Dictionary<EventCategory, AttackProcess[]>();
         entity = GetComponent<Entity>();
         skillSet = entity.GetComponentInChildren<SkillSet>();
@@ -76,7 +75,6 @@ public class EntityEvent : MonoBehaviour
     public delegate void AttackProcess(float inputX, float inputY, Vector3 position, SkillData skillData);
 
     protected Dictionary<EventCategory, int> maxAttackStack;
-    protected Dictionary<EventCategory, int[]> attackIndex;
     protected Dictionary<EventCategory, AttackProcess[]> attackProcess;
     protected void CallDefaultAttack(float inputX, float inputY, bool direction, Vector3 position)
     {
@@ -100,7 +98,7 @@ public class EntityEvent : MonoBehaviour
     {
         if (!skillSet.skillStackAmount.ContainsKey(category)) return;
 
-        entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{category, attackIndex[category][skillSet.skillStackAmount[category]], new Vector2(inputX, inputY), direction, (System.Action)(() =>
+        entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{category, skillSet.skillStackAmount[category], new Vector2(inputX, inputY), direction, (System.Action)(() =>
         {
             entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{skillSet.skillDatas[category][skillSet.skillStackAmount[category]].skill.name, true});

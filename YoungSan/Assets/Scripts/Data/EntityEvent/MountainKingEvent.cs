@@ -13,7 +13,6 @@ public class MountainKingEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
-        attackIndex[EventCategory.DefaultAttack] = new int[] { 0 };
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         null
         };
@@ -22,7 +21,6 @@ public class MountainKingEvent : EntityEvent
     private void Skill1()
     {
         maxAttackStack[EventCategory.Skill1] = 1;
-        attackIndex[EventCategory.Skill1] = new int[] { 0 };
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {

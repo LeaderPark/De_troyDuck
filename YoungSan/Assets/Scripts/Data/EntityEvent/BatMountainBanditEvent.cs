@@ -14,7 +14,6 @@ public class BatMountainBanditEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
-        attackIndex[EventCategory.DefaultAttack] = new int[]{ 0 };
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
         null
         };

@@ -15,7 +15,6 @@ public class MainCharEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 3;
-        attackIndex[EventCategory.DefaultAttack] = new int[]{ 0, 1, 2 };
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
         (inputX, inputY, position, skillData) =>
         {

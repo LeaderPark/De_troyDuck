@@ -28,7 +28,7 @@ public class NPCTalk : MonoBehaviour
 		{
 			timelineManager.StartCutScene(npcData.timelineList[0]);
 		}
-		else if (questManager.proceedingQuests.ContainsKey(npcData.quest.questId))
+		else if (questManager.proceedingQuests.ContainsKey(npcData.quest.questId)&&!questManager.CheckClearQuest(npcData.quest))
 		{
 			timelineManager.StartCutScene(npcData.timelineList[1]);
 		}

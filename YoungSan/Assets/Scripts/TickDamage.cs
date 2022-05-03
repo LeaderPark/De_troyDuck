@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TickDamage : MonoBehaviour
 {
+    public static HashSet<Entity> tickDamages = new HashSet<Entity>();
     Entity sourceEntity;
     Entity targetEntity;
     float delay;
@@ -16,17 +17,27 @@ public class TickDamage : MonoBehaviour
 
     public void SetData(Entity sourceEntity, Entity targetEntity, float delay, float time)
     {
+        if (tickDamages.Contains(targetEntity)) 
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         this.sourceEntity = sourceEntity;
         this.targetEntity = targetEntity;
         this.delay = delay;
         this.count = (int)(time / delay);
 
         timeStack = 0;
+        tickDamages.Add(targetEntity);
     }
 
     void Update()
     {
-        if (count == 0 || targetEntity.isDead) gameObject.SetActive(false);
+        if (count == 0 || targetEntity.isDead)
+        {
+            tickDamages.Remove(targetEntity);
+            gameObject.SetActive(false);
+        }
         timeStack += Time.deltaTime;
         transform.position = targetEntity.transform.position;
 

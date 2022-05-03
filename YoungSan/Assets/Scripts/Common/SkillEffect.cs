@@ -77,27 +77,29 @@ public abstract class SkillEffect : MonoBehaviour
         targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
     }
 
-    protected void ChangeColor(Entity entity, Color color, float time)
+    protected void ChangeColor(Entity entity, Color color, float startTime, float time)
     {
-        StartCoroutine(ChangeColorProcess(entity, color, time));
+        StartCoroutine(ChangeColorProcess(entity, color, startTime, time));
     }
 
-    private IEnumerator ChangeColorProcess(Entity entity, Color color, float time)
+    private IEnumerator ChangeColorProcess(Entity entity, Color color, float startTime, float time)
     {
+        yield return new WaitForSeconds(startTime);
         entity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetColor", new object[] { color });
         yield return new WaitForSeconds(time);
         entity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetColor", new object[] { Color.black });
     }
 
-    protected void KnockBack(Entity entity, Vector2 direction, float time, float power)
+    protected void KnockBack(Entity entity, Vector2 direction, float startTime, float time, float power)
     {
-        StartCoroutine(KnockBackProcess(entity, direction, time, power));
+        StartCoroutine(KnockBackProcess(entity, direction, startTime, time, power));
     }
 
-    private IEnumerator KnockBackProcess(Entity entity, Vector2 direction, float time, float power)
+    private IEnumerator KnockBackProcess(Entity entity, Vector2 direction, float startTime, float time, float power)
     {
         if (entity != null)
         {
+            yield return new WaitForSeconds(startTime);
             Vector3 dir = new Vector3(direction.x, 0, direction.y).normalized;
             float waitTime = 0;
             while (true)

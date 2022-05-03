@@ -48,7 +48,7 @@ public class QuestManager : Manager
         }
         else
         {
-            Debug.Log("전 퀘스트 " + quest.prevQuest + "를 깨고 오세요");
+            Debug.Log("전 퀘스트 " + quest.prevQuest + "를 클리어해야 합니다.");
             check = false;
         }
         return check;

@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         //if (Input.GetMouseButtonDown(0))
         if(Input.GetKeyDown(KeyCode.Z))
         {
-            entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { inputX, inputY, direction });
+            entityEvent.CallEvent(EventCategory.DefaultAttack, inputX, inputY, direction, transform.position);
         }
         if (inputManager.CheckMouseState(MouseButton.Left, ButtonState.Down))
         {
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 				Vector3 mousePos = hit.point - transform.position;
 				bool attackDirection = (mousePos.x > 0f);
 				direction = attackDirection;
-				entityEvent.CallEvent(EventCategory.DefaultAttack, new object[] { mousePos.x, mousePos.z, attackDirection });
+				entityEvent.CallEvent(EventCategory.DefaultAttack, mousePos.x, mousePos.z, attackDirection, hit.point);
                 skipMove = true;
 			}
 		}
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
                 Vector3 mousePos = hit.point - transform.position;
                 bool attackDirection = (mousePos.x > 0f);
                 direction = attackDirection;
-                entityEvent.CallEvent(EventCategory.Skill1, new object[] { mousePos.x, mousePos.z, attackDirection });
+                entityEvent.CallEvent(EventCategory.Skill1, mousePos.x, mousePos.z, attackDirection, hit.point);
                 skipMove = true;
             }
         }
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
                 Vector3 mousePos = hit.point - transform.position;
                 bool attackDirection = (mousePos.x > 0f);
                 direction = attackDirection;
-                entityEvent.CallEvent(EventCategory.Skill2, new object[] { mousePos.x, mousePos.z, attackDirection });
+                entityEvent.CallEvent(EventCategory.Skill2, mousePos.x, mousePos.z, attackDirection, hit.point);
                 skipMove = true;
             }
         }
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
                 Vector3 mousePos = hit.point - transform.position;
                 bool attackDirection = (mousePos.x > 0f);
                 direction = attackDirection;
-                entityEvent.CallEvent(EventCategory.Skill3, new object[] { mousePos.x, mousePos.z, attackDirection });
+                entityEvent.CallEvent(EventCategory.Skill3, mousePos.x, mousePos.z, attackDirection, hit.point);
                 skipMove = true;
             }
         }
@@ -240,7 +240,7 @@ public class Player : MonoBehaviour
             direction = false;
         }
         
-        entityEvent.CallEvent(EventCategory.Move, new object[]{inputX, inputY, direction});
+        entityEvent.CallEvent(EventCategory.Move, inputX, inputY, direction, transform.position);
     }
 
     

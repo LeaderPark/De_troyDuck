@@ -50,7 +50,7 @@ namespace StateMachine
                 if (moveDir == 1) dirVec *= -1;
                 if (moveDir > 1) dirVec *= 0;
 
-                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{dirVec.x, dirVec.z, stateMachine.Enemy.direction});
+                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, dirVec.x, dirVec.z, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
             }
             return this;
         }

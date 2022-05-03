@@ -14,7 +14,7 @@ public class MountainKingEvent : EntityEvent
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
         attackIndex[EventCategory.DefaultAttack] = new int[] { 0 };
-        attackProcess[EventCategory.DefaultAttack] = new System.Action<float, float>[]{
+        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         null
         };
     }
@@ -23,8 +23,8 @@ public class MountainKingEvent : EntityEvent
     {
         maxAttackStack[EventCategory.Skill1] = 1;
         attackIndex[EventCategory.Skill1] = new int[] { 0 };
-        attackProcess[EventCategory.Skill1] = new System.Action<float, float>[]{
-        (inputX, inputY) =>
+        attackProcess[EventCategory.Skill1] = new AttackProcess[]{
+        (inputX, inputY, position, skillData) =>
         {
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 16
                 , 1f, 0.15f);

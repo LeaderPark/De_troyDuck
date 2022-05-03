@@ -14,8 +14,8 @@ public class BindSlaveEvent : EntityEvent
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
         attackIndex[EventCategory.DefaultAttack] = new int[] { 0 };
-        attackProcess[EventCategory.DefaultAttack] = new System.Action<float, float>[]{
-        (inputX, inputY) =>
+        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
+        (inputX, inputY, position, skillData) =>
         {
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 3f, 0, 0.7f);
         }

@@ -33,7 +33,7 @@ namespace StateMachine
                 {
                     stateMachine.Enemy.direction = false;
                 }
-                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{moveDirX, moveDirY, stateMachine.Enemy.direction});
+                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, moveDirX, moveDirY, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
             }
             else
             {

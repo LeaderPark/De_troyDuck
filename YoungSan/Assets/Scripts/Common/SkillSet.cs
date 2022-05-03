@@ -81,7 +81,10 @@ public class SkillSet : MonoBehaviour
         active = false;
         if (skillData != null)
         {
-            skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox.transform.parent.gameObject.SetActive(false);
+            if (skillData.hitBoxDatas.Length > skillData.targetIndex)
+            {
+                skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
+            }
         }
         useSkill = false;
         running = false;
@@ -90,6 +93,17 @@ public class SkillSet : MonoBehaviour
         EntityEvent entityEvent = entity.GetComponent<EntityEvent>();
         entityEvent.dontmove = false;
         entityEvent.reservate = false;
+        if (entityEvent.coroutines.Count > 0)
+        {
+            for (int i = 0; i < entityEvent.coroutines.Count; i++)
+            {
+                if (!entityEvent.coroutines[i].Item1)
+                {
+                    entityEvent.StopCoroutine(entityEvent.coroutines[i].Item2);
+                }
+            }
+            entityEvent.coroutines.Clear();
+        }
         
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         gameManager.StopAfterImage(entity);
@@ -190,15 +204,21 @@ public class SkillSet : MonoBehaviour
         {
             if (skillData != null)
             {
-                skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox.transform.parent.gameObject.SetActive(true);
-                skillData.ActiveHitBox(isRight);
+                if (skillData.hitBoxDatas.Length > skillData.targetIndex)
+                {
+                    skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(true);
+                    skillData.ActiveHitBox(isRight);
+                }
             }
         }
         else
         {
             if (skillData != null)
             {
-                skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox.transform.parent.gameObject.SetActive(false);
+                if (skillData.hitBoxDatas.Length > skillData.targetIndex)
+                {
+                    skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
+                }
             }
         }
         foreach (var key in skillDatas.Keys)

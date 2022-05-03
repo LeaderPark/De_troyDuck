@@ -16,17 +16,33 @@ public class MainCharEvent : EntityEvent
     {
         maxAttackStack[EventCategory.DefaultAttack] = 3;
         attackIndex[EventCategory.DefaultAttack] = new int[]{ 0, 1, 2 };
-        attackProcess[EventCategory.DefaultAttack] = new System.Action<float, float>[]{ 
-        (inputX, inputY) =>
+        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
+        (inputX, inputY, position, skillData) =>
         {
+            Vector2 cur = new Vector2(inputX, inputY);
+            Projectile(cur.x, cur.y, "TestArrow", skillData, 0.06f, 
+            (targetEntity) =>
+            {
+                Grab(targetEntity, entity, 40, 0f, 1f);
+            });
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0, 0.08f);
         },
-        (inputX, inputY) =>
+        (inputX, inputY, position, skillData) =>
         {
+            Projectile(inputX, inputY, "TestArrow", skillData, 0.06f, 
+            (targetEntity) =>
+            {
+                Grab(targetEntity, entity, -40, 0f, 1f);
+            });
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0, 0.08f);
         },
-        (inputX, inputY) =>
+        (inputX, inputY, position, skillData) =>
         {
+            Projectile(inputX, inputY, "TestArrow", skillData, 0.06f, 
+            (targetEntity) =>
+            {
+                Grab(targetEntity, entity, 40, 0f, 1f);
+            });
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0, 0.08f);
         }
         };

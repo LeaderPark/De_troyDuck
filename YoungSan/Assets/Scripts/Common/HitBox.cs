@@ -23,9 +23,10 @@ public class HitBox : MonoBehaviour
         if (other.gameObject != null)
         {
             Entity entity = other.GetComponent<Entity>();
-            if (skillData.skillSet.entity.gameObject.tag != entity?.gameObject.tag)
+            if (entity == null) return;
+            if (skillData == null) return;
+            if (skillData.skillSet.entity.gameObject.tag != entity.gameObject.tag)
             {
-                if (entity == null) return;
                 if (entity.isDead) return;
                 if (!entity.hitable) return;
                 

@@ -37,7 +37,7 @@ namespace StateMachine
             if (start)
             {
                 timeStack += Time.deltaTime;
-                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{0, 0, stateMachine.Enemy.direction});
+                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, 0, 0, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
                 if (idleTime <= timeStack)
                 {
                     start = false;

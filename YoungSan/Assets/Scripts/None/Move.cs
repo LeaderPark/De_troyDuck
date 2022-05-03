@@ -32,7 +32,7 @@ namespace StateMachine
                 {
                     stateMachine.Enemy.direction = false;
                 }
-                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{dirVec.x, dirVec.y, stateMachine.Enemy.direction});
+                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, dirVec.x, dirVec.y, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
                 if (Vector2.Distance(stateMachine.Enemy.spawnPoint, new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) < (stateMachine.stateMachineData.activityRadius - stateMachine.stateMachineData.searchDelay) / 4f
                 || stateMachine.stateMachineData.homeTime <= timeStack)
                 {
@@ -77,7 +77,7 @@ namespace StateMachine
                     {
                         stateMachine.Enemy.direction = false;
                     }
-                    stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{moveDirX, moveDirY, stateMachine.Enemy.direction});
+                    stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, moveDirX, moveDirY, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
                 }
                 else
                 {

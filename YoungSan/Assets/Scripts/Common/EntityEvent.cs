@@ -8,10 +8,28 @@ public class EntityEvent : MonoBehaviour
     public Entity entity;
     [HideInInspector]
     public SkillSet skillSet;
+    public List<(bool, Coroutine)> coroutines;
 
-    public void CallEvent(EventCategory eventCategory, object[] parameters)
+    public void CallEvent(EventCategory eventCategory, float inputX, float inputY, bool direction, Vector3 position)
     {
-        this.GetType().GetMethod(string.Concat("Call", eventCategory.ToString()), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.Invoke(this, parameters);
+        switch (eventCategory)
+        {
+            case EventCategory.Move:
+            CallMove(inputX, inputY, direction, position);
+            break;
+            case EventCategory.DefaultAttack:
+            CallDefaultAttack(inputX, inputY, direction, position);
+            break;
+            case EventCategory.Skill1:
+            CallSkill1(inputX, inputY, direction, position);
+            break;
+            case EventCategory.Skill2:
+            CallSkill2(inputX, inputY, direction, position);
+            break;
+            case EventCategory.Skill3:
+            CallSkill3(inputX, inputY, direction, position);
+            break;
+        }
     }                                                                                                                                                                   
 
     protected virtual void Awake()
@@ -19,9 +37,10 @@ public class EntityEvent : MonoBehaviour
         dontmove = false;
         maxAttackStack = new Dictionary<EventCategory, int>();
         attackIndex = new Dictionary<EventCategory, int[]>();
-        attackProcess = new Dictionary<EventCategory, System.Action<float, float>[]>();
+        attackProcess = new Dictionary<EventCategory, AttackProcess[]>();
         entity = GetComponent<Entity>();
         skillSet = entity.GetComponentInChildren<SkillSet>();
+        coroutines = new List<(bool, Coroutine)>();
     }
 
     private void Start()
@@ -34,7 +53,7 @@ public class EntityEvent : MonoBehaviour
     
     public bool dontmove;
     public bool reservate;
-    protected void CallMove(float inputX, float inputY, bool direction)
+    protected void CallMove(float inputX, float inputY, bool direction, Vector3 position)
     {
         if (!dontmove)
         {
@@ -54,28 +73,30 @@ public class EntityEvent : MonoBehaviour
         
     }
 
+    public delegate void AttackProcess(float inputX, float inputY, Vector3 position, SkillData skillData);
+
     protected Dictionary<EventCategory, int> maxAttackStack;
     protected Dictionary<EventCategory, int[]> attackIndex;
-    protected Dictionary<EventCategory, System.Action<float, float>[]> attackProcess;
-    protected void CallDefaultAttack(float inputX, float inputY, bool direction)
+    protected Dictionary<EventCategory, AttackProcess[]> attackProcess;
+    protected void CallDefaultAttack(float inputX, float inputY, bool direction, Vector3 position)
     {
-        AttackSkillEvent(inputX, inputY, direction, EventCategory.DefaultAttack);
+        AttackSkillEvent(EventCategory.DefaultAttack, inputX, inputY, direction, position);
     }
-    protected void CallSkill1(float inputX, float inputY, bool direction)
+    protected void CallSkill1(float inputX, float inputY, bool direction, Vector3 position)
     {
-        AttackSkillEvent(inputX, inputY, direction, EventCategory.Skill1);
+        AttackSkillEvent(EventCategory.Skill1, inputX, inputY, direction, position);
     }
-    protected void CallSkill2(float inputX, float inputY, bool direction)
+    protected void CallSkill2(float inputX, float inputY, bool direction, Vector3 position)
     {
-        AttackSkillEvent(inputX, inputY, direction, EventCategory.Skill2);
+        AttackSkillEvent(EventCategory.Skill2, inputX, inputY, direction, position);
     }
-    protected void CallSkill3(float inputX, float inputY, bool direction)
+    protected void CallSkill3(float inputX, float inputY, bool direction, Vector3 position)
     {
-        AttackSkillEvent(inputX, inputY, direction, EventCategory.Skill3);
+        AttackSkillEvent(EventCategory.Skill3, inputX, inputY, direction, position);
     }
 
 
-    private void AttackSkillEvent(float inputX, float inputY, bool direction, EventCategory category)
+    private void AttackSkillEvent(EventCategory category, float inputX, float inputY, bool direction, Vector3 position)
     {
         if (!skillSet.skillStackAmount.ContainsKey(category)) return;
 
@@ -84,7 +105,7 @@ public class EntityEvent : MonoBehaviour
             entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{skillSet.skillDatas[category][skillSet.skillStackAmount[category]].skill.name, true});
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
-            attackProcess[category][skillSet.skillStackAmount[category]]?.Invoke(inputX, inputY);
+            attackProcess[category][skillSet.skillStackAmount[category]]?.Invoke(inputX, inputY, position, skillSet.skillDatas[category][skillSet.skillStackAmount[category]]);
             dontmove = true;
             reservate = true;
             skillSet.skillStackAmount[category] = (skillSet.skillStackAmount[category] + 1) % maxAttackStack[category];
@@ -93,15 +114,58 @@ public class EntityEvent : MonoBehaviour
 
     protected void Dash(float inputX, float inputY, float speed, float startTime, float time)
     {
-        StartCoroutine(AttackVelocityTime(inputX, inputY, speed, startTime, time));
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(DashRoutine(idx, inputX, inputY, speed, startTime, time));
+        coroutines.Add((false, routine));
     }
 
-    private IEnumerator AttackVelocityTime(float inputX, float inputY, float speed, float startTime, float time)
+    private IEnumerator DashRoutine(int idx, float inputX, float inputY, float speed, float startTime, float time)
     {
         yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, speed});
         yield return new WaitForSeconds(time);
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
+    }
+
+    protected void Projectile(float inputX, float inputY, string objectName, SkillData skillData, float startTime, System.Action<Entity> action)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(ProjectileRoutine(idx, inputX, inputY, objectName, skillData, startTime, action));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator ProjectileRoutine(int idx, float inputX, float inputY, string objectName, SkillData skillData, float startTime, System.Action<Entity> action)
+    {
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+
+        Projectile projectile = poolManager.GetObject(objectName).GetComponent<Projectile>();
+        projectile.SetData(entity.transform.position, new Vector3(inputX, 0, inputY).normalized, skillData, action, idx, coroutines[idx]);
+    }
+    
+    protected void Grab(Entity sourceEntity, Entity targetEntity, float speed, float startTime, float time)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(GrabRoutine(idx, sourceEntity, targetEntity, speed, startTime, time));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator GrabRoutine(int idx, Entity sourceEntity, Entity targetEntity, float speed, float startTime, float time)
+    {
+        yield return new WaitForSeconds(startTime);
+
+        float timeStack = 0;
+        while (timeStack < time && Vector3.Distance(sourceEntity.transform.position, targetEntity.transform.position) > 1f)
+        {
+            timeStack += Time.deltaTime;
+            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{Time.deltaTime});
+            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{(sourceEntity.transform.position - targetEntity.transform.position).normalized, speed});
+            yield return null;
+        }
+        coroutines[idx] = (true, coroutines[idx].Item2);
+        targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
     }
 
     private IEnumerator AttackEndCheck(EventCategory category)

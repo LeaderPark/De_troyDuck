@@ -39,7 +39,7 @@ namespace StateMachine
                 
                 if (dirVec.magnitude < stateMachine.stateMachineData.destinationRadius) 
                 {
-                    stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{0, 0, stateMachine.Enemy.direction});
+                    stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, 0, 0, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
                     return stateMachine.GetStateTable(typeof(SkillCheck));
                 }
 
@@ -65,7 +65,7 @@ namespace StateMachine
                 {
                     stateMachine.Enemy.direction = false;
                 }
-                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, new object[]{dirVec.x, dirVec.y, stateMachine.Enemy.direction});
+                stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, dirVec.x, dirVec.y, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
                 
             }
             return stateMachine.GetStateTable(typeof(SkillCheck));

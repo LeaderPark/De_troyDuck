@@ -65,15 +65,12 @@ public class DamageCount : MonoBehaviour
             GUIStyle style = GUIStyle.none;
             style.fontSize = fontSize;
             style.normal.textColor = Color.black;
-            rect.x -= 2;
-            rect.y -= 2;
+            rect.position -= Vector2.one * 2;
             GUI.Label(rect, text, style);
-            rect.x += 4;
-            rect.y += 4;
+            rect.position += Vector2.one * 4;
             GUI.Label(rect, text, style);
             style.normal.textColor = Color.white;
-            rect.x -= 2;
-            rect.y -= 2;
+            rect.position -= Vector2.one * 2;
             GUI.Label(rect, text, style);
         }
     }

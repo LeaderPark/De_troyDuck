@@ -132,7 +132,6 @@ public class SkillSet : MonoBehaviour
             skillWaitTimes[category][index] = 0;
             index = (index + 1) % skillDatas[category].Length;
             skillStackAmount[category] = (skillStackAmount[category] + 1) % skillDatas[category].Length;
-            Debug.Log("d" + skillStackAmount[category]);
         }
 
         int useStamina = skillDatas[category][index].CalculateUseStamina();

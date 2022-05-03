@@ -106,7 +106,6 @@ public class EntityEvent : MonoBehaviour
             attackProcess[category][skillSet.skillStackAmount[category]]?.Invoke(inputX, inputY, position, skillSet.skillDatas[category][skillSet.skillStackAmount[category]]);
             dontmove = true;
             reservate = true;
-            Debug.Log("." + skillSet.skillStackAmount[category]);
         })});
     }
 
@@ -141,6 +140,39 @@ public class EntityEvent : MonoBehaviour
 
         Projectile projectile = poolManager.GetObject(objectName).GetComponent<Projectile>();
         projectile.SetData(entity.transform.position, new Vector3(inputX, 0, inputY).normalized, skillData);
+    }
+
+    protected void Installation(Vector3 position, string objectName, float startTime)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(InstallationRoutine(idx, position, objectName, startTime));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator InstallationRoutine(int idx, Vector3 position, string objectName, float startTime)
+    {
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+
+        Installation installation = poolManager.GetObject(objectName).GetComponent<Installation>();
+        installation.transform.position = position;
+        installation.SetData(entity);
+    }
+
+    protected void Defend(float startTime, float time, float rate)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(DefendRoutine(idx, startTime, time, rate));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator DefendRoutine(int idx, float startTime, float time, float rate)
+    {
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+        
+        entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("Defend", new object[]{time, rate});
     }
 
     private IEnumerator AttackEndCheck(EventCategory category)

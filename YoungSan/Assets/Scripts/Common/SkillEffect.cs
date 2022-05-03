@@ -50,10 +50,10 @@ public abstract class SkillEffect : MonoBehaviour
         entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[]{time});
     }
 
-    protected void TickDamage(string tickDamage, Entity sourceEntity, Entity targetEntity, float delay, float time)
+    protected void TickDamage(string objectName, Entity sourceEntity, Entity targetEntity, float delay, float time)
     {
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-        TickDamage tick = poolManager.GetObject(tickDamage).GetComponent<TickDamage>();
+        TickDamage tick = poolManager.GetObject(objectName).GetComponent<TickDamage>();
         tick.SetData(sourceEntity, targetEntity, delay, time);
     }
 

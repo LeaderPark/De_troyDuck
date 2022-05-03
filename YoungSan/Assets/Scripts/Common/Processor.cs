@@ -21,7 +21,7 @@ namespace Processor
             commands.Add((command, parameters));
         }
 
-        public void Process()
+        public virtual void Process()
         {
             for (int i = 0; i < commands.Count; i++)
             {

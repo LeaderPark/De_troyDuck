@@ -26,15 +26,23 @@ public class QuestManager : Manager
     public bool CheckAvailableQuest(Quest quest)
     {
         bool check = false;
-        if(quest.prevQuest.clear && quest.prevQuest == null)
+        if(quest.prevQuest == null || quest.prevQuest.clear)
         {
-            if(!quest.clear)
+            if(!proceedingQuests.ContainsKey(quest.questId))
             {
-                check = true;
+                if(!quest.clear)
+                {
+                    check = true;
+                }
+                else
+                {
+                    Debug.Log("이미 진행한 퀘스트 입니다.");
+                    check = false;
+                }
             }
             else
             {
-                Debug.Log("이미 진행한 퀘스트 입니다.");
+                Debug.Log("이미 진행하고 있는 퀘스트 입니다.");
                 check = false;
             }
         }
@@ -46,7 +54,7 @@ public class QuestManager : Manager
         return check;
     }
 
-    public bool CheckClearQuest(Quest quest)
+    public bool CheckClearQuest(Quest quest) 
     {
         bool check = false;
         for(int i = 0; i < quest.clearValue.values.Count; i++)

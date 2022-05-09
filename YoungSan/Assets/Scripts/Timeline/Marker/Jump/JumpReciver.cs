@@ -17,7 +17,6 @@ public class JumpReciver : MonoBehaviour, INotificationReceiver
 
 			if (qeustSelect && !loop)
 			{
-				//����Ʈ���� üũ�س����� 
 				loop = true;
 				Select(_marker);
 			}
@@ -27,8 +26,10 @@ public class JumpReciver : MonoBehaviour, INotificationReceiver
 			}
 			if (timelineCon.talkLoop)
 			{
+
 				timelineCon.jumpMarker = _marker;
 				origin.GetGraph().GetRootPlayable(0).SetTime(_marker.loopMarker.time);
+
 			}
 			else
 			{

@@ -80,7 +80,7 @@ public class TimelineController : MonoBehaviour
 		{
 			Debug.Log(director.time);
 			talkLoop = false;
-			director.time = jumpMarker.time;
+			director.time = jumpMarker.loopEndMarker.time;
 			jumpMarker = null;
 		}
 	}

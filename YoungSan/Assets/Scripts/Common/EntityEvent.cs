@@ -125,6 +125,26 @@ public class EntityEvent : MonoBehaviour
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
     }
 
+    protected void Flash(Vector3 position, float range, float startTime)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(FlashRoutine(idx, position, range, startTime));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator FlashRoutine(int idx, Vector3 position, float range, float startTime)
+    {
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+        
+        Vector3 pos = position;
+        if ((pos - entity.transform.position).sqrMagnitude > range * range)
+        {
+            pos = (pos - entity.transform.position).normalized * range + entity.transform.position;
+        }
+        entity.transform.position = pos;
+    }
+
     protected void Projectile(float inputX, float inputY, string objectName, SkillData skillData, float startTime)
     {
         int idx = coroutines.Count;
@@ -172,7 +192,7 @@ public class EntityEvent : MonoBehaviour
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
         // 나중에 만들자
-
+        
         
     }
 
@@ -213,9 +233,12 @@ public class EntityEvent : MonoBehaviour
                 }
             });
 
-            foreach (var data in skillSet.skillDatas[category])
+            if (skillSet.skillDatas.ContainsKey(category))
             {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{data.skill.name, end});
+                foreach (var data in skillSet.skillDatas[category])
+                {
+                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{data.skill.name, end});
+                }
             }
             yield return null;
         }

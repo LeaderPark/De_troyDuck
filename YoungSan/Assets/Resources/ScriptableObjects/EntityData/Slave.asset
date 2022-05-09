@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d106605545c71c4dae1dda60baf5e05, type: 3}
+  m_Name: Slave
+  m_EditorClassIdentifier: 
+  entityName: "\uB178\uC608"
+  status:
+    stats:
+    - category: 0
+      minValue: 500
+      maxValue: 600
+    - category: 1
+      minValue: 100
+      maxValue: 120
+    - category: 2
+      minValue: 7
+      maxValue: 8
+    - category: 3
+      minValue: 50
+      maxValue: 100
+  prefab: {fileID: 4373527137187162011, guid: 1f7d5d017dec3174a9cb2a6345127350, type: 3}
+  uiPos: 4

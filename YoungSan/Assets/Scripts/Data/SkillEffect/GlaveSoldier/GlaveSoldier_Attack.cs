@@ -15,10 +15,6 @@ public class GlaveSoldier_Attack : SkillEffect
             Stiff(hitEntity, 0.2f);
             KnockBack(hitEntity, direction, 0f, 0f, 0);
             break;
-            case 3:
-            Stiff(hitEntity, 0.5f);
-            KnockBack(hitEntity, direction, 0f, 0.1f, 12);
-            break;
         }
         ChangeColor(hitEntity, Color.red, 0f, 0.1f);
     }
@@ -32,10 +28,6 @@ public class GlaveSoldier_Attack : SkillEffect
             case 2:
             Stiff(hitEntity, 0.4f);
             KnockBack(hitEntity, direction, 0f, 0f, 0);
-            break;
-            case 3:
-            Stiff(hitEntity, 0.8f);
-            KnockBack(hitEntity, direction, 0f, 0.1f, 12);
             break;
         }
         ChangeColor(hitEntity, Color.red, 0f, 0.1f);

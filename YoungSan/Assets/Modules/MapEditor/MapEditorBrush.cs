@@ -55,6 +55,10 @@ namespace MapEditor
                         MapEditor.objects["brushParent"] = new GameObject("brushParent").transform;
                     }
                     obj.transform.parent = (Transform)MapEditor.objects["brushParent"];
+                    if ((bool)MapEditor.objects["spriteMode"])
+                    {
+                        obj.GetComponent<SpriteRenderer>().sprite = (Sprite)MapEditor.objects["sprite"];
+                    }
                 }
                 table.Clear();
             }

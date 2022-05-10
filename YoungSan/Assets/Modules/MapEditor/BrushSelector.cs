@@ -26,6 +26,8 @@ namespace MapEditor
             MapEditor.objects["brushParent"] = null;
             MapEditor.objects["brushDensity"] = 1;
             MapEditor.objects["gridActive"] = true;
+            MapEditor.objects["spriteMode"] = false;
+            MapEditor.objects["sprite"] = null;
 
             brushes = new Dictionary<string, Brush>();
             green = new GUIStyle();
@@ -100,7 +102,12 @@ namespace MapEditor
             GUILayout.EndVertical();
             GUILayout.BeginVertical();
             MapEditor.objects["gridActive"] = EditorGUILayout.Toggle("Grid Active", (bool)MapEditor.objects["gridActive"], GUILayout.Width(200));
+            MapEditor.objects["spriteMode"] = EditorGUILayout.Toggle("Sprite Mode", (bool)MapEditor.objects["spriteMode"], GUILayout.Width(200));
             GUILayout.EndVertical();
+            if ((bool)MapEditor.objects["spriteMode"])
+            {
+                MapEditor.objects["sprite"] = EditorGUILayout.ObjectField("Sprite", (Object)MapEditor.objects["sprite"], typeof(Sprite), false);
+            }
 
             GUILayout.EndHorizontal();
 

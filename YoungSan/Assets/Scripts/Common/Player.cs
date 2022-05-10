@@ -187,6 +187,7 @@ public class Player : MonoBehaviour
                 float hpRatio = uiManager.BackUpHpStat();
                 float staminaRatio = uiManager.BackUpStaminaStat();
                 entity.Die();
+                StopAllCoroutines();
                 entity.gameObject.GetComponent<AudioListener>().enabled = false;
                 entity.gameObject.layer = 7;
                 entity.gameObject.tag = "Enemy";

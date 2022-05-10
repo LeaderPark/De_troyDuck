@@ -6,13 +6,17 @@ public class Projectile : MonoBehaviour
 {
     Vector3 startPosition;
     Vector3 dirVec;
+    Rigidbody rigidbody;
 
 
     public float speed;
     public AnimationCurve curve;
     float timeStack;
 
-
+    void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
 
     public void SetData(Vector3 startPosition, Vector3 dirVec, SkillData skillData)
     {
@@ -21,6 +25,7 @@ public class Projectile : MonoBehaviour
         this.dirVec = dirVec;
 
         GetComponent<HitBox>().skillData = skillData;
+        rigidbody.velocity = Vector3.zero;
         if (dirVec.z > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(Vector3.right, dirVec));
@@ -29,14 +34,16 @@ public class Projectile : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(Vector3.right, dirVec));
         }
-        transform.position = startPosition + dirVec * speed * timeStack + Vector3.up * curve.Evaluate(timeStack);
+        transform.position = startPosition + Vector3.up * curve.Evaluate(timeStack);
+        GetComponentInChildren<TrailRenderer>().Clear();
     }
 
     void Update()
     {
         timeStack += Time.deltaTime;
         if (curve.Evaluate(timeStack) == -1) gameObject.SetActive(false);
-        transform.position = startPosition + dirVec * speed * timeStack + Vector3.up * curve.Evaluate(timeStack);
+        transform.position = new Vector3(transform.position.x, startPosition.y + curve.Evaluate(timeStack), transform.position.z);
+        rigidbody.velocity = (dirVec - Vector3.up * (startPosition.y + curve.Evaluate(timeStack))) * speed;
     }
 
     void OnTriggerEnter(Collider other)

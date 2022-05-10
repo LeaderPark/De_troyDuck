@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3227817246374541617}
   - component: {fileID: 7081150145572663342}
   - component: {fileID: 6724264041005484937}
+  - component: {fileID: 2052091521579858255}
   m_Layer: 0
   m_Name: CutScenePrefab
   m_TagString: Untagged
@@ -241,6 +242,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: {fileID: 308921952408964684}
   timelinePause: 0
+  talkLoop: 1
+  asd: []
+  jumpMarker: {fileID: 0}
   maxSkipTime: 1.5
 --- !u!114 &2289989693407090797
 MonoBehaviour:
@@ -303,6 +307,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c045e6a41e8a8e46823217d55f6ff9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qeustSelect: 0
+--- !u!114 &2052091521579858255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289989693407090796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0d23307bc946e4b8a1dd1158d8a650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5414151400569618528

@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Timeline;
-using UnityEngine.Playables;
 using System.ComponentModel;
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
-[DisplayName("Quest/QuestMarker")]
-public class QuestMarker : Marker, INotification
+[DisplayName("Quest/QuestClearMarker")]
+public class QuestClearMarker : Marker, INotification
 {
     public PropertyName id { get { return new PropertyName(); } }
 
     public Quest quest;
     
 }
+

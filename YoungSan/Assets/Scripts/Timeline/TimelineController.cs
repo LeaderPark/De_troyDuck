@@ -8,12 +8,14 @@ using UnityEngine.UI;
 
 public class TimelineController : MonoBehaviour
 {
+	public List<TimelineEvents> timelineEvents = new List<TimelineEvents>();
+
+
 	PlayableDirector director;
 	[SerializeField] private Image fade;
 	public bool timelinePause = false;
 	public bool talkLoop = true;
 
-	public UnityEvent[] asd;
 
 	[HideInInspector]
 	public JumpMarker jumpMarker;
@@ -181,4 +183,11 @@ public class TimelineController : MonoBehaviour
 		currentSkipTime = 0;
 		isKeyDown = false;
 	}
+}
+
+[System.Serializable]
+public struct TimelineEvents
+{
+	public string evnetName;
+	public UnityEvent events;
 }

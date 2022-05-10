@@ -9,16 +9,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2289989693407090799}
+  - component: {fileID: 2289989693407090794}
   - component: {fileID: 3945064489672053714}
   - component: {fileID: 2289989693407090795}
   - component: {fileID: 2289989693407090793}
-  - component: {fileID: 2289989693407090794}
   - component: {fileID: 2289989693407090797}
   - component: {fileID: 5535788953435136891}
   - component: {fileID: 3227817246374541617}
   - component: {fileID: 7081150145572663342}
   - component: {fileID: 6724264041005484937}
   - component: {fileID: 2052091521579858255}
+  - component: {fileID: 3711863942421135897}
   m_Layer: 0
   m_Name: CutScenePrefab
   m_TagString: Untagged
@@ -42,6 +43,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2289989693407090794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289989693407090796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9db538226266947a1606afcc3dc8f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timelineEvents: []
+  fade: {fileID: 308921952408964684}
+  timelinePause: 0
+  talkLoop: 1
+  jumpMarker: {fileID: 0}
+  maxSkipTime: 1.5
 --- !u!320 &3945064489672053714
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -228,24 +247,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
---- !u!114 &2289989693407090794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2289989693407090796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9db538226266947a1606afcc3dc8f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fade: {fileID: 308921952408964684}
-  timelinePause: 0
-  talkLoop: 1
-  asd: []
-  jumpMarker: {fileID: 0}
-  maxSkipTime: 1.5
 --- !u!114 &2289989693407090797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +321,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a0d23307bc946e4b8a1dd1158d8a650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3711863942421135897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289989693407090796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f174cac21ce82d4e9c7df52280b63ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5414151400569618528

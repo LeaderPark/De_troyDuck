@@ -16,12 +16,8 @@ namespace StateMachine
             Vector3 dirVec = stateMachine.Enemy.transform.position - gameManager.Player.transform.position;
             dirVec.y = 0;
 
-            Vector3 rightVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;
-
-            if (Random.Range(0, 2) == 0) rightVec *= -1;
-
-            float moveDirX = rightVec.x + dirVec.x;
-            float moveDirY = rightVec.z + dirVec.z;
+            float moveDirX = dirVec.x;
+            float moveDirY = dirVec.z;
 
             if (Vector2.Distance(stateMachine.Enemy.spawnPoint, (new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) + new Vector2(moveDirX, moveDirY).normalized) < stateMachine.stateMachineData.activityRadius)
             {

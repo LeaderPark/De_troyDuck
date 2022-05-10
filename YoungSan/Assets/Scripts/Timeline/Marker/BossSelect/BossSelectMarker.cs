@@ -8,5 +8,6 @@ public class BossSelectMarker : Marker, INotification
 {
 	public PropertyName id { get { return new PropertyName(); } }
 	public ExposedReference<GameObject> bossObj;
+	public ExposedReference<GameObject> bossCamObj;
 
 }

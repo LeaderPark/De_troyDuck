@@ -25,6 +25,7 @@ public class GameManager : Manager
             }
             player = value;
             player.transform.SetParent(transform);
+            if(!Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("BossCam"))
             Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
         }
     }
@@ -41,6 +42,10 @@ public class GameManager : Manager
       {
            Player = GameObject.FindWithTag("Player").GetComponent<Player>();
       }
+    }
+    public void CamFollowFind()
+    {
+         Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
     }
     public void AfterImage(Entity entity, float time)
     {

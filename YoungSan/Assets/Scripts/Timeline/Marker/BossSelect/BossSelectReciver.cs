@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,17 @@ public class BossSelectReciver : MonoBehaviour, INotificationReceiver
 
 		if (marker != null)
 		{
+			GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 			GameObject bossObj = marker.bossObj.Resolve(origin.GetGraph().GetResolver());
+			GameObject bossCamObj = marker.bossCamObj.Resolve(origin.GetGraph().GetResolver());
+
+			bossCamObj.GetComponent<CinemachineVirtualCamera>().Follow = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>().gameObject.transform;
+			bossCamObj.SetActive(true);
+			CinemachineTargetGroup targetGroup = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>();
+
+			targetGroup.m_Targets[0].target = gameManager.Player.gameObject.transform;
+			targetGroup.m_Targets[1].target = bossObj.transform;
+
 			bossEntity = bossObj.GetComponent<Entity>();
 			uIManager.bossStatbar.entity = bossEntity;
 			uIManager.bossStatbar.gameObject.SetActive(true);

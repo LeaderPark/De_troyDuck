@@ -26,7 +26,7 @@ public class SlaveFatEvent : EntityEvent
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{ 
         (inputX, inputY, position, skillData) =>
         {
-            Heal(0.9f, 1f, 0.4f);
+            Heal(0.9f, 1f, 0.2f, 0.4f);
         }
         };
     }

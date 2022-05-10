@@ -46,7 +46,7 @@ namespace Processor
             PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
 
             DamageCount damageCount = poolManager.GetObject("DamageCount").GetComponent<DamageCount>();
-            damageCount.Play(entity.transform.position + Vector3.up * 0.5f, tempDamage, (entity == gameManager.Player.GetComponent<Entity>()) ? true : false);
+            damageCount.Play(entity.transform.position + Vector3.up * 0.5f, tempDamage, (entity == gameManager.Player.GetComponent<Entity>()) ? true : false, false);
 
             eventManager.GetEventTrigger(typeof(HitEventTrigger)).Invoke(new object[]{ entity, attackEntity, tempDamage });
 

@@ -180,20 +180,41 @@ public class EntityEvent : MonoBehaviour
         installation.SetData(entity);
     }
 
-    protected void Heal(float startTime, float time, float rate)
+    protected void Heal(float startTime, float time, float delay, float rate)
     {
         int idx = coroutines.Count;
-        Coroutine routine = this.StartCoroutine(HealRoutine(idx, startTime, time, rate));
+        Coroutine routine = this.StartCoroutine(HealRoutine(idx, startTime, time, delay, rate));
         coroutines.Add((false, routine));
     }
 
-    private IEnumerator HealRoutine(int idx, float startTime, float time, float rate)
+    private IEnumerator HealRoutine(int idx, float startTime, float time, float delay, float rate)
     {
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
-        // 나중에 만들자
+
+        int healCount = (int)(time / delay);
+        float timeStack = 0;
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         
-        
+        int count = healCount;
+        while (count > 0)
+        {
+            timeStack += Time.deltaTime;
+            
+            if (timeStack >= delay)
+            {
+                timeStack = 0;
+                
+                int healValue = (int)(entity.clone.GetMaxStat(StatCategory.Health) * rate / healCount);
+                entity.clone.AddStat(StatCategory.Health, healValue);
+
+                DamageCount damageCount = poolManager.GetObject("DamageCount").GetComponent<DamageCount>();
+                damageCount.Play(entity.transform.position + Vector3.up * 0.5f, healValue, false, true);
+
+                count--;
+            }
+            yield return null;
+        }
     }
 
     protected void Defend(float startTime, float time, float rate)

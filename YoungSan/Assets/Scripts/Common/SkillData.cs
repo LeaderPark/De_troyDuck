@@ -33,7 +33,16 @@ public class SkillData : MonoBehaviour
         }
         
         Expression ex = new Expression(temp);
-        return (int)ex.Evaluate();
+        object obj = ex.Evaluate();
+
+        if (obj.GetType() == typeof(double))
+        {
+            return (int)((double)ex.Evaluate());
+        }
+        else
+        {
+            return (int)ex.Evaluate();
+        }
     }
 
     public int CalculateUseStamina()
@@ -46,7 +55,16 @@ public class SkillData : MonoBehaviour
         }
         
         Expression ex = new Expression(temp);
-        return (int)ex.Evaluate();
+        object obj = ex.Evaluate();
+
+        if (obj.GetType() == typeof(double))
+        {
+            return (int)((double)ex.Evaluate());
+        }
+        else
+        {
+            return (int)ex.Evaluate();
+        }
     }
 
     void Awake()

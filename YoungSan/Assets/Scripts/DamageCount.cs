@@ -6,16 +6,18 @@ using UnityEngine;
 public class DamageCount : MonoBehaviour
 {
     bool isPlayer;
+    bool isHeal;
     string text;
     int fontSize;
     Rect rect = new Rect();
     bool loading;
 
 
-    public void Play(Vector3 position, int damage, bool isPlayer)
+    public void Play(Vector3 position, int damage, bool isPlayer, bool isHeal)
     {
         if (loading) return;
         this.isPlayer = isPlayer;
+        this.isHeal = isHeal;
         Vector2 screenPoint = Camera.main.WorldToScreenPoint(position);
         text = damage.ToString();
         rect.width = text.Length * 25;
@@ -79,6 +81,14 @@ public class DamageCount : MonoBehaviour
             {
                 style.normal.textColor = Color.white;
             }
+            if (isHeal)
+            {
+                style.normal.textColor = Color.green;
+            }
+            else
+            {
+                style.normal.textColor = Color.white;
+            }
             rect.position -= Vector2.one * 2;
             GUI.Label(rect, text, style);
         }
@@ -96,7 +106,7 @@ public class DamageCountEditor : UnityEditor.Editor
         if (GUILayout.Button("Play"))
         {
             DamageCount damageCount = (DamageCount)target;
-            damageCount.Play(damageCount.transform.position, 90, false);
+            damageCount.Play(damageCount.transform.position, 90, false, false);
         }
     }
 }

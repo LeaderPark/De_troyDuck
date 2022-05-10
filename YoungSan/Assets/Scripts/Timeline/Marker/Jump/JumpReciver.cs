@@ -50,7 +50,7 @@ public class JumpReciver : MonoBehaviour, INotificationReceiver
 			EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
         	eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>
         	{
-        	    if (hitEntity.CompareTag("Enemy"))
+        	    if(hitEntity.CompareTag("Enemy"))
         	    {
         	        for(int i = 0; i < marker.quest.clearValue.values.Count; i++)
         	        {

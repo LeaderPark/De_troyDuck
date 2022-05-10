@@ -93,17 +93,8 @@ public class SkillSet : MonoBehaviour
         EntityEvent entityEvent = entity.GetComponent<EntityEvent>();
         entityEvent.dontmove = false;
         entityEvent.reservate = false;
-        if (entityEvent.coroutines.Count > 0)
-        {
-            for (int i = 0; i < entityEvent.coroutines.Count; i++)
-            {
-                if (!entityEvent.coroutines[i].Item1)
-                {
-                    entityEvent.StopCoroutine(entityEvent.coroutines[i].Item2);
-                }
-            }
-            entityEvent.coroutines.Clear();
-        }
+
+        entityEvent.CancelSkillEvent();
         
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         gameManager.StopAfterImage(entity);

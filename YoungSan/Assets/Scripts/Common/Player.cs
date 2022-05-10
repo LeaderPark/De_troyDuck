@@ -216,6 +216,7 @@ public class Player : MonoBehaviour
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.0f});
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Dash"});
             entity.clone.SubStat(StatCategory.Stamina, 50);
+            entityEvent.CancelSkillEvent();
             StartCoroutine(AttackVelocityTime(0.08f));
             gameManager.AfterImage(entity, 0.35f);
             dash = true;

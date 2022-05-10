@@ -94,6 +94,22 @@ public class EntityEvent : MonoBehaviour
     }
 
 
+    public void CancelSkillEvent()
+    {
+        if (coroutines.Count > 0)
+        {
+            for (int i = 0; i < coroutines.Count; i++)
+            {
+                if (!coroutines[i].Item1)
+                {
+                    StopCoroutine(coroutines[i].Item2);
+                }
+            }
+            coroutines.Clear();
+        }
+    }
+
+
     private void AttackSkillEvent(EventCategory category, float inputX, float inputY, bool direction, Vector3 position)
     {
         if (!skillSet.skillStackAmount.ContainsKey(category)) return;

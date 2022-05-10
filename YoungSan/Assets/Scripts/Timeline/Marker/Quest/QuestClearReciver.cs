@@ -14,7 +14,7 @@ public class QuestClearReciver : MonoBehaviour, INotificationReceiver
             if(marker.quest != null)
             {
                 if(questManager.CheckClearQuest(marker.quest))
-                    questManager.ClearQuest(marker.quest);                                                            
+                    questManager.ClearQuest(marker.quest);
             }
 		}
 	}

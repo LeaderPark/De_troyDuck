@@ -68,6 +68,7 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 	private IEnumerator TestSlow()
 	{
 		gameManager.Player.ActiveScript(false);
+		gameManager.CamFollowFind();
 		Time.timeScale = 0.2f;
 		yield return new WaitForSecondsRealtime(3f);
 		if(waitTime<=0)

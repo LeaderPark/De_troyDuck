@@ -20,6 +20,7 @@ public class QuestManager : Manager
     public void ClearQuest(Quest quest)
     {
         proceedingQuests.Remove(quest.questId);
+        quest.clear = true;
         completedQuests.Add(quest.questId, quest);
     }
 
@@ -75,6 +76,7 @@ public class QuestManager : Manager
                     check = true;
                 }
             }
+            
             if(!check)
             {
                 break;
@@ -83,14 +85,14 @@ public class QuestManager : Manager
         return check;
     }
 
-    public void SetQuestEmptyValue(Quest quest)
+    public void SetQuestEmptyValue(Quest quest) //테스트용 초기화
     {
         for(int i = 0; i < quest.clearValue.values.Count; i++)
         {
             if(quest.clearValue.values[i].type == PropertyType.INT)
             {
-                quest.clearValue.values[i].currentIntValue = 0; //테스트용 초기화
-                quest.clear = false; //테스트용 초기화
+                quest.clearValue.values[i].currentIntValue = 0;
+                quest.clear = false;
                 Debug.Log(quest.clearValue.values[i].intValue);
                 Debug.Log(quest.clearValue.values[i].currentIntValue);
                 Debug.Log(quest.clear);
@@ -102,5 +104,30 @@ public class QuestManager : Manager
                 Debug.Log(quest.clearValue.values[i].boolValue);
             }
         }
+    }
+
+    public void AddQuestValue(JumpMarker marker)
+    {
+        EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
+        eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>
+        {
+            if(hitEntity.CompareTag("Enemy"))
+            {
+                for(int i = 0; i < marker.quest.clearValue.values.Count; i++)
+                {
+                    if (hitEntity.entityData == marker.quest.clearValue.values[i].entityData)
+                    {
+                        if(marker.quest.clearValue.values[i].type == PropertyType.INT)
+                        {
+                            if(marker.quest.clearValue.values[i].intValue > marker.quest.clearValue.values[i].currentIntValue)
+                            {
+                                marker.quest.clearValue.values[i].currentIntValue++;
+                                Debug.Log(marker.quest.clearValue.values[i].currentIntValue);
+                            }
+                        }
+                    }
+                }
+            }
+        }));
     }
 }

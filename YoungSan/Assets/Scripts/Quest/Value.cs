@@ -22,7 +22,9 @@ public enum PropertyType
 
 
 #if UNITY_EDITOR
-[CustomPropertyDrawer(typeof(Value))]
+[CustomPropertyDrawer
+
+(typeof(Value))]
 public class ValuePropertyDrawer : PropertyDrawer
 {    
     private int rows;

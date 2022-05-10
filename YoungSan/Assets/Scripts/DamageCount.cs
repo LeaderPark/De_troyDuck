@@ -85,10 +85,6 @@ public class DamageCount : MonoBehaviour
             {
                 style.normal.textColor = Color.green;
             }
-            else
-            {
-                style.normal.textColor = Color.white;
-            }
             rect.position -= Vector2.one * 2;
             GUI.Label(rect, text, style);
         }

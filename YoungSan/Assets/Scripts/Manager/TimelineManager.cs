@@ -8,6 +8,7 @@ public class TimelineManager : Manager
 {
 	[SerializeField]
 	private GameObject directorObj;
+	
 	void Start()
 	{
 

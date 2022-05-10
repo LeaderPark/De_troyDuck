@@ -17,9 +17,8 @@ public class GuardArcherEvent : EntityEvent
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
         (inputX, inputY, position, skillData) =>
         {
-            Flash(entity.transform.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f)), 10f, 0f);
             Vector2 cur = new Vector2(inputX, inputY);
-            Projectile(cur.x, cur.y, "TestArrow", skillData, 1.3f);
+            Projectile(cur.x, cur.y, "Arrow", skillData, 1f);
         }
         };
     }

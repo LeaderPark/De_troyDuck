@@ -12,11 +12,16 @@ namespace StateMachine
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             float distance = Vector2.Distance(new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z));
             SkillSet skillSet = stateMachine.Enemy.GetComponentInChildren<SkillSet>();
+            int coolCount = 0;
             foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
             {
                 if (skillSet.skillStackAmount[skillAreaBundle.eventCategory] < skillSet.skillCoolTimes[skillAreaBundle.eventCategory].Length)
                 {
-                    if (skillSet.skillCoolTimes[skillAreaBundle.eventCategory][skillSet.skillStackAmount[skillAreaBundle.eventCategory]] > 0) continue;
+                    if (skillSet.skillCoolTimes[skillAreaBundle.eventCategory][skillSet.skillStackAmount[skillAreaBundle.eventCategory]] > 0) 
+                    {
+                        coolCount++;
+                        continue;
+                    }
                 }
 
                 foreach (var item in skillAreaBundle.skillAreaDatas)
@@ -40,8 +45,7 @@ namespace StateMachine
                 }
             }
             
-            
-            if (distance < stateMachine.stateMachineData.distanceRadius)
+            if (distance < stateMachine.stateMachineData.distanceRadius || stateMachine.Enemy.skillArea.skillAreaBundles.Length == coolCount)
             {
                 return stateMachine.GetStateTable(typeof(Distance));
             }

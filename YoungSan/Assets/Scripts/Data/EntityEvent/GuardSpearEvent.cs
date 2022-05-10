@@ -17,7 +17,6 @@ public class GuardSpearEvent : EntityEvent
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
         (inputX, inputY, position, skillData) =>
         {
-            Flash(position, 10f, 0f);
             Dash(inputX, inputY, 8, 0.4f, 0.4f);
         }
         };

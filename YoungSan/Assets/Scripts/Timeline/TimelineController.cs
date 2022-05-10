@@ -162,17 +162,30 @@ public class TimelineController : MonoBehaviour
 	
 	public IEnumerator CurrentCutScene()
 	{
+		director = GetComponent<PlayableDirector>();
 		double durationTime = director.duration;
 		TimelineAsset timelineAsset = (TimelineAsset)director.playableAsset;
-		for (int i = 0; i < timelineAsset.markerTrack.GetMarkerCount(); i++)
+		for (int j = 0; j < timelineAsset.rootTrackCount; j++)
 		{
-			SceneLoadMarker marker = timelineAsset.markerTrack.GetMarker(i) as SceneLoadMarker;
-			if(marker != null)
+			for (int i = 0; i < timelineAsset.GetRootTrack(j).GetMarkerCount(); i++)
 			{
-				Debug.Log("아니 슈발 마커가 있다니깐");
-				durationTime = marker.time - 0.1f;
+				SceneLoadMarker loadmarker = timelineAsset.GetRootTrack(j).GetMarker(i) as SceneLoadMarker;
+				JumpMarker jumpMarker = timelineAsset.GetRootTrack(j).GetMarker(i) as JumpMarker;
+
+				if(jumpMarker != null)
+				{
+					Debug.Log("아니 쓱발아 퀘스트를 쳐 받으라고");
+					yield break;	
+				}
+
+				if(loadmarker != null)
+				{
+					Debug.Log("아니 슈발 마커가 있다니깐");
+					durationTime = loadmarker.time - 0.1f;
+				}
 			}
 		}
+
 
 		Debug.Log(durationTime);
 		StartCoroutine(FadeOut());

@@ -26,9 +26,12 @@ public class Statbar : MonoBehaviour
         minHealth = hpRect.anchoredPosition.x - hpRect.rect.width;
         minStamina = staminaRect.anchoredPosition.x - staminaRect.rect.width;
 
+
     }
     void Start()
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+            Init();
 
     }
 

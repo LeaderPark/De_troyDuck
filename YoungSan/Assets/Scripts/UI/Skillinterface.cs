@@ -14,7 +14,8 @@ public class Skillinterface : MonoBehaviour
     private SkillSet skillSet;
     void Awake()
     {
-
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+            Init_UI();
     }
 	public void Init_UI()
     {

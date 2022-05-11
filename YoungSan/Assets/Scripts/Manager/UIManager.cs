@@ -30,7 +30,8 @@ public class UIManager : Manager
 
     void Awake()
     {
-
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+            Init();
     }
 
     public void Init()

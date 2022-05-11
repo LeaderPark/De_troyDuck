@@ -13,9 +13,16 @@ public class SlaveEvent : EntityEvent
 
     private void DefalutAttack()
     {
-        maxAttackStack[EventCategory.DefaultAttack] = 1;
-        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
-        null
+        maxAttackStack[EventCategory.DefaultAttack] = 2;
+        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
+        (inputX, inputY, position, skillData) =>
+        {
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2.5f, 0, 0.1f);
+        },
+        (inputX, inputY, position, skillData) =>
+        {
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2.5f, 0, 0.1f);
+        },
         };
     }
 

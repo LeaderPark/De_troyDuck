@@ -29,6 +29,11 @@ public class Statbar : MonoBehaviour
     }
     void Start()
     {
+
+    }
+
+    public void Init()
+    {
         uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         SetStatBar();
         UpdateStatBar();

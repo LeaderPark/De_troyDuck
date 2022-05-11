@@ -25,6 +25,7 @@ public class GameManager : Manager
             }
             player = value;
             player.transform.SetParent(transform);
+            if(Camera.main.GetComponent<CinemachineBrain>()!=null)
             if(!Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("BossCam"))
             Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
         }
@@ -34,14 +35,15 @@ public class GameManager : Manager
 	private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
 	private void Awake()
 	{
-        PlayerFind();
+        //PlayerFind();
 	}
 	public void PlayerFind()
     {
-      if (player == null)
-      {
-           Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-      }
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().ToString() != "Title")
+        if (player == null)
+        {
+            Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        }
     }
     public void CamFollowFind()
     {

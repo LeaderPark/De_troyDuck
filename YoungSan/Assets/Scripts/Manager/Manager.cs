@@ -17,5 +17,6 @@ public enum ManagerType
     TimelineManager,
     EventManager,
     SceneManager,
-    QuestManager
+    QuestManager,
+    DataManager
 }

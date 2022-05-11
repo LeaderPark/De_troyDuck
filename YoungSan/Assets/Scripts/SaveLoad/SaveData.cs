@@ -4,23 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-[System.Serializable]
-public class Data
-{
-    public string sceneName;
-    public string currentPlayer;
-    public Vector3 currentPosition;
-    public float Health;
-    public float CurrentHealth;
-    public float Attack;
-    public float Speed;
-    public float Stamina;
-    public float CurrentStamina;
-    public float gold;
-    public float soul;
-
-}
-
 public class SaveData : MonoBehaviour
 {
     [SerializeField] private Data data = new Data();

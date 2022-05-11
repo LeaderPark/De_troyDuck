@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1822602912354680727}
   - component: {fileID: 1024006805602031493}
+  - component: {fileID: -5082992120703510746}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +45,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFollowCam: {fileID: 0}
+--- !u!114 &-5082992120703510746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965673238087046324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd536fd68e2f37642b6d3dac51570abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    sceneName: 
+    currentPlayer: 
+    currentPosition: {x: 0, y: 0, z: 0}
+    Health: 0
+    CurrentHealth: 0
+    Attack: 0
+    Speed: 0
+    Stamina: 0
+    CurrentStamina: 0
+    gold: 0
+    soul: 0

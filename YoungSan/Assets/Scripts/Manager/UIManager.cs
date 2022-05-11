@@ -30,6 +30,11 @@ public class UIManager : Manager
 
     void Awake()
     {
+
+    }
+
+    public void Init()
+    {
         statbar = transform.GetComponentInChildren<Statbar>();
         //Debug.Log(bossStatbar);
         skillinterface = transform.GetComponentInChildren<Skillinterface>();

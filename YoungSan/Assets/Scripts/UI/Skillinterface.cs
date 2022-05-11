@@ -14,21 +14,20 @@ public class Skillinterface : MonoBehaviour
     private SkillSet skillSet;
     void Awake()
     {
+
+    }
+	public void Init_UI()
+    {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
-        SetSkillDatas();
-        Init_UI();
-    }
-	private void Init_UI()
-    {
         for (int i = 0; i < transform.childCount; i++)
         {
             image_fill[i].type = Image.Type.Filled;
             image_fill[i].fillMethod = Image.FillMethod.Radial360;
             image_fill[i].fillOrigin = (int)Image.Origin360.Top;
-            image_fill[i].fillClockwise = false;
-            //Debug.Log("setting UI" + i);
+            image_fill[i].fillClockwise = false;     
         }
+        SetSkillDatas();
     }
 
     public void SetSkillDatas()

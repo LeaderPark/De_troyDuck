@@ -17,7 +17,7 @@ public class SlaveEvent : EntityEvent
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2.5f, 0, 0.1f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2.5f, 0.1f, 0.1f);
         },
         (inputX, inputY, position, skillData) =>
         {

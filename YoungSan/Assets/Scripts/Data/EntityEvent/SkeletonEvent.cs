@@ -15,7 +15,10 @@ public class SkeletonEvent : EntityEvent
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
-        null
+        (inputX, inputY, position, skillData) =>
+        {
+            Dash(inputX, inputY, 10f, 0.3f, 0.1f);
+        }
         };
     }
 

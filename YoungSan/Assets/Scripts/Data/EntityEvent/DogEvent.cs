@@ -15,7 +15,10 @@ public class DogEvent : EntityEvent
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
-        null
+        (inputX, inputY, position, skillData) =>
+        {
+            Dash(inputX, inputY, 20f, 0.8f, 0.1f);
+        }
         };
     }
 

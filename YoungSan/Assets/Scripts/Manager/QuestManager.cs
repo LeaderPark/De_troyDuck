@@ -106,23 +106,23 @@ public class QuestManager : Manager
         }
     }
 
-    public void AddQuestValue(JumpMarker marker)
+    public void AddQuestValue(Quest quest)
     {
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
         eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>
         {
             if(hitEntity.CompareTag("Enemy"))
             {
-                for(int i = 0; i < marker.quest.clearValue.values.Count; i++)
+                for(int i = 0; i < quest.clearValue.values.Count; i++)
                 {
-                    if (hitEntity.entityData == marker.quest.clearValue.values[i].entityData)
+                    if (hitEntity.entityData == quest.clearValue.values[i].entityData)
                     {
-                        if(marker.quest.clearValue.values[i].type == PropertyType.INT)
+                        if(quest.clearValue.values[i].type == PropertyType.INT)
                         {
-                            if(marker.quest.clearValue.values[i].intValue > marker.quest.clearValue.values[i].currentIntValue)
+                            if(quest.clearValue.values[i].intValue > quest.clearValue.values[i].currentIntValue)
                             {
-                                marker.quest.clearValue.values[i].currentIntValue++;
-                                Debug.Log(marker.quest.clearValue.values[i].currentIntValue);
+                                quest.clearValue.values[i].currentIntValue++;
+                                Debug.Log(quest.clearValue.values[i].currentIntValue);
                             }
                         }
                     }

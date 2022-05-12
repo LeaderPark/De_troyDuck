@@ -154,7 +154,7 @@ public class TestBehaivor : PlayableBehaviour
 		float x = fakeTalkbox.preferredWidth;
 		float y = fakeTalkbox.preferredHeight;
 		RectTransform talkBoxRect = talkObj.GetComponent<RectTransform>();
-		talkBoxRect.sizeDelta = new Vector2(x, y) + new Vector2(30,100);
-		talkBox.rectTransform.anchoredPosition += new Vector2(30/2 ,0);
+		talkBoxRect.sizeDelta = new Vector2(x, y) + new Vector2(50,50);
+		talkBox.rectTransform.anchoredPosition += new Vector2(50/2 ,0);
 	}
 }

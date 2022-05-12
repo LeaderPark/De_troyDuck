@@ -26,28 +26,32 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 			}
 			else
 			{
-				
+				int enemyCount = 0;
 				for (int i = 0; i < marker.enemys.Length; i++)
 				{
 					Entity enemyEntity = marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>();
-					int a = i;
-					enemyEntity.dead += () =>
+					if (enemyEntity != null)
 					{
-						enemys.Add(enemyEntity);
-						if (enemys.Count >= marker.enemys.Length)
-						{
-							enemys.Clear();
-							StartCoroutine(NextTimeLine(waitTime));
-						}
-						enemyEntity.dead = null;
-					};
-					if (enemyEntity.gameObject.CompareTag("Boss"))
-					{
+						enemyCount++;
 						enemyEntity.dead += () =>
 						{
-							StartCoroutine(TestSlow());
+							enemys.Add(enemyEntity);
+							if (enemys.Count >= enemyCount)
+							{
+								enemys.Clear();
+								StartCoroutine(NextTimeLine(waitTime));
+							}
+							enemyEntity.dead = null;
 						};
+						if (enemyEntity.gameObject.CompareTag("Boss"))
+						{
+							enemyEntity.dead += () =>
+							{
+								StartCoroutine(TestSlow());
+							};
+						}
 					}
+
 				}
 			}
 		}

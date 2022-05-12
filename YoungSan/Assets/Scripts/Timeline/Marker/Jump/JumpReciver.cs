@@ -47,7 +47,7 @@ public class JumpReciver : MonoBehaviour, INotificationReceiver
 		SelectButton button = poolManager.GetUIObject("Select").GetComponent<SelectButton>();
 		button.gameObject.SetActive(true);
 		button.ButtonsSetting(0, "수락", () => { questManager.AddQuest(marker.quest); 
-			questManager.AddQuestValue(marker);
+			questManager.AddQuestValue(marker.quest);
 		});
 		button.ButtonsSetting(1, "거절", () => { Debug.Log("거절한다."); });
 	}

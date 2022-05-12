@@ -13,8 +13,9 @@ public class QuestReciver : MonoBehaviour, INotificationReceiver
 			QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
             if(marker.quest != null)
             {
-                questManager.AddQuest(marker.quest);                                                               
-            }
+				questManager.AddQuest(marker.quest);
+				questManager.AddQuestValue(marker.quest);
+			}
 		}
 	}
 }

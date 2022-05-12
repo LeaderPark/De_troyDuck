@@ -62,6 +62,7 @@ namespace MapEditor
                 }
                 table.Clear();
             }
+            if (EditorWindow.focusedWindow.GetType().ToString() != "UnityEditor.ObjectSelector") EditorWindow.GetWindow<BrushSelector>().Repaint();
         }
 
         private bool mouseDown = false;
@@ -70,7 +71,7 @@ namespace MapEditor
         private bool brush2lock = false;
 #endif
 #if UNITY_EDITOR
-void OnSceneGUI(SceneView sceneView)
+        void OnSceneGUI(SceneView sceneView)
         {
             DrawDefaultPreview();
 
@@ -80,6 +81,10 @@ void OnSceneGUI(SceneView sceneView)
                 if (Event.current.isMouse && Event.current.button == 0)
                 {
                     mouseDown = true;
+                    lock (lockObject)
+                    {
+                        DrawTile();
+                    }
                 }
                 else mouseDown = false;
                 break;
@@ -102,7 +107,7 @@ void OnSceneGUI(SceneView sceneView)
         }
 #endif
 #if UNITY_EDITOR
-void DrawDefaultPreview()
+    void DrawDefaultPreview()
         {
             Vector3 mousepos = Event.current.mousePosition;
             ray = HandleUtility.GUIPointToWorldRay(mousepos);
@@ -116,29 +121,106 @@ void DrawDefaultPreview()
 
         void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(hitPoint, (float)MapEditor.objects["brushSize"] / 2f);
 
             if ((bool)MapEditor.objects["gridActive"])
             {
                 Gizmos.color = Color.grey;
                 float height = (float)MapEditor.objects["gridHeight"];
+                Vector2 gridInterval = (Vector2)MapEditor.objects["gridInterval"];
                 
                 Vector3 cameraPos = SceneView.GetAllSceneCameras()[0].transform.position;
                 cameraPos.y = 0;
-                Vector3 gridPivot = new Vector3((int)(cameraPos.x / ((Vector2)MapEditor.objects["gridInterval"]).x), 0, (int)(cameraPos.z / ((Vector2)MapEditor.objects["gridInterval"]).y));
-                gridPivot.x *= ((Vector2)MapEditor.objects["gridInterval"]).x;
-                gridPivot.z *= ((Vector2)MapEditor.objects["gridInterval"]).y;
-                for (float i = 0; i <= 100; i += ((Vector2)MapEditor.objects["gridInterval"]).x)
+                Vector3 gridPivot = new Vector3((int)(cameraPos.x / gridInterval.x), 0, (int)(cameraPos.z / gridInterval.y));
+                gridPivot.x *= gridInterval.x;
+                gridPivot.z *= gridInterval.y;
+                for (float i = 0; i <= 100; i += gridInterval.x)
                 {
                     Gizmos.DrawLine(gridPivot + new Vector3(i, height, -100), gridPivot + new Vector3(i, height, 100));
                     Gizmos.DrawLine(gridPivot + new Vector3(-i, height, -100), gridPivot + new Vector3(-i, height, 100));
                 }
-                for (float i = 0; i <= 100; i += ((Vector2)MapEditor.objects["gridInterval"]).y)
+                for (float i = 0; i <= 100; i += gridInterval.y)
                 {
                     Gizmos.DrawLine(gridPivot + new Vector3(-100, height, i), gridPivot + new Vector3(100, height, i));
                     Gizmos.DrawLine(gridPivot + new Vector3(-100, height, -i), gridPivot + new Vector3(100, height, -i));
                 }
             }
+
+            void DrawRect(Vector3 position, Vector3 gridPivot, float height, Vector2 gridInterval)
+            {
+                Vector2 startIndex = new Vector2((int)(position.x / gridInterval.x) * gridInterval.x, (int)(position.z / gridInterval.y) * gridInterval.y);
+
+                if (position.x <= 0 && position.z >= 0)
+                {
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x, height, startIndex.y + gridInterval.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x - gridInterval.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x - gridInterval.x, height, startIndex.y + gridInterval.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x - gridInterval.x, height, startIndex.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y + gridInterval.y), gridPivot + new Vector3(startIndex.x - gridInterval.x, height, startIndex.y + gridInterval.y));
+                }
+                else if (position.x >= 0 && position.z >= 0)
+                {
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x, height, startIndex.y + gridInterval.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x + gridInterval.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x + gridInterval.x, height, startIndex.y + gridInterval.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x + gridInterval.x, height, startIndex.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y + gridInterval.y), gridPivot + new Vector3(startIndex.x + gridInterval.x, height, startIndex.y + gridInterval.y));
+                }
+                else if (position.x <= 0 && position.z <= 0)
+                {
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x, height, startIndex.y - gridInterval.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x - gridInterval.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x - gridInterval.x, height, startIndex.y - gridInterval.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x - gridInterval.x, height, startIndex.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y - gridInterval.y), gridPivot + new Vector3(startIndex.x - gridInterval.x, height, startIndex.y - gridInterval.y));
+                }
+                else if (position.x >= 0 && position.z <= 0)
+                {
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x, height, startIndex.y - gridInterval.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x + gridInterval.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x + gridInterval.x, height, startIndex.y - gridInterval.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y), gridPivot + new Vector3(startIndex.x + gridInterval.x, height, startIndex.y));
+                    Gizmos.DrawLine(gridPivot + new Vector3(startIndex.x, height, startIndex.y - gridInterval.y), gridPivot + new Vector3(startIndex.x + gridInterval.x, height, startIndex.y - gridInterval.y));
+                }
+            }
+
+            Gizmos.color = Color.red;
+            switch ((int)MapEditor.objects["brushIndex"])
+            {
+                case 0:
+                case 2:
+                {
+                    float height = (float)MapEditor.objects["gridHeight"];
+                    float brushSize = (float)MapEditor.objects["brushSize"];
+                    Vector2 gridInterval = (Vector2)MapEditor.objects["gridInterval"];
+                    Vector3 cameraPos = SceneView.GetAllSceneCameras()[0].transform.position;
+                    cameraPos.y = 0;
+                    Vector3 gridPivot = new Vector3((int)(cameraPos.x / gridInterval.x), 0, (int)(cameraPos.z / gridInterval.y));
+                    gridPivot.x *= gridInterval.x;
+                    gridPivot.z *= gridInterval.y;
+                    Vector3 temp = hitPoint - gridPivot;
+                    for (float i = 0; i < brushSize; i++)
+                    {
+                        for (float j = 0; j < brushSize; j++)
+                        {
+                            DrawRect(temp + new Vector3(i - brushSize / 2, 0, j - brushSize / 2), gridPivot, height, gridInterval);
+                        }
+                    }
+                }
+                break;
+                case 3:
+                {
+                    float height = (float)MapEditor.objects["gridHeight"];
+                    Vector2 gridInterval = (Vector2)MapEditor.objects["gridInterval"];
+                    Vector3 cameraPos = SceneView.GetAllSceneCameras()[0].transform.position;
+                    cameraPos.y = 0;
+                    Vector3 gridPivot = new Vector3((int)(cameraPos.x / gridInterval.x), 0, (int)(cameraPos.z / gridInterval.y));
+                    gridPivot.x *= gridInterval.x;
+                    gridPivot.z *= gridInterval.y;
+                    Vector3 temp = hitPoint - gridPivot;
+                    DrawRect(temp, gridPivot, height, gridInterval);
+                }
+                break;
+                case 1:
+                    Gizmos.DrawWireSphere(hitPoint, (float)MapEditor.objects["brushSize"] / 2f);
+                break;
+            }
+            Gizmos.color = Color.white;
         }
 
         void DrawTile()
@@ -153,6 +235,9 @@ void DrawDefaultPreview()
                 break;
                 case 2:
                 DrawBrush3();
+                break;
+                case 3:
+                DrawBrush4();
                 break;
             }
         }
@@ -176,7 +261,14 @@ void DrawDefaultPreview()
                 {
                     foreach (var item in ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>())
                     {
-                        if ((item.position - targetPos).sqrMagnitude < 0.01f) return;
+                        if ((item.position - targetPos).sqrMagnitude < 0.01f)
+                        {
+                            if ((bool)MapEditor.objects["spriteMode"])
+                            {
+                                SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
+                                sr.sprite = (Sprite)MapEditor.objects["sprite"];
+                            }
+                        }
                     }
                 }
                 if (table.ContainsKey(targetPos)) return;
@@ -192,7 +284,7 @@ void DrawDefaultPreview()
 
             Vector3 cameraPos = SceneView.GetAllSceneCameras()[0].transform.position;
             cameraPos.y = 0;
-            Vector2 gridPivot = new Vector3((int)(cameraPos.x / ((Vector2)MapEditor.objects["gridInterval"]).x), (int)(cameraPos.z / ((Vector2)MapEditor.objects["gridInterval"]).y));
+            Vector2 gridPivot = new Vector2((int)(cameraPos.x / ((Vector2)MapEditor.objects["gridInterval"]).x), (int)(cameraPos.z / ((Vector2)MapEditor.objects["gridInterval"]).y));
             gridPivot.x *= ((Vector2)MapEditor.objects["gridInterval"]).x;
             gridPivot.y *= ((Vector2)MapEditor.objects["gridInterval"]).y;
             for (float i = 0; i <= 100; i += gridInterval.x)
@@ -249,8 +341,72 @@ void DrawDefaultPreview()
         }
         void DrawBrush3()
         {
+            Vector2 brushPos = new Vector2(hitPoint.x, hitPoint.z);
+            Vector2 gridInterval = (Vector2)MapEditor.objects["gridInterval"];
             float brushSize = (float)MapEditor.objects["brushSize"];
-            float max = brushSize / 2;
+
+            HashSet<Vector3> destroyList = new HashSet<Vector3>();
+
+            if (((Transform)MapEditor.objects["brushParent"]))
+            {
+
+                Vector2 rectPosDuration =  - Vector2.one * brushSize / 2f;
+                Vector2 rectSize = gridInterval + Vector2.one * brushSize;
+                
+                Vector3 cameraPos = SceneView.GetAllSceneCameras()[0].transform.position;
+                cameraPos.y = 0;
+                Vector2 gridPivot = new Vector2((int)(cameraPos.x / ((Vector2)MapEditor.objects["gridInterval"]).x), (int)(cameraPos.z / ((Vector2)MapEditor.objects["gridInterval"]).y));
+                gridPivot.x *= ((Vector2)MapEditor.objects["gridInterval"]).x;
+                gridPivot.y *= ((Vector2)MapEditor.objects["gridInterval"]).y;
+                for (float i = 0; i <= 100; i += gridInterval.x)
+                {
+                    for (float j = 0; j <= 100; j += gridInterval.y)
+                    {
+                        Vector2 pos;
+                        if (new Rect((pos = gridPivot + new Vector2(i, j) + rectPosDuration), rectSize).Contains(brushPos))
+                        {
+                            Vector2 p = pos + rectSize / 2f;
+                            destroyList.Add(new Vector3(p.x, 0, p.y));
+                        }
+                        if (new Rect((pos = gridPivot + new Vector2(-i, j) + rectPosDuration), rectSize).Contains(brushPos))
+                        {
+                            Vector2 p = pos + rectSize / 2f;
+                            destroyList.Add(new Vector3(p.x, 0, p.y));
+                        }
+                        if (new Rect((pos = gridPivot + new Vector2(i, -j) + rectPosDuration), rectSize).Contains(brushPos))
+                        {
+                            Vector2 p = pos + rectSize / 2f;
+                            destroyList.Add(new Vector3(p.x, 0, p.y));
+                        }
+                        if (new Rect((pos = gridPivot + new Vector2(-i, -j) + rectPosDuration), rectSize).Contains(brushPos))
+                        {
+                            Vector2 p = pos + rectSize / 2f;
+                            destroyList.Add(new Vector3(p.x, 0, p.y));
+                        }
+                    }
+                }
+
+                Transform[] childs = ((Transform)MapEditor.objects["brushParent"]).GetComponentsInChildren<Transform>();
+                for (int i = 1; i < childs.Length; i++)
+                {
+                    if (childs[i] == null) continue;
+                    
+                    foreach (var item in destroyList)
+                    {
+                        if ((childs[i].transform.position - item).sqrMagnitude < 0.001f)
+                        {
+                            DestroyImmediate(childs[i].gameObject, false);
+                            break;
+                        }
+                    }
+                }
+
+                destroyList.Clear();
+            }
+        }
+        void DrawBrush4()
+        {
+            Vector2 max = (Vector2)MapEditor.objects["gridInterval"] / 4;
 
             if (((Transform)MapEditor.objects["brushParent"]))
             {
@@ -259,7 +415,14 @@ void DrawDefaultPreview()
                 {
                     if (childs[i] == null) continue;
                     Vector3 objPos = childs[i].position - hitPoint;
-                    if (max * max > new Vector2(objPos.x, objPos.z).sqrMagnitude) DestroyImmediate(childs[i].gameObject);
+                    if (max.sqrMagnitude > new Vector2(objPos.x, objPos.z).sqrMagnitude)
+                    {
+                        SpriteRenderer sr = childs[i].GetComponent<SpriteRenderer>();
+                        if (sr != null)
+                        {
+                            MapEditor.objects["sprite"] = sr.sprite;
+                        }
+                    }
                 }
             }
         }

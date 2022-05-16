@@ -20,14 +20,14 @@ public class Data
     public float CurrentStamina;
     public float gold;
     public float soul;
-    public List<Tuple<int, Quest>> proceedingQuests = new List<Tuple<int, Quest>>();
+    public List<(int, Quest)> proceedingQuests = new List<(int, Quest)>();
     public List<string> completedQuests;
 }
 
 public class DataManager : Manager
 {
     private Data data = new Data();
-    private string key = "1234567890@adcdefghijklnmopqrstuvwxtz";
+    private string key = "1234567890@adcdefghijklnmopqrstuvwxyz";
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))
@@ -41,12 +41,32 @@ public class DataManager : Manager
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);
-        Debug.Log(jsonData);
+        Debug.Log(jsonData);    
     }
     
     public void Load()
     {
+        if(Application.persistentDataPath + "/SaveData.json" == null)
+        {
+            SetDefaultData();
+        }
+
         StartCoroutine(LoadApply());
+    }
+
+    private void SetDefaultData()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Castle");
+        // QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+        // data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        // data.currentPlayer = entity.gameObject.name;
+        // data.currentPosition = entity.gameObject.transform.position;
+        // data.Health = entity.clone.GetMaxStat(StatCategory.Health);
+        // data.CurrentHealth = entity.clone.GetStat(StatCategory.Health);
+        // data.Attack = entity.clone.GetStat(StatCategory.Attack);
+        // data.Speed = entity.clone.GetStat(StatCategory.Speed);
+        // data.Stamina = entity.clone.GetMaxStat(StatCategory.Stamina);
+        // data.CurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
     }
 
     private void SaveGameData(Entity entity)
@@ -61,8 +81,11 @@ public class DataManager : Manager
         data.Speed = entity.clone.GetStat(StatCategory.Speed);
         data.Stamina = entity.clone.GetMaxStat(StatCategory.Stamina);
         data.CurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
-        // data.gold 
-        // data.soul
+
+        foreach (int item in questManager.proceedingQuests.Keys)
+        {
+            data.proceedingQuests.Add((item, questManager.proceedingQuests[item] as Quest));
+        }
     }
     private IEnumerator LoadApply()
     {

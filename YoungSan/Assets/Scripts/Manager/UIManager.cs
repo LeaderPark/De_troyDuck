@@ -28,6 +28,10 @@ public class UIManager : Manager
     (float, float) currentStat;
     (float, float) maxStat;
 
+    //Quest UI
+    public GameObject questUIObj;
+    public GameObject questUIParent;
+
     void Awake()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
@@ -135,6 +139,30 @@ public class UIManager : Manager
         playerCurrentHP = entity.clone.GetStat(StatCategory.Health);
         playerCurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
         return (playerCurrentHP, playerCurrentStamina);
+    }
+
+    public void SetQuestUI()
+    {
+        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+        foreach (int item in questManager.proceedingQuests.Keys)
+        {   
+            Quest quest = questManager.proceedingQuests[item] as Quest;
+            GameObject qu = Instantiate(questUIObj, transform.position, Quaternion.identity, questUIParent.transform);
+            QuestUI questUI = qu.GetComponent<QuestUI>();
+            questUI.questTitle.text = quest.title;
+            questUI.questContext.text = quest.context;
+            for(int i = 0; i < quest.clearValue.values.Count; i++)
+            {
+                if(quest.clearValue.values[i].type == PropertyType.INT)
+                {
+                    questUI.questValue.text = quest.clearValue.values[i].currentIntValue + "/" + quest.clearValue.values[i].intValue;
+                }
+                else if(quest.clearValue.values[i].type == PropertyType.BOOL)
+                {
+                    questUI.questValue.text = "대충 뭔말 해야할지 모르겠다는 뜻";
+                }
+            }
+        }
     }
 
     public float BackUpHpStat()

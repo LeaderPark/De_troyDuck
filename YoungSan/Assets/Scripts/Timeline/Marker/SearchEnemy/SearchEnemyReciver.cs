@@ -33,6 +33,15 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 					if (enemyEntity != null)
 					{
 						enemyCount++;
+					}
+				}
+
+				for (int i = 0; i < marker.enemys.Length; i++)
+				{
+					Entity enemyEntity = marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>();
+
+					if (enemyEntity != null)
+					{
 						enemyEntity.dead += () =>
 						{
 							enemys.Add(enemyEntity);
@@ -51,7 +60,6 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 							};
 						}
 					}
-
 				}
 			}
 		}
@@ -62,7 +70,7 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 		if (nextTimeLine != null)
 		{
 			TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
-			timelineManager.StartCutScene(nextTimeLine.name);
+			timelineManager.StartCutScene(nextTimeLine);
 		}
 		else
 		{

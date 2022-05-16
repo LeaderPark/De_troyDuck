@@ -371,6 +371,27 @@ MonoBehaviour:
   loopEndMarker: {fileID: -1916110190765684923}
   qeustSelect: 0
   quest: {fileID: 0}
+--- !u!114 &-7325567352896154680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 11.366666671137015
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: 639df8edae4640a44808423d145ea8a5
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
 --- !u!114 &-7064634656622148097
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -400,6 +421,9 @@ MonoBehaviour:
     - {fileID: -892772747466562921}
     - {fileID: -821915707196073175}
     - {fileID: 362788727469510195}
+    - {fileID: -7325567352896154680}
+    - {fileID: 2579638676549315967}
+    - {fileID: 5480843263891518543}
 --- !u!114 &-5598638650741152907
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,7 +482,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -485,13 +527,49 @@ MonoBehaviour:
     m_BlendOutDuration: 0.4564149040728793
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -558,6 +636,47 @@ MonoBehaviour:
     m_DisplayName: DummyFollowCam
   m_Markers:
     m_Objects: []
+--- !u!114 &-5499154369870881570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21dcc2386d650c4597f3633c75a1f98, type: 3}
+  m_Name: Override 0
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
+  m_InfiniteClipPreExtrapolation: 0
+  m_InfiniteClipPostExtrapolation: 0
+  m_InfiniteClipOffsetPosition: {x: 0, y: 0, z: 0}
+  m_InfiniteClipOffsetEulerAngles: {x: 0, y: 0, z: 0}
+  m_InfiniteClipTimeOffset: 0
+  m_InfiniteClipRemoveOffset: 0
+  m_InfiniteClipApplyFootIK: 1
+  mInfiniteClipLoop: 0
+  m_MatchTargetFields: 63
+  m_Position: {x: 0, y: 0, z: 0}
+  m_EulerAngles: {x: 0, y: 0, z: 0}
+  m_AvatarMask: {fileID: 0}
+  m_ApplyAvatarMask: 1
+  m_TrackOffset: 0
+  m_InfiniteClip: {fileID: 0}
+  m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_ApplyOffsets: 0
 --- !u!114 &-5333487347052414904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1042,10 +1161,7 @@ MonoBehaviour:
   - enemy:
       exposedName: 61949385ce14aea4b81afb6a8beb8335
       defaultValue: {fileID: 0}
-  - enemy:
-      exposedName: 
-      defaultValue: {fileID: 0}
-  nextTimeLine: {fileID: 11400000, guid: eb88486e4df172342a3142e97bdcaee4, type: 2}
+  nextTimeLine: {fileID: 0}
   waitTime: 1
 --- !u!114 &-279540237224094788
 MonoBehaviour:
@@ -1464,6 +1580,33 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 67850259cb446694aa7a544f06a173bd, type: 2}
+--- !u!114 &2579638676549315967
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object Control Marker
+  m_EditorClassIdentifier: 
+  m_Time: 16.233333333333334
+  animationDatas: []
+  objectData:
+  - mainChar: 1
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: -36.1, y: 0, z: 90.22}
+  - mainChar: 0
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
 --- !u!114 &2920190773335731921
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1477,8 +1620,8 @@ MonoBehaviour:
   m_Name: Jump Marker
   m_EditorClassIdentifier: 
   m_Time: 13.750000002235174
-  loopMarker: {fileID: -3514428594887204703}
-  loopEndMarker: {fileID: -1916110190765684923}
+  loopMarker: {fileID: 6820167304022919677}
+  loopEndMarker: {fileID: 5889500285126941251}
   qeustSelect: 0
   quest: {fileID: 0}
 --- !u!114 &3252750553904313889
@@ -1713,6 +1856,20 @@ MonoBehaviour:
   loopEndMarker: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
+--- !u!114 &5480843263891518543
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abe84a4f4825484da4f8375ff2300c7, type: 3}
+  m_Name: Quest/QuestMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  quest: {fileID: 11400000, guid: b7a3c492596a1d445a8c88118364f749, type: 2}
 --- !u!114 &5605055198756463232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1773,7 +1930,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95d038bd25fe3bd45990d6db0a45e6b2, type: 3}
-  m_Name: 2 end
+  m_Name: 3 end
   m_EditorClassIdentifier: 
   m_Time: 14.45
 --- !u!114 &5929591207467303481
@@ -1876,7 +2033,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 753c9143d17060b4986633757de62967, type: 3}
-  m_Name: 2 start
+  m_Name: 3 start
   m_EditorClassIdentifier: 
   m_Time: 13.166666666666666
 --- !u!114 &7431948849709516278

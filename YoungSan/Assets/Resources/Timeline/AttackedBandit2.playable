@@ -113,12 +113,18 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 25.68, y: 0, z: -7.18}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 0
     obj:
       exposedName: 2233947f980a1d240a77aadaf1218016
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: 25.68, y: 0, z: -7.18}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &-6073408532044383946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,6 +141,39 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 2d12f47b74fc8184cbf857046d341830, type: 2}
+--- !u!114 &-4817685057351223893
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 6.883333333333334
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: b6e95e1e791fc3040988ee2dd092d9bc
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 57e503afc97d1814e964856678f57a39
+      defaultValue: {fileID: 0}
+  - mainChar: 0
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &-4623380397534625755
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,6 +195,9 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &-3958601794278792816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,6 +512,7 @@ MonoBehaviour:
     - {fileID: -6386778401611614967}
     - {fileID: 4641468946443865806}
     - {fileID: -4623380397534625755}
+    - {fileID: -4817685057351223893}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,7 +552,6 @@ MonoBehaviour:
     exposedName: 073d98d3284aaa3469a3fa914e02a1df
     defaultValue: {fileID: 0}
   dialogueMessage: "\uBC1B\uC544\uB78F!"
-  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -661,7 +703,6 @@ MonoBehaviour:
     exposedName: a69e4d141577d7949919bf1e758d337d
     defaultValue: {fileID: 0}
   dialogueMessage: "\uD788\uC57C\uC544\uC544\uC544\uC544\uC544!!"
-  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -950,12 +991,18 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: 25.68, y: 0, z: -7.18}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 0
     obj:
       exposedName: 2233947f980a1d240a77aadaf1218016
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 25.68, y: 0, z: -7.18}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &6476924761589731026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1159,7 +1206,6 @@ MonoBehaviour:
     exposedName: 998d8fe3195e6c3448091c9bed656154
     defaultValue: {fileID: 0}
   dialogueMessage: "\uC73C\uC73C..."
-  inputCheck: 0
   delayCurve:
     serializedVersion: 2
     m_Curve:

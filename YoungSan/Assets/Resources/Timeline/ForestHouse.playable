@@ -24,9 +24,8 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: 3111455537760368654}
-    - {fileID: -975255830844252554}
-    - {fileID: 1443051249422205385}
     - {fileID: 114927015046483123}
+    - {fileID: 9070957966872064943}
 --- !u!74 &-9083529960039707811
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -400,6 +399,9 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: 95.33, y: 0, z: 33.98}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &-8426450448436006469
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,7 +415,7 @@ MonoBehaviour:
   m_Name: TestAsset
   m_EditorClassIdentifier: 
   talker:
-    exposedName: 
+    exposedName: 71d77d23230f9ad4a860e5a254af3c67
     defaultValue: {fileID: 0}
   dialogueMessage: "\uC751\uC560.."
   delayCurve:
@@ -639,27 +641,6 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
---- !u!114 &-975255830844252554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
-  m_Name: Object Control Marker
-  m_EditorClassIdentifier: 
-  m_Time: 8.483333333333333
-  animationDatas: []
-  objectData:
-  - mainChar: 1
-    obj:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    active: 1
-    objPos: {x: 95.33, y: 0, z: 31.900362}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +687,9 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: 96.2, y: 0, z: 35.1}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &482105067891528417
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -826,27 +810,6 @@ MonoBehaviour:
     m_DisplayName: TextAsset
   m_Markers:
     m_Objects: []
---- !u!114 &1443051249422205385
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
-  m_Name: Object Control Marker
-  m_EditorClassIdentifier: 
-  m_Time: 8.483333333333333
-  animationDatas: []
-  objectData:
-  - mainChar: 0
-    obj:
-      exposedName: 59fb4eb6b257c6f4f8a11fc93d9f1af1
-      defaultValue: {fileID: 0}
-    active: 0
-    objPos: {x: 0, y: 0, z: 0}
 --- !u!114 &3111455537760368654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -868,6 +831,9 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 96.2, y: 0, z: 35.1}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &8550373773604069539
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -900,3 +866,54 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: fc6a27aaf9bd7be4ca27f97fcfe7e00a
     defaultValue: {fileID: 0}
+--- !u!114 &9070957966872064943
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 8.733333333333333
+  animationDatas: []
+  objectData:
+  - mainChar: 1
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 95.33, y: 0, z: 31.900362}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  - mainChar: 0
+    obj:
+      exposedName: 58d3c8fd0646bfe4bb27915a559f6826
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  - mainChar: 0
+    obj:
+      exposedName: cf9f5471d83aeb14b9f46005a2188107
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: -0.25, z: 0}
+    objTrm:
+      exposedName: 557bc27cb6ff9e041a5464c943d87ec6
+      defaultValue: {fileID: 0}
+  - mainChar: 0
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: -0.25, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}

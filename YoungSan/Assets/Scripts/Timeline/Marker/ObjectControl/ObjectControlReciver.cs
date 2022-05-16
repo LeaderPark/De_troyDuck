@@ -42,6 +42,8 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 			for (int i = 0; i < marker.objectData.Length; i++)
 			{
 				GameObject obj;
+				Transform objTrm;
+				objTrm = marker.objectData[i].objTrm.Resolve(origin.GetGraph().GetResolver());
 				bool _active = marker.objectData[i].active;
 				if (marker.objectData[i].mainChar)
 				{
@@ -59,8 +61,17 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 						obj.SetActive(_active);
 
 				}
-				if(obj!=null)
-				obj.transform.position = marker.objectData[i].objPos;
+				if (obj != null)
+				{
+					if (objTrm != null)
+					{
+						obj.transform.position = objTrm.position;
+					}
+					else
+					{
+					obj.transform.position = marker.objectData[i].objPos;
+					}
+				}
 			}
 			
 			//GameObject obj = marker.contorolObject.Resolve(origin.GetGraph().GetResolver());

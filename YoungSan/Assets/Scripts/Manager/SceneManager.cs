@@ -28,6 +28,7 @@ public class SceneManager : Manager
 	{
 		yield return null;
 		GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+		Debug.Log(gameManager.Player.name);
 		Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = gameManager.Player.transform;
 	}
 }

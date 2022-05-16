@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using UnityEditor;
+using System.ComponentModel;
+
+[DisplayName("Object/ObjControl")]
 
 public class ObjectControlMarker : Marker, INotification
 {
@@ -31,4 +34,6 @@ public struct ObjectData
 	public ExposedReference<GameObject> obj;
 	public bool active;
 	public Vector3 objPos;
+	public ExposedReference<Transform> objTrm;
+
 }

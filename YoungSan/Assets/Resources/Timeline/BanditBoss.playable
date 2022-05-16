@@ -17,7 +17,7 @@ MonoBehaviour:
   - enemy:
       exposedName: 82209cbacc27b8147872705f5ed11dac
       defaultValue: {fileID: 0}
-  nextTimeLine: {fileID: 0}
+  nextTimeLine: {fileID: 11400000, guid: 770dbc2896568714c9ffbf4ad89e6649, type: 2}
   waitTime: 2
 --- !u!74 &-7292726923094541735
 AnimationClip:
@@ -1100,7 +1100,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1347,6 +1365,9 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &5483307098961963371
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2007,12 +2028,18 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 6.91, y: 0, z: -9.32}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 0
     obj:
       exposedName: 0921decf6dd72844fb3f233022e084cc
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: 6.91, y: 0, z: -9.32}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &7514735239531657690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2141,12 +2168,18 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: 6.91, y: 0, z: -9.32}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 0
     obj:
       exposedName: 0921decf6dd72844fb3f233022e084cc
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 6.91, y: 0, z: -9.32}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &8796148242377277496
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -99,6 +99,12 @@ public class InputManager : Manager
             mouseTable[mouse] = ButtonState.None;
         }
         
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            var a =FindObjectOfType<Break>(true);
+            a.gameObject.SetActive(true);
+            a.Play();
+        }
     }
 }
 

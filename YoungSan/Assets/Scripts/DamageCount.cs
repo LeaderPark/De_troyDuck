@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
 [ExecuteAlways()]
+#endif
 public class DamageCount : MonoBehaviour
 {
     bool isPlayer;
@@ -16,6 +18,7 @@ public class DamageCount : MonoBehaviour
     public void Play(Vector3 position, int damage, bool isPlayer, bool isHeal)
     {
         if (loading) return;
+        loading = true;
         this.isPlayer = isPlayer;
         this.isHeal = isHeal;
         Vector2 screenPoint = Camera.main.WorldToScreenPoint(position);
@@ -26,7 +29,6 @@ public class DamageCount : MonoBehaviour
         rect.y = Camera.main.pixelHeight - screenPoint.y - rect.height / 2f;
         
         StartCoroutine(Process(new Vector2(screenPoint.x, Camera.main.pixelHeight - screenPoint.y)));
-        loading = true;
     }
 
     IEnumerator Process(Vector2 baseVec)

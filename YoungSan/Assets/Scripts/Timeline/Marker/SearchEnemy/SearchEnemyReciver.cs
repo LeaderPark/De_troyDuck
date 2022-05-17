@@ -13,11 +13,13 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 	float waitTime;
 	public void OnNotify(Playable origin, INotification notification, object context)
 	{
-		gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+
 		
 		SearchEnemyMarker marker = notification as SearchEnemyMarker;
 		if (marker != null)
 		{
+			gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+
 			nextTimeLine = marker.nextTimeLine;
 			waitTime = marker.waitTime;
 			if (marker.enemys.Length == 0)
@@ -29,6 +31,7 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 				int enemyCount = 0;
 				for (int i = 0; i < marker.enemys.Length; i++)
 				{
+					if (marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()) == null) continue;
 					Entity enemyEntity = marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>();
 					if (enemyEntity != null)
 					{
@@ -38,6 +41,7 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 
 				for (int i = 0; i < marker.enemys.Length; i++)
 				{
+					if (marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()) == null) continue;
 					Entity enemyEntity = marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>();
 
 					if (enemyEntity != null)

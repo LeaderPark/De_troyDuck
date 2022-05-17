@@ -13,9 +13,8 @@ public class ClickToPlay : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            SaveData sv = gameManager.gameObject.GetComponent<SaveData>();
-            StartCoroutine(sv.Load());
+            DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
+            dataManager.Load();
         }
     }
 

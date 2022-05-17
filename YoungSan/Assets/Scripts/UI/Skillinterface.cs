@@ -75,7 +75,7 @@ public class Skillinterface : MonoBehaviour
     {
         if(skillSet.skillCoolTimes.ContainsKey(eventCategory))
         {
-            StartCoroutine(Cool(eventCategory, skillSet.skillCoolTimes[eventCategory][index], index));
+            //StartCoroutine(Cool(eventCategory, skillSet.skillCoolTimes[eventCategory][index], index));
         }
     }
     IEnumerator Cool(EventCategory eventCategory, float cool, int index)

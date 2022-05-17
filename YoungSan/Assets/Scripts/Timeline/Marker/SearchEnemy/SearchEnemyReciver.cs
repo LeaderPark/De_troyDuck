@@ -13,11 +13,13 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 	float waitTime;
 	public void OnNotify(Playable origin, INotification notification, object context)
 	{
-		gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+
 		
 		SearchEnemyMarker marker = notification as SearchEnemyMarker;
 		if (marker != null)
 		{
+			gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+
 			nextTimeLine = marker.nextTimeLine;
 			waitTime = marker.waitTime;
 			if (marker.enemys.Length == 0)

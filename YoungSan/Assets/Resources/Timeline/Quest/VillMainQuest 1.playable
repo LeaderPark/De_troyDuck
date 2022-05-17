@@ -392,6 +392,9 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &-7064634656622148097
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -482,25 +485,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -527,49 +512,13 @@ MonoBehaviour:
     m_BlendOutDuration: 0.4564149040728793
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1111,18 +1060,27 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: -80.66, y: 0, z: 53.94}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 1
     obj:
       exposedName: 
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 0
     obj:
       exposedName: 
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &-821915707196073175
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1161,7 +1119,7 @@ MonoBehaviour:
   - enemy:
       exposedName: 61949385ce14aea4b81afb6a8beb8335
       defaultValue: {fileID: 0}
-  nextTimeLine: {fileID: 0}
+  nextTimeLine: {fileID: 11400000, guid: a4157d7a28c28464bbf36640a9444db1, type: 2}
   waitTime: 1
 --- !u!114 &-279540237224094788
 MonoBehaviour:
@@ -1236,18 +1194,27 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: -80.66, y: 0, z: 53.94}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 1
     obj:
       exposedName: 
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: -36.1, y: 0, z: 90.22}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 0
     obj:
       exposedName: 
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &470598365505759765
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1601,12 +1568,18 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: -36.1, y: 0, z: 90.22}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
   - mainChar: 0
     obj:
       exposedName: 
       defaultValue: {fileID: 0}
     active: 0
     objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
 --- !u!114 &2920190773335731921
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -509,7 +509,7 @@ MonoBehaviour:
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 0.5166666621963181
-    m_BlendOutDuration: 0.4564149040728793
+    m_BlendOutDuration: 0.4499999999999993
     m_MixInCurve:
       serializedVersion: 2
       m_Curve: []
@@ -533,22 +533,28 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: Cam1
   - m_Version: 1
-    m_Start: 12.710251762593787
+    m_Start: 12.716666666666667
     m_ClipIn: 0
-    m_Asset: {fileID: -5333487347052414904}
-    m_Duration: 3.6064149040728797
+    m_Asset: {fileID: 6117228282478581813}
+    m_Duration: 3.5999999999999996
     m_TimeScale: 1
     m_ParentTrack: {fileID: -5598638650741152907}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 0.4564149040728793
+    m_BlendInDuration: 0.4499999999999993
     m_BlendOutDuration: -1
     m_MixInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -557,19 +563,13 @@ MonoBehaviour:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -626,22 +626,6 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
---- !u!114 &-5333487347052414904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
-  m_Name: CinemachineShot(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  DisplayName: 
-  VirtualCamera:
-    exposedName: 3c40f8fd6b2250f48a1096fdabc53ef4
-    defaultValue: {fileID: 0}
 --- !u!114 &-4297462616503363277
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1119,7 +1103,7 @@ MonoBehaviour:
   - enemy:
       exposedName: 61949385ce14aea4b81afb6a8beb8335
       defaultValue: {fileID: 0}
-  nextTimeLine: {fileID: 11400000, guid: a4157d7a28c28464bbf36640a9444db1, type: 2}
+  nextTimeLine: {fileID: 11400000, guid: f6c66e577b3785d42bbad0e179ca9f4d, type: 2}
   waitTime: 1
 --- !u!114 &-279540237224094788
 MonoBehaviour:
@@ -1980,6 +1964,22 @@ MonoBehaviour:
     m_DisplayName: mainChar1
   m_Markers:
     m_Objects: []
+--- !u!114 &6117228282478581813
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: 
+  DisplayName: 
+  VirtualCamera:
+    exposedName: f369ab832c95a3a47a2fd650db99592a
+    defaultValue: {fileID: 0}
 --- !u!114 &6794179604973994466
 MonoBehaviour:
   m_ObjectHideFlags: 1

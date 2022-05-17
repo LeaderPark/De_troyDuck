@@ -31,6 +31,7 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 				int enemyCount = 0;
 				for (int i = 0; i < marker.enemys.Length; i++)
 				{
+					if (marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()) == null) continue;
 					Entity enemyEntity = marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>();
 					if (enemyEntity != null)
 					{
@@ -40,6 +41,7 @@ public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
 
 				for (int i = 0; i < marker.enemys.Length; i++)
 				{
+					if (marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()) == null) continue;
 					Entity enemyEntity = marker.enemys[i].enemy.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>();
 
 					if (enemyEntity != null)

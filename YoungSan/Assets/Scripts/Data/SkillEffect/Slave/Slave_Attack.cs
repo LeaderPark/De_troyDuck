@@ -10,13 +10,14 @@ public class Slave_Attack : SkillEffect
         switch (index)
         {
             case 0:
-                Stiff(hitEntity, 0.2f);
-                KnockBack(hitEntity, direction, 0f, 0.2f, 2);
+                Stiff(hitEntity, 0.5f);
+                KnockBack(hitEntity, direction, 0f, 0.2f, 5.5f);
+
                 ChangeColor(hitEntity, Color.red, 0f, 0.1f);
             break;
             case 1:
-                Stiff(hitEntity, 0.2f);
-                KnockBack(hitEntity, direction, 0f, 0.2f, 2);
+                Stiff(hitEntity, 0.5f);
+                KnockBack(hitEntity, direction, 0f, 0.2f, 5.5f);
                 ChangeColor(hitEntity, Color.red, 0f, 0.1f);
             break;
         }
@@ -27,13 +28,13 @@ public class Slave_Attack : SkillEffect
         switch (index)
         {
             case 0:
-                Stiff(hitEntity, 0.2f);
-                KnockBack(hitEntity, direction, 0f, 0.2f, 2);
+                Stiff(hitEntity, 0.5f);
+                KnockBack(hitEntity, direction, 0f, 0.2f, 5.5f);
                 ChangeColor(hitEntity, Color.red, 0f, 0.1f);
             break;
             case 1:
-                Stiff(hitEntity, 0.2f);
-                KnockBack(hitEntity, direction, 0f, 0.2f, 2);
+                Stiff(hitEntity, 0.5f);
+                KnockBack(hitEntity, direction, 0f, 0.2f, 5.5f);
                 ChangeColor(hitEntity, Color.red, 0f, 0.1f);
             break;
         }

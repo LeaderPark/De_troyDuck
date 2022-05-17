@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Break : MonoBehaviour
 {
-    public SpriteRenderer[] breakPieces;
-    public Sprite sprite;
+    private SpriteRenderer[] breakPieces;
+    
+    public BreakSpriteData[] breakSpriteData;
     public Vector3 minVelocity;
     public Vector3 maxVelocity;
     public float time;
@@ -15,11 +16,34 @@ public class Break : MonoBehaviour
 
     void Awake()
     {
-        breakPieces = new SpriteRenderer[transform.childCount];
+        int count = 0;
+        foreach (var item in breakSpriteData)
+        {
+            count += item.count;
+        }
+
+        breakPieces = new SpriteRenderer[count];
         for (int i = 0; i < breakPieces.Length; i++)
         {
-            breakPieces[i] = transform.GetChild(i).GetComponent<SpriteRenderer>();
+            breakPieces[i] = Instantiate(transform.GetChild(0).gameObject, transform).GetComponent<SpriteRenderer>();
+            breakPieces[i].gameObject.SetActive(false);
         }
+        
+        {
+            int i = 0;
+
+            foreach (var item in breakSpriteData)
+            {
+                for (int j = 0; j < item.count; j++)
+                {
+                    
+                    breakPieces[i].sprite = item.sprite;
+
+                    i++;
+                }
+            }
+        }
+
     }
 
     public void Play()
@@ -35,10 +59,10 @@ public class Break : MonoBehaviour
         for (int i = 0; i < breakPieces.Length; i++)
         {
             breakPieces[i].transform.position = transform.position;
-            breakPieces[i].sprite = sprite;
             Rigidbody rigid = breakPieces[i].GetComponent<Rigidbody>();
             rigid.velocity = (new Vector3(Random.Range(minVelocity.x, maxVelocity.x), Random.Range(minVelocity.y, maxVelocity.y), Random.Range(minVelocity.z, maxVelocity.z)));
             rigid.angularVelocity = (new Vector3(0, 0, Random.Range(0, 30)));
+            breakPieces[i].gameObject.SetActive(true);
         }
         
         yield return new WaitForSeconds(time);
@@ -51,3 +75,9 @@ public class Break : MonoBehaviour
 
 }
 
+[System.Serializable]
+public struct BreakSpriteData
+{
+    public Sprite sprite;
+    public int count;
+}

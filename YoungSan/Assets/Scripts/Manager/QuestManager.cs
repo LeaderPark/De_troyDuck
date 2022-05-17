@@ -6,6 +6,38 @@ public class QuestManager : Manager
 {
     public Hashtable proceedingQuests = new Hashtable();
     public Hashtable completedQuests = new Hashtable();
+    public Hashtable allQuests = new Hashtable();
+
+    void Awake()
+    {
+        LoadQuests();
+        //Test();
+    }
+
+    private void Update()
+    {
+        DebugQuest();
+    }
+    private void Test()
+    {
+        proceedingQuests.Add(1, allQuests[1]);
+        proceedingQuests.Add(2, allQuests[2]);
+        proceedingQuests.Add(3, allQuests[3]);
+
+        completedQuests.Add(4, allQuests[4]);
+        completedQuests.Add(5, allQuests[5]);
+        completedQuests.Add(6, allQuests[6]);
+    }
+
+    private void LoadQuests()
+    {
+        Quest[] quests = Resources.LoadAll<Quest>("ScriptableObjects/Quest");
+        foreach (Quest item in quests)
+        {
+            allQuests.Add(item.questId, item);
+        }
+    }
+
 
     public void AddQuest(Quest quest)
     {
@@ -129,5 +161,33 @@ public class QuestManager : Manager
                 }
             }
         }));
+    }
+
+    public void DebugQuest()
+    {
+        foreach(var item in proceedingQuests.Values)
+        {
+            Debug.Log(item);
+        }
+        foreach(var item in proceedingQuests.Keys)
+        {
+            Debug.Log(item);
+        }
+        foreach(var item in completedQuests.Values)
+        {
+            Debug.Log(item);
+        }
+        foreach(var item in completedQuests.Keys)
+        {
+            Debug.Log(item);
+        }
+        // foreach (var item in allQuests.Values)
+        // {
+        //     Debug.Log(item);
+        // }
+        // foreach (var item in allQuests.Keys)
+        // {
+        //     Debug.Log(item);
+        // }
     }
 }

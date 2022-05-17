@@ -22,6 +22,7 @@ public class UIManager : Manager
     [HideInInspector] public Statbar statbar;
     public BossStatUI bossStatbar;
     [HideInInspector] public Skillinterface skillinterface;
+    public Transform uiCanvas;
 
     public TimeLineSkipGage timeLineSkipGage;
 
@@ -34,12 +35,14 @@ public class UIManager : Manager
 
     void Awake()
     {
+        uiCanvas = transform.GetChild(0);
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
             Init();
     }
 
     public void Init()
     {
+        uiCanvas.gameObject.SetActive(true);
         statbar = transform.GetComponentInChildren<Statbar>();
         //Debug.Log(bossStatbar);
         skillinterface = transform.GetComponentInChildren<Skillinterface>();

@@ -20,14 +20,14 @@ public class Data
     public float CurrentStamina;
     public float gold;
     public float soul;
-    public List<(int, Quest)> proceedingQuests = new List<(int, Quest)>();
-    public List<string> completedQuests;
+    public int[] proceedingQuestKeys;
+    public int[] completedQuestKeys;
 }
 
 public class DataManager : Manager
 {
     private Data data = new Data();
-    private string key = "1234567890@adcdefghijklnmopqrstuvwxyz";
+    private string key = "woansdldhflqortnraksemfrl";
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))
@@ -39,6 +39,7 @@ public class DataManager : Manager
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         SaveGameData(gameManager.Player.GetComponent<Entity>());
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
+        //string jsonData = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);
         Debug.Log(jsonData);    
@@ -51,29 +52,32 @@ public class DataManager : Manager
             SetDefaultData();
         }
 
-        StartCoroutine(LoadApply());
+        StartCoroutine(LoadApply());    
     }
 
     private void SetDefaultData()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Castle");
-        // QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-        // data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        // data.currentPlayer = entity.gameObject.name;
-        // data.currentPosition = entity.gameObject.transform.position;
-        // data.Health = entity.clone.GetMaxStat(StatCategory.Health);
-        // data.CurrentHealth = entity.clone.GetStat(StatCategory.Health);
-        // data.Attack = entity.clone.GetStat(StatCategory.Attack);
-        // data.Speed = entity.clone.GetStat(StatCategory.Speed);
-        // data.Stamina = entity.clone.GetMaxStat(StatCategory.Stamina);
-        // data.CurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
+        data.sceneName = "Castle";
+        data.currentPlayer = "MainChar";
+        data.currentPosition = new Vector3(0,0,0);
+        data.Health = 330.0f;
+        data.CurrentHealth = 330.0f;
+        data.Attack = 11.0f;
+        data.Speed = 10.0f;
+        data.Stamina = 1000.0f;
+        data.CurrentStamina = 1000.0f;
     }
 
     private void SaveGameData(Entity entity)
     {
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        string postfix = "(Clone)";
         data.currentPlayer = entity.gameObject.name;
+        if(entity.gameObject.name.EndsWith(postfix))
+            data.currentPlayer = entity.gameObject.name.Substring(0, data.currentPlayer.Length - postfix.Length);
+
         data.currentPosition = entity.gameObject.transform.position;
         data.Health = entity.clone.GetMaxStat(StatCategory.Health);
         data.CurrentHealth = entity.clone.GetStat(StatCategory.Health);
@@ -82,33 +86,71 @@ public class DataManager : Manager
         data.Stamina = entity.clone.GetMaxStat(StatCategory.Stamina);
         data.CurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
 
-        foreach (int item in questManager.proceedingQuests.Keys)
+        data.proceedingQuestKeys = new int[questManager.proceedingQuests.Keys.Count];
+        data.completedQuestKeys = new int[questManager.completedQuests.Keys.Count];
         {
-            data.proceedingQuests.Add((item, questManager.proceedingQuests[item] as Quest));
+            int i = 0;
+            foreach (int item in questManager.proceedingQuests.Keys)
+            {
+                data.proceedingQuestKeys[i] = item;
+                ++i;
+            }
         }
+        {
+            int i = 0;
+            foreach (int item in questManager.completedQuests.Keys)
+            {
+                data.completedQuestKeys[i] = item;
+                ++i;
+            }
+        }
+    }
+    private IEnumerator DefaultLoad()
+    {
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Castle");
+        
+        GameObject go = Instantiate(Resources.Load("Prefabs/EntityData/MainChar")) as GameObject;
+        go.tag ="Player";
+        go.layer = 6;
+        go.GetComponent<Player>().enabled = true;
+        gameManager.Player = go.GetComponent<Player>();
+        go.GetComponent<AudioListener>().enabled = true;
+        go.GetComponent<Entity>().isDead = false;
+
+        uiManager.Init();
+        uiManager.skillinterface.Init_UI();
+        uiManager.statbar.Init();
+
+        yield return null;
     }
     private IEnumerator LoadApply()
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+
         string jsonDataString = File.ReadAllText(Application.persistentDataPath + "/SaveData.json");
         data = JsonUtility.FromJson<Data>(Decrypt(jsonDataString, key));
+        //data = JsonUtility.FromJson<Data>(jsonDataString);
 
         //씬 로드
         UnityEngine.SceneManagement.SceneManager.LoadScene(data.sceneName);
 
         //플레이어 생성
-        GameObject g = Instantiate(Resources.Load("Prefabs/EntityData/" + data.currentPlayer)) as GameObject;
-        g.transform.position = data.currentPosition;
-        g.tag ="Player";
-        g.layer = 6;
-        g.GetComponent<Player>().enabled = true;
-        gameManager.Player = g.GetComponent<Player>();
-        g.GetComponent<AudioListener>().enabled = true;
-        g.GetComponent<Entity>().isDead = false;
+        GameObject go = Instantiate(Resources.Load("Prefabs/EntityData/" + data.currentPlayer)) as GameObject;
+        go.transform.position = data.currentPosition;
+        go.tag ="Player";
+        go.layer = 6;
+        go.GetComponent<Player>().enabled = true;
+        gameManager.Player = go.GetComponent<Player>();
+        go.GetComponent<AudioListener>().enabled = true;
+        go.GetComponent<Entity>().isDead = false;
 
         //스텟 적용
-        Clone clone = g.GetComponent<Entity>().clone;
+        Clone clone = go.GetComponent<Entity>().clone;
         clone.SetMaxStat(StatCategory.Health,(int)data.Health);
         clone.SetStat(StatCategory.Health, (int)data.CurrentHealth);
         clone.SetStat(StatCategory.Attack, (int)data.Attack);
@@ -116,11 +158,21 @@ public class DataManager : Manager
         clone.SetMaxStat(StatCategory.Stamina,(int)data.Stamina);
         clone.SetStat(StatCategory.Stamina, (int)data.CurrentStamina);
 
+        //퀘스트 적용
+        for (int i = 0; i < data.proceedingQuestKeys.Length; i++)
+        {
+            questManager.proceedingQuests.Add(data.proceedingQuestKeys[i], questManager.allQuests[data.proceedingQuestKeys[i]]);
+        }
+        for (int i = 0; i < data.completedQuestKeys.Length; i++)
+        {
+            questManager.completedQuests.Add(data.completedQuestKeys[i], questManager.allQuests[data.completedQuestKeys[i]]);
+        }
+
         //UI 세팅
         uiManager.Init();
         uiManager.skillinterface.Init_UI();
         uiManager.statbar.Init();
-        
+
         yield return null;
     }
 

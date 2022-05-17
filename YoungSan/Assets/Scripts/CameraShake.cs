@@ -18,18 +18,9 @@ public class CameraShake : MonoBehaviour
             return instance;
         }
     }
-    private float camShakePower = 1;
-    public void SetShakeCamPower(float power)
-    {
-        camShakePower = power;
-    }
-    public void Shake(int count)
-    {
-        StartCoroutine(ShakeRepeat(Camera.main.GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>(), count, 0.1f));
-    }
+
     public void Shake()
     {
-        camShakePower = 1f;
         StartCoroutine(ShakeRepeat(Camera.main.GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>(), 2, 0.1f));
     }
 
@@ -39,7 +30,7 @@ public class CameraShake : MonoBehaviour
         {
             Vector3 pos = virtualCam.transform.position;
             Quaternion rot = virtualCam.transform.rotation;
-            virtualCam.ForceCameraPosition(pos + new Vector3(Random.Range(-0.5f, 0.5f)* camShakePower/*- 0.5f */, Random.Range(-0.5f, 0.5f)*camShakePower/* - 0.5f*/, 0), rot);
+            virtualCam.ForceCameraPosition(pos + new Vector3(Random.Range(0.0f, 1.0f) - 0.5f, Random.Range(0.0f, 1.0f) - 0.5f, 0), rot);
             yield return new WaitForSeconds(delay);
         }
     }

@@ -15,9 +15,9 @@ public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
 	public void OnNotify(Playable origin, INotification notification, object context)
 	{
 		ObjectControlMarker marker = notification as ObjectControlMarker;
+		GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 		if (marker != null)
 		{
-			GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 			for (int i = 0; i < marker.animationDatas.Length; i++)
 			{
 				GameObject obj;

@@ -98,7 +98,7 @@ public class UIManager : Manager
 	{
             PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
             GameObject hpBar = poolManager.GetObject("EnemyHp");
-            EnemyStatUi enemyUi = hpBar.GetComponentInChildren<EnemyStatUi>();
+            EnemyStatUI enemyUi = hpBar.GetComponentInChildren<EnemyStatUI>();
             enemyUi.entity = entity;
 
             enemyUi.SetPos();
@@ -112,7 +112,7 @@ public class UIManager : Manager
             Transform enemyHp = entity.gameObject.transform.Find("EnemyHp(Clone)");
             if (enemyHp != null)
             {
-                EnemyStatUi enemyUi = enemyHp.GetComponentInChildren<EnemyStatUi>();
+                EnemyStatUI enemyUi = enemyHp.GetComponentInChildren<EnemyStatUI>();
 
                 enemyUi.entity = entity;
                 enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));
@@ -241,4 +241,5 @@ public class UIManager : Manager
     {
         //미래에 누군가에게 이거를 넘겨요 
     }
+
 }

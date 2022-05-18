@@ -13,6 +13,15 @@ public class Break : MonoBehaviour
 
     bool loading;
 
+#if UNITY_EDITOR
+    private void Update()
+	{
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Play();
+        }
+	}
+#endif
 
     void Awake()
     {
@@ -66,10 +75,15 @@ public class Break : MonoBehaviour
         }
         
         yield return new WaitForSeconds(time);
-
+#if UNITY_EDITOR
+        for (int i = 0; i < breakPieces.Length; i++)
+        {
+            breakPieces[i].gameObject.SetActive(false);
+        }
+#else
         gameObject.SetActive(false);
+#endif
         loading = false;
-
         yield return null;
     }
 

@@ -648,14 +648,16 @@ MonoBehaviour:
   hitBoxDatas:
   - LeftHitBox: {fileID: 3905612962508708290}
     RightHitBox: {fileID: 6595363625223148861}
-  soundStartTimes: []
+  soundStartTimes:
+  - 0
   skillDamageForms:
   - '{Attack}'
   coolTime: 0
   waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 699095934054546113}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: e9c4dd860c8c44d4db4750d323bfae07, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &8265132676554422320
 GameObject:

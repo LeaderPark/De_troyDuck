@@ -574,14 +574,16 @@ MonoBehaviour:
   hitBoxDatas:
   - LeftHitBox: {fileID: 7494574574163639945}
     RightHitBox: {fileID: 411769097772724854}
-  soundStartTimes: []
+  soundStartTimes:
+  - 0
   skillDamageForms:
   - '{Attack}'
   coolTime: 0
   waitTime: 2
   useStaminaForm: '{Speed}'
   skillEffect: {fileID: 197208136061750744}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: 9dfeb2112dcdded4ba16b1d8bc568675, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &4143921575116378352
 GameObject:
@@ -907,14 +909,16 @@ MonoBehaviour:
   hitBoxDatas:
   - LeftHitBox: {fileID: 4143921575528386691}
     RightHitBox: {fileID: 4143921575591518511}
-  soundStartTimes: []
+  soundStartTimes:
+  - 0
   skillDamageForms:
   - '{Attack}'
   coolTime: 0
   waitTime: 0
   useStaminaForm: '{Speed}'
   skillEffect: {fileID: 4143921575637521609}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: f3039a6f8a621d74696cbba770db4eba, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &4143921576820434128
 GameObject:

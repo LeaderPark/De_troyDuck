@@ -7,8 +7,10 @@ public class Break : MonoBehaviour
     private SpriteRenderer[] breakPieces;
     
     public BreakSpriteData[] breakSpriteData;
-    public Vector3 minVelocity;
-    public Vector3 maxVelocity;
+    public float minVelocity;
+    public float maxVelocity;
+    public Vector3 minDirection;
+    public Vector3 maxDirection;
     public float time;
 
     bool loading;
@@ -65,24 +67,23 @@ public class Break : MonoBehaviour
 
     IEnumerator Process()
     {
+        minDirection = minDirection.normalized;
+        maxDirection = maxDirection.normalized;
         for (int i = 0; i < breakPieces.Length; i++)
         {
             breakPieces[i].transform.position = transform.position;
             Rigidbody rigid = breakPieces[i].GetComponent<Rigidbody>();
-            rigid.velocity = (new Vector3(Random.Range(minVelocity.x, maxVelocity.x), Random.Range(minVelocity.y, maxVelocity.y), Random.Range(minVelocity.z, maxVelocity.z)));
+            rigid.velocity = Random.Range(minVelocity, maxVelocity) * (new Vector3(Random.Range(minDirection.x, maxDirection.x), Random.Range(minDirection.y, maxDirection.y), Random.Range(minDirection.z, maxDirection.z)));
             rigid.angularVelocity = (new Vector3(0, 0, Random.Range(0, 30)));
             breakPieces[i].gameObject.SetActive(true);
         }
         
         yield return new WaitForSeconds(time);
-#if UNITY_EDITOR
         for (int i = 0; i < breakPieces.Length; i++)
         {
             breakPieces[i].gameObject.SetActive(false);
         }
-#else
-        gameObject.SetActive(false);
-#endif
+
         loading = false;
         yield return null;
     }

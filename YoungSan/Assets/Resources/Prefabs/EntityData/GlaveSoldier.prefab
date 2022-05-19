@@ -187,7 +187,7 @@ MonoBehaviour:
   hitEffectClips:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 6836ff46a1c9b1d448f348c5605fbec7, type: 3}
+  - {fileID: 8300000, guid: 7b4398f10a7bd994fbc84c6da6e412b9, type: 3}
 --- !u!1 &2601119440568902279
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,14 +575,15 @@ MonoBehaviour:
   - LeftHitBox: {fileID: 2601119440568902273}
     RightHitBox: {fileID: 2601119441453240942}
   soundStartTimes:
-  - 0.6
+  - 0.2
   skillDamageForms:
   - '{Attack}'
   coolTime: 3
   waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 2601119440529192870}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: f9012f4052b2df04ebba6d4902e8f8cf, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &2601119441091925793
 GameObject:
@@ -1424,9 +1425,9 @@ MonoBehaviour:
   - LeftHitBox: {fileID: 2601119441295869211}
     RightHitBox: {fileID: 2601119442264372225}
   soundStartTimes:
+  - 0.2
   - 0.4
-  - 0.7
-  - 1
+  - 0.6
   skillDamageForms:
   - '{Attack}'
   - '{Attack}'
@@ -1435,7 +1436,10 @@ MonoBehaviour:
   waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 8688571837323373854}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: 530a5c89a7ef3f042aa8000f6d4d4749, type: 3}
+  - {fileID: 8300000, guid: 530a5c89a7ef3f042aa8000f6d4d4749, type: 3}
+  - {fileID: 8300000, guid: 530a5c89a7ef3f042aa8000f6d4d4749, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &7191689838047030401
 GameObject:
@@ -1851,6 +1855,6 @@ MonoBehaviour:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 8ae0c511af46f194d84ec7dd6296b139, type: 3}
-  - {fileID: 8300000, guid: 8ae0c511af46f194d84ec7dd6296b139, type: 3}
-  - {fileID: 8300000, guid: 8ae0c511af46f194d84ec7dd6296b139, type: 3}
+  - {fileID: 8300000, guid: 6ad9845c197eaeb46a5704163bbc4b7f, type: 3}
+  - {fileID: 8300000, guid: 6ad9845c197eaeb46a5704163bbc4b7f, type: 3}
+  - {fileID: 8300000, guid: 6ad9845c197eaeb46a5704163bbc4b7f, type: 3}

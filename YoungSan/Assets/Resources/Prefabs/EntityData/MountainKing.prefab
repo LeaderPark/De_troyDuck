@@ -306,7 +306,7 @@ MonoBehaviour:
   hitEffectClips:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 8ae0c511af46f194d84ec7dd6296b139, type: 3}
+  - {fileID: 8300000, guid: 6836ff46a1c9b1d448f348c5605fbec7, type: 3}
 --- !u!1 &1236690624832364743
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
   hitEffectClips:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 8ae0c511af46f194d84ec7dd6296b139, type: 3}
+  - {fileID: 8300000, guid: 6836ff46a1c9b1d448f348c5605fbec7, type: 3}
 --- !u!1 &1236690624876086841
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,14 +760,16 @@ MonoBehaviour:
   hitBoxDatas:
   - LeftHitBox: {fileID: 1236690625197313510}
     RightHitBox: {fileID: 1236690624319435011}
-  soundStartTimes: []
+  soundStartTimes:
+  - 0
   skillDamageForms:
   - '{Attack} * 10'
   coolTime: 10
   waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 1236690624826602821}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: 03eb7622ac80ca84bbc52059628b953d, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &1236690625879922859
 GameObject:
@@ -875,14 +877,16 @@ MonoBehaviour:
   hitBoxDatas:
   - LeftHitBox: {fileID: 1236690625879922861}
     RightHitBox: {fileID: 1236690624656022762}
-  soundStartTimes: []
+  soundStartTimes:
+  - 0.4
   skillDamageForms:
   - '{Attack}'
   coolTime: 5
   waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 1236690624832364745}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: ea80cbee0405b984485b9963846baf64, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &1236690625908380985
 GameObject:

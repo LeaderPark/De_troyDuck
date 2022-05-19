@@ -14,6 +14,7 @@ public class UIManager : Manager
     private float hp;
     private float stamina;
     private Entity entity;
+    [SerializeField]
     private CanvasGroup canvas;
 
     [SerializeField]
@@ -33,9 +34,10 @@ public class UIManager : Manager
     public GameObject questUIObj;
     public GameObject questUIParent;
 
+    public GameObject SettingUIObj;
+
     void Awake()
     {
-        uiCanvas = transform.GetChild(0);
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
             Init();
     }
@@ -46,7 +48,6 @@ public class UIManager : Manager
         statbar = transform.GetComponentInChildren<Statbar>();
         //Debug.Log(bossStatbar);
         skillinterface = transform.GetComponentInChildren<Skillinterface>();
-        canvas = transform.GetComponentInChildren<CanvasGroup>();
         timeLineSkipGage = transform.GetComponentInChildren<TimeLineSkipGage>();
 
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
@@ -236,6 +237,8 @@ public class UIManager : Manager
 			yield return null;
 		}
 	}
+
+
 
     private void TimeLineSkip()
     {

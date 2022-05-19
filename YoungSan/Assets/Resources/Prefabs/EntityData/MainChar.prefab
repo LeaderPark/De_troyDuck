@@ -1498,7 +1498,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075073055555241501}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1 &2388458980938419714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,14 +1846,16 @@ MonoBehaviour:
   hitBoxDatas:
   - LeftHitBox: {fileID: 7691739279760309532}
     RightHitBox: {fileID: 507352122581545443}
-  soundStartTimes: []
+  soundStartTimes:
+  - 0.1
   skillDamageForms:
   - ({Attack} + 2) * 2 + 10
   coolTime: 0
   waitTime: 5
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 276663892}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: 830d4c0f905a3174491ba1e31b04716e, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &3622374620540530229
 GameObject:
@@ -2025,14 +2027,16 @@ MonoBehaviour:
   hitBoxDatas:
   - LeftHitBox: {fileID: 2319936938538445956}
     RightHitBox: {fileID: 2751635251116658996}
-  soundStartTimes: []
+  soundStartTimes:
+  - 0.1
   skillDamageForms:
   - '{Attack} * 6'
   coolTime: 0
   waitTime: 0
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 7137876916191949852}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: c97cc8912d6c0ac42b274bab265ce93e, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &4914971777484609309
 GameObject:
@@ -2593,12 +2597,14 @@ MonoBehaviour:
   hitBoxDatas:
   - LeftHitBox: {fileID: 7657160944296407772}
     RightHitBox: {fileID: 7952806635551821888}
-  soundStartTimes: []
+  soundStartTimes:
+  - 0
   skillDamageForms:
   - '{Attack} * 2'
   coolTime: 0
   waitTime: 5
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 6512122961216048893}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: 3920734de112b45449b6a2f380819be6, type: 3}
   direction: {x: 0, y: 0}

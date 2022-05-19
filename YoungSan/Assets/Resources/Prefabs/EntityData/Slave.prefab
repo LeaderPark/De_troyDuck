@@ -251,10 +251,11 @@ MonoBehaviour:
   skillDamageForms:
   - '{Attack}'
   coolTime: 0
-  waitTime: 1
+  waitTime: 2
   useStaminaForm: 0
-  skillEffect: {fileID: 2341238699409616859}
-  attackSounds: []
+  skillEffect: {fileID: 8393166027322023315}
+  attackSounds:
+  - {fileID: 8300000, guid: 4f8dc40812813384fa532cbb5a203b80, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &2341238698305537712
 GameObject:
@@ -284,6 +285,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2341238699409616853}
+  - {fileID: 3175352981416302050}
   m_Father: {fileID: 4373527137187162013}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -296,9 +298,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2341238699409616853}
-  - component: {fileID: 2341238699409616859}
+  - component: {fileID: 8393166027322023315}
   m_Layer: 0
-  m_Name: Attack
+  m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -318,7 +320,7 @@ Transform:
   m_Father: {fileID: 2341238698305537713}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2341238699409616859
+--- !u!114 &8393166027322023315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,13 +329,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2341238699409616852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd60b3a35e4892e44b7b25ea12fa5155, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fc6ef40fbaf1ee46aa54c82477f2dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffectClips:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 6836ff46a1c9b1d448f348c5605fbec7, type: 3}
+  - {fileID: 8300000, guid: e77ca83f39734b6468d591fc7243b6ef, type: 3}
 --- !u!1 &2601022424176600547
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,8 +538,9 @@ MonoBehaviour:
   coolTime: 0
   waitTime: 0
   useStaminaForm: 0
-  skillEffect: {fileID: 2341238699409616859}
-  attackSounds: []
+  skillEffect: {fileID: 996036940101250597}
+  attackSounds:
+  - {fileID: 8300000, guid: a3aba6fadf29f5d4ab4cc80497c39883, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &4373527137187162011
 GameObject:
@@ -564,7 +567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4373527137187162013
 Transform:
   m_ObjectHideFlags: 0
@@ -1042,6 +1045,53 @@ Transform:
   m_Father: {fileID: 6323304878954454442}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6531707764847903223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3175352981416302050}
+  - component: {fileID: 996036940101250597}
+  m_Layer: 0
+  m_Name: Attack2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3175352981416302050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531707764847903223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2341238698305537713}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &996036940101250597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531707764847903223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a8a58ff557b34143bd6a9cfc4bba2a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffectClips:
+  - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
+  hitSoundClips:
+  - {fileID: 8300000, guid: e77ca83f39734b6468d591fc7243b6ef, type: 3}
 --- !u!1 &7567246876967710606
 GameObject:
   m_ObjectHideFlags: 0

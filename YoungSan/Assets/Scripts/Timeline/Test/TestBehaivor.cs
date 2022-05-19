@@ -105,7 +105,7 @@ public class TestBehaivor : PlayableBehaviour
 		{
 			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position+new Vector3(0,entityData.uiPos,0));
 			time += Time.deltaTime* (float)playable.GetGraph().GetRootPlayable(0).GetSpeed();
-			endImage.SetActive(timelineCon.timelinePause);
+			//endImage.SetActive(timelineCon.timelinePause);
 			for (bool b = true; b;)
 			{
 				b = false;

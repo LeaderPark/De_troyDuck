@@ -342,14 +342,15 @@ MonoBehaviour:
   - LeftHitBox: {fileID: 7762853707809184653}
     RightHitBox: {fileID: 7762853707106796661}
   soundStartTimes:
-  - 0.4
+  - 0.2
   skillDamageForms:
   - '{Attack}'
   coolTime: 0
   waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 8060953488082882998}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: f758299a702cde5408695d1510a5d2be, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &7762853706901196889
 GameObject:
@@ -543,7 +544,7 @@ MonoBehaviour:
   hitEffectClips:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 6836ff46a1c9b1d448f348c5605fbec7, type: 3}
+  - {fileID: 8300000, guid: cb524b66ad8fbe144a3151d6bd4e4284, type: 3}
 --- !u!1 &8060953489262721244
 GameObject:
   m_ObjectHideFlags: 0

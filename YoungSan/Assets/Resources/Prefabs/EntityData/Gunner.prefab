@@ -47,14 +47,15 @@ MonoBehaviour:
   targetIndex: 0
   hitBoxDatas: []
   soundStartTimes:
-  - 0.1
+  - 0
   skillDamageForms:
   - '{Attack} * 10'
   coolTime: 3
   waitTime: 0
   useStaminaForm: 0
   skillEffect: {fileID: 4094522149886900280}
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: 80f07d2f2f8eb80498da5b305be8644a, type: 3}
   direction: {x: 0, y: 0}
 --- !u!1 &1651701793770334855
 GameObject:
@@ -459,7 +460,7 @@ MonoBehaviour:
   hitEffectClips:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 8ae0c511af46f194d84ec7dd6296b139, type: 3}
+  - {fileID: 8300000, guid: 59257d4563f602f4ca40c9ff54830f81, type: 3}
 --- !u!1 &4094522150921785695
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class JumpMarker : Marker, INotification
 
 	[SerializeField] public LoopMarker loopMarker;
 	[SerializeField] public LoopEndMarker loopEndMarker;
+	[SerializeField] public LoopEndMarker questRefuse;
 	public bool qeustSelect;
 	public Quest quest;
 
@@ -51,7 +52,17 @@ public class JumpEditor : Editor
 				}
 			}
 		}
-
+		GUILayout.Label("Äù½ºÆ® °ÅÀý");
+		foreach (var m in markers)
+		{
+			if (m.GetType() == typeof(LoopEndMarker))
+			{
+				if (GUILayout.Button(m.ToString()))
+				{
+					jMarker.questRefuse = m as LoopEndMarker;
+				}
+			}
+		}
 
 
 	}

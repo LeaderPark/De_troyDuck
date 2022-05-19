@@ -13,12 +13,12 @@ public class TimelineController : MonoBehaviour
 
 	PlayableDirector director;
 	[SerializeField] private Image fade;
-	public bool timelinePause = false;
 	public bool talkLoop = true;
 
 
 	[HideInInspector]
 	public JumpMarker jumpMarker;
+	public LoopEndMarker targetMarker;
 	//컷씬 스킵 부분
 	private float currentSkipTime = 0;
 	private bool isKeyDown = false;
@@ -32,11 +32,18 @@ public class TimelineController : MonoBehaviour
 	}
 	private void Update()
 	{
-		if (jumpMarker!=null)
+		if (jumpMarker != null)
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				StartTimeline();
+			}
+		}
+		else
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+			talkLoop = true;
 			}
 		}
 
@@ -71,20 +78,17 @@ public class TimelineController : MonoBehaviour
 	}
 	public void StartTimeline()
 	{
-		//director.Play();
-		if (timelinePause)
+		if (talkLoop)
 		{
-			director.Play();
-			director.playableGraph.GetRootPlayable(0).SetSpeed(1);
-			timelinePause = false;
-		}
-		if (jumpMarker != null&& talkLoop)
-		{
-			Debug.Log(director.time);
 			talkLoop = false;
+			if(!jumpMarker.qeustSelect)
 			director.time = jumpMarker.loopEndMarker.time;
 			jumpMarker = null;
 		}
+	}
+	public void TimelineEnd()
+	{
+		director.Stop();
 	}
 	public void PauseTimeline()
 	{
@@ -94,7 +98,6 @@ public class TimelineController : MonoBehaviour
 
 	//	director.playableGraph.GetRootPlayable(0).SetTime(director.playableGraph.GetRootPlayable(0).GetTime());
 
-		timelinePause = true;
 	}
 	public void UISetActiveFalse()
 	{

@@ -33,6 +33,8 @@ public class UIManager : Manager
     public GameObject questUIObj;
     public GameObject questUIParent;
 
+    public GameObject SettingUIObj;
+
     void Awake()
     {
         uiCanvas = transform.GetChild(0);
@@ -236,6 +238,13 @@ public class UIManager : Manager
 			yield return null;
 		}
 	}
+
+    private void OpenSettingUI()
+    {
+        SettingUIObj.GetComponent<CanvasGroup>().alpha = 1;
+        SettingUIObj.GetComponent<CanvasGroup>().interactable = true;
+        SettingUIObj.GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
 
     private void TimeLineSkip()
     {

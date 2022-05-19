@@ -44,7 +44,6 @@ public class MakeTransperent : MonoBehaviour
 
         if (hits.Length > 0)
         {
-            // Repaint all the previous obstructions. Because some of the stuff might be not blocking anymore
             foreach (var obstruction in ObjectToHide)
             {
                 ObjectToShow.Add(obstruction);
@@ -52,7 +51,6 @@ public class MakeTransperent : MonoBehaviour
  
             ObjectToHide.Clear();
  
-            // Hide the current obstructions
             foreach (var hit in hits)
             {
                 Transform obstruction = hit.transform;
@@ -62,7 +60,6 @@ public class MakeTransperent : MonoBehaviour
         }
         else
         {
-            // Mean that no more stuff is blocking the view and sometimes all the stuff is not blocking as the same time
             foreach (var obstruction in ObjectToHide)
             {
                 ObjectToShow.Add(obstruction);
@@ -74,8 +71,6 @@ public class MakeTransperent : MonoBehaviour
 
     private void HideObstruction(Transform obj)
     {
-        // obj.GetComponent<SpriteRenderer>().re
-        // Color color = obj.GetComponent<SpriteRenderer>().color;
         SpriteRenderer[] renders = obj.GetComponentsInChildren<SpriteRenderer>();
 		for (int i = 0; i < renders.Length; i++)
 		{
@@ -84,21 +79,10 @@ public class MakeTransperent : MonoBehaviour
             renders[i].color = color;
 
         }
-        //color.a = Mathf.Max(transperentValue, color.a - obstructionFadingSpeed * Time.deltaTime);
-        //obj.GetComponent<SpriteRenderer>().color = color;
- 
     }
 
     private void ShowObstruction(Transform obj)
     {
-        //var color = obj.GetComponent<SpriteRenderer>().color;
-        //color.a = Mathf.Min(1, color.a + obstructionFadingSpeed * Time.deltaTime);
-        //obj.GetComponent<SpriteRenderer>().color = color;
-
-        //if (obj.GetComponent<SpriteRenderer>().color.a == 1f)
-        //{
-        //    Remove.Add(obj);
-        //}
         SpriteRenderer[] renders = obj.GetComponentsInChildren<SpriteRenderer>();
         for (int i = 0; i < renders.Length; i++)
         {

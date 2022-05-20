@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class Reciver : MonoBehaviour, INotificationReceiver
+public class Receiver : MonoBehaviour, INotificationReceiver
 {
 	protected TimelineController timelineCon;
 

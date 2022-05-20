@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class JumpReciver : Reciver
+public class JumpReciver : Receiver
 {
 	public bool qeustSelect = false;
 	private bool loop = false;

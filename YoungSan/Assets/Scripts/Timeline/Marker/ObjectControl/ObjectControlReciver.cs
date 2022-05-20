@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-public class ObjectControlReciver :Reciver
+public class ObjectControlReciver :Receiver
 {
 
 	public override void OnNotify(Playable origin, INotification notification, object context)

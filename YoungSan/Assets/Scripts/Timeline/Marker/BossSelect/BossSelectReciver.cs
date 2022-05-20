@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class BossSelectReciver : Reciver
+public class BossSelectReciver : Receiver
 {
 	Entity bossEntity;
 	UIManager uIManager;

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class SearchEnemyReciver : Reciver
+public class SearchEnemyReciver : Receiver
 {
 	private TimelineAsset nextTimeLine;
 	GameManager gameManager;

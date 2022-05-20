@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class QuestReciver : Reciver
+public class QuestReciver : Receiver
 {
 	public override void OnNotify(Playable origin, INotification notification, object context)
 	{

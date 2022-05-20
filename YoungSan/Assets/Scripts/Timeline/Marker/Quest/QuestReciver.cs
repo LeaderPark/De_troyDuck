@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class QuestReciver : MonoBehaviour, INotificationReceiver
+public class QuestReciver : Reciver
 {
-	public void OnNotify(Playable origin, INotification notification, object context)
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
+		base.OnNotify(origin, notification, context);
+
 		QuestMarker marker = notification as QuestMarker;
 		if (marker != null)
 		{

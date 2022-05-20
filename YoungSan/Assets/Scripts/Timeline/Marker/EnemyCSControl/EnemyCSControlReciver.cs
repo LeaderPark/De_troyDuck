@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class EnemyCSControlReciver : MonoBehaviour, INotificationReceiver
+public class EnemyCSControlReciver :Reciver
 {
-	public void OnNotify(Playable origin, INotification notification, object context)
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
+		base.OnNotify(origin, notification, context);
+
 		EnemyCSControlMarker marker = notification as EnemyCSControlMarker;
 		if (marker != null)
 		{

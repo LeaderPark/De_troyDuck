@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class EventReciver : MonoBehaviour, INotificationReceiver
+public class EventReciver : Reciver
 {
-	TimelineController timelineCon;
-	private void Awake()
+
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
-		timelineCon = GetComponent<TimelineController>();
-	}
-	public void OnNotify(Playable origin, INotification notification, object context)
-	{
+		base.OnNotify(origin, notification, context);
 		EventMarker marker = notification as EventMarker;
 		if (marker != null)
 		{

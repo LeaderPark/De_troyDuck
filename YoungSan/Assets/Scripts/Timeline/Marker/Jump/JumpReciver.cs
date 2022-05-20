@@ -4,20 +4,14 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class JumpReciver : MonoBehaviour, INotificationReceiver
+public class JumpReciver : Reciver
 {
-	TimelineController timelineCon;
 	public bool qeustSelect = false;
 	private bool loop = false;
 
-	public void OnNotify(Playable origin, INotification notification, object context)
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
 		JumpMarker _marker = notification as JumpMarker;
-
-		if (timelineCon == null)
-		{
-			timelineCon = GameObject.Find("CutScenePrefab").GetComponent<TimelineController>();
-		}
 
 		if (_marker != null&& timelineCon.targetMarker==null)
 		{

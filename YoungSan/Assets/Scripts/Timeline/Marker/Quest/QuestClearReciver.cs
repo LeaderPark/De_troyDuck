@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class QuestClearReciver : MonoBehaviour, INotificationReceiver
+public class QuestClearReciver : Reciver
 {
-	public void OnNotify(Playable origin, INotification notification, object context)
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
+		base.OnNotify(origin, notification, context);
 		QuestClearMarker marker = notification as QuestClearMarker;
 		if (marker != null)
 		{

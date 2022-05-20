@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-public class DialogueReciver : MonoBehaviour, INotificationReceiver
+public class DialogueReciver : Reciver
 {
 	Dialogue dialogue;
 
@@ -11,7 +11,7 @@ public class DialogueReciver : MonoBehaviour, INotificationReceiver
 		dialogue = GetComponent<Dialogue>();
 	}
 
-	public void OnNotify(Playable origin, INotification notification, object context)
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
 		DialogueMarker marker = notification as DialogueMarker;
 		if (marker != null)

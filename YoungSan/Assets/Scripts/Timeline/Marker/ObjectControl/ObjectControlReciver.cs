@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-public class ObjectControlReciver : MonoBehaviour, INotificationReceiver
+public class ObjectControlReciver :Reciver
 {
-	Dialogue dialogue;
 
-	private void Start()
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
-		dialogue = GetComponent<Dialogue>();
-	}
+		base.OnNotify(origin, notification, context);
 
-	public void OnNotify(Playable origin, INotification notification, object context)
-	{
 		ObjectControlMarker marker = notification as ObjectControlMarker;
 		if (marker != null)
 		{
+			if (timelineCon.targetMarker != null)
+			{
+				return;
+			}
 			GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 			for (int i = 0; i < marker.animationDatas.Length; i++)
 			{

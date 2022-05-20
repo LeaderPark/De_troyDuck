@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class SceneLoadReciver : MonoBehaviour, INotificationReceiver
+public class SceneLoadReciver : Reciver
 {
-	public void OnNotify(Playable origin, INotification notification, object context)
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
+		base.OnNotify(origin, notification, context);
+
 		SceneLoadMarker marker = notification as SceneLoadMarker;
 		if (marker != null)
 		{

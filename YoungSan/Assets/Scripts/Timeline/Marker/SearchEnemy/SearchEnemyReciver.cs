@@ -5,16 +5,16 @@ using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class SearchEnemyReciver : MonoBehaviour, INotificationReceiver
+public class SearchEnemyReciver : Reciver
 {
 	private TimelineAsset nextTimeLine;
 	GameManager gameManager;
 	List<Entity> enemys = new List<Entity>();
 	float waitTime;
-	public void OnNotify(Playable origin, INotification notification, object context)
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
+		base.OnNotify(origin, notification, context);
 
-		
 		SearchEnemyMarker marker = notification as SearchEnemyMarker;
 		if (marker != null)
 		{

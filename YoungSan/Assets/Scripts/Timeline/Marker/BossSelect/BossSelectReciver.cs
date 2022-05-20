@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class BossSelectReciver : MonoBehaviour, INotificationReceiver
+public class BossSelectReciver : Reciver
 {
 	Entity bossEntity;
 	UIManager uIManager;
@@ -12,8 +12,10 @@ public class BossSelectReciver : MonoBehaviour, INotificationReceiver
 	{
 		uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 	}
-	public void OnNotify(Playable origin, INotification notification, object context)
+	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
+		base.OnNotify(origin, notification, context);
+
 		BossSelectMarker marker = notification as BossSelectMarker;
 
 		if (marker != null)

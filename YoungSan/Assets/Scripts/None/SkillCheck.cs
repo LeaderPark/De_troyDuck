@@ -10,6 +10,7 @@ namespace StateMachine
         public override State Process(StateMachine stateMachine)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            if (gameManager.Player.GetComponent<Entity>().isDead) return stateMachine.GetStateTable(typeof(Idle));
             float distance = Vector2.Distance(new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z));
             SkillSet skillSet = stateMachine.Enemy.GetComponentInChildren<SkillSet>();
             int coolCount = 0;

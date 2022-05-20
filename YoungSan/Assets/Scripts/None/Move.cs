@@ -50,11 +50,14 @@ namespace StateMachine
             {
                 stateMachine.searchTimeStack = 0;
             }
-            if (stateMachine.stateMachineData.searchDelay <= stateMachine.searchTimeStack)
+            if (!gameManager.Player.GetComponent<Entity>().isDead)
             {
-                start = false;
-                stateMachine.searchTimeStack = 0;
-                return stateMachine.GetStateTable(typeof(Pursue));
+                if (stateMachine.stateMachineData.searchDelay <= stateMachine.searchTimeStack)
+                {
+                    start = false;
+                    stateMachine.searchTimeStack = 0;
+                    return stateMachine.GetStateTable(typeof(Pursue));
+                }
             }
             if (!start)
             {

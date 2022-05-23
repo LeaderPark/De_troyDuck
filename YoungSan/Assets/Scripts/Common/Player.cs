@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
         entity = GetComponent<Entity>();
         entityEvent = GetComponent<EntityEvent>();
         direction = false;
-        
     }
 
 	private void Start()
@@ -186,7 +185,7 @@ public class Player : MonoBehaviour
                 
                 float hpRatio = uiManager.BackUpHpStat();
                 float staminaRatio = uiManager.BackUpStaminaStat();
-                entity.Die();
+                entity.Die(false);
                 StopAllCoroutines();
                 entity.gameObject.GetComponent<AudioListener>().enabled = false;
                 entity.gameObject.layer = 7;

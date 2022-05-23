@@ -40,7 +40,7 @@ public class Entity : MonoBehaviour
         SettingProcessor();
     }
 
-    public void Die()
+    public void Die(bool isDie = true)
     {
         dead?.Invoke();
         hitable = false;
@@ -56,6 +56,11 @@ public class Entity : MonoBehaviour
         if (GetComponent<StateMachine.StateMachine>() != null)
         {
             GetComponent<StateMachine.StateMachine>().enabled = false;
+        }
+        if(gameObject.CompareTag("Player") && isDie)
+        {
+            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uiManager.dieUI.OpenDieUI();
         }
         GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{ 1f });
         GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{ Vector3.zero, 0 });

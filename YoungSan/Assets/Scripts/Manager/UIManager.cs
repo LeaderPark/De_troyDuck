@@ -20,9 +20,10 @@ public class UIManager : Manager
     [SerializeField]
     public Image fade;
 
-    [HideInInspector] public Statbar statbar;
     public BossStatUI bossStatbar;
+    [HideInInspector] public Statbar statbar;
     [HideInInspector] public Skillinterface skillinterface;
+    [HideInInspector] public DieUI dieUI;
     public Transform uiCanvas;
 
     public TimeLineSkipGage timeLineSkipGage;
@@ -31,10 +32,9 @@ public class UIManager : Manager
     (float, float) maxStat;
 
     //Quest UI
-    public GameObject questUIObj;
-    public GameObject questUIParent;
 
     public GameObject SettingUIObj;
+    public GameObject DieUIObj;
 
     void Awake()
     {
@@ -48,6 +48,7 @@ public class UIManager : Manager
         statbar = transform.GetComponentInChildren<Statbar>();
         //Debug.Log(bossStatbar);
         skillinterface = transform.GetComponentInChildren<Skillinterface>();
+        dieUI = transform.GetComponentInChildren<DieUI>();
         timeLineSkipGage = transform.GetComponentInChildren<TimeLineSkipGage>();
 
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
@@ -145,30 +146,6 @@ public class UIManager : Manager
         return (playerCurrentHP, playerCurrentStamina);
     }
 
-    public void SetQuestUI()
-    {
-        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-        foreach (int item in questManager.proceedingQuests.Keys)
-        {   
-            Quest quest = questManager.proceedingQuests[item] as Quest;
-            GameObject qu = Instantiate(questUIObj, transform.position, Quaternion.identity, questUIParent.transform);
-            QuestUI questUI = qu.GetComponent<QuestUI>();
-            questUI.questTitle.text = quest.title;
-            questUI.questContext.text = quest.context;
-            for(int i = 0; i < quest.clearValue.values.Count; i++)
-            {
-                if(quest.clearValue.values[i].type == PropertyType.INT)
-                {
-                    questUI.questValue.text = quest.clearValue.values[i].currentIntValue + "/" + quest.clearValue.values[i].intValue;
-                }
-                else if(quest.clearValue.values[i].type == PropertyType.BOOL)
-                {
-                    questUI.questValue.text = "대충 뭔말 해야할지 모르겠다는 뜻";
-                }
-            }
-        }
-    }
-
     public float BackUpHpStat()
     {
         currentStat = UpdateCurrentStat();
@@ -238,11 +215,13 @@ public class UIManager : Manager
 		}
 	}
 
-
-
     private void TimeLineSkip()
     {
         //미래에 누군가에게 이거를 넘겨요 
     }
 
+    public void OpenDiePanel()
+    {
+        DieUIObj.SetActive(true);
+    }
 }

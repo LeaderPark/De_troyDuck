@@ -70,6 +70,15 @@ namespace StateMachine
             if (start)
             {
                 timeStack += Time.deltaTime;
+                if (moveTime <= timeStack)
+                {
+                    start = false;
+                    float idleQuest = Random.Range(0, 10);
+                    if (idleQuest < 5)
+                    {
+                        return stateMachine.GetStateTable(typeof(Idle));
+                    }
+                }
                 if (Vector2.Distance(stateMachine.Enemy.spawnPoint, (new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) + new Vector2(moveDirX, moveDirY).normalized) < stateMachine.stateMachineData.activityRadius)
                 {
                     if (moveDirX > 0)
@@ -86,15 +95,6 @@ namespace StateMachine
                 {
                     backSpawnPoint = true;
                     timeStack = 0;
-                }
-                if (moveTime <= timeStack)
-                {
-                    start = false;
-                    float idleQuest = Random.Range(0, 10);
-                    if (idleQuest < 5)
-                    {
-                        return stateMachine.GetStateTable(typeof(Idle));
-                    }
                 }
             }
             return this;

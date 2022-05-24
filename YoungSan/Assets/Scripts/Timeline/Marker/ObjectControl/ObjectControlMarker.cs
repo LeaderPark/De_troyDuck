@@ -35,5 +35,6 @@ public struct ObjectData
 	public bool active;
 	public Vector3 objPos;
 	public ExposedReference<Transform> objTrm;
+	public bool mainCharTrm;
 
 }

@@ -86,6 +86,8 @@ public class Break : MonoBehaviour
             rigid.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(minAngle, maxAngle), 0));
             rigid.velocity = (rigid.gameObject.transform.forward * Random.Range(minVelocity,maxVelocity)) + (rigid.gameObject.transform.up * Random.Range(minYPower,maxYPower));
             rigid.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            rigid.maxAngularVelocity = 50;
+            rigid.angularVelocity = (new Vector3(0, 0, Random.Range(0, 50)));
             //rigid.velocity = Random.Range(minVelocity, maxVelocity) * (new Vector3(Random.Range(minDirection.x, maxDirection.x), Random.Range(minDirection.y, maxDirection.y), Random.Range(minDirection.z, maxDirection.z)));
             //rigid.angularVelocity = (new Vector3(0, 0, Random.Range(0, 30)));
             breakPieces[i].gameObject.SetActive(true);

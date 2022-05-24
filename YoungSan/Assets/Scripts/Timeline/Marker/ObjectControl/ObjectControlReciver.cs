@@ -61,7 +61,11 @@ public class ObjectControlReciver :Receiver
 						obj.SetActive(_active);
 
 				}
-				if (obj != null)
+				if (marker.objectData[i].mainCharTrm)
+				{
+					obj.transform.position = gameManager.Player.transform.position;
+				}
+				else if (obj != null)
 				{
 					if (objTrm != null)
 					{
@@ -69,7 +73,7 @@ public class ObjectControlReciver :Receiver
 					}
 					else
 					{
-					obj.transform.position = marker.objectData[i].objPos;
+						obj.transform.position = marker.objectData[i].objPos;
 					}
 				}
 			}

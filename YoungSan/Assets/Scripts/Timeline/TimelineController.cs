@@ -8,9 +8,6 @@ using UnityEngine.UI;
 
 public class TimelineController : MonoBehaviour
 {
-	public List<TimelineEvents> timelineEvents = new List<TimelineEvents>();
-
-
 	PlayableDirector director;
 	[SerializeField] private Image fade;
 	public bool talkLoop = true;
@@ -201,9 +198,3 @@ public class TimelineController : MonoBehaviour
 	}
 }
 
-[System.Serializable]
-public struct TimelineEvents
-{
-	public string evnetName;
-	public UnityEvent events;
-}

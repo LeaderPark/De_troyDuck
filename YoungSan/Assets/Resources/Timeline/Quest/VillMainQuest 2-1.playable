@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d038bd25fe3bd45990d6db0a45e6b2, type: 3}
   m_Name: "\uC218\uB77D \uB9C8\uCEE4"
   m_EditorClassIdentifier: 
-  m_Time: 4.183333333333334
+  m_Time: 4.166666666666667
 --- !u!114 &-8752483465035788470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -60,6 +60,21 @@ MonoBehaviour:
   questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
+--- !u!114 &-7415808327376168611
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 4.2
+  animationDatas: []
+  objectData: []
 --- !u!114 &-7064634656622148097
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,6 +102,30 @@ MonoBehaviour:
     - {fileID: 3936239592535735536}
     - {fileID: -279540237224094788}
     - {fileID: -892772747466562921}
+    - {fileID: -7415808327376168611}
+--- !u!114 &-6671266765089174347
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cd92ffc29383742932b27ca414c80f, type: 3}
+  m_Name: Playable Track (2)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
 --- !u!114 &-6148308720714602756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -481,6 +520,7 @@ MonoBehaviour:
   - {fileID: -4297462616503363277}
   - {fileID: 470598365505759765}
   - {fileID: -5417385840782085966}
+  - {fileID: -6671266765089174347}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60

@@ -11,7 +11,7 @@ public class EnterTheStart : MonoBehaviour
         if(col.CompareTag("Player"))
         {
             TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
-            timelineManager.StartCutScene(timeLineName.name);
+            timelineManager.StartCutScene(timeLineName);
         }
     }
 }

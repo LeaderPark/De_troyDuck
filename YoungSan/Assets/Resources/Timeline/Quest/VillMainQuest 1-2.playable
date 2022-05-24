@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.433333333333332
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-8618421664699801355
@@ -91,6 +92,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 7.550000063578287
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake10
 --- !u!114 &-8489239304876564938
@@ -232,6 +234,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.433333396911621
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-8074357914957792378
@@ -247,8 +250,24 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.316666666666667
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
+--- !u!114 &-8013190550229055816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9677fe87bdbda47af0c19e3b92453e, type: 3}
+  m_Name: Object/CSControl
+  m_EditorClassIdentifier: 
+  m_Time: 7.883333333333334
+  enemyObjs: []
+  scriptEnable: 0
 --- !u!114 &-7293881625926010042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,6 +281,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.133333333333333
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-7064634656622148097
@@ -327,6 +347,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 7.133333396911621
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-6682704476920756233
@@ -626,6 +647,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.016666666666668
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-6533173688351786329
@@ -641,6 +663,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 4.933333333333333
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-6187820587070038954
@@ -697,6 +720,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.8333333969116214
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-6068387506237324692
@@ -798,7 +822,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -825,13 +867,49 @@ MonoBehaviour:
     m_BlendOutDuration: 0.5666666666666664
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1240,6 +1318,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.733333396911621
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-4978233359884196070
@@ -1255,6 +1334,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 4.833333333333333
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-4303186964416315740
@@ -1270,6 +1350,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.333333333333333
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-4297462616503363277
@@ -1671,6 +1752,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 7.43333339691162
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!74 &-2345499113596390258
@@ -1889,6 +1971,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 3.15
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - WeekCamShake2
 --- !u!114 &-2175064088031776636
@@ -1904,6 +1987,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.833333333333332
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-2142428477967419203
@@ -1919,6 +2003,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.116666666666668
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-1396572526728558611
@@ -1934,6 +2019,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 7.333333396911621
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-1256640419892427083
@@ -2047,6 +2133,9 @@ MonoBehaviour:
     - {fileID: -2142428477967419203}
     - {fileID: 8422904825290614290}
     - {fileID: -8074357914957792378}
+    - {fileID: 7554842277980644672}
+    - {fileID: -8013190550229055816}
+    - {fileID: 795125765031416849}
 --- !u!114 &-892772747466562921
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2071,6 +2160,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 1
     obj:
       exposedName: 
@@ -2080,6 +2170,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 9af66a2ef1e91dc4b9c30819b5f47a43
@@ -2089,6 +2180,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 
@@ -2098,6 +2190,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &-609319182974539810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2133,6 +2226,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.533333396911621
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-542779435560483886
@@ -2255,6 +2349,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.916666666666667
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &-26553163612445618
@@ -2529,6 +2624,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 1
     obj:
       exposedName: 
@@ -2538,6 +2634,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 3701edc866fc0c04ba34e44d9002e5d0
@@ -2547,6 +2644,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 6469fa5512d3cf44abb0a33c39685471
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: b660954a652ed544b88c142c4421e966
@@ -2556,6 +2654,7 @@ MonoBehaviour:
     objTrm:
       exposedName: d03464ff37d89ea43a2be98438761a9c
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 
@@ -2565,6 +2664,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &488948913983433963
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2820,8 +2920,37 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.933333396911621
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
+--- !u!114 &795125765031416849
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 4.833333333333332
+  events:
+  - obj:
+      exposedName: 8be907096a58a0f479585a478b4727f6
+      defaultValue: {fileID: 0}
+    component: TimelineController
+    function: PauseTimeline
+    param: []
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    component: CameraShake
+    function: SetShakeCamPower
+    param:
+    - data: 5
+      type: float
 --- !u!114 &805419661862450090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2862,6 +2991,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 6ea883efb0b06e143ab03a8b7f500197
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 571391ecf9d86cd4698a42c5ab506aff
@@ -2871,6 +3001,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 0559de9440d1f1d4b8d062e9959b56a4
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: be3f5269ddbe07d4193622854674cfd7
@@ -2880,6 +3011,7 @@ MonoBehaviour:
     objTrm:
       exposedName: ca05344e81dee504cb8e705452ef8232
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: b0ce4f4547fe9c4459a9d004db2e8709
@@ -2889,6 +3021,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 963293ae4105dd0468e36cf51c72cad9
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 5b4d1d1ffb124b245a4d06971ba95723
@@ -2898,6 +3031,7 @@ MonoBehaviour:
     objTrm:
       exposedName: f2fdfcb3c4bb18f4eb92d404c822013c
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 22f9bbb065162084597f5e4cfe15b72a
@@ -2907,6 +3041,7 @@ MonoBehaviour:
     objTrm:
       exposedName: e11cadd46fc40634693c199ddf3e1fcf
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 
@@ -2916,6 +3051,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &1500334011381070000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3048,6 +3184,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 
@@ -3057,6 +3194,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &3252750553904313889
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3088,6 +3226,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.633333333333333
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &3352796300616472584
@@ -3310,6 +3449,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: a1ca2a0d63b6cf4458948ff10b10e107
@@ -3319,6 +3459,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 
@@ -3328,6 +3469,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &4598392274401743538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3794,6 +3936,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 7.45
+  <parent>k__BackingField: {fileID: -7064634656622148097}
   evnetName:
   - BreakWall
 --- !u!114 &5108856800176039100
@@ -4201,6 +4344,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.7333333333333325
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &5504872281474038113
@@ -4238,6 +4382,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.033333333333333
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &5699045662560706094
@@ -4288,6 +4433,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.233333333333333
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!74 &6278202686871034075
@@ -4532,6 +4678,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 7.53333339691162
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &6995033940785776808
@@ -4804,6 +4951,38 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &7554842277980644672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 3.15
+  events:
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    component: CameraShake
+    function: SetShakeCamPower
+    param:
+    - data: 0.08
+      type: float
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    component: CameraShake
+    function: Shake1
+    param:
+    - data: 17
+      type: int
+    - data: 0.1
+      type: float
 --- !u!114 &7670459691113882930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4817,6 +4996,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.633333396911621
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!74 &7947685295820384441
@@ -5279,6 +5459,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 7.233333396911621
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &8244585564067025645
@@ -5294,6 +5475,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 7.03333339691162
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &8251793729563924723
@@ -5331,6 +5513,7 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 6.216666666666668
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
 --- !u!114 &8590914388296362618
@@ -5480,5 +5663,6 @@ MonoBehaviour:
   m_Name: Event Marker
   m_EditorClassIdentifier: 
   m_Time: 5.533333333333333
+  <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2

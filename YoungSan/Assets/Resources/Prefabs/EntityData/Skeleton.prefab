@@ -91,8 +91,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6163883, z: 1}
-  m_Center: {x: -0.3, y: 0.8896739, z: 0}
+  m_Size: {x: 2, y: 0.6163883, z: 1}
+  m_Center: {x: -1, y: 0.8896739, z: 0}
 --- !u!114 &3487622503094958524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,8 +290,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6163883, z: 1}
-  m_Center: {x: 0.3, y: 0.8896739, z: 0}
+  m_Size: {x: 2, y: 0.6163883, z: 1}
+  m_Center: {x: 1, y: 0.8896739, z: 0}
 --- !u!114 &9091063404225549410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7073492965576089797
 Transform:
   m_ObjectHideFlags: 0
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67f28f40f79af9448bf51099f66280e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateMachineData: {fileID: 11400000, guid: 898b76716ceb34946b359450d2a8ae1a, type: 2}
+  stateMachineData: {fileID: 11400000, guid: 79547686a9421e447a8b384c97cc3a72, type: 2}
 --- !u!81 &6025733470235206032
 AudioListener:
   m_ObjectHideFlags: 0

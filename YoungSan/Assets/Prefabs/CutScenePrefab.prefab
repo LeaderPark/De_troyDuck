@@ -19,10 +19,10 @@ GameObject:
   - component: {fileID: 7081150145572663342}
   - component: {fileID: 6724264041005484937}
   - component: {fileID: 2052091521579858255}
-  - component: {fileID: 3711863942421135897}
   - component: {fileID: 3858454724425335766}
   - component: {fileID: 7045035468397045752}
   - component: {fileID: 1362321150751112350}
+  - component: {fileID: 5832042136459281714}
   m_Layer: 0
   m_Name: CutScenePrefab
   m_TagString: Untagged
@@ -58,11 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9db538226266947a1606afcc3dc8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timelineEvents: []
   fade: {fileID: 308921952408964684}
-  timelinePause: 0
   talkLoop: 1
   jumpMarker: {fileID: 0}
+  targetMarker: {fileID: 0}
   maxSkipTime: 1.5
 --- !u!320 &3945064489672053714
 PlayableDirector:
@@ -326,18 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0d23307bc946e4b8a1dd1158d8a650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3711863942421135897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2289989693407090796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f174cac21ce82d4e9c7df52280b63ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3858454724425335766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +359,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d12ca8578047bb43805dd23fbb187d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5832042136459281714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289989693407090796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55907a2afed43474b81fcc3269d56025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5414151400569618528

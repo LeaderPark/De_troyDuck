@@ -16,13 +16,16 @@ public class EventReciver : Receiver
             for (int i = 0; i < marker.events.Length; i++)
             {
                 MethodInfo info = null;
-                foreach (var method in marker.events[i].obj.Resolve(origin.GetGraph().GetResolver()).GetComponent(marker.events[i].component).GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
-                {
-                    if (method.Name == marker.events[i].function)
-                    {
-                        info = method;
-                    }
-                }
+				if (marker.events[i].obj.Resolve(origin.GetGraph().GetResolver()) != null)
+				{
+					foreach (var method in marker.events[i].obj.Resolve(origin.GetGraph().GetResolver()).GetComponent(marker.events[i].component).GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+					{
+						if (method.Name == marker.events[i].function)
+						{
+							info = method;
+						}
+					}
+				}
 				if (info != null)
 				{
 					object[] temp = new object[marker.events[i].param.Length];

@@ -9,7 +9,7 @@ using System.Reflection;
 public class EventMarker : Marker, INotification
 {
 	public PropertyName id { get { return new PropertyName(); } }
-	public EventData[] events;
+	public EventData[] events = new EventData[0];
 
 }
 
@@ -29,7 +29,7 @@ public class TestEventEditor : Editor
 
         if (marker != null)
         {
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUI.skin.box);
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
             for (int i = 0; i < marker.events.Length; i++)
             {
                 GUILayout.BeginVertical(GUI.skin.window);
@@ -39,19 +39,14 @@ public class TestEventEditor : Editor
                 Object obj = serializedObject.FindProperty($"events.Array.data[{i}].obj").exposedReferenceValue;
                 if (obj == null)
                 {
-                    //marker.events[i].obj = (GameObject)EditorGUILayout.ObjectField(obj, typeof(GameObject), true);
+                    marker.events[i].component = string.Empty;
+                    marker.events[i].function = string.Empty;
+                    marker.events[i].param = null;
                 }
                 else
                 {
                     GUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField(marker.events[i].obj.ToString(), GUI.skin.box);
-                    if (GUILayout.Button("Reset"))
-                    {
-                        obj = null;
-                        marker.events[i].component = string.Empty;
-                        marker.events[i].function = string.Empty;
-                        marker.events[i].param = null;
-                    }
+                    EditorGUILayout.LabelField($"[ {((GameObject)obj).name} ]");
                     GUILayout.EndHorizontal();
                 }
                 
@@ -81,7 +76,7 @@ public class TestEventEditor : Editor
                     else
                     {
                         GUILayout.BeginHorizontal();
-                        EditorGUILayout.LabelField(marker.events[i].component, GUI.skin.box);
+                        EditorGUILayout.LabelField($"[ {marker.events[i].component} ]");
                         if (GUILayout.Button("Reset"))
                         {
                             marker.events[i].component = string.Empty;
@@ -124,7 +119,7 @@ public class TestEventEditor : Editor
                                 else
                                 {
                                     GUILayout.BeginHorizontal();
-                                    EditorGUILayout.LabelField(marker.events[i].function, GUI.skin.box);
+                                    EditorGUILayout.LabelField($"[ {marker.events[i].function} ]");
                                     if (GUILayout.Button("Reset"))
                                     {
                                         marker.events[i].function = string.Empty;
@@ -165,8 +160,8 @@ public class TestEventEditor : Editor
 
                                                 GUILayout.BeginHorizontal();
 
-                                                EditorGUILayout.LabelField(paramArray[j].Name, GUI.skin.box);
-                                                EditorGUILayout.LabelField(paramArray[j].ParameterType.ToString(), GUI.skin.box);
+                                                EditorGUILayout.LabelField($"[ {paramArray[j].Name} ]");
+                                                EditorGUILayout.LabelField(paramArray[j].ParameterType.ToString());
 
                                                 GUILayout.EndHorizontal();
 
@@ -233,15 +228,15 @@ public class TestEventEditor : Editor
 [System.Serializable]
 public struct EventData
 {
-    public ExposedReference<GameObject> obj;
-    [SerializeField] public string component;
-    [SerializeField] public string function;
-    [SerializeField] public ParameterData[] param;
+    [SerializeField] public ExposedReference<GameObject> obj;
+    [HideInInspector] public string component;
+    [HideInInspector] public string function;
+    [HideInInspector] public ParameterData[] param;
 }
 
 [System.Serializable]
 public class ParameterData
 {
-    [SerializeField] public string data = string.Empty;
-    [SerializeField] public string type = string.Empty;
+    [HideInInspector] public string data = string.Empty;
+    [HideInInspector] public string type = string.Empty;
 }

@@ -78,6 +78,7 @@ namespace StateMachine
                     {
                         return stateMachine.GetStateTable(typeof(Idle));
                     }
+                    return this;
                 }
                 if (Vector2.Distance(stateMachine.Enemy.spawnPoint, (new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z)) + new Vector2(moveDirX, moveDirY).normalized) < stateMachine.stateMachineData.activityRadius)
                 {

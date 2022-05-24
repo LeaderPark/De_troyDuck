@@ -23,7 +23,7 @@ public class CameraShake : MonoBehaviour
     {
         camShakePower = power;
     }
-    public void Shake(int count)
+    public void Shake1(int count)
     {
         StartCoroutine(ShakeRepeat(Camera.main.GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>(), count, 0.1f));
     }

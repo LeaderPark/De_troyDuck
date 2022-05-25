@@ -11,7 +11,7 @@ public class TimelineManager : Manager
 	
 	void Start()
 	{
-
+		
 	}
 
 	public void StartCutScene(string cutSceneName)

@@ -24,7 +24,7 @@ public class UIManager : Manager
     [HideInInspector] public Statbar statbar;
     [HideInInspector] public Skillinterface skillinterface;
     [HideInInspector] public DieUI dieUI;
-    [HideInInspector] public 
+    [HideInInspector] public EnemyDelayUI enemyDelayUI;
     public Transform uiCanvas;
 
     public TimeLineSkipGage timeLineSkipGage;
@@ -107,7 +107,7 @@ public class UIManager : Manager
             enemyUi.SetPos();
             enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));
     }
-    
+
     public void EnemyHpBarUpdate(Entity entity)
     {
         if (entity.gameObject.tag == "Enemy")
@@ -131,6 +131,7 @@ public class UIManager : Manager
             bossStatbar.UpdateStatBar(entity.clone.GetStat(StatCategory.Health));
         }
     }
+    
     public void UISetActive(bool active)
     {
         if (active)

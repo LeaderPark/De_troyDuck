@@ -10,8 +10,6 @@ public class EnemyStatUI : MonoBehaviour
 	public Entity entity;
 	private Transform parentTrm;
 
-    public GameObject AttackDelayObj;
-
     private void Awake()
 	{
 		parentTrm = transform.parent;
@@ -68,15 +66,5 @@ public class EnemyStatUI : MonoBehaviour
 	//	}
 	//}
 
-	public void SetAttackDelayUI()
-	{
-		StartCoroutine(AttackDelayUI());
-	}
 
-	IEnumerator AttackDelayUI()
-	{
-		AttackDelayObj.SetActive(true);
-		yield return new WaitForSeconds(0.2f);
-		AttackDelayObj.SetActive(false);
-	}
 }

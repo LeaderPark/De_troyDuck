@@ -57,6 +57,8 @@ namespace StateMachine
                     position.y = Random.Range(collider.center.y - collider.size.y, collider.center.y + collider.size.y);
                 }
                 UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+                uiManager.EnemyDelayUI.AttackDelayUI();
+
                 stateMachine.Enemy.entityEvent.CallEvent(bundles[bundleIdx].Item2, dirVec.x, dirVec.y, directions[bundleIdx], position);
             }
             catch

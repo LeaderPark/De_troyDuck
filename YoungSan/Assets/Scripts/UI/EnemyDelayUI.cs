@@ -6,7 +6,6 @@ public class EnemyDelayUI : MonoBehaviour
 {
     private GameObject attackDelayObj;
     private Transform parentTrm;
-    public Entity entity;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +15,10 @@ public class EnemyDelayUI : MonoBehaviour
 
     public void SetPos()
 	{
+		GameManager gameManager = ManagerObject.Instance.GetManager(ManagerM) as GameManager;
 		parentTrm.SetParent(entity.transform);
 		parentTrm.localPosition = new Vector3(0, 0, 0);
-		parentTrm.localPosition += new Vector3(0, entity.entityData.uiPos + 2f, 0);
+		parentTrm.localPosition += new Vector3(0, entity.entityData.uiPos + 1f, 0);
 	}
     public void SetAttackDelayUI()
 	{
@@ -31,4 +31,5 @@ public class EnemyDelayUI : MonoBehaviour
 		yield return new WaitForSeconds(0.2f);
 		attackDelayObj.SetActive(false);
 	}
+
 }

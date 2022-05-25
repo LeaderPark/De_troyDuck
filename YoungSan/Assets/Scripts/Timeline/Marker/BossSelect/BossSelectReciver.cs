@@ -24,12 +24,14 @@ public class BossSelectReciver : Receiver
 			GameObject bossObj = marker.bossObj.Resolve(origin.GetGraph().GetResolver());
 			GameObject bossCamObj = marker.bossCamObj.Resolve(origin.GetGraph().GetResolver());
 
-			bossCamObj.GetComponent<CinemachineVirtualCamera>().Follow = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>().gameObject.transform;
-			bossCamObj.SetActive(true);
-			CinemachineTargetGroup targetGroup = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>();
-
-			targetGroup.m_Targets[0].target = gameManager.Player.gameObject.transform;
-			targetGroup.m_Targets[1].target = bossObj.transform;
+			if (bossCamObj != null)
+			{
+				bossCamObj.GetComponent<CinemachineVirtualCamera>().Follow = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>().gameObject.transform;
+				bossCamObj.SetActive(true);
+				CinemachineTargetGroup targetGroup = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>();
+				targetGroup.m_Targets[0].target = gameManager.Player.gameObject.transform;
+				targetGroup.m_Targets[1].target = bossObj.transform;
+			}
 
 			bossEntity = bossObj.GetComponent<Entity>();
 			uIManager.bossStatbar.entity = bossEntity;

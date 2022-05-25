@@ -641,6 +641,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 0.016666666666666666
   quest: {fileID: 0}
+--- !u!114 &3067941372151290255
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 1.6666666666666667
+  events:
+  - obj:
+      exposedName: b7cb0ef4a9962fa4b91bd56827ace681
+      defaultValue: {fileID: 0}
+    component: CameraShake
+    function: SetShakeCamPower
+    param:
+    - data: 1.2
+      type: float
+  - obj:
+      exposedName: b7cb0ef4a9962fa4b91bd56827ace681
+      defaultValue: {fileID: 0}
+    component: CameraShake
+    function: Shake1
+    param:
+    - data: 3
+      type: int
+    - data: 0.1
+      type: float
 --- !u!114 &3252750553904313889
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -777,6 +809,7 @@ MonoBehaviour:
     - {fileID: 6665362356754864855}
     - {fileID: 9051819668673606313}
     - {fileID: -3844685130538730499}
+    - {fileID: 3067941372151290255}
 --- !u!114 &6665362356754864855
 MonoBehaviour:
   m_ObjectHideFlags: 1

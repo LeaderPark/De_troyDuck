@@ -253,21 +253,6 @@ MonoBehaviour:
   <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
---- !u!114 &-8013190550229055816
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b9677fe87bdbda47af0c19e3b92453e, type: 3}
-  m_Name: Object/CSControl
-  m_EditorClassIdentifier: 
-  m_Time: 7.883333333333334
-  enemyObjs: []
-  scriptEnable: 0
 --- !u!114 &-7293881625926010042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2134,8 +2119,8 @@ MonoBehaviour:
     - {fileID: 8422904825290614290}
     - {fileID: -8074357914957792378}
     - {fileID: 7554842277980644672}
-    - {fileID: -8013190550229055816}
     - {fileID: 795125765031416849}
+    - {fileID: 5630685329527230170}
 --- !u!114 &-892772747466562921
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2935,21 +2920,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
   m_Name: Event Marker
   m_EditorClassIdentifier: 
-  m_Time: 4.833333333333332
+  m_Time: 4.85
   events:
   - obj:
       exposedName: 8be907096a58a0f479585a478b4727f6
       defaultValue: {fileID: 0}
-    component: TimelineController
-    function: PauseTimeline
-    param: []
-  - obj:
-      exposedName: 
-      defaultValue: {fileID: 0}
     component: CameraShake
     function: SetShakeCamPower
     param:
-    - data: 5
+    - data: 1.2
+      type: float
+  - obj:
+      exposedName: bae9b4add4a31bd43a1494f1baf5769a
+      defaultValue: {fileID: 0}
+    component: CameraShake
+    function: Shake1
+    param:
+    - data: 25
+      type: int
+    - data: 0.1
       type: float
 --- !u!114 &805419661862450090
 MonoBehaviour:
@@ -4385,6 +4374,32 @@ MonoBehaviour:
   <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
+--- !u!114 &5630685329527230170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Time: 7.433333333333334
+  events:
+  - obj:
+      exposedName: 746e92f5f51e8e54fa59ab549a637f82
+      defaultValue: {fileID: 0}
+    component: Break
+    function: Play
+    param: []
+  - obj:
+      exposedName: 8e7fb530ccca4e24b8090d1915dea63b
+      defaultValue: {fileID: 0}
+    component: Break
+    function: Play
+    param: []
 --- !u!114 &5699045662560706094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4966,15 +4981,15 @@ MonoBehaviour:
   m_Time: 3.15
   events:
   - obj:
-      exposedName: 
+      exposedName: 9a3af82fd64d77a44bc3a93a5806e784
       defaultValue: {fileID: 0}
     component: CameraShake
     function: SetShakeCamPower
     param:
-    - data: 0.08
+    - data: 0.2
       type: float
   - obj:
-      exposedName: 
+      exposedName: e650938b8a73dc14683d8f4604f04a4a
       defaultValue: {fileID: 0}
     component: CameraShake
     function: Shake1

@@ -147,31 +147,6 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 3546878409875629074}
---- !u!114 &831837227835963232
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
-  m_Name: Object/ObjControl
-  m_EditorClassIdentifier: 
-  m_Time: 0.06666666666666667
-  animationDatas: []
-  objectData:
-  - mainChar: 0
-    obj:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    active: 0
-    objPos: {x: 0, y: 0, z: 0}
-    objTrm:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    mainCharTrm: 0
 --- !u!114 &3546878409875629074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +172,63 @@ MonoBehaviour:
     m_Objects:
     - {fileID: -6109317852274670846}
     - {fileID: -6107973603427590581}
-    - {fileID: 831837227835963232}
+    - {fileID: 3574802263846318507}
+--- !u!114 &3574802263846318507
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Time: 0.016666666666666666
+  events:
+  - obj:
+      exposedName: 43fdbc3ed2953b04e8e86509026a7fb1
+      defaultValue: {fileID: 0}
+    component: CameraShake
+    function: SetShakeCamPower
+    param:
+    - data: 1.2
+      type: float
+  - obj:
+      exposedName: 43fdbc3ed2953b04e8e86509026a7fb1
+      defaultValue: {fileID: 0}
+    component: CameraShake
+    function: Shake1
+    param:
+    - data: 3
+      type: int
+    - data: 0.1
+      type: float
+  - obj:
+      exposedName: 18f59a4c77829674891e6dbdcdf15e11
+      defaultValue: {fileID: 0}
+    component: Break
+    function: Play
+    param: []
+  - obj:
+      exposedName: cd28b6b5d5e343d4598d7eef216e3351
+      defaultValue: {fileID: 0}
+    component: Break
+    function: Play
+    param: []
+  - obj:
+      exposedName: 1aa7425ce9b483e4180c10989cd885bf
+      defaultValue: {fileID: 0}
+    component: Break
+    function: Play
+    param: []
+  - obj:
+      exposedName: 4bb279d8d2397f3408bdbdfcde6246c9
+      defaultValue: {fileID: 0}
+    component: Break
+    function: Play
+    param: []
 --- !u!114 &5053026270773269016
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -15,10 +15,10 @@ public class EnemyDelayUI : MonoBehaviour
 
     public void SetPos()
 	{
-		//GameManager gameManager = ManagerObject.Instance.GetManager(ManagerM) as GameManager;
-		//parentTrm.SetParent(entity.transform);
-		//parentTrm.localPosition = new Vector3(0, 0, 0);
-		//parentTrm.localPosition += new Vector3(0, entity.entityData.uiPos + 1f, 0);
+		// GameManager gameManager = ManagerObject.Instance.GetManager(ManagerM) as GameManager;
+		// parentTrm.SetParent(entity.transform);
+		// parentTrm.localPosition = new Vector3(0, 0, 0);
+		// parentTrm.localPosition += new Vector3(0, entity.entityData.uiPos + 1f, 0);
 	}
     public void SetAttackDelayUI()
 	{

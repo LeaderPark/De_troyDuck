@@ -10,7 +10,9 @@ public class EnemyStatUI : MonoBehaviour
 	public Entity entity;
 	private Transform parentTrm;
 
-	private void Awake()
+    public GameObject AttackDelayObj;
+
+    private void Awake()
 	{
 		parentTrm = transform.parent;
 		hpBar = transform.Find("HpBar").gameObject;
@@ -65,4 +67,16 @@ public class EnemyStatUI : MonoBehaviour
 	//		transform.position = Camera.main.WorldToScreenPoint(entity.gameObject.transform.position + new Vector3(0, entity.entityData.uiPos, 0));
 	//	}
 	//}
+
+	public void SetAttackDelayUI()
+	{
+		StartCoroutine(AttackDelayUI());
+	}
+
+	IEnumerator AttackDelayUI()
+	{
+		AttackDelayObj.SetActive(true);
+		yield return new WaitForSeconds(0.2f);
+		AttackDelayObj.SetActive(false);
+	}
 }

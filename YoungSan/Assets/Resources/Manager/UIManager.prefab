@@ -1655,6 +1655,50 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &720580044807951087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6407509430872105492}
+  - component: {fileID: 650954643786268032}
+  m_Layer: 0
+  m_Name: EnemyStatUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6407509430872105492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720580044807951087}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 686.38385, y: 432.12885, z: -1.0737777}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2443370219129394582}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &650954643786268032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720580044807951087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f56579b29619e448e65f042a99b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}
 --- !u!1 &812557912068213544
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,6 +3365,7 @@ Transform:
   - {fileID: 997316452479727507}
   - {fileID: 4179844144785254453}
   - {fileID: 3639769164580288913}
+  - {fileID: 6407509430872105492}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3336,18 +3381,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a80e6cebf207cf4391756796e881721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 5082249995307216820}
-  fade: {fileID: 5538296929625399920}
   bossStatbar: {fileID: 6153215875476850501}
-  statbar: {fileID: 0}
-  skillinterface: {fileID: 0}
   dieUI: {fileID: 0}
   enemyDelayUI: {fileID: 0}
-  questUI: {fileID: 0}
-  uiCanvas: {fileID: 1127888527}
+  enemyStatUI: {fileID: 650954643786268032}
+  questUI: {fileID: 3362794311922017091}
+  settingUI: {fileID: 354950494218097013}
+  skillinterface: {fileID: 4680743757863467043}
+  statbar: {fileID: 1784063672}
+  statUI: {fileID: 882165130898746620}
   timeLineSkipGage: {fileID: 0}
-  SettingUIObj: {fileID: 0}
-  DieUIObj: {fileID: 0}
+  canvas: {fileID: 5082249995307216820}
+  fade: {fileID: 5538296929625399920}
 --- !u!1 &2584008048519750793
 GameObject:
   m_ObjectHideFlags: 0

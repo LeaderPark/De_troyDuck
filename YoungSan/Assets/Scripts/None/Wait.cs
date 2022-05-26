@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace StateMachine
 {
-    public class Wait : State
+    public class Wait : State 
     {
         float timeStack;
 

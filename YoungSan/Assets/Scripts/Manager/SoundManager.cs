@@ -15,11 +15,6 @@ public class SoundManager : Manager
         LoadSounds();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void LoadSounds()
     {
         AudioClip[] prefabs = Resources.LoadAll<AudioClip>("Sounds");
@@ -41,9 +36,9 @@ public class SoundManager : Manager
         }
     }
 
-    public void SoundStart(string soundName, Transform soundPos,bool is3DSound = true)
+    public void SoundStart(string soundName, Transform soundPos, bool is3DSound = true)
     {
-        StartCoroutine(SoundPlayCoroutine(soundName,soundPos, is3DSound));
+        StartCoroutine(SoundPlayCoroutine(soundName, soundPos, is3DSound));
     }
     private IEnumerator SoundPlayCoroutine(string soundName, Transform soundPos, bool is3DSound)
     {

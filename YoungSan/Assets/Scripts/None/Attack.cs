@@ -13,9 +13,9 @@ namespace StateMachine
         public override State Process(StateMachine stateMachine)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            
+
             if (Random.Range(0, 100) < 60) return stateMachine.GetStateTable(typeof(SkillCheck));
-            
+
             bundles.Clear();
             directions.Clear();
 
@@ -37,7 +37,7 @@ namespace StateMachine
             }
 
             int bundleIdx = Random.Range(0, bundles.Count);
-            
+
             try
             {
                 Vector2 dirVec = new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z) - new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z);
@@ -56,13 +56,15 @@ namespace StateMachine
                     position.x = Random.Range(collider.center.x - collider.size.x, collider.center.x + collider.size.x);
                     position.y = Random.Range(collider.center.y - collider.size.y, collider.center.y + collider.size.y);
                 }
-                UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-                //uiManager.enemyDelayUI.SetAttackDelayUI();
+                // UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+                // uiManager.enemyDelayUI.GetEnemyDelayUI(stateMachine.Enemy.entity);
+                Debug.Log(stateMachine.Enemy.entity);
 
                 stateMachine.Enemy.entityEvent.CallEvent(bundles[bundleIdx].Item2, dirVec.x, dirVec.y, directions[bundleIdx], position);
             }
-            catch
+            catch (System.Exception e)
             {
+                Debug.LogError(e);
                 return stateMachine.GetStateTable(typeof(SkillCheck));
             }
             return stateMachine.GetStateTable(typeof(SkillCheck));

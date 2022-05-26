@@ -18,17 +18,9 @@ public class EnemyStatUI : MonoBehaviour
 	}
 	public void SetPos()
 	{
-		StartCoroutine(SetPosition());
-	}
-
-	IEnumerator SetPosition()
-	{
-		while (true)
-		{
-			parentTrm.position = entity.transform.position + new Vector3(0, entity.entityData.uiPos, 0);
-
-			yield return null;
-		}
+		parentTrm.SetParent(entity.transform);
+		parentTrm.localPosition = new Vector3(0, 0, 0);
+		parentTrm.localPosition += new Vector3(0, entity.entityData.uiPos, 0);
 	}
 
 	public void SetHpBarValue(float maxHp, float currentHp)
@@ -38,7 +30,7 @@ public class EnemyStatUI : MonoBehaviour
 		hpBar.transform.localScale = new Vector3(currentHp / maxHp, origin.y, origin.z);
 		if (currentHp <= 0 || entity.isDead)
 		{
-			transform.gameObject.SetActive(false);
+			transform.parent.gameObject.SetActive(false);
 		}
 		else
 		{

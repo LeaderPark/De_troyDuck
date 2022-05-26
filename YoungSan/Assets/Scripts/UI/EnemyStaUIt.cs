@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyStat : MonoBehaviour
+public class EnemyStaUIt : MonoBehaviour
 {
     private GameObject hpBar;
     private GameObject fakeHpBar;
@@ -61,7 +61,7 @@ public class EnemyStat : MonoBehaviour
     {
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         GameObject hpBar = poolManager.GetObject("EnemyHp");
-        EnemyStat enemyUi = hpBar.GetComponentInChildren<EnemyStat>();
+        EnemyStaUIt enemyUi = hpBar.GetComponentInChildren<EnemyStaUIt>();
         enemyUi.entity = entity;
 
         enemyUi.SetPos();
@@ -75,7 +75,7 @@ public class EnemyStat : MonoBehaviour
             Transform enemyHp = entity.gameObject.transform.Find("EnemyHp(Clone)");
             if (enemyHp != null)
             {
-                EnemyStat enemyUi = enemyHp.GetComponentInChildren<EnemyStat>();
+                EnemyStaUIt enemyUi = enemyHp.GetComponentInChildren<EnemyStaUIt>();
 
                 enemyUi.entity = entity;
                 enemyUi.SetHpBarValue(entity.clone.GetMaxStat(StatCategory.Health), entity.clone.GetStat(StatCategory.Health));

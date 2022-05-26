@@ -10,7 +10,7 @@ public class UIManager : Manager
     public BossStatUI bossStatbar;
     public DieUI dieUI;
     public EnemyDelayUI enemyDelayUI;
-    public EnemyStat enemyStatUI;
+    public EnemyStaUIt enemyStatUI;
     public QuestUI questUI;
     public SettingUI settingUI;
     public Skillinterface skillinterface;

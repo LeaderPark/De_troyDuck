@@ -7,6 +7,7 @@ public class DeathWindow : MonoBehaviour
 {
     Coroutine play;
     System.Action onEndWindow;
+    public float playSpeed;
 
     IEnumerator SetPosition()
     {
@@ -21,7 +22,7 @@ public class DeathWindow : MonoBehaviour
     {
         yield return PlayVideo();
         yield return PlayEnd();
-        
+
         TurnOffWindow();
         yield return null;
     }
@@ -42,7 +43,7 @@ public class DeathWindow : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<VideoPlayer>().SetDirectAudioMute(0, false);
         GetComponent<VideoPlayer>().Play();
-        GetComponent<VideoPlayer>().playbackSpeed = 1f;
+        GetComponent<VideoPlayer>().playbackSpeed = playSpeed;
         while (!GetComponent<VideoPlayer>().isPlaying)
         {
             yield return null;
@@ -59,12 +60,15 @@ public class DeathWindow : MonoBehaviour
         const float alphaTarget = 0.4f;
         const float outlineTarget = 1f;
         const float overlayTarget = 1f;
+        const float lightEffectTarget = 1f;
         float tempTime = time;
         while (tempTime > 0f)
         {
             tempTime -= Time.deltaTime;
             float alpha = (1f - tempTime / time) * alphaTarget;
+            float lightEffect = (1f - tempTime / time) * lightEffectTarget;
             GetComponent<SpriteRenderer>().material.SetFloat("_BackgroundAlpha", Mathf.Clamp(alpha, 0, alphaTarget) + 0.6f);
+            GetComponent<SpriteRenderer>().material.SetFloat("_LightEffect", Mathf.Clamp(lightEffect, 0, lightEffectTarget));
             yield return null;
         }
         time = 1f;
@@ -110,6 +114,7 @@ public class DeathWindow : MonoBehaviour
         GetComponent<SpriteRenderer>().material.SetFloat("_BackgroundAlpha", 0);
         GetComponent<SpriteRenderer>().material.SetFloat("_Overlay", 0);
         GetComponent<SpriteRenderer>().material.SetFloat("_OutLineAlpha", 0);
+        GetComponent<SpriteRenderer>().material.SetFloat("_LightEffect", 0);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<VideoPlayer>().time = 0f;
         GetComponent<VideoPlayer>().playbackSpeed = 0f;

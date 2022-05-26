@@ -145,6 +145,7 @@ public class DataManager : Manager
         go.tag ="Player";
         go.layer = 6;
         go.GetComponent<Player>().enabled = true;
+        go.GetComponent<StateMachine.StateMachine>().enabled = false;
         gameManager.Player = go.GetComponent<Player>();
         go.GetComponent<AudioListener>().enabled = true;
         go.GetComponent<Entity>().isDead = false;

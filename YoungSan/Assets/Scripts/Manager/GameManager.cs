@@ -12,7 +12,7 @@ public class GameManager : Manager
         {
             if (player == null)
             {
-                Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+                Player = GameObject.FindWithTag("Player")?.GetComponent<Player>();
             }
             return player;
         }
@@ -24,19 +24,23 @@ public class GameManager : Manager
                 player.transform.parent = null;
             }
             player = value;
-            player.transform.SetParent(transform);
-            if(Camera.main.GetComponent<CinemachineBrain>() != null)
+            if (player != null)
             {
-                if(Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera != null)
-                if(!Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("BossCam"))
+                player.transform.SetParent(transform);
+                if(Camera.main.GetComponent<CinemachineBrain>() != null)
                 {
-                    Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
-                }
+                    if(Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera != null)
+                    if(!Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("BossCam"))
+                    {
+                        Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
+                    }
+                }  
             }
         }
     }
 
     public CinemachineVirtualCamera playerFollowCam;
+    public DeathWindow deathWindow;
 	private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
 	private void Awake()
 	{

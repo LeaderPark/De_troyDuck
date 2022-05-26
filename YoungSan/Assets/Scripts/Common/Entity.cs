@@ -59,8 +59,15 @@ public class Entity : MonoBehaviour
         }
         if(gameObject.CompareTag("Player") && isDie)
         {
-            UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uiManager.dieUI.OpenDieUI();
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
+
+            gameManager.deathWindow.TurnOnWindow(
+                () => 
+                {
+                    dataManager.Load();
+                }
+            );
         }
         GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{ 1f });
         GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{ Vector3.zero, 0 });

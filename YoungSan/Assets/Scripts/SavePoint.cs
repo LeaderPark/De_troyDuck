@@ -13,6 +13,16 @@ public class SavePoint : MonoBehaviour
         StartCoroutine(Interaction());
     }
 
+    void Start()
+    {
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        if (gameManager.Player == null)
+        {
+            DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
+            dataManager.Load();
+        }
+    }
+
     IEnumerator CheckInBound()
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
@@ -34,14 +44,13 @@ public class SavePoint : MonoBehaviour
 
     IEnumerator Interaction()
     {
-        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
         InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
         while (true)
         {
             if (isPlayerInBound && inputManager.CheckKeyState(KeyCode.Space, ButtonState.Down))
             {
-                gameManager.GetComponent<SaveData>().Save(gameManager.Player.GetComponent<Entity>());
-                gameManager.GetComponent<SaveData>().SaveIntoJson();
+                dataManager.Save();
             }
             yield return null;
         }

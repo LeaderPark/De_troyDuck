@@ -183,8 +183,7 @@ public class Player : MonoBehaviour
                 GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
                 UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 
-                float hpRatio = uiManager.BackUpHpStat();
-                float staminaRatio = uiManager.BackUpStaminaStat();
+                float hpRatio = uiManager.statbar.BackUpHpStat();
                 entity.Die(false);
                 StopAllCoroutines();
                 entity.gameObject.GetComponent<AudioListener>().enabled = false;

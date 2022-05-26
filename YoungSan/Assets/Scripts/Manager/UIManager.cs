@@ -25,6 +25,7 @@ public class UIManager : Manager
     [HideInInspector] public Skillinterface skillinterface;
     [HideInInspector] public DieUI dieUI;
     [HideInInspector] public EnemyDelayUI enemyDelayUI;
+    public QuestUI questUI;
     public Transform uiCanvas;
 
     public TimeLineSkipGage timeLineSkipGage;
@@ -47,6 +48,7 @@ public class UIManager : Manager
     {
         uiCanvas.gameObject.SetActive(true);
         statbar = transform.GetComponentInChildren<Statbar>();
+        questUI = transform.GetComponentInChildren<QuestUI>();
         //Debug.Log(bossStatbar);
         skillinterface = transform.GetComponentInChildren<Skillinterface>();
         dieUI = transform.GetComponentInChildren<DieUI>();
@@ -73,6 +75,10 @@ public class UIManager : Manager
     public float UpdateStat(Entity entity)
     {
         return entity.clone.GetStat(StatCategory.Health);
+    }
+    public void OnQuestUI(Quest quest)
+    {
+        questUI.SetQuestUIText(quest);
     }
 
     //public void GetEnemyHpBar(Entity entity)

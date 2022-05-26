@@ -17,6 +17,7 @@ public class QuestReciver : Receiver
             {
 				questManager.AddQuest(marker.quest);
 				questManager.AddQuestValue(marker.quest);
+				
 			}
 		}
 	}

@@ -7,6 +7,7 @@ public class DeathWindow : MonoBehaviour
 {
     Coroutine play;
     System.Action onEndWindow;
+    public float playSpeed;
 
     IEnumerator SetPosition()
     {
@@ -21,7 +22,7 @@ public class DeathWindow : MonoBehaviour
     {
         yield return PlayVideo();
         yield return PlayEnd();
-        
+
         TurnOffWindow();
         yield return null;
     }
@@ -42,7 +43,7 @@ public class DeathWindow : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<VideoPlayer>().SetDirectAudioMute(0, false);
         GetComponent<VideoPlayer>().Play();
-        GetComponent<VideoPlayer>().playbackSpeed = 1f;
+        GetComponent<VideoPlayer>().playbackSpeed = playSpeed;
         while (!GetComponent<VideoPlayer>().isPlaying)
         {
             yield return null;

@@ -82,7 +82,6 @@ MonoBehaviour:
   - {fileID: 7686318427622180703}
   - {fileID: -1016694868962581565}
   - {fileID: 7502528774814404555}
-  - {fileID: 7542669330009093999}
   - {fileID: 1501199423866068322}
   - {fileID: 5315503232242033309}
   - {fileID: 1932259527246508038}
@@ -100,17 +99,17 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
+  m_AdvancedMode: 1
   quality:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 3
   threshold:
     m_OverrideState: 1
     m_Value: 0.9
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.4
     min: 0
     max: 1
   scatter:
@@ -120,7 +119,7 @@ MonoBehaviour:
     max: 1
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.9670081, b: 0.7962264, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 1
@@ -306,7 +305,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   meteringMode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   luminanceSource:
     m_OverrideState: 0
@@ -541,59 +540,6 @@ MonoBehaviour:
     m_Value: 0.5
     min: 0.001
     max: 1
---- !u!114 &7542669330009093999
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f086a068d4c5889438831b3ae9afc11c, type: 3}
-  m_Name: Tonemapping
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  mode:
-    m_OverrideState: 1
-    m_Value: 2
-  toeStrength:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 1
-  toeLength:
-    m_OverrideState: 0
-    m_Value: 0.5
-    min: 0
-    max: 1
-  shoulderStrength:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 1
-  shoulderLength:
-    m_OverrideState: 0
-    m_Value: 0.5
-    min: 0
-  shoulderAngle:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 1
-  gamma:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0.001
-  lutTexture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-  lutContribution:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-    max: 1
 --- !u!114 &7686318427622180703
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -610,7 +556,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   maxShadowDistance:
     m_OverrideState: 1
-    m_Value: 420
+    m_Value: 200
     min: 0
   directionalTransmissionMultiplier:
     m_OverrideState: 0
@@ -618,28 +564,28 @@ MonoBehaviour:
     min: 0
     max: 1
   cascadeShadowSplitCount:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 4
     min: 1
     max: 4
   cascadeShadowSplit0:
     m_OverrideState: 1
-    m_Value: 0.1325
+    m_Value: 0.02
   cascadeShadowSplit1:
     m_OverrideState: 1
-    m_Value: 0.36
+    m_Value: 0.775
   cascadeShadowSplit2:
     m_OverrideState: 1
-    m_Value: 0.4375
+    m_Value: 0.945
   cascadeShadowBorder0:
-    m_OverrideState: 0
-    m_Value: 0.395
+    m_OverrideState: 1
+    m_Value: 0
   cascadeShadowBorder1:
-    m_OverrideState: 0
-    m_Value: 0.295
+    m_OverrideState: 1
+    m_Value: 0
   cascadeShadowBorder2:
-    m_OverrideState: 0
-    m_Value: 0.18666665
+    m_OverrideState: 1
+    m_Value: 0
   cascadeShadowBorder3:
-    m_OverrideState: 0
-    m_Value: 0.014285714
+    m_OverrideState: 1
+    m_Value: 0

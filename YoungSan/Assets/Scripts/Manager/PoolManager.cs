@@ -5,7 +5,7 @@ using UnityEngine;
 public class PoolManager : Manager
 {
     Dictionary<string, List<GameObject>> PoolObjects;
-    Hashtable PoolObjectTable {get; set;}
+    Hashtable PoolObjectTable { get; set; }
     private GameObject canvas;
 
     void Awake()
@@ -13,7 +13,7 @@ public class PoolManager : Manager
         PoolObjects = new Dictionary<string, List<GameObject>>();
         PoolObjectTable = new Hashtable();
         canvas = transform.Find("Canvas").gameObject;
-        
+
         LoadPoolObjects();
     }
 
@@ -33,6 +33,11 @@ public class PoolManager : Manager
         {
             foreach (GameObject item in PoolObjects[name])
             {
+                if (item == null)
+                {
+                    continue;
+                }
+                // 미래에 빼겠지
                 if (!item.activeSelf)
                 {
                     item.SetActive(true);

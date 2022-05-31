@@ -19,11 +19,11 @@ public class Player : MonoBehaviour
         direction = false;
     }
 
-	private void Start()
-	{
-		UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-	}
-	void Update()
+    private void Start()
+    {
+        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+    }
+    void Update()
     {
         Process();
     }
@@ -56,25 +56,25 @@ public class Player : MonoBehaviour
         {
             inputY = -1f;
         }
-    
+
 
         //if (Input.GetMouseButtonDown(0))
-        if(Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             entityEvent.CallEvent(EventCategory.DefaultAttack, inputX, inputY, direction, transform.position);
         }
         if (inputManager.CheckMouseState(MouseButton.Left, ButtonState.Down))
         {
-			RaycastHit hit;
-			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
-			{
-				Vector3 mousePos = hit.point - transform.position;
-				bool attackDirection = (mousePos.x > 0f);
-				direction = attackDirection;
-				entityEvent.CallEvent(EventCategory.DefaultAttack, mousePos.x, mousePos.z, attackDirection, hit.point);
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+            {
+                Vector3 mousePos = hit.point - transform.position;
+                bool attackDirection = (mousePos.x > 0f);
+                direction = attackDirection;
+                entityEvent.CallEvent(EventCategory.DefaultAttack, mousePos.x, mousePos.z, attackDirection, hit.point);
                 skipMove = true;
-			}
-		}
+            }
+        }
         if (inputManager.CheckKeyState(KeyCode.E, ButtonState.Down))
         {
             RaycastHit hit;
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(inputManager.CheckKeyState(KeyCode.Space,ButtonState.Down))
+        if (inputManager.CheckKeyState(KeyCode.Space, ButtonState.Down))
         {
             RaycastHit[] hits = Physics.SphereCastAll(transform.position + Vector3.up * 10, 2, Vector3.down, 20, LayerMask.GetMask(new string[] { "Npc" }));
             float distance = 0;
@@ -146,19 +146,19 @@ public class Player : MonoBehaviour
                 Debug.Log(target);
                 target.Talk();
             }
-       }
+        }
 
 
         if (inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
         {
-			RaycastHit[] hits = Physics.SphereCastAll(transform.position + Vector3.up * 10, 2, Vector3.down, 20, LayerMask.GetMask(new string[] { "Enemy" }));
-			float distance = 0;
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position + Vector3.up * 10, 2, Vector3.down, 20, LayerMask.GetMask(new string[] { "Enemy" }));
+            float distance = 0;
             Entity target = null;
             foreach (RaycastHit hit in hits)
             {
                 Entity hitEntity = hit.transform.GetComponent<Entity>();
 
-                if (hitEntity!=null&&hitEntity.isDead)
+                if (hitEntity != null && hitEntity.isDead)
                 {
                     if (target == null)
                     {
@@ -174,15 +174,15 @@ public class Player : MonoBehaviour
                             distance = temp;
                         }
                     }
-                    
+
                 }
-			}
+            }
 
             if (target != null)
             {
                 GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
                 UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-                
+
                 float hpRatio = uiManager.statbar.BackUpHpStat();
                 entity.Die(false);
                 StopAllCoroutines();
@@ -211,11 +211,14 @@ public class Player : MonoBehaviour
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             entity.hitable = false;
-            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4});
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0.0f});
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Dash"});
+            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4 });
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0.0f });
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Dash" });
             entity.clone.SubStat(StatCategory.Stamina, 50);
-            entityEvent.CancelSkillEvent();
+
+            SkillSet skillSet = entity.GetComponentInChildren<SkillSet>();
+            skillSet.StopSkill();
+
             StartCoroutine(AttackVelocityTime(0.08f));
             gameManager.AfterImage(entity, 0.35f);
             dash = true;
@@ -239,11 +242,11 @@ public class Player : MonoBehaviour
         {
             direction = false;
         }
-        
+
         entityEvent.CallEvent(EventCategory.Move, inputX, inputY, direction, transform.position);
     }
 
-    
+
     private IEnumerator AttackVelocityTime(float time)
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
@@ -252,7 +255,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(time);
         dash = false;
-        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
 
         yield return new WaitForSeconds(0.27f);
         entity.hitable = true;
@@ -272,7 +275,7 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[]{"Ground"})))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
         {
             Gizmos.DrawLine(transform.position, hit.point);
         }

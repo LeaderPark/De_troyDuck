@@ -15,22 +15,22 @@ public class EntityEvent : MonoBehaviour
         switch (eventCategory)
         {
             case EventCategory.Move:
-            CallMove(inputX, inputY, direction, position);
-            break;
+                CallMove(inputX, inputY, direction, position);
+                break;
             case EventCategory.DefaultAttack:
-            CallDefaultAttack(inputX, inputY, direction, position);
-            break;
+                CallDefaultAttack(inputX, inputY, direction, position);
+                break;
             case EventCategory.Skill1:
-            CallSkill1(inputX, inputY, direction, position);
-            break;
+                CallSkill1(inputX, inputY, direction, position);
+                break;
             case EventCategory.Skill2:
-            CallSkill2(inputX, inputY, direction, position);
-            break;
+                CallSkill2(inputX, inputY, direction, position);
+                break;
             case EventCategory.Skill3:
-            CallSkill3(inputX, inputY, direction, position);
-            break;
+                CallSkill3(inputX, inputY, direction, position);
+                break;
         }
-    }                                                                                                                                                                   
+    }
 
     protected virtual void Awake()
     {
@@ -49,27 +49,27 @@ public class EntityEvent : MonoBehaviour
             StartCoroutine(AttackEndCheck(category));
         }
     }
-    
+
     public bool dontmove;
     public bool reservate;
     protected void CallMove(float inputX, float inputY, bool direction, Vector3 position)
     {
         if (!dontmove)
         {
-            entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
+            entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
             if (inputX == 0 && inputY == 0)
             {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Idle", false});
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Idle", false });
             }
             else
-            {   
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{"Move", false});
+            {
+                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Move", false });
             }
 
-            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed)});
-            entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("SetCollider", new object[]{GetComponent<SpriteRenderer>().sprite});
+            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[] { new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) });
+            entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("SetCollider", new object[] { GetComponent<SpriteRenderer>().sprite });
         }
-        
+
     }
 
     public delegate void AttackProcess(float inputX, float inputY, Vector3 position, SkillData skillData);
@@ -114,7 +114,7 @@ public class EntityEvent : MonoBehaviour
     {
         if (!skillSet.skillStackAmount.ContainsKey(category)) return;
 
-        
+
         entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{category, skillSet.skillStackAmount[category], new Vector2(inputX, inputY), direction, (System.Action)(() =>
         {
             entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});
@@ -137,9 +137,9 @@ public class EntityEvent : MonoBehaviour
     {
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
-        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{new Vector3(inputX, 0, inputY).normalized, speed});
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[] { new Vector3(inputX, 0, inputY).normalized, speed });
         yield return new WaitForSeconds(time);
-        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
+        entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[] { Vector3.zero, 0 });
     }
 
     protected void Flash(Vector3 position, float range, float startTime)
@@ -153,7 +153,7 @@ public class EntityEvent : MonoBehaviour
     {
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
-        
+
         Vector3 pos = position;
         if ((pos - entity.transform.position).sqrMagnitude > range * range)
         {
@@ -212,16 +212,16 @@ public class EntityEvent : MonoBehaviour
         int healCount = (int)(time / delay);
         float timeStack = 0;
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-        
+
         int count = healCount;
         while (count > 0)
         {
             timeStack += Time.deltaTime;
-            
+
             if (timeStack >= delay)
             {
                 timeStack = 0;
-                
+
                 int healValue = (int)(entity.clone.GetMaxStat(StatCategory.Health) * rate / healCount);
                 entity.clone.AddStat(StatCategory.Health, healValue);
 
@@ -245,15 +245,15 @@ public class EntityEvent : MonoBehaviour
     {
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
-        
-        entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("Defend", new object[]{time, rate});
+
+        entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("Defend", new object[] { time, rate });
     }
 
     private IEnumerator AttackEndCheck(EventCategory category)
     {
         while (true)
         {
-            System.Action<bool, float> end = (System.Action<bool, float>)((bool transition, float time) => 
+            System.Action<bool, float> end = (System.Action<bool, float>)((bool transition, float time) =>
             {
                 if (!transition && time == 0f)
                 {
@@ -275,7 +275,7 @@ public class EntityEvent : MonoBehaviour
             {
                 foreach (var data in skillSet.skillDatas[category])
                 {
-                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{data.skill.name, end});
+                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[] { data.skill.name, end });
                 }
             }
             yield return null;

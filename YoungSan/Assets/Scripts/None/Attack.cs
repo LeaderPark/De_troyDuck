@@ -58,13 +58,11 @@ namespace StateMachine
                 }
                 // UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 // uiManager.enemyDelayUI.GetEnemyDelayUI(stateMachine.Enemy.entity);
-                Debug.Log(stateMachine.Enemy.entity);
 
                 stateMachine.Enemy.entityEvent.CallEvent(bundles[bundleIdx].Item2, dirVec.x, dirVec.y, directions[bundleIdx], position);
             }
-            catch (System.Exception e)
+            catch
             {
-                Debug.LogError(e);
                 return stateMachine.GetStateTable(typeof(SkillCheck));
             }
             return stateMachine.GetStateTable(typeof(SkillCheck));

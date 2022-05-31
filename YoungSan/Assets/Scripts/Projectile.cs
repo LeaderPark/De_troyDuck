@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     Vector3 startPosition;
     Vector3 dirVec;
-    Rigidbody rigidbody;
+    Rigidbody rigid;
 
 
     public float speed;
@@ -15,18 +15,20 @@ public class Projectile : MonoBehaviour
 
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody>();
     }
 
     public void SetData(Vector3 startPosition, Vector3 dirVec, SkillData skillData)
     {
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         timeStack = 0;
         this.startPosition = startPosition;
         this.dirVec = dirVec;
+        if (skillData.skillSet.entity.gameObject.layer == 7) this.dirVec = (gameManager.Player.transform.position - skillData.skillSet.entity.transform.position).normalized;
 
         GetComponent<HitBox>().skillData = skillData;
-        rigidbody.velocity = Vector3.zero;
-        if (dirVec.z > 0)
+        rigid.velocity = Vector3.zero;
+        if (this.dirVec.z > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(Vector3.right, dirVec));
         }
@@ -43,12 +45,12 @@ public class Projectile : MonoBehaviour
         timeStack += Time.deltaTime;
         if (curve.Evaluate(timeStack) == -1) gameObject.SetActive(false);
         transform.position = new Vector3(transform.position.x, startPosition.y + curve.Evaluate(timeStack), transform.position.z);
-        rigidbody.velocity = (dirVec - Vector3.up * (startPosition.y + curve.Evaluate(timeStack))) * speed;
+        rigid.velocity = (dirVec - Vector3.up * (startPosition.y + curve.Evaluate(timeStack))) * speed;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        
+
         if (other.gameObject != null)
         {
             Entity entity = other.GetComponent<Entity>();

@@ -7,16 +7,18 @@ namespace Processor
     public class Collision : Processor
     {
         BoxCollider collider;
+        SpriteRenderer spriteRenderer;
         public Collision(Hashtable owner, BoxCollider collider) : base(owner)
         {
             this.collider = collider;
+            spriteRenderer = collider.GetComponent<SpriteRenderer>();
         }
 
         private void SetCollider(UnityEngine.Sprite sprite)
         {
             Vector2[] vertices = sprite.vertices;
             Rect rect = sprite.rect;
-            
+
             Vector2 size = new Vector2(rect.width, rect.height) / (sprite.pixelsPerUnit * 2);
 
 
@@ -46,12 +48,17 @@ namespace Processor
             }
 
             Vector2 verSize = new Vector2(maxX - minX, maxY - minY);
-            
+
             collider.size = new Vector3(verSize.x, verSize.y, collider.size.z);
 
             Vector2 pivot = verSize / 2 + new Vector2(minX, minY);
 
             collider.center = pivot;
+
+            if (spriteRenderer.flipX)
+            {
+                collider.center = new Vector2(-collider.center.x, collider.center.y);
+            }
         }
     }
 }

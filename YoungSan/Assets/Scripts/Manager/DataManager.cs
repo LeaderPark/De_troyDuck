@@ -72,9 +72,7 @@ public class DataManager : Manager
     {
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-
         data.currentPlayer = entity.entityData.prefab.name;
-
         data.currentPosition = entity.gameObject.transform.position;
         data.Health = entity.clone.GetMaxStat(StatCategory.Health);
         data.CurrentHealth = entity.clone.GetStat(StatCategory.Health);
@@ -118,8 +116,6 @@ public class DataManager : Manager
         go.GetComponent<Entity>().isDead = false;
 
         uiManager.Init();
-        uiManager.skillinterface.Init_UI();
-        uiManager.statbar.Init();
 
         yield return null;
     }
@@ -168,8 +164,6 @@ public class DataManager : Manager
 
         //UI 세팅
         uiManager.Init();
-        uiManager.skillinterface.Init_UI();
-        uiManager.statbar.Init();
 
         yield return null;
     }

@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class GameManager : Manager
 {
+    public float healthRate;
     private Player player;
     public Player Player
     {
@@ -27,36 +28,36 @@ public class GameManager : Manager
             if (player != null)
             {
                 player.transform.SetParent(transform);
-                if(Camera.main.GetComponent<CinemachineBrain>() != null)
+                if (Camera.main.GetComponent<CinemachineBrain>() != null)
                 {
-                    if(Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera != null)
-                    if(!Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("BossCam"))
-                    {
-                        Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
-                    }
-                }  
+                    if (Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera != null)
+                        if (!Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("BossCam"))
+                        {
+                            Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
+                        }
+                }
             }
         }
     }
 
     public CinemachineVirtualCamera playerFollowCam;
     public DeathWindow deathWindow;
-	private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
-	private void Awake()
-	{
-        //PlayerFind();
-	}
-	public void PlayerFind()
+    private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
+    private void Awake()
     {
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().ToString() != "Title")
-        if (player == null)
-        {
-            Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        }
+        //PlayerFind();
+    }
+    public void PlayerFind()
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().ToString() != "Title")
+            if (player == null)
+            {
+                Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+            }
     }
     public void CamFollowFind()
     {
-         Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
+        Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
     }
     public void AfterImage(Entity entity, float time)
     {

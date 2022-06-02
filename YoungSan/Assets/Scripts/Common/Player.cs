@@ -189,6 +189,10 @@ public class Player : MonoBehaviour
                 entity.gameObject.GetComponent<AudioListener>().enabled = false;
                 entity.gameObject.layer = 7;
                 entity.gameObject.tag = "Enemy";
+                if (Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * gameManager.healthRate) != gameManager.Player.entity.clone.GetStat(StatCategory.Health))
+                {
+                    gameManager.healthRate = hpRatio;
+                }
                 gameManager.Player = target.GetComponent<Player>();
                 foreach (StatCategory stat in System.Enum.GetValues(typeof(StatCategory)))
                 {
@@ -199,7 +203,7 @@ public class Player : MonoBehaviour
                 gameManager.Player.entity.isDead = false;
                 gameManager.Player.gameObject.layer = 6;
                 gameManager.Player.gameObject.tag = "Player";
-                gameManager.Player.entity.clone.SetStat(StatCategory.Health, Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * hpRatio));
+                gameManager.Player.entity.clone.SetStat(StatCategory.Health, Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * gameManager.healthRate));
                 uiManager.statbar.SetStatBar();
                 //gameManager.Player.entity.clone.SetStat(StatCategory.Stamina,  Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Stamina)) * staminaRatio));
 

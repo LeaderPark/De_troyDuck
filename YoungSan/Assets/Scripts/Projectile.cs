@@ -61,6 +61,7 @@ public class Projectile : MonoBehaviour
             {
                 if (entity.isDead) return;
                 if (!entity.hitable) return;
+                GetComponent<HitBox>().ClearTargetSet();
                 gameObject.SetActive(false);
             }
         }

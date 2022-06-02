@@ -29,6 +29,8 @@ public class SkillSet : MonoBehaviour
     private bool running;
     private bool canAttack;
 
+    private List<object> soundDatas;
+
     void Awake()
     {
         skillDatas = new Dictionary<EventCategory, SkillData[]>();
@@ -36,6 +38,7 @@ public class SkillSet : MonoBehaviour
         skillWaitTimes = new Dictionary<EventCategory, float[]>();
         skillChargeAmount = new Dictionary<EventCategory, int>();
         skillStackAmount = new Dictionary<EventCategory, int>();
+        soundDatas = new List<object>();
         entity = GetComponentInParent<Entity>();
 
         foreach (SkillDataCategory category in skillDataCategories)
@@ -87,6 +90,12 @@ public class SkillSet : MonoBehaviour
                 skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
             }
         }
+        foreach (var item in soundDatas)
+        {
+            SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+            soundManager.SoundStop(item);
+        }
+        soundDatas.Clear();
         useSkill = false;
         running = false;
         canAttack = false;
@@ -191,8 +200,12 @@ public class SkillSet : MonoBehaviour
                 yield return new WaitForSeconds(data.soundStartTimes[i] - data.soundStartTimes[i - 1]);
             }
             if (data.attackSounds.Length > i)
+            {
                 if (data.attackSounds[i] != null)
-                    soundManager.SoundStart(data.attackSounds[i].name, transform);
+                {
+                    soundDatas.Add(soundManager.SoundStart(data.attackSounds[i].name, transform));
+                }
+            }
         }
     }
 

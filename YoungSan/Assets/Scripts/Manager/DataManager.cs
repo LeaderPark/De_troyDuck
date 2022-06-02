@@ -30,7 +30,7 @@ public class DataManager : Manager
     private string key = "woansdldhflqortnraksemfrl";
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
             Save();
     }
 
@@ -42,24 +42,24 @@ public class DataManager : Manager
         //string jsonData = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);
-        Debug.Log(jsonData);    
+        Debug.Log(jsonData);
     }
-    
+
     public void Load()
     {
-        if(Application.persistentDataPath + "/SaveData.json" == null)
+        if (Application.persistentDataPath + "/SaveData.json" == null)
         {
             SetDefaultData();
         }
 
-        StartCoroutine(LoadApply());    
+        StartCoroutine(LoadApply());
     }
 
     private void SetDefaultData()
     {
         data.sceneName = "Castle";
         data.currentPlayer = "MainChar";
-        data.currentPosition = new Vector3(0,0,0);
+        data.currentPosition = new Vector3(0, 0, 0);
         data.Health = 330.0f;
         data.CurrentHealth = 330.0f;
         data.Attack = 11.0f;
@@ -73,10 +73,7 @@ public class DataManager : Manager
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-        string postfix = "(Clone)";
-        data.currentPlayer = entity.gameObject.name;
-        if(entity.gameObject.name.EndsWith(postfix))
-            data.currentPlayer = entity.gameObject.name.Substring(0, data.currentPlayer.Length - postfix.Length);
+        data.currentPlayer = entity.entityData.prefab.name;
 
         data.currentPosition = entity.gameObject.transform.position;
         data.Health = entity.clone.GetMaxStat(StatCategory.Health);
@@ -111,9 +108,9 @@ public class DataManager : Manager
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Castle");
-        
+
         GameObject go = Instantiate(Resources.Load("Prefabs/EntityData/MainChar")) as GameObject;
-        go.tag ="Player";
+        go.tag = "Player";
         go.layer = 6;
         go.GetComponent<Player>().enabled = true;
         gameManager.Player = go.GetComponent<Player>();
@@ -142,7 +139,7 @@ public class DataManager : Manager
         //플레이어 생성
         GameObject go = Instantiate(Resources.Load("Prefabs/EntityData/" + data.currentPlayer)) as GameObject;
         go.transform.position = data.currentPosition;
-        go.tag ="Player";
+        go.tag = "Player";
         go.layer = 6;
         go.GetComponent<Player>().enabled = true;
         go.GetComponent<StateMachine.StateMachine>().enabled = false;
@@ -152,11 +149,11 @@ public class DataManager : Manager
 
         //스텟 적용
         Clone clone = go.GetComponent<Entity>().clone;
-        clone.SetMaxStat(StatCategory.Health,(int)data.Health);
+        clone.SetMaxStat(StatCategory.Health, (int)data.Health);
         clone.SetStat(StatCategory.Health, (int)data.CurrentHealth);
         clone.SetStat(StatCategory.Attack, (int)data.Attack);
         clone.SetStat(StatCategory.Speed, (int)data.Speed);
-        clone.SetMaxStat(StatCategory.Stamina,(int)data.Stamina);
+        clone.SetMaxStat(StatCategory.Stamina, (int)data.Stamina);
         clone.SetStat(StatCategory.Stamina, (int)data.CurrentStamina);
 
         //퀘스트 적용
@@ -198,7 +195,7 @@ public class DataManager : Manager
         byte[] plainText = rijndaelCipher.CreateDecryptor().TransformFinalBlock(encryptedData, 0, encryptedData.Length);
         return Encoding.UTF8.GetString(plainText);
     }
- 
+
     public static string Encrypt(string textToEncrypt, string key)
     {
         RijndaelManaged rijndaelCipher = new RijndaelManaged();

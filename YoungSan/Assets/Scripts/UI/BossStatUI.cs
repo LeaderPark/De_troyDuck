@@ -13,11 +13,11 @@ public class BossStatUI : MonoBehaviour
 
     public Image hpStain;
 
-	private void Awake()
-	{
+    private void Awake()
+    {
         minHealth = hpRect.anchoredPosition.x - hpRect.rect.width;
     }
-	public void UpdateStatBar(float curHp)
+    public void UpdateStatBar(float curHp)
     {
         if (entity.isDead)
         {
@@ -34,8 +34,8 @@ public class BossStatUI : MonoBehaviour
         {
             Invoke("uiActiveFalse", 1f);
         }
-        if(gameObject.activeSelf)
-        StartCoroutine(FakeHpSet(hpRect.anchoredPosition.x));
+        if (gameObject.activeSelf)
+            StartCoroutine(FakeHpSet(hpRect.anchoredPosition.x));
     }
     private IEnumerator FakeHpSet(float curretnHp)
     {

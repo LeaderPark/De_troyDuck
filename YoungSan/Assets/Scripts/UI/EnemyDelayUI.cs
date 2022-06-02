@@ -35,6 +35,6 @@ public class EnemyDelayUI : MonoBehaviour
     {
         spriteRenderer.transform.localScale = targetRenderer.transform.localScale;
         spriteRenderer.flipX = targetRenderer.flipX;
-        transform.position = new Vector3(targetRenderer.transform.position.x, targetRenderer.transform.position.y + 2.5f, targetRenderer.transform.position.z);
+        transform.position = new Vector3(targetRenderer.transform.position.x, targetRenderer.transform.position.y + 3f, targetRenderer.transform.position.z);
     }
 }

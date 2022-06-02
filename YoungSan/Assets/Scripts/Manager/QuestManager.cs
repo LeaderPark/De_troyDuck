@@ -47,8 +47,15 @@ public class QuestManager : Manager
         }
 
     }
-
-	private void ResetQuest(Quest quest)
+    public bool IsProceeding(Quest quest)
+    {
+        return proceedingQuests.ContainsKey(quest);
+    }
+    public bool IsComplete(Quest quest)
+    {
+        return completedQuests.ContainsKey(quest);
+    }
+    private void ResetQuest(Quest quest)
 	{
         if (completedQuests.ContainsKey(quest))
         {

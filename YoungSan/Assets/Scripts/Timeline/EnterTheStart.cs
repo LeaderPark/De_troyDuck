@@ -7,20 +7,29 @@ public class EnterTheStart : MonoBehaviour
 {
     public TimelineAsset timeLineName;
     public GameObject[] objs;
-    private void OnTriggerEnter(Collider col) 
+    [SerializeField] private Quest triggerQuest;
+    private QuestManager questManger;
+	private void Awake()
+	{
+        questManger = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+	}
+	private void OnTriggerEnter(Collider col) 
     {
         if(col.CompareTag("Player"))
         {
-            if (timeLineName != null)
+            if (triggerQuest == null || questManger.IsProceeding(triggerQuest))
             {
-                TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
-                timelineManager.StartCutScene(timeLineName);
+                if (timeLineName != null)
+                {
+                    TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
+                    timelineManager.StartCutScene(timeLineName);
+                }
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    objs[i].SetActive(true);
+                }
+                gameObject.SetActive(false);
             }
-			for (int i = 0; i < objs.Length; i++)
-			{
-                objs[i].SetActive(true);
-			}
-            gameObject.SetActive(false);
         }
     }
 }

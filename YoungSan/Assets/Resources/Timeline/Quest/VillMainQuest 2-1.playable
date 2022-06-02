@@ -26,6 +26,20 @@ MonoBehaviour:
   m_Name: TimelineSpeed
   m_EditorClassIdentifier: 
   timeScale: 2
+--- !u!114 &-8655412216919742444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0863e9c2ac77964085c463aa797e1aa, type: 3}
+  m_Name: Quest/QuestClearMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  quest: {fileID: 11400000, guid: 730881b361ad14a45bb29286ce800ec2, type: 2}
 --- !u!114 &-8489239304876564938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -60,21 +74,6 @@ MonoBehaviour:
   questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
---- !u!114 &-7415808327376168611
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
-  m_Name: Object/ObjControl
-  m_EditorClassIdentifier: 
-  m_Time: 4.2
-  animationDatas: []
-  objectData: []
 --- !u!114 &-7064634656622148097
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,7 +101,7 @@ MonoBehaviour:
     - {fileID: 3936239592535735536}
     - {fileID: -279540237224094788}
     - {fileID: -892772747466562921}
-    - {fileID: -7415808327376168611}
+    - {fileID: -8655412216919742444}
 --- !u!114 &-6671266765089174347
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,18 +470,21 @@ MonoBehaviour:
   m_Time: 0
   animationDatas:
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 4bd0a864db68a164c90c2e97560073a2
       defaultValue: {fileID: 0}
     animation: Idle
     flipX: 0
   - mainChar: 1
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: Idle
     flipX: 0
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
@@ -1251,7 +1253,7 @@ MonoBehaviour:
   loopEndMarker: {fileID: -8911769168450049200}
   questRefuse: {fileID: -5083412976682355911}
   qeustSelect: 1
-  quest: {fileID: 11400000, guid: 4ba82164f9f915143b2e609327f89ab6, type: 2}
+  quest: {fileID: 11400000, guid: d9a47705dd1038f42b0450411fbaee40, type: 2}
 --- !u!114 &8685863391411184240
 MonoBehaviour:
   m_ObjectHideFlags: 1

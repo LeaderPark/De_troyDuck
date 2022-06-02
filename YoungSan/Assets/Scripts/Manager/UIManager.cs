@@ -30,15 +30,8 @@ public class UIManager : Manager
 
     public void Init()
     {
-        // bossStatbar = transform.GetComponentInChildren<BossStatUI>();
-        // dieUI = transform.GetComponentInChildren<DieUI>();
-        // enemyDelayUI = transform.GetComponentInChildren<EnemyDelayUI>();
-        // enemyStatUI = transform.GetComponentInChildren<EnemyStatUI>();
-        // questUI = transform.GetComponentInChildren<QuestUI>();
-        // settingUI = transform.GetComponentInChildren<SettingUI>();
-        // skillinterface = transform.GetComponentInChildren<Skillinterface>();
-        // statbar = transform.GetComponentInChildren<Statbar>();
-        // timeLineSkipGage = transform.GetComponentInChildren<TimeLineSkipGage>();
+        skillinterface.Init();
+        statbar.Init();
 
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
         eventManager.GetEventTrigger(typeof(StatEventTrigger)).Add(new GlobalEventTrigger.StatEvent((entity, category, oldValue, value) =>
@@ -52,19 +45,7 @@ public class UIManager : Manager
 
     public void SetDelayUI(Entity entity, float time)
     {
-        StartCoroutine(AfterImageProcess(entity, time));
-    }
-
-    private IEnumerator AfterImageProcess(Entity entity, float time)
-    {
-        SpriteRenderer spriteRenderer = entity.GetComponent<SpriteRenderer>();
-        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-        GameObject obj = poolManager.GetObject("EnemyDelay");
-        EnemyDelayUI enemyDelayUI = obj.GetComponentInChildren<EnemyDelayUI>();
-        enemyDelayUI.SetTarget(spriteRenderer);
-        enemyDelayUI.Play();
-        StartCoroutine(enemyDelayUI.AfterImageInActive(obj, time));
-        yield return null;
+        StartCoroutine(MakeEnemyDelay(entity, time));
     }
 
     public void UISetActive(bool active)
@@ -87,6 +68,18 @@ public class UIManager : Manager
         }
     }
 
+    private IEnumerator MakeEnemyDelay(Entity entity, float time)
+    {
+        SpriteRenderer spriteRenderer = entity.GetComponent<SpriteRenderer>();
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        GameObject obj = poolManager.GetObject("EnemyDelay");
+        EnemyDelayUI enemyDelayUI = obj.GetComponentInChildren<EnemyDelayUI>();
+        enemyDelayUI.SetTarget(spriteRenderer);
+        enemyDelayUI.Play();
+        StartCoroutine(enemyDelayUI.AfterImageInActive(obj, time));
+        yield return null;
+    }
+
     private IEnumerator FadeOut(Action endAction)
     {
         float alpha = 0f;
@@ -106,6 +99,7 @@ public class UIManager : Manager
             yield return null;
         }
     }
+
     private IEnumerator FadeIn(Action endAction)
     {
         float alpha = 1f;

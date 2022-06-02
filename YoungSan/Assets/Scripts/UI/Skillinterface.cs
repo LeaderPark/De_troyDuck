@@ -15,9 +15,9 @@ public class Skillinterface : MonoBehaviour
     void Awake()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
-            Init_UI();
+            Init();
     }
-	public void Init_UI()
+    public void Init()
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
@@ -26,7 +26,7 @@ public class Skillinterface : MonoBehaviour
             image_fill[i].type = Image.Type.Filled;
             image_fill[i].fillMethod = Image.FillMethod.Radial360;
             image_fill[i].fillOrigin = (int)Image.Origin360.Top;
-            image_fill[i].fillClockwise = false;     
+            image_fill[i].fillClockwise = false;
         }
         SetSkillDatas();
     }
@@ -37,8 +37,8 @@ public class Skillinterface : MonoBehaviour
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
         StopAllCoroutines();
-	    foreach (EventCategory category in skillSet.skillDatas.Keys)
-		{
+        foreach (EventCategory category in skillSet.skillDatas.Keys)
+        {
             //Set_FillAmount(0, 0, j, Enum.GetName(typeof(KeyType),j));
 
 
@@ -109,7 +109,7 @@ public class Skillinterface : MonoBehaviour
         }
         else
         {
-            txt = Enum.GetName(typeof(KeyType),index);
+            txt = Enum.GetName(typeof(KeyType), index);
             image_fill[index].fillAmount = 0;
         }
         text_CoolTime[index].text = txt;

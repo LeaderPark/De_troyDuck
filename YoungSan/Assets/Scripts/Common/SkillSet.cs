@@ -14,12 +14,12 @@ public class SkillSet : MonoBehaviour
 {
     public SkillDataCategory[] skillDataCategories;
     public Dictionary<EventCategory, SkillData[]> skillDatas;
-    public Dictionary<EventCategory, float[]> skillCoolTimes {get; set;}
-    public Dictionary<EventCategory, float[]> skillWaitTimes {get; set;}
-    public Dictionary<EventCategory, int> skillChargeAmount {get; set;}
-    public Dictionary<EventCategory, int> skillStackAmount {get; set;}
+    public Dictionary<EventCategory, float[]> skillCoolTimes { get; set; }
+    public Dictionary<EventCategory, float[]> skillWaitTimes { get; set; }
+    public Dictionary<EventCategory, int> skillChargeAmount { get; set; }
+    public Dictionary<EventCategory, int> skillStackAmount { get; set; }
 
-    public Entity entity {get; private set;}
+    public Entity entity { get; private set; }
 
     public bool useSkill;
     public bool active;
@@ -95,7 +95,7 @@ public class SkillSet : MonoBehaviour
         entityEvent.reservate = false;
 
         entityEvent.CancelSkillEvent();
-        
+
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         gameManager.StopAfterImage(entity);
     }
@@ -126,13 +126,13 @@ public class SkillSet : MonoBehaviour
         }
 
         int useStamina = skillDatas[category][index].CalculateUseStamina();
-        if (useStamina > entity.clone.GetStat(StatCategory.Stamina)) 
+        if (useStamina > entity.clone.GetStat(StatCategory.Stamina))
         {
             return;
         }
         StopSkill();
         running = true;
-        
+
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         if (entity.CompareTag("Player"))
         {
@@ -146,9 +146,9 @@ public class SkillSet : MonoBehaviour
         data.direction = direction;
         skillData = data;
         this.isRight = isRight;
-        
+
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
-        eventManager.GetEventTrigger(typeof(SkillEventTrigger)).Invoke(new object[]{ entity, data });
+        eventManager.GetEventTrigger(typeof(SkillEventTrigger)).Invoke(new object[] { entity, data });
         StartCoroutine(attackSound(data));
         StartCoroutine(CheckRunning(data));
     }
@@ -173,8 +173,8 @@ public class SkillSet : MonoBehaviour
                 yield return new WaitForSeconds(data.soundStartTimes[i] - data.soundStartTimes[i - 1]);
             }
             if (data.attackSounds.Length > i)
-            if(data.attackSounds[i] != null)
-            soundManager.SoundStart(data.attackSounds[i].name, transform);
+                if (data.attackSounds[i] != null)
+                    soundManager.SoundStart(data.attackSounds[i].name, transform);
         }
     }
 
@@ -198,7 +198,7 @@ public class SkillSet : MonoBehaviour
 
     private void Update()
     {
-        if (!canAttack && (useSkill == running)) canAttack = true; 
+        if (!canAttack && (useSkill == running)) canAttack = true;
         if (active)
         {
             if (skillData != null)
@@ -216,7 +216,15 @@ public class SkillSet : MonoBehaviour
             {
                 if (skillData.hitBoxDatas.Length > skillData.targetIndex)
                 {
-                    skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
+                    if (skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox != null)
+                    {
+                        if (skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox.transform.parent.gameObject.activeSelf)
+                        {
+                            skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
+                            skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.ClearTargetSet();
+                            skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.ClearTargetSet();
+                        }
+                    }
                 }
             }
         }

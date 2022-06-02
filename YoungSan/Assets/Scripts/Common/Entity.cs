@@ -108,8 +108,8 @@ public class Entity : MonoBehaviour
         isDead = true;
     }
 
-    private void OnDrawGizmos()
-    //private void OnDrawGizmosSelected()
+    //private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawCube(transform.position + new Vector3(0, entityData.uiPos, 0), new Vector3(0.25f, 0.25f, 0.25f));

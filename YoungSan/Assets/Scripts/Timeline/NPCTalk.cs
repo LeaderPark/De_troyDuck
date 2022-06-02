@@ -64,7 +64,7 @@ public class NPCTalk : MonoBehaviour
 			//i번째 퀘스트가 클리어라면
 			else
 			{
-				if (i + 1 < npcData.Length)
+				if (i + 1 <= npcData.Length)
 				{
 					continue;
 				}

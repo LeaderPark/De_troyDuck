@@ -14,7 +14,7 @@ public class QuestClearReciver : Receiver
 			QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
             if(marker.quest != null)
             {
-                if(questManager.CheckClearQuest(marker.quest))
+               // if(questManager.CheckClearQuest(marker.quest))
                     questManager.ClearQuest(marker.quest);
             }
 		}

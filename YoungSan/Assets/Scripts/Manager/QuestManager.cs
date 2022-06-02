@@ -59,11 +59,11 @@ public class QuestManager : Manager
     public bool CheckAvailableQuest(Quest quest)
     {
         bool check = false;
-        if(quest.prevQuest == null || quest.prevQuest.clear)
+        if (quest.prevQuest == null || quest.prevQuest.clear)
         {
-            if(!proceedingQuests.ContainsKey(quest.questId))
+            if (!proceedingQuests.ContainsKey(quest.questId))
             {
-                if(!quest.clear)
+                if (!quest.clear)
                 {
                     check = true;
                 }
@@ -87,29 +87,29 @@ public class QuestManager : Manager
         return check;
     }
 
-    public bool CheckClearQuest(Quest quest) 
+    public bool CheckClearQuest(Quest quest)
     {
         bool check = false;
-        for(int i = 0; i < quest.clearValue.values.Count; i++)
+        for (int i = 0; i < quest.clearValue.values.Count; i++)
         {
-            if(quest.clearValue.values[i].type == PropertyType.INT)
+            if (quest.clearValue.values[i].type == PropertyType.INT)
             {
-                if(quest.clearValue.values[i].intValue <= quest.clearValue.values[i].currentIntValue)
+                if (quest.clearValue.values[i].intValue <= quest.clearValue.values[i].currentIntValue)
                 {
                     Debug.Log("퀘스트 클리어");
                     check = true;
                 }
             }
-            else if(quest.clearValue.values[i].type == PropertyType.BOOL)
+            else if (quest.clearValue.values[i].type == PropertyType.BOOL)
             {
-                if(quest.clearValue.values[i].boolValue)
+                if (quest.clearValue.values[i].boolValue)
                 {
                     Debug.Log("퀘스트 클리어");
                     check = true;
                 }
             }
-            
-            if(!check)
+
+            if (!check)
             {
                 break;
             }
@@ -119,9 +119,9 @@ public class QuestManager : Manager
 
     public void SetQuestEmptyValue(Quest quest) //테스트용 초기화
     {
-        for(int i = 0; i < quest.clearValue.values.Count; i++)
+        for (int i = 0; i < quest.clearValue.values.Count; i++)
         {
-            if(quest.clearValue.values[i].type == PropertyType.INT)
+            if (quest.clearValue.values[i].type == PropertyType.INT)
             {
                 quest.clearValue.values[i].currentIntValue = 0;
                 quest.clear = false;
@@ -129,10 +129,10 @@ public class QuestManager : Manager
                 Debug.Log(quest.clearValue.values[i].currentIntValue);
                 Debug.Log(quest.clear);
             }
-            else if(quest.clearValue.values[i].type == PropertyType.BOOL)
+            else if (quest.clearValue.values[i].type == PropertyType.BOOL)
             {
                 quest.clearValue.values[i].boolValue = false;
-                quest.clear = false; 
+                quest.clear = false;
                 Debug.Log(quest.clearValue.values[i].boolValue);
             }
         }
@@ -143,15 +143,15 @@ public class QuestManager : Manager
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
         eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>
         {
-            if(hitEntity.CompareTag("Enemy"))
+            if (hitEntity.CompareTag("Enemy"))
             {
-                for(int i = 0; i < quest.clearValue.values.Count; i++)
+                for (int i = 0; i < quest.clearValue.values.Count; i++)
                 {
                     if (hitEntity.entityData == quest.clearValue.values[i].entityData)
                     {
-                        if(quest.clearValue.values[i].type == PropertyType.INT)
+                        if (quest.clearValue.values[i].type == PropertyType.INT)
                         {
-                            if(quest.clearValue.values[i].intValue > quest.clearValue.values[i].currentIntValue)
+                            if (quest.clearValue.values[i].intValue > quest.clearValue.values[i].currentIntValue)
                             {
                                 quest.clearValue.values[i].currentIntValue++;
                                 Debug.Log(quest.clearValue.values[i].currentIntValue);
@@ -165,19 +165,19 @@ public class QuestManager : Manager
 
     public void DebugQuest()
     {
-        foreach(var item in proceedingQuests.Values)
+        foreach (var item in proceedingQuests.Values)
         {
             Debug.Log(item);
         }
-        foreach(var item in proceedingQuests.Keys)
+        foreach (var item in proceedingQuests.Keys)
         {
             Debug.Log(item);
         }
-        foreach(var item in completedQuests.Values)
+        foreach (var item in completedQuests.Values)
         {
             Debug.Log(item);
         }
-        foreach(var item in completedQuests.Keys)
+        foreach (var item in completedQuests.Keys)
         {
             Debug.Log(item);
         }
@@ -189,5 +189,10 @@ public class QuestManager : Manager
         // {
         //     Debug.Log(item);
         // }
+    }
+
+    void dddasdasd()
+    {
+
     }
 }

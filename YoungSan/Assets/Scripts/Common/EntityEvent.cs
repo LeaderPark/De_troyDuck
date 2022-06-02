@@ -114,7 +114,6 @@ public class EntityEvent : MonoBehaviour
     {
         if (!skillSet.skillStackAmount.ContainsKey(category)) return;
 
-
         entity.GetProcessor(typeof(Processor.Skill))?.AddCommand("UseSkill", new object[]{category, skillSet.skillStackAmount[category], new Vector2(inputX, inputY), direction, (System.Action)(() =>
         {
             entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[]{direction});

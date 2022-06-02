@@ -4,54 +4,37 @@ using UnityEngine;
 
 public class EnemyDelayUI : MonoBehaviour
 {
-    private GameObject attackDelayObj;
-    private Transform parentTrm;
-    public Entity entity;
+    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer targetRenderer;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void GetEnemyDelayUI(Entity entity)
+    void Update()
     {
-        Transform enemyDelay = entity.gameObject.transform.Find("EnemyDelay(Clone)");
-        if (enemyDelay == null)
+        if (gameObject.activeSelf)
         {
-            PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-            GameObject enemyDelayobj = poolManager.GetObject("EnemyDelay");
-            EnemyDelayUI enemyDelayUI = enemyDelayobj.GetComponentInChildren<EnemyDelayUI>();
-            Debug.Log(entity);
-            enemyDelayUI.entity = entity;
-            enemyDelayUI.SetPos(entity);
-            enemyDelayUI.SetAttackDelayUI();
-        }
-        else
-        {
-            SetAttackDelayUI();
+            Play();
         }
     }
 
-    public void SetPos(Entity entity)
+    public IEnumerator AfterImageInActive(GameObject afterImage, float time)
     {
-        parentTrm = transform.parent;
-        attackDelayObj = transform.Find("attackDelay").gameObject;
-        attackDelayObj.SetActive(false);
-        parentTrm.SetParent(entity.transform);
-        parentTrm.transform.position = Vector3.zero;
-        attackDelayObj.transform.position = new Vector3(0, 0, 0);
-        attackDelayObj.transform.position += new Vector3(0, entity.entityData.uiPos + 1f, 0);
-    }
-    public void SetAttackDelayUI()
-    {
-        StartCoroutine(AttackDelayUI());
+        yield return new WaitForSeconds(time);
+        afterImage.SetActive(false);
     }
 
-    public IEnumerator AttackDelayUI()
+    public void SetTarget(SpriteRenderer sr)
     {
-        attackDelayObj.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        attackDelayObj.SetActive(false);
+        targetRenderer = sr;
     }
 
+    public void Play()
+    {
+        spriteRenderer.transform.localScale = targetRenderer.transform.localScale;
+        spriteRenderer.flipX = targetRenderer.flipX;
+        transform.position = new Vector3(targetRenderer.transform.position.x, targetRenderer.transform.position.y + 2.5f, targetRenderer.transform.position.z);
+    }
 }

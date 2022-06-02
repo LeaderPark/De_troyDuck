@@ -133,14 +133,20 @@ public class SkillSet : MonoBehaviour
         StopSkill();
         running = true;
 
-        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         if (entity.CompareTag("Player"))
         {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             gameManager.AfterImage(entity, skillDatas[category][index].skill.length);
+        }
+        else
+        {
+            UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uIManager.SetDelayUI(entity, 0.2f);
         }
         SetCoolDown(category, index, skillDatas[category][index].coolTime);
         SetWaitTime(category, index, skillDatas[category][index].waitTime);
         entity.clone.SubStat(StatCategory.Stamina, useStamina);
+
         action();
         SkillData data = skillDatas[category][index];
         data.direction = direction;

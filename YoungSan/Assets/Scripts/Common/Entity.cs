@@ -5,7 +5,7 @@ using System;
 
 public class Entity : MonoBehaviour
 {
-    private Hashtable Processors {get; set;}
+    private Hashtable Processors { get; set; }
 
     public EntityData entityData;
     public Clone clone;
@@ -13,7 +13,7 @@ public class Entity : MonoBehaviour
     public bool isDead;
     public bool hitable;
     public Action dead = null;
-        
+
     public Processor.Processor GetProcessor(Type processor)
     {
         if (Processors.ContainsKey(processor))
@@ -30,7 +30,7 @@ public class Entity : MonoBehaviour
             processor.Process();
         }
     }
-    
+
     void Awake()
     {
         Processors = new Hashtable();
@@ -57,24 +57,24 @@ public class Entity : MonoBehaviour
         {
             GetComponent<StateMachine.StateMachine>().enabled = false;
         }
-        if(gameObject.CompareTag("Player") && isDie)
+        if (gameObject.CompareTag("Player") && isDie)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
 
             gameManager.deathWindow.TurnOnWindow(
-                () => 
+                () =>
                 {
                     dataManager.Load();
                 }
             );
         }
-        GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{ 1f });
-        GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{ Vector3.zero, 0 });
-        GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[]{});
-        GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[]{});
-        GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{0f});
-        GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Die"});
+        GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { 1f });
+        GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
+        GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[] { });
+        GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0f });
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Die" });
         StartCoroutine(DieAnimationComplete());
     }
 
@@ -83,7 +83,7 @@ public class Entity : MonoBehaviour
         bool b = false;
         while (!b)
         {
-            GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Die", (System.Action<bool, float>)((bool transition, float time) => 
+            GetProcessor(typeof(Processor.Animate))?.AddCommand("CheckClipNoLock", new object[]{"Die", (System.Action<bool, float>)((bool transition, float time) =>
             {
                 if (!transition && time >= 1f)
                 {
@@ -96,14 +96,14 @@ public class Entity : MonoBehaviour
         isDead = true;
     }
 
-	private void OnDrawGizmos()
-	//private void OnDrawGizmosSelected()
-	{
+    private void OnDrawGizmos()
+    //private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.white;
-        Gizmos.DrawCube(transform.position+new Vector3(0,entityData.uiPos,0), new Vector3(0.25f, 0.25f, 0.25f));
-	}
+        Gizmos.DrawCube(transform.position + new Vector3(0, entityData.uiPos, 0), new Vector3(0.25f, 0.25f, 0.25f));
+    }
 
-	private void SettingProcessor()
+    private void SettingProcessor()
     {
         if (GetComponent<Animator>() != null)
         {
@@ -153,3 +153,4 @@ public class Entity : MonoBehaviour
         staminaCount = 2f;
     }
 }
+

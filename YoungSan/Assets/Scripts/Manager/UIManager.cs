@@ -50,6 +50,23 @@ public class UIManager : Manager
         }));
     }
 
+    public void SetDelayUI(Entity entity, float time)
+    {
+        StartCoroutine(AfterImageProcess(entity, time));
+    }
+
+    private IEnumerator AfterImageProcess(Entity entity, float time)
+    {
+        SpriteRenderer spriteRenderer = entity.GetComponent<SpriteRenderer>();
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        GameObject obj = poolManager.GetObject("EnemyDelay");
+        EnemyDelayUI enemyDelayUI = obj.GetComponentInChildren<EnemyDelayUI>();
+        enemyDelayUI.SetTarget(spriteRenderer);
+        enemyDelayUI.Play();
+        StartCoroutine(enemyDelayUI.AfterImageInActive(obj, time));
+        yield return null;
+    }
+
     public void UISetActive(bool active)
     {
         if (active)

@@ -23,6 +23,7 @@ public class SkillSet : MonoBehaviour
 
     public bool useSkill;
     public bool active;
+    public float delayTime;
     private SkillData skillData;
     private bool isRight;
     private bool running;
@@ -132,21 +133,32 @@ public class SkillSet : MonoBehaviour
         }
         StopSkill();
         running = true;
-
+        bool isPlayer = false;
         if (entity.CompareTag("Player"))
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             gameManager.AfterImage(entity, skillDatas[category][index].skill.length);
+            isPlayer = true;
         }
         else
         {
             UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uIManager.SetDelayUI(entity, 0.2f);
+            uIManager.SetDelayUI(entity, delayTime);
+            isPlayer = false;
         }
         SetCoolDown(category, index, skillDatas[category][index].coolTime);
         SetWaitTime(category, index, skillDatas[category][index].waitTime);
         entity.clone.SubStat(StatCategory.Stamina, useStamina);
 
+        StartCoroutine(SetActiveSkill(category, index, direction, isRight, action, isPlayer));
+    }
+
+    IEnumerator SetActiveSkill(EventCategory category, int index, Vector2 direction, bool isRight, System.Action action, bool isPlayer)
+    {
+        if (!isPlayer)
+        {
+            yield return new WaitForSeconds(delayTime);
+        }
         action();
         SkillData data = skillDatas[category][index];
         data.direction = direction;

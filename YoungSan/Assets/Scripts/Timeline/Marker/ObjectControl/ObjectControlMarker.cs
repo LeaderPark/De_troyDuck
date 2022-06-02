@@ -23,6 +23,7 @@ public class ObjectControlMarker : Marker, INotification
 public struct AnimationData
 {
 	public bool mainChar;
+	public bool getMainCharAnimator;
 	public ExposedReference<GameObject> contorolObject;
 	public string animation;
 	public bool flipX;

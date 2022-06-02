@@ -39,7 +39,14 @@ public class Entity : MonoBehaviour
         hitable = true;
         SettingProcessor();
     }
-
+    public void SetHp(float hp)
+    {
+        clone.SetStat(StatCategory.Health, (int)(clone.GetMaxStat(StatCategory.Health) * hp));
+        if (clone.GetStat(StatCategory.Health) > 0)
+        {
+            isDead = false;
+        }
+    }
     public void Die(bool isDie = true)
     {
         dead?.Invoke();
@@ -61,6 +68,11 @@ public class Entity : MonoBehaviour
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
+            UIManager uimanager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+
+            questManager.ResetQuests();
+            uimanager.UISetActive(false);
 
             gameManager.deathWindow.TurnOnWindow(
                 () =>

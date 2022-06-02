@@ -35,6 +35,7 @@ public class TestEventEditor : Editor
             scrollPosition = GUILayout.BeginScrollView(scrollPosition);
             for (int i = 0; i < marker.events.Length; i++)
             {
+                if (i>=foldIndex.Length) continue;
                 GUILayout.BeginVertical(GUI.skin.window);
                 if (foldIndex[i] = EditorGUILayout.Toggle($"Element {i}", foldIndex[i]))
                 {

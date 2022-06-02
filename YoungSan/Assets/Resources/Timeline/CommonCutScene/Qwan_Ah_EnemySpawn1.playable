@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -4368674218510988582}
+    - {fileID: 1496537627114798092}
 --- !u!114 &-4368674218510988582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,6 +115,24 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: -5187837174703779015}
+--- !u!114 &1496537627114798092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9677fe87bdbda47af0c19e3b92453e, type: 3}
+  m_Name: Object/CSControl
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  enemyObjs:
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  scriptEnable: 1
 --- !u!74 &5132300372021235424
 AnimationClip:
   m_ObjectHideFlags: 0

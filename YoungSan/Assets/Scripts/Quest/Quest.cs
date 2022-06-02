@@ -14,6 +14,8 @@ public class Quest : ScriptableObject
     public ClearValue clearValue;
     public Quest prevQuest;
     public Quest nextQuest;
+
+    public bool resetPrevQuest;
     
     public bool clear; 
 }

@@ -27,6 +27,123 @@ MonoBehaviour:
     - {fileID: 3936239592535735536}
     - {fileID: -279540237224094788}
     - {fileID: 8370343309565790162}
+    - {fileID: -6987731082145975396}
+--- !u!114 &-6987731082145975396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  events:
+  - obj:
+      exposedName: a26955797997dbe4da1f2de6efad6f15
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: SetHp
+    param:
+    - data: 1
+      type: float
+  - obj:
+      exposedName: 32a5430148c6a3c4aba83af9eaac9f93
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: Die
+    param:
+    - data: True
+      type: bool
+  - obj:
+      exposedName: f6c4229c6b6e1e54baad4f9883fb5828
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: Die
+    param:
+    - data: True
+      type: bool
+  - obj:
+      exposedName: 4be16bf6cdb710249aceb0b6edfc5a7a
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: SetHp
+    param:
+    - data: 1
+      type: float
+  - obj:
+      exposedName: d9cf9be53edf5634a9568d0941f36612
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: Die
+    param:
+    - data: True
+      type: bool
+  - obj:
+      exposedName: ec52b4f7cdd262941beba826f06b62ca
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: SetHp
+    param:
+    - data: 1
+      type: float
+  - obj:
+      exposedName: 24b5d31bda971004bb3e64a57cb969ac
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: Die
+    param:
+    - data: True
+      type: bool
+  - obj:
+      exposedName: ca96416d7e58ef449b3ba57aeea7ea62
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: SetHp
+    param:
+    - data: 1
+      type: float
+  - obj:
+      exposedName: 7992ae7e9becf58499ef4959ae8abf04
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: Die
+    param:
+    - data: True
+      type: bool
+  - obj:
+      exposedName: b2e0bc928fa3d0c4ea766d4520291bd5
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: SetHp
+    param:
+    - data: 1
+      type: float
+  - obj:
+      exposedName: ae595033f13af2a43af7d30b857a15cd
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: Die
+    param:
+    - data: True
+      type: bool
+  - obj:
+      exposedName: 84cdadafdd997af4381c10c4a055a610
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: SetHp
+    param:
+    - data: 1
+      type: float
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    component: 
+    function: 
+    param: []
 --- !u!114 &-5499154369870881570
 MonoBehaviour:
   m_ObjectHideFlags: 1

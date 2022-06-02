@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c258b3114e026da42b018b8e74680ec8, type: 3}
   m_Name: VillageMain 2-1
   m_EditorClassIdentifier: 
-  questId: 6
-  title: "\uC0C1\uD669 \uD30C\uC545\uD558\uAE30"
-  context: "\uBC14\uAE65\uC73C\uB85C \uB098\uAC00 \uC0C1\uD669\uC744 \uC0B4\uD53C\uACE0
-    \uC624\uC790"
+  questId: 5
+  title: "\uC544 \uBAB0\uB77C \uC554\uD2BC \uC704\uB85C \uAC00\uB77C\uACE0"
+  context: "\uC544 \uBAB0\uB77C \uC554\uD2BC \uB3C4\uB9DD\uAC04\uB188 \uC704\uC5D0
+    \uC788\uC73C\uB2C8\uAE4C \uC7A1\uC544 \uC624\uB77C\uACE0"
   clearValue:
     values:
     - type: 1
       currentIntValue: 0
-      intValue: 8
+      intValue: 0
       boolValue: 0
-      entityData: {fileID: 11400000, guid: 749db8e78489e0b49ac23503a2b7cf5d, type: 2}
-  prevQuest: {fileID: 11400000, guid: 3073c46b656801e4295a6e69d5dbe792, type: 2}
-  nextQuest: {fileID: 11400000, guid: bf32bf513f8f65944bd96f3075e7328b, type: 2}
+      entityData: {fileID: 0}
+  prevQuest: {fileID: 11400000, guid: b7a3c492596a1d445a8c88118364f749, type: 2}
+  nextQuest: {fileID: 0}
+  resetPrevQuest: 1
   clear: 0

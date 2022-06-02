@@ -35,7 +35,12 @@ public class ObjectControlReciver :Receiver
 
 				if (obj != null)
 				{
+
 					Animator objAnimator = obj.GetComponent<Animator>();
+					if (marker.animationDatas[i].getMainCharAnimator)
+					{
+						objAnimator.runtimeAnimatorController = gameManager.Player.GetComponent<Animator>().runtimeAnimatorController;
+					}
 					objAnimator.Play(clip);
 				}
 			}

@@ -483,8 +483,8 @@ public class HierarchySearcherWindow : EditorWindow
                 UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
-                    Component[] components = item.GetComponents<Component>();
-                    foreach (Component component in components)
+                    Entity[] components = item.GetComponents<Entity>();
+                    foreach (Entity component in components)
                     {
                         if (!items.Contains(component.GetType().Name))
                         {

@@ -14,7 +14,7 @@ public class OptionLayer : SearchOption
                 UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
-                    if (item.layer == value)
+                    if (item.layer != value)
                     {
                         gameObjects.Add(item as GameObject);
                     }
@@ -25,7 +25,7 @@ public class OptionLayer : SearchOption
                 List<GameObject> removeItems = new List<GameObject>();
                 foreach (GameObject item in gameObjects)
                 {
-                    if (!(item.layer == value))
+                    if (!(item.layer != value))
                     {
                         removeItems.Add(item);
                     }

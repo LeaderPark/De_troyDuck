@@ -38,8 +38,34 @@ public class QuestManager : Manager
         }
     }
 
+    public void ResetQuests()
+	{
+		foreach (Quest item in proceedingQuests.Values)
+		{
+            ResetQuest(item);
+            proceedingQuests.Remove(item);
+        }
 
-    public void AddQuest(Quest quest)
+    }
+
+	private void ResetQuest(Quest quest)
+	{
+        if (completedQuests.ContainsKey(quest))
+        {
+            completedQuests.Remove(quest);
+        }
+        quest.clear = false;
+        if (quest.resetPrevQuest&& quest.prevQuest!=null)
+        {
+            quest.prevQuest.clear = false;
+            if (quest.prevQuest.resetPrevQuest)
+            {
+                ResetQuest(quest.prevQuest);
+            }
+        }
+	}
+
+	public void AddQuest(Quest quest)
     {
         proceedingQuests.Add(quest.questId, quest);
     }

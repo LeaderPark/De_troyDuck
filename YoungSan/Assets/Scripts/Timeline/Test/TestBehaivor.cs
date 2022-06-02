@@ -13,7 +13,7 @@ public class TestBehaivor : PlayableBehaviour
 
 	private Text talkBox;
 	private Text fakeTalkbox;
-	private GameObject endImage;
+	//private GameObject endImage;
 	private PoolManager poolManager;
 	private float time = 0;
 	private int idx = 0;
@@ -67,7 +67,7 @@ public class TestBehaivor : PlayableBehaviour
 		}
 		talkBox = talkObj.transform.Find("text").GetComponent<Text>();
 		fakeTalkbox = talkObj.transform.Find("fakeText").GetComponent<Text>();
-		endImage = talkObj.transform.Find("EndImage").gameObject;
+		//endImage = talkObj.transform.Find("EndImage").gameObject;
 		timelineCon = GameObject.Find("CutScenePrefab").GetComponent<TimelineController>();
 		entityData = talker.GetComponent<Entity>().entityData;
 		talkBox.text = "";
@@ -85,7 +85,7 @@ public class TestBehaivor : PlayableBehaviour
 			{
 				if ((int)playable.GetTime() >= (int)playable.GetDuration())
 				{
-					endImage.SetActive(false);
+					//endImage.SetActive(false);
 					talkObj.SetActive(false);
 				}
 			}

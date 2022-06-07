@@ -43,6 +43,39 @@ public class UIManager : Manager
         }));
     }
 
+    #region On Off
+    // public void OnOffUI(bool GetKeyDown, bool isEnabled, CanvasGroup canvasGroup)
+    // {
+    //     if (GetKeyDown)
+    //     {
+    //         if (isEnabled)
+    //         {
+    //             OpenUI(canvasGroup);
+    //         }
+    //         else
+    //         {
+    //             CloseUI(canvasGroup);
+    //         }
+    //     }
+    // }
+
+    public void OpenUI(CanvasGroup canvasGroup)
+    {
+        Time.timeScale = 0;
+        canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+    }
+
+    public void CloseUI(CanvasGroup canvasGroup)
+    {
+        Time.timeScale = 1;
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+    }
+    #endregion On Off
+
     public void SetDelayUI(Entity entity, float time)
     {
         StartCoroutine(MakeEnemyDelay(entity, time));

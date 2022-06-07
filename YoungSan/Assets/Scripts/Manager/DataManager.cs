@@ -47,7 +47,7 @@ public class DataManager : Manager
 
     public void Load()
     {
-        
+
         if (!File.Exists(Application.persistentDataPath + "/SaveData.json"))
         {
             Debug.Log("진우 십텐련");
@@ -132,6 +132,10 @@ public class DataManager : Manager
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 
+
+        uiManager.FadeInOut(true);
+        yield return new WaitForSeconds(1f);
+
         string jsonDataString = File.ReadAllText(Application.persistentDataPath + "/SaveData.json");
         data = JsonUtility.FromJson<Data>(Decrypt(jsonDataString, key));
         //data = JsonUtility.FromJson<Data>(jsonDataString);
@@ -171,7 +175,6 @@ public class DataManager : Manager
 
         //UI 세팅
         uiManager.Init();
-
 
         yield return null;
     }

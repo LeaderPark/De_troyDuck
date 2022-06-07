@@ -39,9 +39,9 @@ public class QuestManager : Manager
     }
 
     public void ResetQuests()
-	{
-		foreach (Quest item in proceedingQuests.Values)
-		{
+    {
+        foreach (Quest item in proceedingQuests.Values)
+        {
             ResetQuest(item);
             proceedingQuests.Remove(item);
         }
@@ -56,13 +56,13 @@ public class QuestManager : Manager
         return completedQuests.ContainsKey(quest);
     }
     private void ResetQuest(Quest quest)
-	{
+    {
         if (completedQuests.ContainsKey(quest))
         {
             completedQuests.Remove(quest);
         }
         quest.clear = false;
-        if (quest.resetPrevQuest&& quest.prevQuest!=null)
+        if (quest.resetPrevQuest && quest.prevQuest != null)
         {
             quest.prevQuest.clear = false;
             if (quest.prevQuest.resetPrevQuest)
@@ -70,9 +70,9 @@ public class QuestManager : Manager
                 ResetQuest(quest.prevQuest);
             }
         }
-	}
+    }
 
-	public void AddQuest(Quest quest)
+    public void AddQuest(Quest quest)
     {
         proceedingQuests.Add(quest.questId, quest);
     }
@@ -200,19 +200,19 @@ public class QuestManager : Manager
     {
         foreach (var item in proceedingQuests.Values)
         {
-            Debug.Log(item);
+            Debug.Log("proceedingQuests.Values : " + item);
         }
         foreach (var item in proceedingQuests.Keys)
         {
-            Debug.Log(item);
+            Debug.Log("proceedingQuests.Keys : " + item);
         }
         foreach (var item in completedQuests.Values)
         {
-            Debug.Log(item);
+            Debug.Log("completedQuests.Values : " + item);
         }
         foreach (var item in completedQuests.Keys)
         {
-            Debug.Log(item);
+            Debug.Log("completedQuests.Keys : " + item);
         }
         // foreach (var item in allQuests.Values)
         // {
@@ -222,10 +222,5 @@ public class QuestManager : Manager
         // {
         //     Debug.Log(item);
         // }
-    }
-
-    void dddasdasd()
-    {
-
     }
 }

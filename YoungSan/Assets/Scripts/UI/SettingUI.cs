@@ -30,7 +30,7 @@ public class SettingUI : MonoBehaviour
     private List<Resolution> setResolutions = new List<Resolution>();
 
     void Start()
-    {        
+    {
         canvasGroup = this.gameObject.GetComponent<CanvasGroup>();
         Init_UI();
     }
@@ -44,41 +44,30 @@ public class SettingUI : MonoBehaviour
     {
         SetBackGroundSound();
         SetSFXSound();
-        if(Input.GetKeyDown(KeyCode.Escape))
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!isEnabled)
-                OpenSettingUI();
+            if (!isEnabled)
+            {
+                UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+                uIManager.OpenUI(canvasGroup);
+                isEnabled = true;
+            }
             else
-                CloseSettingUI();
+            {
+                UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+                uIManager.CloseUI(canvasGroup);
+                isEnabled = false;
+            }
         }
     }
 
-#region On Off
-    public void OpenSettingUI()
-    {
-        Time.timeScale = 0;
-        canvasGroup.alpha = 1;
-        canvasGroup.interactable = true;
-        canvasGroup.blocksRaycasts = true;
-        isEnabled = true;
-    }
-
-    public void CloseSettingUI()
-    {
-        Time.timeScale = 1;
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        isEnabled = false;
-    }
-#endregion On Off
-
-#region 사운드
+    #region 사운드
     public void SetBackGroundSound()
     {
-        float value =  setBackGroundSoundSlider.value - 40;
+        float value = setBackGroundSoundSlider.value - 40;
 
-        if(value.Equals(-40f)) audioMixer.SetFloat("BG", -80);
+        if (value.Equals(-40f)) audioMixer.SetFloat("BG", -80);
         else audioMixer.SetFloat("BG", value);
 
         setBackGroundSoundText.text = Mathf.Round(setBackGroundSoundSlider.value * 2.5f) + "%";
@@ -86,38 +75,38 @@ public class SettingUI : MonoBehaviour
 
     public void SetSFXSound()
     {
-        float value =  setSFXSoundSlider.value -40;
+        float value = setSFXSoundSlider.value - 40;
 
-        if(value.Equals(-40f)) audioMixer.SetFloat("SFX", -80);
+        if (value.Equals(-40f)) audioMixer.SetFloat("SFX", -80);
         else audioMixer.SetFloat("SFX", value);
 
         setSFXSoundText.text = Mathf.Round(setSFXSoundSlider.value * 2.5f) + "%";
     }
 
 
-#endregion
+    #endregion
 
-#region 해상도와 창모드
+    #region 해상도와 창모드
     void SetResolution()
     {
         resolutions.AddRange(Screen.resolutions);
         setResolutionDropdown.options.Clear();
 
         int optionNum = 0;
-        for(int i = 0; i < Screen.resolutions.Length; i++)
-        {            
-            if(Screen.resolutions[i].refreshRate == 60)
+        for (int i = 0; i < Screen.resolutions.Length; i++)
+        {
+            if (Screen.resolutions[i].refreshRate == 60)
             {
                 double result = (double)((double)Screen.resolutions[i].width / (double)Screen.resolutions[i].height);
                 float resultTruncate = (float)(Math.Truncate((result * 10000)) / 10000);
 
-                if(resultTruncate == 1.7777f)
+                if (resultTruncate == 1.7777f)
                 {
                     string resolutionSize = Screen.resolutions[i].width + " X " + Screen.resolutions[i].height;
-                    resolutionText.Add(resolutionSize); 
+                    resolutionText.Add(resolutionSize);
                     setResolutions.Add(Screen.resolutions[i]);
 
-                    if(Screen.resolutions[i].width == Screen.width && Screen.resolutions[i].height == Screen.height)
+                    if (Screen.resolutions[i].width == Screen.width && Screen.resolutions[i].height == Screen.height)
                     {
                         StartCoroutine(SetValue(optionNum));
                     }
@@ -138,7 +127,7 @@ public class SettingUI : MonoBehaviour
 
     public void DropboxOptionChange(int x)
     {
-        resolutionNum = x; 
+        resolutionNum = x;
     }
 
     public void FullScreenBtn(bool isFull)
@@ -151,5 +140,5 @@ public class SettingUI : MonoBehaviour
         Screen.SetResolution(setResolutions[resolutionNum].width, setResolutions[resolutionNum].height, screenMode);
         Debug.Log("Setting : " + setResolutions[resolutionNum].width + " / " + setResolutions[resolutionNum].height + " / " + screenMode);
     }
-#endregion
+    #endregion
 }

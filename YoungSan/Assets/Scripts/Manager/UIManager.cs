@@ -25,7 +25,9 @@ public class UIManager : Manager
     void Awake()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        {
             Init();
+        }
     }
 
     public void Init()
@@ -44,20 +46,6 @@ public class UIManager : Manager
     }
 
     #region On Off
-    // public void OnOffUI(bool GetKeyDown, bool isEnabled, CanvasGroup canvasGroup)
-    // {
-    //     if (GetKeyDown)
-    //     {
-    //         if (isEnabled)
-    //         {
-    //             OpenUI(canvasGroup);
-    //         }
-    //         else
-    //         {
-    //             CloseUI(canvasGroup);
-    //         }
-    //     }
-    // }
 
     public void OpenUI(CanvasGroup canvasGroup)
     {

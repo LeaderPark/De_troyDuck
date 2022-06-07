@@ -16,7 +16,10 @@ public class CharImageUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameManager gameManager = ManagerObject.Instance.GetManager((ManagerType.GameManager)) as GameManager;
-        charImage.sprite = gameManager.Player.GetComponent<SpriteRenderer>().sprite;
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            GameManager gameManager = ManagerObject.Instance.GetManager((ManagerType.GameManager)) as GameManager;
+            charImage.sprite = gameManager.Player.GetComponent<SpriteRenderer>().sprite;
+        }
     }
 }

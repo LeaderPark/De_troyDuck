@@ -381,6 +381,42 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &-5040772036632183890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 2.683333333333333
+  events:
+  - obj:
+      exposedName: 7a264ef670a6e3f4097b4ddfec54a63e
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: SetHp
+    param:
+    - data: 0
+      type: float
+  - obj:
+      exposedName: 48e22be48ecd0d6488fe6732c43dfdb1
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: Die
+    param:
+    - data: True
+      type: bool
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    component: 
+    function: 
+    param: []
 --- !u!114 &-4517290293925673582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -733,6 +769,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: 4648264812562822589}
+    - {fileID: -5040772036632183890}
 --- !u!114 &1788729598853809653
 MonoBehaviour:
   m_ObjectHideFlags: 1

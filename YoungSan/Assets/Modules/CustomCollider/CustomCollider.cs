@@ -5,6 +5,8 @@ using UnityEditor;
 
 #if UNITY_EDITOR
 
+using System.Linq;
+
 [ExecuteInEditMode]
 [RequireComponent(typeof(MeshCollider))]
 public class CustomCollider : MonoBehaviour
@@ -23,6 +25,55 @@ public class CustomCollider : MonoBehaviour
 
     private Vector4 mousePosition;
     private bool drawDrag;
+
+    private bool move;
+    private Vector3 moveStart;
+
+
+    public static void MoveVertex(Vector3 move)
+    {
+        Debug.Log("Move Vertex " + move);
+    }
+
+    public static void AddVertex()
+    {
+        Debug.Log("Add Vertex "); // AddVertex 까지 작업함.
+    }
+
+    public static void RemoveVertex(Vector3 vertex, int index, Quad[] quads)
+    {
+        Debug.Log("Remove Vertex " + vertex + ", index : " + index + ", length : " + quads.Length);
+    }
+
+    public static void DuplicateVertex(int count)
+    {
+        Debug.Log("Duplicate Vertex " + count);
+    }
+
+    public static void FocusVertex(int[] indices)
+    {
+        Debug.Log("Focus Vertex " + indices.Length);
+    }
+
+    public static void MoveQuad(Vector3 move)
+    {
+        Debug.Log("Move Quad " + move);
+    }
+
+    public static void AddQuad()
+    {
+        Debug.Log("Add Quad ");
+    }
+
+    public static void RemoveQuad(Quad quad, int index)
+    {
+        Debug.Log("Remove Quad , v1 : " + quad.v1 + ", v2 : " + quad.v2 + ", v3 : " + quad.v3 + ", v4 : " + quad.v4);
+    }
+
+    public static void FocusQuad(int[] indices)
+    {
+        Debug.Log("Focus Quad " + indices.Length);
+    }
 
 
     void OnEnable()
@@ -75,6 +126,12 @@ public class CustomCollider : MonoBehaviour
                     mousePosition = new Vector4(mousePosition.x, mousePosition.y, e.mousePosition.x, e.mousePosition.y);
                 }
                 break;
+            case EventType.MouseDrag:
+                move = true;
+                break;
+            case EventType.MouseUp:
+                move = false;
+                break;
         }
 
         if (e.isKey)
@@ -105,6 +162,20 @@ public class CustomCollider : MonoBehaviour
                         {
                             DeleteVertex();
                             focusVertex.Clear();
+                        }
+                        if (focusQuad.Count > 0)
+                        {
+                            List<int> focusQuadList = new List<int>();
+                            foreach (var item in focusQuad)
+                            {
+                                focusQuadList.Add(item);
+                            }
+                            focusQuadList.Sort((a, b) => { return b.CompareTo(a); });
+                            foreach (var item in focusQuadList)
+                            {
+                                indices.RemoveAt(item);
+                            }
+                            focusQuad.Clear();
                         }
                         break;
                     case KeyCode.F5:
@@ -239,12 +310,27 @@ public class CustomCollider : MonoBehaviour
 
             if (focusQuad.Count > 0)
             {
-                Vector3 movePosition = vertices[indices[enumerator.Current].v1].position;
+                Vector3 sourcePosition = vertices[indices[enumerator.Current].v1].position;
+                Vector3 movePosition = sourcePosition;
                 movePosition = Handles.DoPositionHandle(movePosition, Quaternion.identity);
                 Handles.color = Color.red;
                 movePosition = Handles.FreeMoveHandle(movePosition, Quaternion.LookRotation(cameraNormal), cameraDistance * 0.02f, Vector3.one, Handles.CircleHandleCap);
 
-                Vector3 deltaMove = movePosition - vertices[indices[enumerator.Current].v1].position;
+                Vector3 deltaMove = movePosition - sourcePosition;
+
+                if (move)
+                {
+                    moveStart += deltaMove;
+                }
+                else
+                {
+                    if (moveStart != Vector3.zero)
+                    {
+                        CustomCollider.MoveQuad(moveStart);
+                    }
+                    moveStart = Vector3.zero;
+                }
+
                 HashSet<int> h = new HashSet<int>();
                 foreach (var item in focusQuad)
                 {
@@ -282,12 +368,26 @@ public class CustomCollider : MonoBehaviour
 
             if (focusVertex.Count > 0)
             {
-                Vector3 movePosition = vertices[enumerator.Current].position;
+                Vector3 sourcePosition = vertices[enumerator.Current].position;
+                Vector3 movePosition = sourcePosition;
                 movePosition = Handles.DoPositionHandle(movePosition, Quaternion.identity);
                 Handles.color = Color.red;
                 movePosition = Handles.FreeMoveHandle(movePosition, Quaternion.LookRotation(cameraNormal), cameraDistance * 0.02f, Vector3.one, Handles.CircleHandleCap);
 
-                Vector3 deltaMove = movePosition - vertices[enumerator.Current].position;
+                Vector3 deltaMove = movePosition - sourcePosition;
+
+                if (move)
+                {
+                    moveStart += deltaMove;
+                }
+                else
+                {
+                    if (moveStart != Vector3.zero)
+                    {
+                        CustomCollider.MoveVertex(moveStart);
+                    }
+                    moveStart = Vector3.zero;
+                }
 
                 foreach (var item in focusVertex)
                 {
@@ -309,8 +409,8 @@ public class CustomCollider : MonoBehaviour
         focusVertexList.Sort((a, b) => { return b.CompareTo(a); });
         foreach (var item in focusVertexList)
         {
-            vertices.RemoveAt(item);
             CheckQuad(item);
+            vertices.RemoveAt(item);
         }
     }
 
@@ -553,6 +653,9 @@ public class CustomColliderEditor : Editor
             Vertex v = new Vertex();
             v.position = customCollider.newVertex.position;
             customCollider.vertices.Add(v);
+            CustomCollider.AddVertex();
+            CustomCollider.FocusVertex(customCollider.focusVertex.ToArray());
+            CustomCollider.FocusQuad(customCollider.focusQuad.ToArray());
             customCollider.focusVertex.Clear();
             customCollider.focusQuad.Clear();
             customCollider.focusVertex.Add(customCollider.vertices.Count - 1);
@@ -651,7 +754,14 @@ public class CustomColliderEditor : Editor
 
     void DrawVertex(Vertex vertex)
     {
+        Vector3 temp = vertex.position;
         vertex.position = EditorGUILayout.Vector3Field("position", vertex.position);
+
+        if (temp != vertex.position)
+        {
+            Vector3 moveStart = vertex.position - temp;
+            CustomCollider.MoveVertex(moveStart);
+        }
     }
 }
 

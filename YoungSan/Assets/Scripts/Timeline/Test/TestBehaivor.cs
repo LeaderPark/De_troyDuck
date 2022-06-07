@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ public class TestBehaivor : PlayableBehaviour
 	public string txt;
 	public GameObject talkObj;
 	public AnimationCurve delayCurve;
+	public AnimationCurve fontSizeCurve;
+
 
 	private Text talkBox;
 	private Text fakeTalkbox;
@@ -71,7 +74,13 @@ public class TestBehaivor : PlayableBehaviour
 		timelineCon = GameObject.Find("CutScenePrefab").GetComponent<TimelineController>();
 		entityData = talker.GetComponent<Entity>().entityData;
 		talkBox.text = "";
-		fakeTalkbox.text = txt;
+		fakeTalkbox.text = "";
+		for (int i = 0; i < txt.Length; i++)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append("<size=" + fontSizeCurve[i].value + ">" + txt[i] + "</size>");
+			fakeTalkbox.text += stringBuilder;
+		}
 		talkObj.SetActive(true);
 		SetBoxSize();
 
@@ -115,7 +124,9 @@ public class TestBehaivor : PlayableBehaviour
 					time -= delayCurve.Evaluate(idx * 0.1f);
 					if (idx < txt.Length)
 					{
-						talkBox.text += txt[idx];
+						StringBuilder stringBuilder = new StringBuilder();
+						stringBuilder.Append("<size="+fontSizeCurve[idx].value+">"+txt[idx]+"</size>");
+						talkBox.text += stringBuilder;
 						idx = Mathf.Clamp(idx + 1, 0, txt.Length);
 					}
 				}

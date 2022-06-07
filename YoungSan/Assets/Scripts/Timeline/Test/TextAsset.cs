@@ -11,6 +11,8 @@ public class TextAsset : PlayableAsset
 	public string dialogueMessage;
 
 	public AnimationCurve delayCurve;
+	public AnimationCurve fontSizeCurve;
+	public Gradient colorGradient;
 	public float activeTime;
 
 	public ScriptPlayable<TestBehaivor> playable;
@@ -36,7 +38,9 @@ public class TextAsset : PlayableAsset
 			//behaviour.talkObj.transform.parent = GameObject.Find("TestCanvas").transform;
 		}
 		//behaviour.talkObj.SetActive(false);
+		colorGradient.mode = GradientMode.Fixed;
 		behaviour.delayCurve = delayCurve;
+		behaviour.fontSizeCurve = fontSizeCurve;
 		behaviour.talker = talker.Resolve(graph.GetResolver());
 		behaviour.txt = dialogueMessage;
 
@@ -87,6 +91,37 @@ public class TestAssetEditor : Editor
 				AnimationUtility.SetKeyLeftTangentMode(ta.delayCurve, i, AnimationUtility.TangentMode.Linear);
 				AnimationUtility.SetKeyRightTangentMode(ta.delayCurve, i, AnimationUtility.TangentMode.Linear);
 			}
+		}
+		if (GUILayout.Button("Set Default FontSize"))
+		{
+			TextAsset ta = (TextAsset)serializedObject.targetObject;
+			Keyframe[] keyframes = new Keyframe[ta.dialogueMessage.Length];
+			for (int i = 0; i < ta.dialogueMessage.Length; i++)
+			{
+				keyframes[i].time = 0.1f * i;
+				keyframes[i].value = 30f;
+			}
+			ta.fontSizeCurve.keys = keyframes;
+			for (int i = 0; i < ta.dialogueMessage.Length; i++)
+			{
+				AnimationUtility.SetKeyLeftTangentMode(ta.fontSizeCurve, i, AnimationUtility.TangentMode.Linear);
+				AnimationUtility.SetKeyRightTangentMode(ta.fontSizeCurve, i, AnimationUtility.TangentMode.Linear);
+			}
+		}
+		if (GUILayout.Button("Set Default Color"))
+		{
+			TextAsset ta = (TextAsset)serializedObject.targetObject;
+			GradientColorKey[] colorKey = new GradientColorKey[ta.dialogueMessage.Length];
+			GradientAlphaKey[] alphaKey = new GradientAlphaKey[ta.dialogueMessage.Length];
+
+			for (int i = 0; i < ta.dialogueMessage.Length; i++)
+			{
+				colorKey[i].color = Color.white;
+				colorKey[i].time = (float)i / ta.dialogueMessage.Length;
+				alphaKey[i].alpha = 1f;
+				alphaKey[i].time = (float)i / ta.dialogueMessage.Length;
+			}
+			ta.colorGradient.SetKeys(colorKey, alphaKey);
 		}
 	}
 }

@@ -30,5 +30,14 @@ public class SceneManager : Manager
 		GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 		Debug.Log(gameManager.Player.name);
 		Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = gameManager.Player.transform;
+		UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+
+		uIManager.UISetActive(true);
+		TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
+		timelineManager.directorObj = GameObject.Find("CutScenePrefab").gameObject;
+		if (timelineManager.directorObj.GetComponent<TimelineController>().onSceneLoadPlay)
+		{
+			timelineManager.StartCutScene();
+		}
 	}
 }

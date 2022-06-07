@@ -46,10 +46,12 @@ public class SavePoint : MonoBehaviour
     {
         DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
         InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         while (true)
         {
             if (isPlayerInBound && inputManager.CheckKeyState(KeyCode.Space, ButtonState.Down))
             {
+                gameManager.Player.GetComponent<Entity>().SetHp(1);
                 dataManager.Save();
             }
             yield return null;

@@ -6,14 +6,17 @@ using UnityEngine.Timeline;
 
 public class TimelineManager : Manager
 {
-	[SerializeField]
-	private GameObject directorObj;
-	
-	void Start()
-	{
-		
-	}
+	public GameObject directorObj;
 
+	private void Awake()
+	{
+
+	}
+	public void StartCutScene()
+	{
+		PlayableDirector director = directorObj.GetComponent<PlayableDirector>();
+		director.Play();
+	}
 	public void StartCutScene(string cutSceneName)
 	{
 		directorObj = GameObject.Find("CutScenePrefab").gameObject;

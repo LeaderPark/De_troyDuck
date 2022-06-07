@@ -222,41 +222,42 @@ public class CustomCollider : MonoBehaviour
     private void DrawSelectedQuad(SceneView sceneView)
     {
         var enumerator = focusQuad.GetEnumerator();
-        enumerator.MoveNext();
-
-        float cameraDistance = Vector3.Distance(sceneView.camera.transform.position, vertices[indices[enumerator.Current].v1].position);
-        Vector3 cameraNormal = (sceneView.camera.transform.position - vertices[indices[enumerator.Current].v1].position).normalized;
-
-        Handles.color = Color.red;
-        foreach (var item in focusQuad)
+        if (enumerator.MoveNext())
         {
-            Quad quad = indices[item];
-            Handles.DrawLine(vertices[quad.v1].position, vertices[quad.v2].position);
-            Handles.DrawLine(vertices[quad.v2].position, vertices[quad.v3].position);
-            Handles.DrawLine(vertices[quad.v3].position, vertices[quad.v4].position);
-            Handles.DrawLine(vertices[quad.v4].position, vertices[quad.v1].position);
-        }
+            float cameraDistance = Vector3.Distance(sceneView.camera.transform.position, vertices[indices[enumerator.Current].v1].position);
+            Vector3 cameraNormal = (sceneView.camera.transform.position - vertices[indices[enumerator.Current].v1].position).normalized;
 
-        if (focusQuad.Count > 0)
-        {
-            Vector3 movePosition = vertices[indices[enumerator.Current].v1].position;
-            movePosition = Handles.DoPositionHandle(movePosition, Quaternion.identity);
             Handles.color = Color.red;
-            movePosition = Handles.FreeMoveHandle(movePosition, Quaternion.LookRotation(cameraNormal), cameraDistance * 0.02f, Vector3.one, Handles.CircleHandleCap);
-
-            Vector3 deltaMove = movePosition - vertices[indices[enumerator.Current].v1].position;
-            HashSet<int> h = new HashSet<int>();
             foreach (var item in focusQuad)
             {
-                h.Add(indices[item].v1);
-                h.Add(indices[item].v2);
-                h.Add(indices[item].v3);
-                h.Add(indices[item].v4);
+                Quad quad = indices[item];
+                Handles.DrawLine(vertices[quad.v1].position, vertices[quad.v2].position);
+                Handles.DrawLine(vertices[quad.v2].position, vertices[quad.v3].position);
+                Handles.DrawLine(vertices[quad.v3].position, vertices[quad.v4].position);
+                Handles.DrawLine(vertices[quad.v4].position, vertices[quad.v1].position);
             }
 
-            foreach (var item in h)
+            if (focusQuad.Count > 0)
             {
-                vertices[item].position += deltaMove;
+                Vector3 movePosition = vertices[indices[enumerator.Current].v1].position;
+                movePosition = Handles.DoPositionHandle(movePosition, Quaternion.identity);
+                Handles.color = Color.red;
+                movePosition = Handles.FreeMoveHandle(movePosition, Quaternion.LookRotation(cameraNormal), cameraDistance * 0.02f, Vector3.one, Handles.CircleHandleCap);
+
+                Vector3 deltaMove = movePosition - vertices[indices[enumerator.Current].v1].position;
+                HashSet<int> h = new HashSet<int>();
+                foreach (var item in focusQuad)
+                {
+                    h.Add(indices[item].v1);
+                    h.Add(indices[item].v2);
+                    h.Add(indices[item].v3);
+                    h.Add(indices[item].v4);
+                }
+
+                foreach (var item in h)
+                {
+                    vertices[item].position += deltaMove;
+                }
             }
         }
         Handles.color = Color.white;
@@ -265,31 +266,33 @@ public class CustomCollider : MonoBehaviour
     private void DrawSelectedVertex(SceneView sceneView)
     {
         var enumerator = focusVertex.GetEnumerator();
-        enumerator.MoveNext();
-
-        float cameraDistance = Vector3.Distance(sceneView.camera.transform.position, vertices[enumerator.Current].position);
-        Vector3 cameraNormal = (sceneView.camera.transform.position - vertices[enumerator.Current].position).normalized;
-
-        Handles.color = Color.red;
-        foreach (var item in focusVertex)
+        if (enumerator.MoveNext())
         {
-            float cD = Vector3.Distance(sceneView.camera.transform.position, vertices[item].position);
-            Vector3 cN = (sceneView.camera.transform.position - vertices[item].position).normalized;
-            Handles.DrawWireDisc(vertices[item].position, cN, cD * 0.02f);
-        }
 
-        if (focusVertex.Count > 0)
-        {
-            Vector3 movePosition = vertices[enumerator.Current].position;
-            movePosition = Handles.DoPositionHandle(movePosition, Quaternion.identity);
+            float cameraDistance = Vector3.Distance(sceneView.camera.transform.position, vertices[enumerator.Current].position);
+            Vector3 cameraNormal = (sceneView.camera.transform.position - vertices[enumerator.Current].position).normalized;
+
             Handles.color = Color.red;
-            movePosition = Handles.FreeMoveHandle(movePosition, Quaternion.LookRotation(cameraNormal), cameraDistance * 0.02f, Vector3.one, Handles.CircleHandleCap);
-
-            Vector3 deltaMove = movePosition - vertices[enumerator.Current].position;
-
             foreach (var item in focusVertex)
             {
-                vertices[item].position += deltaMove;
+                float cD = Vector3.Distance(sceneView.camera.transform.position, vertices[item].position);
+                Vector3 cN = (sceneView.camera.transform.position - vertices[item].position).normalized;
+                Handles.DrawWireDisc(vertices[item].position, cN, cD * 0.02f);
+            }
+
+            if (focusVertex.Count > 0)
+            {
+                Vector3 movePosition = vertices[enumerator.Current].position;
+                movePosition = Handles.DoPositionHandle(movePosition, Quaternion.identity);
+                Handles.color = Color.red;
+                movePosition = Handles.FreeMoveHandle(movePosition, Quaternion.LookRotation(cameraNormal), cameraDistance * 0.02f, Vector3.one, Handles.CircleHandleCap);
+
+                Vector3 deltaMove = movePosition - vertices[enumerator.Current].position;
+
+                foreach (var item in focusVertex)
+                {
+                    vertices[item].position += deltaMove;
+                }
             }
         }
         Handles.color = Color.white;

@@ -5,6 +5,7 @@ using UnityEditor;
 
 public class MergeCustomCollider : MonoBehaviour
 {
+#if UNITY_EDITOR
     public static EditorWindow window;
 
     public const int width = 300;
@@ -23,4 +24,5 @@ public class MergeCustomCollider : MonoBehaviour
         window.minSize = new Vector2(width, height / 10);
         window.maxSize = new Vector2(width, height);
     }
+#endif
 }

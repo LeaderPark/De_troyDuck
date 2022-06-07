@@ -21,6 +21,10 @@ public class CustomCollider : MonoBehaviour
     [HideInInspector] public Vertex newVertex;
     [HideInInspector] public Quad newQuad;
 
+    private Vector4 mousePosition;
+    private bool drawDrag;
+
+
     void OnEnable()
     {
         SceneView.duringSceneGui += OnSceneGUI;
@@ -49,6 +53,8 @@ public class CustomCollider : MonoBehaviour
 
             DrawSelectedQuad(sceneView);
             DrawSelectedVertex(sceneView);
+
+            DrawDrag();
         }
         else
         {
@@ -60,6 +66,16 @@ public class CustomCollider : MonoBehaviour
     void InputProcess()
     {
         Event e = Event.current;
+
+        switch (e.type)
+        {
+            case EventType.MouseMove:
+                if (drawDrag)
+                {
+                    mousePosition = new Vector4(mousePosition.x, mousePosition.y, e.mousePosition.x, e.mousePosition.y);
+                }
+                break;
+        }
 
         if (e.isKey)
         {
@@ -144,10 +160,63 @@ public class CustomCollider : MonoBehaviour
                             focusVertex.Add(i);
                         }
                         break;
+                    case KeyCode.BackQuote:
+                        if (drawDrag)
+                        {
+                            mousePosition = new Vector4(mousePosition.x, mousePosition.y, e.mousePosition.x, e.mousePosition.y);
+                            drawDrag = false;
+
+                            Vector2 start = new Vector2(mousePosition.x, mousePosition.y);
+                            Vector2 end = new Vector2(mousePosition.z, mousePosition.w);
+
+                            Rect rect = new Rect();
+                            rect.center = start;
+                            rect.size = (end - start);
+
+                            if (!Event.current.control)
+                            {
+                                focusVertex.Clear();
+                            }
+
+                            for (int i = 0; i < vertices.Count; i++)
+                            {
+                                if (rect.Contains(HandleUtility.WorldToGUIPoint(vertices[i].position)))
+                                {
+                                    focusVertex.Add(i);
+                                }
+                            }
+                            focusQuad.Clear();
+
+                            mousePosition = Vector4.zero;
+                        }
+                        else
+                        {
+                            mousePosition = new Vector4(e.mousePosition.x, e.mousePosition.y, e.mousePosition.x, e.mousePosition.y);
+                            drawDrag = true;
+                        }
+                        break;
                 }
             }
         }
 
+    }
+
+    private void DrawDrag()
+    {
+        if (drawDrag)
+        {
+            Vector2 start = new Vector2(mousePosition.x, mousePosition.y);
+            Vector2 end = new Vector2(mousePosition.z, mousePosition.w);
+
+            Rect rect = new Rect();
+            rect.center = start;
+            rect.size = (end - start);
+
+            Handles.BeginGUI();
+            Handles.DrawSolidRectangleWithOutline(rect, new Color(0f, 0.75f, 1f, 0.1f), new Color(0f, 0.75f, 1f, 0.4f));
+            Handles.EndGUI();
+        }
+        Handles.color = Color.white;
     }
 
     private void DrawSelectedQuad(SceneView sceneView)
@@ -190,6 +259,7 @@ public class CustomCollider : MonoBehaviour
                 vertices[item].position += deltaMove;
             }
         }
+        Handles.color = Color.white;
     }
 
     private void DrawSelectedVertex(SceneView sceneView)
@@ -222,6 +292,7 @@ public class CustomCollider : MonoBehaviour
                 vertices[item].position += deltaMove;
             }
         }
+        Handles.color = Color.white;
     }
 
     public void DeleteVertex()

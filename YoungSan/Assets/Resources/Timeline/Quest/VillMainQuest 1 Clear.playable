@@ -530,7 +530,7 @@ MonoBehaviour:
     component: Entity
     function: SetHp
     param:
-    - data: 1
+    - data: 0
       type: float
   - obj:
       exposedName: 32a5430148c6a3c4aba83af9eaac9f93
@@ -554,7 +554,7 @@ MonoBehaviour:
     component: Entity
     function: SetHp
     param:
-    - data: 1
+    - data: 0
       type: float
   - obj:
       exposedName: d9cf9be53edf5634a9568d0941f36612
@@ -570,7 +570,7 @@ MonoBehaviour:
     component: Entity
     function: SetHp
     param:
-    - data: 1
+    - data: 0
       type: float
   - obj:
       exposedName: 24b5d31bda971004bb3e64a57cb969ac
@@ -586,7 +586,7 @@ MonoBehaviour:
     component: Entity
     function: SetHp
     param:
-    - data: 1
+    - data: 0
       type: float
   - obj:
       exposedName: 7992ae7e9becf58499ef4959ae8abf04
@@ -602,7 +602,7 @@ MonoBehaviour:
     component: Entity
     function: SetHp
     param:
-    - data: 1
+    - data: 0
       type: float
   - obj:
       exposedName: ae595033f13af2a43af7d30b857a15cd
@@ -618,7 +618,7 @@ MonoBehaviour:
     component: Entity
     function: SetHp
     param:
-    - data: 1
+    - data: 0
       type: float
   - obj:
       exposedName: 
@@ -1675,25 +1675,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

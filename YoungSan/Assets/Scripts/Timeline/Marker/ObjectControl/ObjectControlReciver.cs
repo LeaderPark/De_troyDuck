@@ -57,6 +57,7 @@ public class ObjectControlReciver :Receiver
 					obj.GetComponent<Player>().enabled = _active;
 					obj.GetComponent<EntityEvent>().enabled = _active;
 					obj.GetComponent<SpriteRenderer>().enabled = _active;
+					obj.GetComponent<Collider>().enabled = _active;
 					obj.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
 				}
 				else

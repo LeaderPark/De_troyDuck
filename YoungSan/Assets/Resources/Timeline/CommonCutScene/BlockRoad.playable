@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: Quest/QuestClearMarker
   m_EditorClassIdentifier: 
   m_Time: 0
-  quest: {fileID: 11400000, guid: 4ba82164f9f915143b2e609327f89ab6, type: 2}
+  quest: {fileID: 0}
 --- !u!74 &-1225458463608172016
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -841,12 +841,14 @@ MonoBehaviour:
   m_Time: 0
   animationDatas:
   - mainChar: 1
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: Idle
     flipX: 0
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}

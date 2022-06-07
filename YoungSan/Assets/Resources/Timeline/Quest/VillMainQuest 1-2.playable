@@ -789,7 +789,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -885,7 +903,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1715,6 +1751,32 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-2818679298692432978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 7159746782785769071}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -472213859311996969}
+    - {fileID: 8570573190136615056}
+    - {fileID: -827505968992143751}
 --- !u!114 &-2468167359019644959
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2103,7 +2165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 7400000, guid: 42041fc675e5a2e43bfceb40005eac51, type: 2}
+  m_Clip: {fileID: 7400000, guid: 57fe166076ab69b4585970341f3b152a, type: 2}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -2272,6 +2334,28 @@ MonoBehaviour:
       exposedName: 
       defaultValue: {fileID: 0}
     mainCharTrm: 0
+--- !u!114 &-827505968992143751
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 7.283333333333333
+  animationDatas:
+  - mainChar: 0
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: e7b126c0530a4f04b9330f95fe7ae289
+      defaultValue: {fileID: 0}
+    animation: Hit
+    flipX: 1
+  objectData: []
 --- !u!114 &-609319182974539810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2403,6 +2487,28 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 3
+--- !u!114 &-472213859311996969
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  animationDatas:
+  - mainChar: 0
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: 6bfe02561004c814fb13113009f25f41
+      defaultValue: {fileID: 0}
+    animation: Move
+    flipX: 0
+  objectData: []
 --- !u!114 &-279540237224094788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3475,8 +3581,8 @@ MonoBehaviour:
     m_Start: 4.833333333333332
     m_ClipIn: 0.0749998092651345
     m_Asset: {fileID: -1256640419892427083}
-    m_Duration: 2.8000000000000016
-    m_TimeScale: 1.5
+    m_Duration: 2.666666666666668
+    m_TimeScale: 2
     m_ParentTrack: {fileID: 4598392274401743538}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
@@ -3539,7 +3645,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: Infinity
     m_PreExtrapolationTime: 4.833333333333332
-    m_DisplayName: Skill1
+    m_DisplayName: Move
   m_Markers:
     m_Objects: []
   m_InfiniteClipPreExtrapolation: 0
@@ -3685,7 +3791,7 @@ MonoBehaviour:
   m_Version: 3
   m_AnimClip: {fileID: 0}
   m_Locked: 0
-  m_Muted: 0
+  m_Muted: 1
   m_CustomPlayableFullTypename: 
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 7159746782785769071}
@@ -4954,6 +5060,7 @@ MonoBehaviour:
   - {fileID: -6068387506237324692}
   - {fileID: 4809495890174155777}
   - {fileID: 72731381169209413}
+  - {fileID: -2818679298692432978}
   m_Clips: []
   m_Markers:
     m_Objects: []
@@ -5522,6 +5629,35 @@ MonoBehaviour:
   <parent>k__BackingField: {fileID: -937327660900677859}
   evnetName:
   - CamShake2
+--- !u!114 &8570573190136615056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 3.1333333333333333
+  animationDatas:
+  - mainChar: 0
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: f458da1d7438ec24e95444a5498b94fe
+      defaultValue: {fileID: 0}
+    animation: Idle
+    flipX: 1
+  - mainChar: 0
+    getMainCharAnimator: 0
+    contorolObject:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    animation: 
+    flipX: 0
+  objectData: []
 --- !u!114 &8590914388296362618
 MonoBehaviour:
   m_ObjectHideFlags: 1

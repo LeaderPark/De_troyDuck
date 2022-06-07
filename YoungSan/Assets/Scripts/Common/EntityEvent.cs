@@ -192,8 +192,7 @@ public class EntityEvent : MonoBehaviour
         coroutines[idx] = (true, coroutines[idx].Item2);
 
         Installation installation = poolManager.GetObject(objectName).GetComponent<Installation>();
-        installation.transform.position = position;
-        installation.SetData(entity);
+        installation.SetData(entity, position);
     }
 
     protected void Heal(float startTime, float time, float delay, float rate)

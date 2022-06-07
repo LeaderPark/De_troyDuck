@@ -477,6 +477,10 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     active: 1
     objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &-1402756940081215103
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -566,6 +570,9 @@ MonoBehaviour:
   m_Time: 1.9333333333333333
   bossObj:
     exposedName: 17b67696d0f21ff4f842c65358e02fd3
+    defaultValue: {fileID: 0}
+  bossCamObj:
+    exposedName: 
     defaultValue: {fileID: 0}
 --- !u!114 &8723864999578887616
 MonoBehaviour:

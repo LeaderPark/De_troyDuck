@@ -1088,6 +1088,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 038414afedd2d3149a7c3848d5a9dabb
@@ -1097,6 +1098,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &-4754384912150597551
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1316,6 +1318,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 72001dda1139d9542b0656efcc05f359
@@ -1325,6 +1328,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &-3440493436919440637
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3326,12 +3330,14 @@ MonoBehaviour:
   m_Time: 7.25
   animationDatas:
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 66d4917fa0e6c9f429998ce737a872d1
       defaultValue: {fileID: 0}
     animation: 
     flipX: 0
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}

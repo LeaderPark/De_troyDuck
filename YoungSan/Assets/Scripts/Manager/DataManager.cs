@@ -47,11 +47,13 @@ public class DataManager : Manager
 
     public void Load()
     {
-        if (Application.persistentDataPath + "/SaveData.json" == null)
+        
+        if (!File.Exists(Application.persistentDataPath + "/SaveData.json"))
         {
+            Debug.Log("진우 십텐련");
             SetDefaultData();
         }
-
+        //Debug(File.Exists(Application.persistentDataPath + "/SaveData.json"));
         StartCoroutine(LoadApply());
     }
 
@@ -66,6 +68,11 @@ public class DataManager : Manager
         data.Speed = 10.0f;
         data.Stamina = 1000.0f;
         data.CurrentStamina = 1000.0f;
+        string jsonData = Encrypt(JsonUtility.ToJson(data), key);
+        //string jsonData = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
+        Debug.Log(Application.persistentDataPath);
+        Debug.Log(jsonData);
     }
 
     private void SaveGameData(Entity entity)
@@ -164,6 +171,7 @@ public class DataManager : Manager
 
         //UI 세팅
         uiManager.Init();
+
 
         yield return null;
     }

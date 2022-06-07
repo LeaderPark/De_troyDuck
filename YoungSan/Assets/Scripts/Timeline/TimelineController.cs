@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class TimelineController : MonoBehaviour
 {
+
+    public bool onSceneLoadPlay;
+
     PlayableDirector director;
     [SerializeField] private Image fade;
     public bool talkLoop = true;

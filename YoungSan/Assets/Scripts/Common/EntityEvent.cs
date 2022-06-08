@@ -161,38 +161,39 @@ public class EntityEvent : MonoBehaviour
         entity.transform.position = pos;
     }
 
-    protected void Projectile(float inputX, float inputY, string objectName, SkillData skillData, float startTime)
+    protected void Projectile(float inputX, float inputY, string objectName, SkillData skillData, Vector3 position, float startTime)
     {
         int idx = coroutines.Count;
-        Coroutine routine = this.StartCoroutine(ProjectileRoutine(idx, inputX, inputY, objectName, skillData, startTime));
+        Coroutine routine = this.StartCoroutine(ProjectileRoutine(idx, inputX, inputY, objectName, skillData, position, startTime));
         coroutines.Add((false, routine));
     }
 
-    private IEnumerator ProjectileRoutine(int idx, float inputX, float inputY, string objectName, SkillData skillData, float startTime)
+    private IEnumerator ProjectileRoutine(int idx, float inputX, float inputY, string objectName, SkillData skillData, Vector3 position, float startTime)
     {
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
 
         Projectile projectile = poolManager.GetObject(objectName).GetComponent<Projectile>();
-        projectile.SetData(entity.transform.position, new Vector3(inputX, 0, inputY).normalized, skillData);
+        projectile.SetData(position, new Vector3(inputX, 0, inputY).normalized, skillData);
     }
 
-    protected void Installation(Vector3 position, string objectName, float startTime)
+    protected void Installation(Vector3 position, SkillData skillData, string objectName, float startTime)
     {
         int idx = coroutines.Count;
-        Coroutine routine = this.StartCoroutine(InstallationRoutine(idx, position, objectName, startTime));
+        Coroutine routine = this.StartCoroutine(InstallationRoutine(idx, position, skillData, objectName, startTime));
         coroutines.Add((false, routine));
     }
 
-    private IEnumerator InstallationRoutine(int idx, Vector3 position, string objectName, float startTime)
+    private IEnumerator InstallationRoutine(int idx, Vector3 position, SkillData skillData, string objectName, float startTime)
     {
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
 
         Installation installation = poolManager.GetObject(objectName).GetComponent<Installation>();
-        installation.SetData(entity, position);
+        installation.SetData(entity, position, skillData);
+
     }
 
     protected void Heal(float startTime, float time, float delay, float rate)

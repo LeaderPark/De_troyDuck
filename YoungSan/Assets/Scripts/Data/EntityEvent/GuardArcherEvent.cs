@@ -14,11 +14,11 @@ public class GuardArcherEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
-        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
+        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
             Vector2 cur = new Vector2(inputX, inputY);
-            Projectile(cur.x, cur.y, "Arrow", skillData, 1f);
+            Projectile(cur.x, cur.y, "Arrow", skillData, entity.transform.position, 1f);
         }
         };
     }

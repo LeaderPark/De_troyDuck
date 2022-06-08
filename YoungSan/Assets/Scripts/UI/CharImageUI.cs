@@ -19,15 +19,9 @@ public class CharImageUI : MonoBehaviour
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
-
+            SetPivot();
             GameManager gameManager = ManagerObject.Instance.GetManager((ManagerType.GameManager)) as GameManager;
             charImage.sprite = gameManager.Player.GetComponent<SpriteRenderer>().sprite;
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SetPivot();
         }
     }
 

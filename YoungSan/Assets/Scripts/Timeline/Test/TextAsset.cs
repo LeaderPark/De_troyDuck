@@ -11,6 +11,7 @@ public class TextAsset : PlayableAsset
 	public string dialogueMessage;
 
 	public AnimationCurve delayCurve;
+	public AnimationCurve fontSizeCurve;
 	public float activeTime;
 
 	public ScriptPlayable<TestBehaivor> playable;
@@ -37,6 +38,7 @@ public class TextAsset : PlayableAsset
 		}
 		//behaviour.talkObj.SetActive(false);
 		behaviour.delayCurve = delayCurve;
+		behaviour.fontSizeCurve = fontSizeCurve;
 		behaviour.talker = talker.Resolve(graph.GetResolver());
 		behaviour.txt = dialogueMessage;
 
@@ -86,6 +88,22 @@ public class TestAssetEditor : Editor
 			{
 				AnimationUtility.SetKeyLeftTangentMode(ta.delayCurve, i, AnimationUtility.TangentMode.Linear);
 				AnimationUtility.SetKeyRightTangentMode(ta.delayCurve, i, AnimationUtility.TangentMode.Linear);
+			}
+		}
+		if (GUILayout.Button("Set Default FontSize"))
+		{
+			TextAsset ta = (TextAsset)serializedObject.targetObject;
+			Keyframe[] keyframes = new Keyframe[ta.dialogueMessage.Length];
+			for (int i = 0; i < ta.dialogueMessage.Length; i++)
+			{
+				keyframes[i].time = 0.1f * i;
+				keyframes[i].value = 30f;
+			}
+			ta.fontSizeCurve.keys = keyframes;
+			for (int i = 0; i < ta.dialogueMessage.Length; i++)
+			{
+				AnimationUtility.SetKeyLeftTangentMode(ta.fontSizeCurve, i, AnimationUtility.TangentMode.Linear);
+				AnimationUtility.SetKeyRightTangentMode(ta.fontSizeCurve, i, AnimationUtility.TangentMode.Linear);
 			}
 		}
 	}

@@ -2693,6 +2693,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fontSizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 30
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   activeTime: 1
 --- !u!114 &362788727469510195
 MonoBehaviour:
@@ -2771,7 +2786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9677fe87bdbda47af0c19e3b92453e, type: 3}
   m_Name: Object/CSControl
   m_EditorClassIdentifier: 
-  m_Time: 12.033333333333333
+  m_Time: 11.950000000000001
   enemyObjs:
   - obj:
       exposedName: ffe8d0835a2160748939f0d0b1401d54
@@ -5076,7 +5091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
   m_Name: Event Marker
   m_EditorClassIdentifier: 
-  m_Time: 3.15
+  m_Time: 2
   events:
   - obj:
       exposedName: 9a3af82fd64d77a44bc3a93a5806e784

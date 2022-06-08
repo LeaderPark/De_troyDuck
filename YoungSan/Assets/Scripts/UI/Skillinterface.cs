@@ -15,7 +15,9 @@ public class Skillinterface : MonoBehaviour
     void Awake()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        {
             Init();
+        }
     }
     public void Init()
     {
@@ -39,24 +41,15 @@ public class Skillinterface : MonoBehaviour
         StopAllCoroutines();
         foreach (EventCategory category in skillSet.skillDatas.Keys)
         {
-            //Set_FillAmount(0, 0, j, Enum.GetName(typeof(KeyType),j));
-
-
             if (skillSet.skillCoolTimes.ContainsKey(category))
             {
                 for (int i = 0; i < skillSet.skillCoolTimes[category].Length; i++)
                 {
-                    CoolDown(category, i);
-                    //Debug.Log(skillSet.skillCoolTimes[category][i]);
-
+                    //CoolDown(category, i);
                 }
-                //Debug.Log(skillSet.skillCoolTimes[category].Length + "aaaaaaaaaaaaaaaa");
             }
-
         }
         SkillUIActivation();
-
-
     }
 
     public void SkillUIActivation()
@@ -71,12 +64,13 @@ public class Skillinterface : MonoBehaviour
             activation_image[i].SetActive(false);
         }
     }
+
     public void CoolDown(EventCategory eventCategory, int index)
     {
-        //if(skillSet.skillCoolTimes.ContainsKey(eventCategory))
-        //{
-        //    //StartCoroutine(Cool(eventCategory, skillSet.skillCoolTimes[eventCategory][index], index));
-        //}
+        if (skillSet.skillCoolTimes.ContainsKey(eventCategory))
+        {
+            StartCoroutine(Cool(eventCategory, skillSet.skillCoolTimes[eventCategory][index], index));
+        }
     }
     IEnumerator Cool(EventCategory eventCategory, float cool, int index)
     {
@@ -99,7 +93,6 @@ public class Skillinterface : MonoBehaviour
     public void Set_FillAmount(float cool, float maxCool, int index)
     {
         string txt;
-
 
         image_fill[index].fillAmount = cool / maxCool;
 

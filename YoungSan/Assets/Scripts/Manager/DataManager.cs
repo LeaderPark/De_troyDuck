@@ -174,9 +174,10 @@ public class DataManager : Manager
         }
 
         //UI 세팅
-        uiManager.Init();
 
         yield return null;
+        uiManager.Init();
+
     }
 
     public static string Decrypt(string textToDecrypt, string key)

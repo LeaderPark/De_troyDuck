@@ -112,13 +112,16 @@ public class UIManager : Manager
             }
             else
             {
-                OpenUI(fade);
+                fade.alpha = 1;
+                fade.interactable = true;
+                fade.blocksRaycasts = true;
+                if (endAction!=null)
                 endAction();
 
                 yield break;
             }
             alpha = Mathf.Clamp(alpha, 0, 1);
-            //fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, alpha);
+            fade.alpha = alpha;
             yield return null;
         }
     }
@@ -134,11 +137,13 @@ public class UIManager : Manager
             }
             else
             {
-                CloseUI(fade);
+                fade.alpha = 0;
+                fade.interactable = false;
+                fade.blocksRaycasts = false;
                 yield break;
             }
             alpha = Mathf.Clamp(alpha, 0, 1);
-            //fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, alpha);
+            fade.alpha = alpha;
             yield return null;
         }
     }

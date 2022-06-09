@@ -69,6 +69,7 @@ public class Skillinterface : MonoBehaviour
     {
         if (skillSet.skillCoolTimes.ContainsKey(eventCategory))
         {
+            //가만히 기다리면 그냥 msing뜸
             StartCoroutine(Cool(eventCategory, skillSet.skillCoolTimes[eventCategory][index], index));
         }
     }

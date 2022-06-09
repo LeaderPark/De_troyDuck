@@ -20,6 +20,7 @@ public class NPCTalk : MonoBehaviour
 			{
 				questManager.SetQuestEmptyValue(npcData[i].quest);
 				questManager.completedQuests.Clear();
+				questManager.proceedingQuests.Clear();
 			}
 	}
 	public void Talk()

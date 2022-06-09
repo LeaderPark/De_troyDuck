@@ -510,6 +510,7 @@ MonoBehaviour:
     - {fileID: -6987731082145975396}
     - {fileID: -306407249196463117}
     - {fileID: 2649069218871845245}
+    - {fileID: 5493082450410105972}
 --- !u!114 &-6987731082145975396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1601,6 +1602,20 @@ MonoBehaviour:
   questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
+--- !u!114 &5493082450410105972
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abe84a4f4825484da4f8375ff2300c7, type: 3}
+  m_Name: Quest/QuestMarker
+  m_EditorClassIdentifier: 
+  m_Time: 5
+  quest: {fileID: 11400000, guid: 730881b361ad14a45bb29286ce800ec2, type: 2}
 --- !u!114 &6595825716040555802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1675,7 +1690,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

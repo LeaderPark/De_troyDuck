@@ -19,10 +19,12 @@ public class SceneManager : Manager
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uiManager.FadeInOut(false);
         //Debug.LogError(gameManager.Player);
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            uiManager.FadeInOut(false);
             StartCoroutine(test1());
+        }
     }
     private IEnumerator test1()
     {

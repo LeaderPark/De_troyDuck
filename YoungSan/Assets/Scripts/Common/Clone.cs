@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Clone
 {
-    public string Name {get; private set;}
+    public string Name { get; private set; }
 
-    private Hashtable StatTable {get; set;}
-    private Hashtable MaxStatTable {get; set;}
+    private Hashtable StatTable { get; set; }
+    private Hashtable MaxStatTable { get; set; }
 
     private Entity entity;
 
@@ -39,7 +39,7 @@ public class Clone
             int temp = (int)StatTable[category];
 
             StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] + value, 0, (int)MaxStatTable[category]);
-            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[]{ entity, category, temp, (int)StatTable[category] });
+            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[] { entity, category, temp, (int)StatTable[category] });
         }
     }
 
@@ -51,7 +51,7 @@ public class Clone
             int temp = (int)StatTable[category];
 
             StatTable[category] = (int)Mathf.Clamp((int)StatTable[category] - value, 0, (int)MaxStatTable[category]);
-            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[]{ entity, category, temp, (int)StatTable[category] });
+            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[] { entity, category, temp, (int)StatTable[category] });
         }
     }
 
@@ -73,7 +73,7 @@ public class Clone
             int temp = (int)StatTable[category];
 
             StatTable[category] = (int)Mathf.Clamp(value, 0, (int)MaxStatTable[category]);
-            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[]{ entity, category, temp, (int)StatTable[category] });
+            eventManager.GetEventTrigger(typeof(StatEventTrigger)).Invoke(new object[] { entity, category, temp, (int)StatTable[category] });
         }
     }
 
@@ -82,7 +82,7 @@ public class Clone
         Name = data.entityName;
         this.entity = entity;
         MaxStatTable = new Hashtable();
-        
+
         for (int i = 0; i < data.status.stats.Count; i++)
         {
             Stat temp = data.status.stats[i];
@@ -92,6 +92,6 @@ public class Clone
 
 
         StatTable = new Hashtable(MaxStatTable);
-        Debug.Log(string.Format("Name : {0}, HP : {1}, Atk : {2}, Speed : {3}, Stamina : {4}", Name, GetStat(StatCategory.Health), GetStat(StatCategory.Attack), GetStat(StatCategory.Speed), GetStat(StatCategory.Stamina)));
+        //Debug.Log(string.Format("Name : {0}, HP : {1}, Atk : {2}, Speed : {3}, Stamina : {4}", Name, GetStat(StatCategory.Health), GetStat(StatCategory.Attack), GetStat(StatCategory.Speed), GetStat(StatCategory.Stamina)));
     }
 }

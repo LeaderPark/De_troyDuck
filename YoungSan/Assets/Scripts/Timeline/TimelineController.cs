@@ -120,6 +120,11 @@ public class TimelineController : MonoBehaviour
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         uIManager.FadeInOut(fadeOut);
     }
+    public void Save()
+    {
+        DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
+        dataManager.Save();
+    }
 
     public IEnumerator CurrentCutScene()
     {

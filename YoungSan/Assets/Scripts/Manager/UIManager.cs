@@ -20,7 +20,7 @@ public class UIManager : Manager
 
     [SerializeField] private CanvasGroup canvas;
 
-    [SerializeField] private Image fade;
+    [SerializeField] private CanvasGroup fade;
 
     void Awake()
     {
@@ -112,11 +112,16 @@ public class UIManager : Manager
             }
             else
             {
+                fade.alpha = 1;
+                fade.interactable = true;
+                fade.blocksRaycasts = true;
+                if (endAction!=null)
                 endAction();
+
                 yield break;
             }
             alpha = Mathf.Clamp(alpha, 0, 1);
-            fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, alpha);
+            fade.alpha = alpha;
             yield return null;
         }
     }
@@ -132,10 +137,13 @@ public class UIManager : Manager
             }
             else
             {
+                fade.alpha = 0;
+                fade.interactable = false;
+                fade.blocksRaycasts = false;
                 yield break;
             }
             alpha = Mathf.Clamp(alpha, 0, 1);
-            fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, alpha);
+            fade.alpha = alpha;
             yield return null;
         }
     }

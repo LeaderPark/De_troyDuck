@@ -21,7 +21,7 @@ public class QuestUI : MonoBehaviour
 
     void Start()
     {
-        SetQuestUIText(quest1);
+        //SetQuestUIText(quest1);
     }
 
     // Update is called once per frame
@@ -62,7 +62,8 @@ public class QuestUI : MonoBehaviour
         foreach (int item in questManager.proceedingQuests.Keys)
         {
             Quest quest = questManager.proceedingQuests[item] as Quest;
-            GameObject qu = Instantiate(questUIObj, transform.position, Quaternion.identity, questUIParent.transform);
+            GameObject qu = Instantiate(questUIObj, transform.position, Quaternion.identity, questUIParent.transform)
+                ;
             QuestUI questUI = qu.GetComponent<QuestUI>();
             questUI.questTitle.text = quest.title;
             questUI.questContext.text = quest.context;

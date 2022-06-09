@@ -22,6 +22,8 @@ public class UIManager : Manager
 
     [SerializeField] private CanvasGroup fade;
 
+    public bool important;
+
     void Awake()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
@@ -43,13 +45,23 @@ public class UIManager : Manager
 
             if (category == StatCategory.Health) enemyStatUI.EnemyHpBarUpdate(entity);
         }));
+        important = false;
     }
 
     #region On Off
 
-    public void OpenUI(CanvasGroup canvasGroup)
+    public void OpenUI(CanvasGroup canvasGroup, bool isTimeStop)
     {
-        Time.timeScale = 0;
+        if (important)
+        {
+            return;
+        }
+
+        if (isTimeStop)
+        {
+            Time.timeScale = 0;
+        }
+
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
@@ -69,12 +81,24 @@ public class UIManager : Manager
         StartCoroutine(MakeEnemyDelay(entity, time));
     }
 
-    public void UISetActive(bool active)
+    public void UISetActiveTimeLine(bool active)
     {
         if (active)
             canvas.alpha = 1;
         else
             canvas.alpha = 0;
+    }
+
+    public void UISetActiveFalse()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).GetComponent<CanvasGroup>())
+            {
+                CloseUI(transform.GetChild(i).GetComponent<CanvasGroup>());
+            }
+        }
+        important = true;
     }
 
     public void FadeInOut(bool fadeOut, Action endAction = null)
@@ -112,11 +136,9 @@ public class UIManager : Manager
             }
             else
             {
-                fade.alpha = 1;
-                fade.interactable = true;
-                fade.blocksRaycasts = true;
-                if (endAction!=null)
-                endAction();
+                CloseUI(fade);
+                if (endAction != null)
+                    endAction();
 
                 yield break;
             }
@@ -137,9 +159,7 @@ public class UIManager : Manager
             }
             else
             {
-                fade.alpha = 0;
-                fade.interactable = false;
-                fade.blocksRaycasts = false;
+                OpenUI(fade, false);
                 yield break;
             }
             alpha = Mathf.Clamp(alpha, 0, 1);

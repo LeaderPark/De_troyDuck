@@ -73,7 +73,7 @@ public class Entity : MonoBehaviour
 
             questManager.ResetQuests();
             uimanager.bossStatbar.gameObject.SetActive(false);
-            uimanager.UISetActive(false);
+            uimanager.UISetActiveFalse();
 
             gameManager.deathWindow.TurnOnWindow(
                 () =>

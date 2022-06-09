@@ -103,12 +103,12 @@ public class TimelineController : MonoBehaviour
     public void UISetActiveFalse()
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.UISetActive(false);
+        uIManager.UISetActiveTimeLine(false);
     }
     public void UISetActiveTrue()
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.UISetActive(true);
+        uIManager.UISetActiveTimeLine(true);
 
     }
     public void PlayerScriptActive(bool active)

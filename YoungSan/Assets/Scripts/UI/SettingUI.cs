@@ -50,7 +50,7 @@ public class SettingUI : MonoBehaviour
             if (!isEnabled)
             {
                 UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-                uIManager.OpenUI(canvasGroup);
+                uIManager.OpenUI(canvasGroup, true);
                 isEnabled = true;
             }
             else
@@ -89,17 +89,14 @@ public class SettingUI : MonoBehaviour
     #region 해상도와 창모드
     void SetResolution()
     {
-        Debug.Log("아니 된다니깐");
         resolutions.AddRange(Screen.resolutions);
         setResolutionDropdown.options.Clear();
-        Debug.Log(Screen.resolutions.Length);
+
         int optionNum = 0;
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            Debug.Log(Screen.resolutions[i]);
             if (Screen.resolutions[i].refreshRate == 60 || Screen.resolutions[i].refreshRate == 144)
             {
-                Debug.Log("아니 시발 된다니깐");
                 double result = (double)((double)Screen.resolutions[i].width / (double)Screen.resolutions[i].height);
                 float resultTruncate = (float)(Math.Truncate((result * 10000)) / 10000);
 
@@ -108,7 +105,6 @@ public class SettingUI : MonoBehaviour
                     string resolutionSize = Screen.resolutions[i].width + " X " + Screen.resolutions[i].height + " @ " + Screen.resolutions[i].refreshRate + "hz";
                     resolutionText.Add(resolutionSize);
                     setResolutions.Add(Screen.resolutions[i]);
-                    Debug.Log("아니 여기 된다니깐");
 
                     if (Screen.resolutions[i].width == Screen.width && Screen.resolutions[i].height == Screen.height)
                     {

@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 7939570322374263704}
   - component: {fileID: 4401524809316218162}
   - component: {fileID: 7939570322374263702}
+  - component: {fileID: 3622559130855649109}
   m_Layer: 7
   m_Name: SattoGuardSpear
   m_TagString: Enemy
@@ -314,7 +315,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &7939570322374263702
 MonoBehaviour:
@@ -329,3 +330,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+--- !u!65 &3622559130855649109
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939570322374263707}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.04, y: 1.72, z: 0.2}
+  m_Center: {x: 0.049999982, y: 0.86, z: 0}

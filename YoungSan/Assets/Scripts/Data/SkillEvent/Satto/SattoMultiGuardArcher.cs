@@ -72,7 +72,14 @@ public class SattoMultiGuardArcher : Installation
 
                 spawnPosition[index] = Quaternion.AngleAxis((j == 0) ? -90 : 90, Vector3.up) * (-dirVec) * (i + spearInterval / 2) * spearInterval + ownerEntity.transform.position + -dirVec * spawnDistance;
 
-                item.transform.position = spawnPosition[index];
+                RaycastHit hit;
+
+                Vector3 pos = spawnPosition[index];
+                if (Physics.Raycast(new Ray(new Vector3(pos.x, 1000, pos.z), Vector3.down), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+                {
+                    pos.y = hit.point.y;
+                }
+                item.transform.position = pos;
 
                 moveDir[index] = dirVec;
 

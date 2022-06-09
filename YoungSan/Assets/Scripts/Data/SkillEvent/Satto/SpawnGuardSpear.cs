@@ -42,7 +42,15 @@ public class SpawnGuardSpear : Installation
 
         spawnPosition = Quaternion.AngleAxis(Random.Range(-60f, 60f), Vector3.up) * (-dirVec) * attackDistance + targetPosition;
 
-        transform.position = spawnPosition;
+        RaycastHit hit;
+
+        Vector3 pos = spawnPosition;
+        if (Physics.Raycast(new Ray(new Vector3(pos.x, 1000, pos.z), Vector3.down), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+        {
+            pos.y = hit.point.y;
+        }
+
+        transform.position = pos;
 
         moveDir = (targetPosition - spawnPosition).normalized;
 
@@ -125,6 +133,16 @@ public class SpawnGuardSpear : Installation
     {
         yield return new WaitForSeconds(startTime);
         rigid.velocity = moveDir * speed;
+
+        RaycastHit hit;
+
+        Vector3 pos = transform.position;
+        if (Physics.Raycast(new Ray(new Vector3(pos.x, 1000, pos.z), Vector3.down), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+        {
+            pos.y = hit.point.y;
+        }
+        transform.position = pos;
+
         yield return new WaitForSeconds(time);
         rigid.velocity = Vector3.zero;
     }

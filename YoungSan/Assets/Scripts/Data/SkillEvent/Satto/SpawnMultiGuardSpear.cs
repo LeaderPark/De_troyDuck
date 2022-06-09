@@ -79,7 +79,14 @@ public class SpawnMultiGuardSpear : Installation
 
                 spawnPosition[index] = Quaternion.AngleAxis((j == 0) ? -90 : 90, Vector3.up) * (-dirVec) * attackDistance + targetPosition[index] + dirVec * (i - count / 2) * spearInterval;
 
-                item.transform.position = spawnPosition[index];
+                RaycastHit hit;
+
+                Vector3 pos = spawnPosition[index];
+                if (Physics.Raycast(new Ray(new Vector3(pos.x, 1000, pos.z), Vector3.down), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+                {
+                    pos.y = hit.point.y;
+                }
+                item.transform.position = pos;
 
                 moveDir[index] = (targetPosition[index] + dirVec * (i - count / 2) * spearInterval - spawnPosition[index]).normalized;
 
@@ -158,6 +165,16 @@ public class SpawnMultiGuardSpear : Installation
     {
         yield return new WaitForSeconds(startTime);
         rigid[index].velocity = moveDir[index] * speed;
+
+        RaycastHit hit;
+
+        Vector3 pos = guardSpears[index].transform.position;
+        if (Physics.Raycast(new Ray(new Vector3(pos.x, 1000, pos.z), Vector3.down), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+        {
+            pos.y = hit.point.y;
+        }
+        guardSpears[index].transform.position = pos;
+
         yield return new WaitForSeconds(time);
         rigid[index].velocity = Vector3.zero;
     }

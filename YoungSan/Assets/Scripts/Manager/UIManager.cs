@@ -136,7 +136,7 @@ public class UIManager : Manager
             }
             else
             {
-                CloseUI(fade);
+                OpenUI(fade, false);
                 if (endAction != null)
                     endAction();
 
@@ -159,7 +159,8 @@ public class UIManager : Manager
             }
             else
             {
-                OpenUI(fade, false);
+                CloseUI(fade);
+
                 yield break;
             }
             alpha = Mathf.Clamp(alpha, 0, 1);

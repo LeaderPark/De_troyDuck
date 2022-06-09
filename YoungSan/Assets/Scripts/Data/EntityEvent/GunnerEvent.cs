@@ -19,7 +19,7 @@ public class GunnerEvent : EntityEvent
         {
             Dash(inputX, inputY, -10, 0.1f, 0.1f);
             Vector2 cur = new Vector2(inputX, inputY);
-            Projectile(cur.x, cur.y, "Bullet", skillData, entity.transform.position, 0.1f);
+            Projectile(cur.x, cur.y, "Bullet", skillData, entity.transform.position, true, 0.1f);
         }
         };
     }

@@ -161,21 +161,21 @@ public class EntityEvent : MonoBehaviour
         entity.transform.position = pos;
     }
 
-    protected void Projectile(float inputX, float inputY, string objectName, SkillData skillData, Vector3 position, float startTime)
+    protected void Projectile(float inputX, float inputY, string objectName, SkillData skillData, Vector3 position, bool setDir, float startTime)
     {
         int idx = coroutines.Count;
-        Coroutine routine = this.StartCoroutine(ProjectileRoutine(idx, inputX, inputY, objectName, skillData, position, startTime));
+        Coroutine routine = this.StartCoroutine(ProjectileRoutine(idx, inputX, inputY, objectName, skillData, position, setDir, startTime));
         coroutines.Add((false, routine));
     }
 
-    private IEnumerator ProjectileRoutine(int idx, float inputX, float inputY, string objectName, SkillData skillData, Vector3 position, float startTime)
+    private IEnumerator ProjectileRoutine(int idx, float inputX, float inputY, string objectName, SkillData skillData, Vector3 position, bool setDir, float startTime)
     {
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
 
         Projectile projectile = poolManager.GetObject(objectName).GetComponent<Projectile>();
-        projectile.SetData(position, new Vector3(inputX, 0, inputY).normalized, skillData);
+        projectile.SetData(position, new Vector3(inputX, 0, inputY).normalized, skillData, setDir);
     }
 
     protected void Installation(Vector3 position, SkillData skillData, string objectName, float startTime)

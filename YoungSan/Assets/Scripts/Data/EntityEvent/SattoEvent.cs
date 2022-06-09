@@ -10,6 +10,7 @@ public class SattoEvent : EntityEvent
         base.Awake();
         DefalutAttack();
         Skill1();
+        Skill2();
     }
 
     private void DefalutAttack()
@@ -30,6 +31,17 @@ public class SattoEvent : EntityEvent
         (inputX, inputY, position, skillData) =>
         {
             Installation(position, skillData, "SattoMultiGuardSpear", 0);
+        }
+        };
+    }
+
+    private void Skill2()
+    {
+        maxAttackStack[EventCategory.Skill2] = 1;
+        attackProcess[EventCategory.Skill2] = new AttackProcess[]{
+        (inputX, inputY, position, skillData) =>
+        {
+            Installation(position, skillData, "SattoMultiGuardArcher", 0);
         }
         };
     }

@@ -24,6 +24,7 @@ public class SpawnGuardSpear : Installation
     {
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
+        GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white * 0.6f);
     }
 
     public override void Play()
@@ -74,7 +75,19 @@ public class SpawnGuardSpear : Installation
         animator.Play("Attack");
         StartCoroutine(HitBox());
 
-        StartCoroutine(Dash(8, 0.4f, 0.4f));
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        if (skillData.skillSet.entity.gameObject.layer != 6) moveDir = (gameManager.Player.transform.position - spawnPosition).normalized;
+
+        if (moveDir.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        StartCoroutine(Dash(6, 0.4f, 0.4f));
         yield return new WaitForSeconds(1f);
         animator.Play("Idle");
         leftHitBox.ClearTargetSet();

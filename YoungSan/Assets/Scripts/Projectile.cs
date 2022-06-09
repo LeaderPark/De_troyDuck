@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour
     Vector3 dirVec;
     Rigidbody rigid;
 
-
     public float speed;
     public AnimationCurve curve;
     float timeStack;
@@ -18,13 +17,13 @@ public class Projectile : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
     }
 
-    public void SetData(Vector3 startPosition, Vector3 dirVec, SkillData skillData)
+    public void SetData(Vector3 startPosition, Vector3 dirVec, SkillData skillData, bool setDir)
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         timeStack = 0;
         this.startPosition = startPosition;
         this.dirVec = dirVec;
-        if (skillData.skillSet.entity.gameObject.layer == 7) this.dirVec = (gameManager.Player.transform.position - skillData.skillSet.entity.transform.position).normalized;
+        if (skillData.skillSet.entity.gameObject.layer != 6 && setDir) this.dirVec = (gameManager.Player.transform.position - skillData.skillSet.entity.transform.position).normalized;
 
         GetComponent<HitBox>().skillData = skillData;
         rigid.velocity = Vector3.zero;

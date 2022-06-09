@@ -18,7 +18,7 @@ public class GuardArcherEvent : EntityEvent
         (inputX, inputY, position, skillData) =>
         {
             Vector2 cur = new Vector2(inputX, inputY);
-            Projectile(cur.x, cur.y, "Arrow", skillData, entity.transform.position, 1f);
+            Projectile(cur.x, cur.y, "Arrow", skillData, entity.transform.position, true, 1f);
         }
         };
     }

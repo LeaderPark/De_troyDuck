@@ -50,6 +50,7 @@ public class SpawnMultiGuardSpear : Installation
             rigid[i] = guardSpears[i].GetComponent<Rigidbody>();
             leftHitBox[i] = guardSpears[i].transform.GetChild(0).GetChild(0).GetComponent<HitBox>();
             rightHitBox[i] = guardSpears[i].transform.GetChild(0).GetChild(1).GetComponent<HitBox>();
+            guardSpears[i].GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white * 0.6f);
             guardSpears[i].gameObject.SetActive(true);
         }
     }
@@ -120,7 +121,7 @@ public class SpawnMultiGuardSpear : Installation
         animator[index].Play("Attack");
         StartCoroutine(HitBox(index));
 
-        StartCoroutine(Dash(8, 0.4f, 0.4f, index));
+        StartCoroutine(Dash(6, 0.4f, 0.4f, index));
         yield return new WaitForSeconds(1f);
         animator[index].Play("Idle");
         leftHitBox[index].ClearTargetSet();

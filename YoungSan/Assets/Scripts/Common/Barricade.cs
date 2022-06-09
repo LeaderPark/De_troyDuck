@@ -21,9 +21,8 @@ public class Barricade : MonoBehaviour
 
 		if (box != null)
 		{
-			if (anims.Count == 0 || anims.Contains(box.skillData.skill))
+			if (anims.Count == 0 || (anims.Contains(box.skillData.skill)&&collision.CompareTag("Player")))
 			{
-				Debug.Log("A");
 				Vector2 boxV = box.skillData.direction;
 				Vector2 obj = new Vector2(transform.forward.x, transform.forward.z);
 				Break objBreak = GetComponent<Break>();

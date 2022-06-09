@@ -12,6 +12,10 @@ public class JumpReciver : Receiver
 	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
 		JumpMarker _marker = notification as JumpMarker;
+		if (_marker != null && timelineCon.skip)
+		{
+			return;
+		}
 
 		if (_marker != null&& timelineCon.targetMarker==null)
 		{

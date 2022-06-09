@@ -72,6 +72,7 @@ public class Entity : MonoBehaviour
             QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 
             questManager.ResetQuests();
+            uimanager.bossStatbar.gameObject.SetActive(false);
             uimanager.UISetActive(false);
 
             gameManager.deathWindow.TurnOnWindow(

@@ -30,7 +30,7 @@ public class InterfaceUI : MonoBehaviour
             if (!isEnabled)
             {
                 UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-                uIManager.OpenUI(canvasGroup);
+                uIManager.OpenUI(canvasGroup, true);
                 isEnabled = true;
                 SetQuestUI();
             }

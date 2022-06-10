@@ -28,10 +28,21 @@ public class DataManager : Manager
 {
     private Data data = new Data();
     private string key = "woansdldhflqortnraksemfrl";
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
+        {
             Save();
+        }
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                SetReFiles();
+            }
+        }
     }
 
     public void Save()
@@ -39,7 +50,6 @@ public class DataManager : Manager
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         SaveGameData(gameManager.Player.GetComponent<Entity>());
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
-        //string jsonData = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);
         Debug.Log(jsonData);
@@ -47,14 +57,18 @@ public class DataManager : Manager
 
     public void Load()
     {
-
         if (!File.Exists(Application.persistentDataPath + "/SaveData.json"))
         {
-            Debug.Log("진우 십텐련");
             SetDefaultData();
         }
-        //Debug(File.Exists(Application.persistentDataPath + "/SaveData.json"));
         StartCoroutine(LoadApply());
+    }
+
+    public void SetReFiles()
+    {
+        File.Delete(Application.persistentDataPath + "/SaveData.json");
+        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+        questManager.ResetQuests();
     }
 
     private void SetDefaultData()
@@ -69,7 +83,6 @@ public class DataManager : Manager
         data.Stamina = 1000.0f;
         data.CurrentStamina = 1000.0f;
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
-        //string jsonData = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);
         Debug.Log(jsonData);
@@ -107,6 +120,7 @@ public class DataManager : Manager
             }
         }
     }
+
     private IEnumerator DefaultLoad()
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
@@ -126,6 +140,7 @@ public class DataManager : Manager
 
         yield return null;
     }
+
     private IEnumerator LoadApply()
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
@@ -138,7 +153,6 @@ public class DataManager : Manager
 
         string jsonDataString = File.ReadAllText(Application.persistentDataPath + "/SaveData.json");
         data = JsonUtility.FromJson<Data>(Decrypt(jsonDataString, key));
-        //data = JsonUtility.FromJson<Data>(jsonDataString);
 
         //씬 로드
         UnityEngine.SceneManagement.SceneManager.LoadScene(data.sceneName);

@@ -13,6 +13,7 @@ public class Receiver : MonoBehaviour, INotificationReceiver
 	}
 	public virtual void OnNotify(Playable origin, INotification notification, object context)
 	{
+
 		if (timelineCon.targetMarker != null)
 		{
 			return;

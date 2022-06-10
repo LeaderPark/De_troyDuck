@@ -23,6 +23,7 @@ public class TimelineController : MonoBehaviour
     private float currentSkipTime = 0;
     private bool isKeyDown = false;
     private bool currentIsSkip = false;
+    public bool skip;
     public float maxSkipTime = 1.5f;
 
     private void Awake()
@@ -47,7 +48,7 @@ public class TimelineController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && director.state == PlayState.Playing)
+        if (Input.GetKeyDown(KeyCode.Space) /*&& director.state == PlayState.Playing*/)
         {
             isKeyDown = true;
         }
@@ -102,12 +103,12 @@ public class TimelineController : MonoBehaviour
     public void UISetActiveFalse()
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.UISetActive(false);
+        uIManager.UISetActiveTimeLine(false);
     }
     public void UISetActiveTrue()
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.UISetActive(true);
+        uIManager.UISetActiveTimeLine(true);
 
     }
     public void PlayerScriptActive(bool active)
@@ -140,8 +141,16 @@ public class TimelineController : MonoBehaviour
 
                 if (jumpMarker != null)
                 {
-                    Debug.Log("아니 쓱발아 퀘스트를 쳐 받으라고");
-                    yield break;
+                    if (jumpMarker.qeustSelect)
+                    {
+                        Debug.Log("퀘스트 수락에 관련한 컷신으로 스킵 할 수 없따");
+                        yield break;
+                    }
+                    else
+                    {
+                        Debug.Log("뭐이씨");
+                        continue;
+                    }
                 }
 
                 if (loadmarker != null)
@@ -151,13 +160,14 @@ public class TimelineController : MonoBehaviour
                 }
             }
         }
-
         Debug.Log(durationTime);
         FadeInOut(true);
+        skip = true;
         yield return new WaitForSeconds(2f);
         director.time = durationTime - 0.1f;
         FadeInOut(false);
         yield return new WaitForSeconds(1f);
+        skip = false;
         currentSkipTime = 0;
         isKeyDown = false;
     }

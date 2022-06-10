@@ -13,7 +13,7 @@ public class SceneManager : Manager
     public void LoadScene(string sceneName)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uiManager.FadeInOut(true, () => { UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName); });
+        uiManager.FadeInOut(true, false, () => { UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName); });
     }
 
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
@@ -22,7 +22,7 @@ public class SceneManager : Manager
         //Debug.LogError(gameManager.Player);
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
-            uiManager.FadeInOut(false);
+            uiManager.FadeInOut(false, false);
             StartCoroutine(test1());
         }
     }

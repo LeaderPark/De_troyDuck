@@ -580,7 +580,7 @@ MonoBehaviour:
   skillDamageForms:
   - '{Attack}'
   coolTime: 0
-  waitTime: 2
+  waitTime: 0.7
   useStaminaForm: '{Speed}'
   skillEffect: {fileID: 197208136061750744}
   attackSounds:
@@ -1110,6 +1110,7 @@ MonoBehaviour:
     - {fileID: 4143921576584385570}
   useSkill: 0
   active: 0
+  delayTime: 0
 --- !u!1 &6294247053653646996
 GameObject:
   m_ObjectHideFlags: 0

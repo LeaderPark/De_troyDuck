@@ -18,8 +18,8 @@ public class GameDebugTool : MonoBehaviour
     private Texture2D Health;
     private Texture2D Stamina;
 
-    private Coroutine heal;
-    private Coroutine coolTime;
+    private Dictionary<Entity, Coroutine> heals;
+    private Dictionary<Entity, Coroutine> coolTimes;
 
     void Awake()
     {
@@ -27,6 +27,9 @@ public class GameDebugTool : MonoBehaviour
         Health = Resources.Load<Texture2D>("DebugToolTextures/Health");
         Stamina = Resources.Load<Texture2D>("DebugToolTextures/Stamina");
         BarBackground = Resources.Load<Texture2D>("DebugToolTextures/BarBackground");
+
+        heals = new Dictionary<Entity, Coroutine>();
+        coolTimes = new Dictionary<Entity, Coroutine>();
     }
 
     void Start()
@@ -88,6 +91,14 @@ public class GameDebugTool : MonoBehaviour
             Rect baseRect = GetRectangleRect(entityPosition + (entity.entityData.uiPos + 2) * Vector3.up, size);
 
             GUI.Box(baseRect, "", tabBaseStyle);
+            if (!heals.ContainsKey(entity))
+            {
+                heals[entity] = null;
+            }
+            if (!coolTimes.ContainsKey(entity))
+            {
+                coolTimes[entity] = null;
+            }
             DrawEntityData(baseRect, entity);
         }
     }
@@ -147,8 +158,9 @@ public class GameDebugTool : MonoBehaviour
         GUI.Box(baseRect, "", tabBarStyle);
         baseRect.size = new Vector2(sourceSize, baseRect.size.y);
 
+        float temp = rate;
         rate = GUI.HorizontalSlider(baseRect, rate, 0f, 1f, GUIStyle.none, GUIStyle.none);
-        entity.clone.SetStat(StatCategory.Stamina, (int)(entity.clone.GetMaxStat(StatCategory.Stamina) * rate));
+        if (temp != rate) entity.clone.SetStat(StatCategory.Stamina, (int)(entity.clone.GetMaxStat(StatCategory.Stamina) * rate));
     }
 
     void DrawEntityStat(Rect baseRect, Entity entity)
@@ -165,7 +177,7 @@ public class GameDebugTool : MonoBehaviour
 
         GUIStyle buttonOffStyle = new GUIStyle();
         buttonOffStyle.normal.background = GUI.skin.button.normal.background;
-        buttonOffStyle.normal.textColor = Color.green;
+        buttonOffStyle.normal.textColor = Color.red;
         buttonOffStyle.fontStyle = FontStyle.Bold;
         buttonOffStyle.alignment = TextAnchor.MiddleCenter;
 
@@ -214,29 +226,29 @@ public class GameDebugTool : MonoBehaviour
         entity.hitable = GUI.Toggle(baseRect, entity.hitable, "hitable");
 
         baseRect.center += Vector2.up * 20;
-        if (GUI.Button(baseRect, "C", (coolTime == null) ? buttonOffStyle : buttonOnStyle))
+        if (GUI.Button(baseRect, "C", (coolTimes[entity] == null) ? buttonOffStyle : buttonOnStyle))
         {
-            if (coolTime == null)
+            if (coolTimes[entity] == null)
             {
-                coolTime = StartCoroutine(CoolTime(entity));
+                coolTimes[entity] = StartCoroutine(CoolTime(entity));
             }
             else
             {
-                StopCoroutine(coolTime);
-                coolTime = null;
+                StopCoroutine(coolTimes[entity]);
+                coolTimes[entity] = null;
             }
         }
         baseRect.center += Vector2.up * 20;
-        if (GUI.Button(baseRect, "A", (heal == null) ? buttonOffStyle : buttonOnStyle))
+        if (GUI.Button(baseRect, "A", (heals[entity] == null) ? buttonOffStyle : buttonOnStyle))
         {
-            if (heal == null)
+            if (heals[entity] == null)
             {
-                heal = StartCoroutine(Heal(entity));
+                heals[entity] = StartCoroutine(Heal(entity));
             }
             else
             {
-                StopCoroutine(heal);
-                heal = null;
+                StopCoroutine(heals[entity]);
+                heals[entity] = null;
             }
         }
         baseRect.size = new Vector2(baseRect.size.x / 4, baseRect.size.y);

@@ -39,7 +39,7 @@ namespace Processor
                 }
             }
         }
-        
+
         protected bool Locker;
         private float LockTimer;
 
@@ -50,6 +50,11 @@ namespace Processor
                 if (LockTimer < time) LockTimer = time;
                 StartLock();
                 Locker = true;
+            }
+            else
+            {
+                LockTimer = time;
+                StartLock();
             }
         }
 

@@ -148,7 +148,7 @@ public class DataManager : Manager
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 
 
-        uiManager.FadeInOut(true);
+        uiManager.FadeInOut(true, false);
         yield return new WaitForSeconds(1f);
 
         string jsonDataString = File.ReadAllText(Application.persistentDataPath + "/SaveData.json");

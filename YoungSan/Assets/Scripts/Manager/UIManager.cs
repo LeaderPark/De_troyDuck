@@ -101,15 +101,15 @@ public class UIManager : Manager
         important = true;
     }
 
-    public void FadeInOut(bool fadeOut, Action endAction = null)
+    public void FadeInOut(bool fadeOut, bool FadeOrLoading, Action endAction = null)
     {
         if (fadeOut)
         {
-            StartCoroutine(FadeOut(endAction));
+            StartCoroutine(FadeOut(endAction, FadeOrLoading));
         }
         else
         {
-            StartCoroutine(FadeIn(endAction));
+            StartCoroutine(FadeIn(endAction, FadeOrLoading));
         }
     }
 
@@ -125,9 +125,21 @@ public class UIManager : Manager
         yield return null;
     }
 
-    private IEnumerator FadeOut(Action endAction)
+    private IEnumerator FadeOut(Action endAction, bool FadeOrLoading)
     {
+        if (FadeOrLoading)
+        {
+            fade.transform.GetChild(0).gameObject.SetActive(true);
+            fade.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        else
+        {
+            fade.transform.GetChild(0).gameObject.SetActive(false);
+            fade.transform.GetChild(1).gameObject.SetActive(true);
+        }
+
         float alpha = 0f;
+
         while (true)
         {
             if (alpha < 1f)
@@ -148,8 +160,19 @@ public class UIManager : Manager
         }
     }
 
-    private IEnumerator FadeIn(Action endAction)
+    private IEnumerator FadeIn(Action endAction, bool FadeOrLoading)
     {
+        if (FadeOrLoading)
+        {
+            fade.transform.GetChild(0).gameObject.SetActive(true);
+            fade.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        else
+        {
+            fade.transform.GetChild(0).gameObject.SetActive(false);
+            fade.transform.GetChild(1).gameObject.SetActive(true);
+        }
+
         float alpha = 1f;
         while (true)
         {

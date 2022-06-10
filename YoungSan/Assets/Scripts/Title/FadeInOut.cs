@@ -9,7 +9,7 @@ public class FadeInOut : MonoBehaviour
 
     void Start()
     {
-        fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0f);
+        //fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0f);
     }
 	public void FadeInOut1(bool fadeOut)
 	{

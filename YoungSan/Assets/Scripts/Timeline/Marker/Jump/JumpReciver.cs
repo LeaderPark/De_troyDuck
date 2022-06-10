@@ -6,7 +6,7 @@ using UnityEngine.Timeline;
 
 public class JumpReciver : Receiver
 {
-	public bool qeustSelect = false;
+	[HideInInspector]public bool qeustSelect = false;
 	private bool loop = false;
 
 	public override void OnNotify(Playable origin, INotification notification, object context)

@@ -119,7 +119,7 @@ public class TimelineController : MonoBehaviour
     public void FadeInOut(bool fadeOut)
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.FadeInOut(fadeOut);
+        uIManager.FadeInOut(fadeOut, true);
     }
     public void Save()
     {

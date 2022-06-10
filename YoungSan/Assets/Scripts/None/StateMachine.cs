@@ -9,12 +9,12 @@ namespace StateMachine
     {
         private State state;
         private Hashtable stateTable;
-        public Enemy Enemy {get; private set;}
-        
-        public StateMachineData stateMachineData;
-        
+        public Enemy Enemy { get; private set; }
 
-        public float searchTimeStack {get; set;}
+        public StateMachineData stateMachineData;
+
+
+        public float searchTimeStack { get; set; }
 
         void Awake()
         {
@@ -27,6 +27,7 @@ namespace StateMachine
             stateTable.Add(typeof(Attack), new Attack());
             stateTable.Add(typeof(Distance), new Distance());
             stateTable.Add(typeof(Wait), new Wait());
+            stateTable.Add(typeof(AttackDelay), new AttackDelay());
             state = GetStateTable(typeof(Idle));
         }
 
@@ -71,7 +72,7 @@ namespace StateMachine
             if (enemy != null && stateMachineData != null)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(new Vector3(enemy.spawnPoint.x,0, enemy.spawnPoint.y), stateMachineData.activityRadius);
+                Gizmos.DrawWireSphere(new Vector3(enemy.spawnPoint.x, 0, enemy.spawnPoint.y), stateMachineData.activityRadius);
                 Gizmos.color = Color.blue;
                 Vector3 temp = transform.position;
                 temp.y = 0;

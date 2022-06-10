@@ -22,6 +22,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 2063881083461315358}
   - {fileID: -4605481363910031752}
+  - {fileID: 3657871609416213466}
   - {fileID: -2892519348700992076}
   m_Clips: []
   m_Markers:
@@ -597,6 +598,48 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &-7985112982463127864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 5861902993406852241}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -2876527809360323465}
+    - {fileID: 2638192293218549040}
+    - {fileID: 4032727978269568514}
+    - {fileID: -4573618346576422533}
+    - {fileID: 8729316667774012023}
+    - {fileID: -7772908534107362098}
+--- !u!114 &-7772908534107362098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d038bd25fe3bd45990d6db0a45e6b2, type: 3}
+  m_Name: Bandit 2
+  m_EditorClassIdentifier: 
+  m_Time: 15.533333333333333
 --- !u!74 &-7611978384863192455
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -872,6 +915,24 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &-6393595383890166817
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d5c67f4841b3a47a4b093b8c88061f, type: 3}
+  m_Name: Jump/JumpMarker
+  m_EditorClassIdentifier: 
+  m_Time: 9.283333333333333
+  loopMarker: {fileID: -2813923441436954153}
+  loopEndMarker: {fileID: -5630333918889974933}
+  questRefuse: {fileID: 0}
+  qeustSelect: 0
+  quest: {fileID: 0}
 --- !u!74 &-6242755795168868931
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -1161,6 +1222,19 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-5630333918889974933
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d038bd25fe3bd45990d6db0a45e6b2, type: 3}
+  m_Name: Player 1
+  m_EditorClassIdentifier: 
+  m_Time: 9.533333333333333
 --- !u!114 &-5373443038069071035
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1283,6 +1357,24 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-4573618346576422533
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d5c67f4841b3a47a4b093b8c88061f, type: 3}
+  m_Name: Jump/JumpMarker
+  m_EditorClassIdentifier: 
+  m_Time: 15.3
+  loopMarker: {fileID: 8729316667774012023}
+  loopEndMarker: {fileID: -7772908534107362098}
+  questRefuse: {fileID: 0}
+  qeustSelect: 0
+  quest: {fileID: 0}
 --- !u!114 &-4409644648581819777
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1416,6 +1508,32 @@ MonoBehaviour:
     m_DisplayName: TextAsset
   m_Markers:
     m_Objects: []
+--- !u!114 &-2876527809360323465
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753c9143d17060b4986633757de62967, type: 3}
+  m_Name: Bandit 1
+  m_EditorClassIdentifier: 
+  m_Time: 12.2
+--- !u!114 &-2813923441436954153
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753c9143d17060b4986633757de62967, type: 3}
+  m_Name: Player 1
+  m_EditorClassIdentifier: 
+  m_Time: 8.516666666666667
 --- !u!114 &-2213213202588620945
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2455,6 +2573,24 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &2638192293218549040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d5c67f4841b3a47a4b093b8c88061f, type: 3}
+  m_Name: Jump/JumpMarker
+  m_EditorClassIdentifier: 
+  m_Time: 13.083333333333334
+  loopMarker: {fileID: -2876527809360323465}
+  loopEndMarker: {fileID: 4032727978269568514}
+  questRefuse: {fileID: 0}
+  qeustSelect: 0
+  quest: {fileID: 0}
 --- !u!114 &2721780168093815682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2579,6 +2715,45 @@ MonoBehaviour:
     m_DisplayName: DummyFollowCam
   m_Markers:
     m_Objects: []
+--- !u!114 &3657871609416213466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: -9147270526666721431}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -2813923441436954153}
+    - {fileID: -5630333918889974933}
+    - {fileID: -6393595383890166817}
+--- !u!114 &4032727978269568514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d038bd25fe3bd45990d6db0a45e6b2, type: 3}
+  m_Name: Bandit 1
+  m_EditorClassIdentifier: 
+  m_Time: 13.55
 --- !u!114 &4842132488023766694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3259,6 +3434,7 @@ MonoBehaviour:
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
   m_Children:
+  - {fileID: -7985112982463127864}
   - {fileID: -9093340786894726070}
   - {fileID: 5595584539721905541}
   - {fileID: -4409644648581819777}
@@ -4306,6 +4482,19 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &8729316667774012023
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753c9143d17060b4986633757de62967, type: 3}
+  m_Name: Bandit 2
+  m_EditorClassIdentifier: 
+  m_Time: 14.416666666666666
 --- !u!114 &8758223783930648103
 MonoBehaviour:
   m_ObjectHideFlags: 1

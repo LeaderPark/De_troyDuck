@@ -761,7 +761,7 @@ MonoBehaviour:
   coolTime: 8
   waitTime: 0
   useStaminaForm: 0
-  skillEffect: {fileID: 6591346220805796645}
+  skillEffect: {fileID: 5596816031312988746}
   attackSounds:
   - {fileID: 8300000, guid: ca47cc2d2dcfa564f844c0a12ce31a5c, type: 3}
   direction: {x: 0, y: 0}
@@ -1564,7 +1564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8290085158502239783}
-  - component: {fileID: 6591346220805796645}
+  - component: {fileID: 5596816031312988746}
   m_Layer: 0
   m_Name: Skill1
   m_TagString: Untagged
@@ -1586,7 +1586,7 @@ Transform:
   m_Father: {fileID: 2341238698305537713}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6591346220805796645
+--- !u!114 &5596816031312988746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1595,13 +1595,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7582539735011046401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a8a58ff557b34143bd6a9cfc4bba2a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 56d3f88a24ee1874aa05f726c301e6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffectClips:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: e77ca83f39734b6468d591fc7243b6ef, type: 3}
+  - {fileID: 8300000, guid: ca47cc2d2dcfa564f844c0a12ce31a5c, type: 3}
 --- !u!1 &7650159140675601443
 GameObject:
   m_ObjectHideFlags: 0

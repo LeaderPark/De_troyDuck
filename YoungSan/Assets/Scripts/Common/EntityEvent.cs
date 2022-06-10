@@ -56,7 +56,10 @@ public class EntityEvent : MonoBehaviour
     {
         if (!dontmove)
         {
-            entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
+            if (!(entity.GetProcessor(typeof(Processor.Animate)) as Processor.Animate).locking)
+            {
+                entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
+            }
             if (inputX == 0 && inputY == 0)
             {
                 entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Idle", false });

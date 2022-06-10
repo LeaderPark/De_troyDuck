@@ -8,6 +8,8 @@ public class HitBox : MonoBehaviour
 
     HashSet<Entity> targets;
 
+    bool wall;
+
     void Awake()
     {
         targets = new HashSet<Entity>();
@@ -16,6 +18,7 @@ public class HitBox : MonoBehaviour
     public void ClearTargetSet()
     {
         if (targets?.Count > 0) targets?.Clear();
+        wall = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -23,6 +26,14 @@ public class HitBox : MonoBehaviour
         if (other.gameObject != null)
         {
             Entity entity = other.GetComponent<Entity>();
+            if (!wall && other.gameObject.layer == 9)
+            {
+                wall = true;
+                skillData.skillSet.entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[] { Vector3.zero, 0 });
+                skillData.skillSet.entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Idle", true });
+                skillData.skillSet.entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
+                skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, null, skillData.direction, skillData.targetIndex);
+            }
             if (entity == null) return;
             if (skillData == null) return;
             if (skillData.skillSet.entity.gameObject.tag != entity.gameObject.tag)

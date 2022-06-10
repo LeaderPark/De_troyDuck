@@ -10,8 +10,8 @@ public abstract class SkillEffect : MonoBehaviour
     public void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index)
     {
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-        if(hitSoundClips[index] != null)
-        soundManager.SoundStart(hitSoundClips[index].name, transform);
+        if (hitSoundClips[index] != null)
+            soundManager.SoundStart(hitSoundClips[index].name, transform);
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         if (hitEntity != null)
         {
@@ -26,28 +26,33 @@ public abstract class SkillEffect : MonoBehaviour
         switch (hitEntity?.gameObject.tag)
         {
             case "Player": // player
-            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
-            ShowPlayerEffect(attackEntity, hitEntity, direction, index);
-            break;
+                hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Hit" });
+                ShowPlayerEffect(attackEntity, hitEntity, direction, index);
+                break;
             case "Enemy": // enemy
-            hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[]{"Hit"});
-            ShowEnemyEffect(attackEntity, hitEntity, direction, index);
-            break;
+                hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Hit" });
+                ShowEnemyEffect(attackEntity, hitEntity, direction, index);
+                break;
             case "Boss": // enemy
-            ShowBossEffect(attackEntity, hitEntity, direction, index);
-            break;
+                ShowBossEffect(attackEntity, hitEntity, direction, index);
+                break;
+        }
+        if (hitEntity == null)
+        {
+            ShowWallEffect(attackEntity, direction, index);
         }
     }
 
     protected abstract void ShowPlayerEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
     protected abstract void ShowEnemyEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
     protected abstract void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
+    protected virtual void ShowWallEffect(Entity attackEntity, Vector2 direction, int index) { }
 
     protected void Stiff(Entity entity, float time)
     {
-        entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{time});
-        entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[]{time});
-        entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[]{time});
+        entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { time });
+        entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { time });
+        entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[] { time });
     }
 
     protected void TickDamage(string objectName, Entity sourceEntity, Entity targetEntity, float delay, float time)
@@ -70,11 +75,11 @@ public abstract class SkillEffect : MonoBehaviour
         while (timeStack < time && Vector3.Distance(sourceEntity.transform.position, targetEntity.transform.position) > 1f)
         {
             timeStack += Time.deltaTime;
-            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[]{Time.deltaTime});
-            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{(sourceEntity.transform.position - targetEntity.transform.position).normalized, speed});
+            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { Time.deltaTime });
+            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { (sourceEntity.transform.position - targetEntity.transform.position).normalized, speed });
             yield return null;
         }
-        targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[]{Vector3.zero, 0});
+        targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
     }
 
     protected void ChangeColor(Entity entity, Color color, float startTime, float time)

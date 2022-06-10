@@ -8,8 +8,8 @@ namespace Processor
     public class Animate : Processor
     {
         private Animator animator;
-        bool locking;
-        
+        public bool locking;
+
         public Animate(Hashtable owner, Animator animator) : base(owner)
         {
             this.animator = animator;

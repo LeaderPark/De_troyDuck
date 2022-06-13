@@ -152,7 +152,7 @@ public class Entity : MonoBehaviour
     {
         if (staminaCount <= 0f)
         {
-            int temp = Mathf.RoundToInt((clone.GetMaxStat(StatCategory.Stamina) - clone.GetStat(StatCategory.Stamina)) * Time.deltaTime * (1f / 2f));
+            int temp = Mathf.RoundToInt(clone.GetMaxStat(StatCategory.Stamina) * Time.deltaTime * 0.5f);
             clone.AddStat(StatCategory.Stamina, Mathf.Clamp(temp, 1, temp));
         }
         else
@@ -163,7 +163,7 @@ public class Entity : MonoBehaviour
 
     public void ResetStaminaCount()
     {
-        staminaCount = 2f;
+        staminaCount = 1f;
     }
 }
 

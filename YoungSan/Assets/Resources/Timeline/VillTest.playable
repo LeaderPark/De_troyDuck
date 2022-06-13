@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2498018555174193410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abe84a4f4825484da4f8375ff2300c7, type: 3}
+  m_Name: Quest/QuestMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  quest: {fileID: 11400000, guid: c7aa3757871984b498e4589076190b5a, type: 2}
 --- !u!114 &-2173629074447975328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,6 +54,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: 6786438289893734505}
+    - {fileID: -2498018555174193410}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

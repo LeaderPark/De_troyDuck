@@ -14,7 +14,7 @@ public class OptionComponent : SearchOption
                 foreach (GameObject item in objects)
                 {
                     bool contains = false;
-                    Entity[] components = item.GetComponents<Entity>();
+                    AudioListener[] components = item.GetComponents<AudioListener>();
                     foreach (Component component in components)
                     {
                         if (component.GetType().Name == (obj as string))
@@ -34,8 +34,8 @@ public class OptionComponent : SearchOption
                 foreach (GameObject item in gameObjects)
                 {
                     bool contains = false;
-                    Entity[] components = item.GetComponents<Entity>();
-                    foreach (Entity component in components)
+                    AudioListener[] components = item.GetComponents<AudioListener>();
+                    foreach (AudioListener component in components)
                     {
                         if (component.GetType().Name == (obj as string))
                         {

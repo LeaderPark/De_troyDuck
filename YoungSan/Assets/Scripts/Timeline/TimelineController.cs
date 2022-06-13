@@ -48,17 +48,18 @@ public class TimelineController : MonoBehaviour
             }
         }
 
-        if(director.playableGraph.IsPlaying())
-        if (Input.GetKeyDown(KeyCode.Space) /*&& director.state == PlayState.Playing*/)
-        {
-            isKeyDown = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            currentSkipTime = 0;
-            isKeyDown = false;
-            currentIsSkip = false;
-        }
+        if (director.playableGraph.IsValid())
+            if (director.playableGraph.IsPlaying())
+                if (Input.GetKeyDown(KeyCode.Space) /*&& director.state == PlayState.Playing*/)
+                {
+                    isKeyDown = true;
+                }
+                else if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    currentSkipTime = 0;
+                    isKeyDown = false;
+                    currentIsSkip = false;
+                }
 
         if (isKeyDown)
         {

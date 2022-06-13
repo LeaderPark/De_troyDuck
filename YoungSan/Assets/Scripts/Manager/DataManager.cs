@@ -90,6 +90,8 @@ public class DataManager : Manager
 
     private void SaveGameData(Entity entity)
     {
+        entity.SetHp(1);
+
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         data.currentPlayer = entity.entityData.prefab.name;

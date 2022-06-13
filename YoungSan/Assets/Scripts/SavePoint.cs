@@ -61,7 +61,8 @@ public class SavePoint : MonoBehaviour
 
     void OnGUI()
     {
-        if (isPlayerInBound)
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        if (isPlayerInBound && Time.timeScale != 0 && gameManager.Player.enabled)
         {
             Vector3 worldPosition = transform.position + Vector3.up * 4f;
             Vector2 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);

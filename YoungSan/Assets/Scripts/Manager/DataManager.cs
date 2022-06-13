@@ -76,12 +76,12 @@ public class DataManager : Manager
         data.sceneName = "Castle";
         data.currentPlayer = "MainChar";
         data.currentPosition = new Vector3(0, 0, 0);
-        data.Health = 330.0f;
-        data.CurrentHealth = 330.0f;
-        data.Attack = 11.0f;
-        data.Speed = 10.0f;
-        data.Stamina = 1000.0f;
-        data.CurrentStamina = 1000.0f;
+        data.Health = 400.0f;
+        data.CurrentHealth = 400.0f;
+        data.Attack = 12.0f;
+        data.Speed = 8.0f;
+        data.Stamina = 500.0f;
+        data.CurrentStamina = 500.0f;
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);

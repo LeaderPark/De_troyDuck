@@ -216,7 +216,7 @@ public class Player : MonoBehaviour
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             entity.hitable = false;
-            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) * 4 });
+            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { new Vector3(inputX, 0, inputY).normalized, 24 });
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0.0f });
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Dash" });
             entity.clone.SubStat(StatCategory.Stamina, 50);

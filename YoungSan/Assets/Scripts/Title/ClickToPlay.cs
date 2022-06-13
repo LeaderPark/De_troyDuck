@@ -5,16 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class ClickToPlay : MonoBehaviour
 {
+    bool isRunning = false;
     void Awake()
     {
         Debug.Log(ManagerObject.Instance);
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
-            dataManager.Load();
+            if (!isRunning)
+            {
+                isRunning = true;
+                DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
+                dataManager.Load();
+            }
+
         }
     }
 

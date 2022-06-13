@@ -38,6 +38,20 @@ public class QuestManager : Manager
         }
     }
 
+    public void AllResetQuests()
+    {
+        foreach (Quest item in proceedingQuests.Values)
+        {
+            ResetQuest(item);
+        }
+        foreach (Quest item in completedQuests.Values)
+        {
+            ResetQuest(item);
+        }
+        proceedingQuests.Clear();
+        completedQuests.Clear();
+    }
+
     public void ResetQuests()
     {
         foreach (Quest item in proceedingQuests.Values)
@@ -64,7 +78,7 @@ public class QuestManager : Manager
             if (completedQuests.ContainsKey(quest.prevQuest.questId))
                 completedQuests.Remove(quest.prevQuest.questId);
 
-            Debug.Log( quest.prevQuest +" : "+ quest.prevQuest.clear);
+            Debug.Log(quest.prevQuest + " : " + quest.prevQuest.clear);
             if (quest.prevQuest.resetPrevQuest)
             {
                 ResetQuest(quest.prevQuest);

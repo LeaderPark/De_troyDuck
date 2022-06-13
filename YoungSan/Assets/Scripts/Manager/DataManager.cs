@@ -68,7 +68,12 @@ public class DataManager : Manager
     {
         File.Delete(Application.persistentDataPath + "/SaveData.json");
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-        questManager.ResetQuests();
+        questManager.AllResetQuests();
+    }
+
+    void OnApplicationQuit()
+    {
+        SetReFiles();
     }
 
     private void SetDefaultData()

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class LoadMapData : MonoBehaviour
 {
-	public Quest quest;
-	public bool active;
+    public Quest quest;
+    public bool active;
 
-	private void Awake()
-	{
-		if (quest.clear)
-		{
-			SceneManager sceneManager = ManagerObject.Instance.GetManager(ManagerType.SceneManager) as SceneManager;
-			sceneManager.afterSceneLoadAction += () => gameObject.SetActive(active);
-		}
-	}
+    private void Awake()
+    {
+        if (quest == null) return;
+        if (quest.clear)
+        {
+            SceneManager sceneManager = ManagerObject.Instance.GetManager(ManagerType.SceneManager) as SceneManager;
+            sceneManager.afterSceneLoadAction += () => gameObject.SetActive(active);
+        }
+    }
 }

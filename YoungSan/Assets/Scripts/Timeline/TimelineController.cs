@@ -48,6 +48,7 @@ public class TimelineController : MonoBehaviour
             }
         }
 
+        if(director.playableGraph.IsPlaying())
         if (Input.GetKeyDown(KeyCode.Space) /*&& director.state == PlayState.Playing*/)
         {
             isKeyDown = true;

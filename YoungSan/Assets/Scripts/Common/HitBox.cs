@@ -29,9 +29,6 @@ public class HitBox : MonoBehaviour
             if (!wall && other.gameObject.layer == 9)
             {
                 wall = true;
-                skillData.skillSet.entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[] { Vector3.zero, 0 });
-                skillData.skillSet.entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Idle", true });
-                skillData.skillSet.entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
                 skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, null, skillData.direction, skillData.targetIndex);
             }
             if (entity == null) return;

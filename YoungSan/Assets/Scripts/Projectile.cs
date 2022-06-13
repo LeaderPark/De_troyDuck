@@ -52,6 +52,11 @@ public class Projectile : MonoBehaviour
 
         if (other.gameObject != null)
         {
+            if (other.gameObject.layer == 9)
+            {
+                GetComponent<HitBox>().ClearTargetSet();
+                gameObject.SetActive(false);
+            }
             Entity entity = other.GetComponent<Entity>();
             if (entity == null) return;
             SkillData skillData = GetComponent<HitBox>().skillData;

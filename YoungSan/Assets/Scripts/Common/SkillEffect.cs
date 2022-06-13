@@ -9,6 +9,11 @@ public abstract class SkillEffect : MonoBehaviour
 
     public void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index)
     {
+        if (hitEntity == null)
+        {
+            ShowWallEffect(attackEntity, direction, index);
+            return;
+        }
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
         if (hitSoundClips[index] != null)
             soundManager.SoundStart(hitSoundClips[index].name, transform);
@@ -36,10 +41,6 @@ public abstract class SkillEffect : MonoBehaviour
             case "Boss": // enemy
                 ShowBossEffect(attackEntity, hitEntity, direction, index);
                 break;
-        }
-        if (hitEntity == null)
-        {
-            ShowWallEffect(attackEntity, direction, index);
         }
     }
 

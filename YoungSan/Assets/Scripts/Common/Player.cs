@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
                 return;
             }
         }
-        if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool && entity.clone.GetStat(StatCategory.Stamina) >= 50 && new Vector3(inputX, 0, inputY).normalized != Vector3.zero)
+        if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && entity.clone.GetStat(StatCategory.Stamina) >= 50 && new Vector3(inputX, 0, inputY).normalized != Vector3.zero)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             entity.hitable = false;

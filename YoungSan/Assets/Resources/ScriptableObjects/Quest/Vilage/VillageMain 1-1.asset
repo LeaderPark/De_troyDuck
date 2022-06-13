@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: VillageMain 1-1
   m_EditorClassIdentifier: 
   questId: 4
-  title: "\uC801 \uB69C\uB4DC\uB824 \uC7A1\uAE30"
+  title: "\uC801 \uCC98\uCE58\uD558\uAE30"
   context: "\uD53C\uB09C\uCC98\uB85C \uBAB0\uB824\uB4E0 \uAD00\uC878\uB4E4\uC744
     \uC4F0\uB7EC\uD2B8\uB824\uB77C!"
   clearValue:
     values:
     - type: 0
-      currentIntValue: 8
+      currentIntValue: 5
       intValue: 5
       boolValue: 0
       entityData: {fileID: 11400000, guid: 749db8e78489e0b49ac23503a2b7cf5d, type: 2}
   prevQuest: {fileID: 0}
   nextQuest: {fileID: 11400000, guid: 3073c46b656801e4295a6e69d5dbe792, type: 2}
-  clear: 1
+  resetPrevQuest: 0
+  clear: 0

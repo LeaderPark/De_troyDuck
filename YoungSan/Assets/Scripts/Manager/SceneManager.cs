@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManager : Manager
 {
+    public Action afterSceneLoadAction; 
     private void Awake()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
@@ -41,5 +43,6 @@ public class SceneManager : Manager
         {
             timelineManager.StartCutScene();
         }
+        afterSceneLoadAction?.Invoke();
     }
 }

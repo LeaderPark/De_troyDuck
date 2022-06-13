@@ -2176,6 +2176,7 @@ MonoBehaviour:
     - {fileID: 2579638676549315967}
     - {fileID: 5480843263891518543}
     - {fileID: 993087039436085600}
+    - {fileID: 8136888022784211752}
 --- !u!114 &-7042389196834603390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2278,7 +2279,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -7083,6 +7102,20 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &8136888022784211752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0863e9c2ac77964085c463aa797e1aa, type: 3}
+  m_Name: Quest/QuestClearMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  quest: {fileID: 11400000, guid: c7aa3757871984b498e4589076190b5a, type: 2}
 --- !u!114 &9052299742963015610
 MonoBehaviour:
   m_ObjectHideFlags: 1

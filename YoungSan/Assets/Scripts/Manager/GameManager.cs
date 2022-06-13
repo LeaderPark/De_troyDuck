@@ -73,7 +73,7 @@ public class GameManager : Manager
     private IEnumerator AfterImageProcess(Entity entity, float time)
     {
         SpriteRenderer spriteRenderer = entity.GetComponent<SpriteRenderer>();
-        int count = (int)(time / 0.1f);
+        int count = (int)(time / 0.05f);
         for (int i = 0; i < count && !afterImageState[entity]; i++)
         {
             PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
@@ -81,8 +81,8 @@ public class GameManager : Manager
             AfterImage afterImage = obj.GetComponent<AfterImage>();
             afterImage.SetTarget(spriteRenderer);
             afterImage.Play();
-            StartCoroutine(AfterImageInActive(obj, time - i * 0.1f));
-            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(AfterImageInActive(obj, time - i * 0.05f));
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

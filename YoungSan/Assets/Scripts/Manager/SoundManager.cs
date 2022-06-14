@@ -10,12 +10,40 @@ public class SoundManager : Manager
 
     Hashtable InstanceSounds { get; set; }
 
+    Hashtable MusicTable { get; set; }
+    AudioSource bgm;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         SoundTable = new Hashtable();
         InstanceSounds = new Hashtable();
+        MusicTable = new Hashtable();
+        bgm = GetComponent<AudioSource>();
+        LoadMusics();
         LoadSounds();
+    }
+
+    public void SetBgm(string name)
+    {
+        if (!MusicTable.Contains(name) || name == string.Empty)
+        {
+            bgm.clip = null;
+        }
+        else
+        {
+            bgm.clip = MusicTable[name] as AudioClip;
+            bgm.Play();
+        }
+    }
+    private void LoadMusics()
+    {
+        AudioClip[] prefabs = Resources.LoadAll<AudioClip>("Music");
+        foreach (AudioClip item in prefabs)
+        {
+            //print(item + item.name);
+            MusicTable.Add(item.name, item);
+        }
     }
 
     private void LoadSounds()

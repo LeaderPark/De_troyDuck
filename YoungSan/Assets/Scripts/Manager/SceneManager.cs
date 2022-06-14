@@ -7,15 +7,40 @@ using UnityEngine.SceneManagement;
 
 public class SceneManager : Manager
 {
-    public Action afterSceneLoadAction; 
+    public Action afterSceneLoadAction;
+
+    Hashtable sceneStartPosition;
+
     private void Awake()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
+        sceneStartPosition = new Hashtable();
+        LoadSceneStartPositionData();
     }
+
+    private void LoadSceneStartPositionData()
+    {
+        SceneStartPosition[] prefabs = Resources.LoadAll<SceneStartPosition>("ScriptableObjects/SceneStartPosition");
+        foreach (SceneStartPosition item in prefabs)
+        {
+            sceneStartPosition.Add((item.beginScene, item.endScene), item.position);
+        }
+    }
+
     public void LoadScene(string sceneName)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uiManager.FadeInOut(true, false, () => { UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName); });
+        string curSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        uiManager.FadeInOut(true, false, () =>
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            if (sceneStartPosition.Contains(curSceneName) && sceneStartPosition.Contains(sceneName))
+            {
+                GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+                gameManager.Player.transform.position = (Vector3)sceneStartPosition[(curSceneName, sceneName)];
+            }
+        });
+
     }
 
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)

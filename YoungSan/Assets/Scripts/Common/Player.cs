@@ -218,7 +218,6 @@ public class Player : MonoBehaviour
             entity.hitable = false;
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { new Vector3(inputX, 0, inputY).normalized, 24 });
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0.0f });
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Dash" });
             entity.clone.SubStat(StatCategory.Stamina, 50);
 
             SkillSet skillSet = entity.GetComponentInChildren<SkillSet>();
@@ -226,7 +225,7 @@ public class Player : MonoBehaviour
 
             if (dashCo != null) StopCoroutine(dashCo);
             dashCo = StartCoroutine(AttackVelocityTime(0.2f));
-            gameManager.AfterImage(entity, 0.47f);
+            gameManager.AfterImage(entity, 0.2f);
             dash = true;
             dashCool = true;
             UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
@@ -263,7 +262,6 @@ public class Player : MonoBehaviour
         dash = false;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
 
-        yield return new WaitForSeconds(0.27f);
         entity.hitable = true;
 
         yield return new WaitForSeconds(dashCoolTime);

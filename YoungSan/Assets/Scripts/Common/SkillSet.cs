@@ -184,6 +184,7 @@ public class SkillSet : MonoBehaviour
     {
         yield return new WaitForSeconds(data.skill.length);
         running = false;
+        StopSkill();
     }
 
     IEnumerator attackSound(SkillData data)

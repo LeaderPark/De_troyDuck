@@ -47,6 +47,11 @@ public class GameManager : Manager
     {
         //PlayerFind();
     }
+    void Start()
+    {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+        soundManager.SetBgm("main theme");
+    }
     public void PlayerFind()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().ToString() != "Title")

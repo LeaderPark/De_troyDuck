@@ -26,26 +26,26 @@ public class EnterTheStart : MonoBehaviour
             {
                 //isClearTriggerQuest�� ���ų� isClearTriggerQuest�� ���� �ʾҴٸ� ����
                 //������ �������� �ʴ´�
-                //if (isClearTriggerQuest == null || !isClearTriggerQuest.clear)
-                //{
-                gameManager.Player.ActiveScript(false);
-                uiManager.UISetActiveFalse();
-                uiManager.FadeInOut(true, true, () =>
+                if (isClearTriggerQuest == null || !isClearTriggerQuest.clear)
                 {
-                    if (timeLineName != null)
+                    gameManager.Player.ActiveScript(false);
+                    uiManager.UISetActiveFalse();
+                    uiManager.FadeInOut(true, true, () =>
                     {
+                        if (timeLineName != null)
+                        {
 
-                        TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
-                        timelineManager.StartCutScene(timeLineName);
-                    }
-                    for (int i = 0; i < objs.Length; i++)
-                    {
-                        objs[i].SetActive(true);
-                    }
-                    gameObject.SetActive(false);
-                    uiManager.FadeInOut(false, true);
-                });
-                // }
+                            TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
+                            timelineManager.StartCutScene(timeLineName);
+                        }
+                        for (int i = 0; i < objs.Length; i++)
+                        {
+                            objs[i].SetActive(true);
+                        }
+                        gameObject.SetActive(false);
+                        uiManager.FadeInOut(false, true);
+                    });
+                }
             }
         }
     }

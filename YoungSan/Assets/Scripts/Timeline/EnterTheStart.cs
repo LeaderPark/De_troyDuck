@@ -24,9 +24,11 @@ public class EnterTheStart : MonoBehaviour
             {
                 //isClearTriggerQuest가 없거나 isClearTriggerQuest를 깨지 않았다면 실행
                 //깼으면 실행하지 않는다
-                //if (isClearTriggerQuest == null || !isClearTriggerQuest.clear)
-                //{
-                    if (timeLineName != null)
+                if (isClearTriggerQuest != null)
+                Debug.Log(isClearTriggerQuest.clear);
+				if (isClearTriggerQuest == null || !isClearTriggerQuest.clear)
+				{
+					if (timeLineName != null)
                     {
                         TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
                         timelineManager.StartCutScene(timeLineName);
@@ -36,7 +38,7 @@ public class EnterTheStart : MonoBehaviour
                         objs[i].SetActive(true);
                     }
                     gameObject.SetActive(false);
-               // }
+                }
             }
         }
     }

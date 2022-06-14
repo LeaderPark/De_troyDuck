@@ -10,6 +10,7 @@ public class TimelineController : MonoBehaviour
 {
 
     public bool onSceneLoadPlay;
+    public PlayableAsset startTimeline;
 
     PlayableDirector director;
     [SerializeField] private Image fade;

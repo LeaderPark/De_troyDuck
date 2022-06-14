@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7922644580244717873
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0863e9c2ac77964085c463aa797e1aa, type: 3}
+  m_Name: Quest/QuestClearMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  quest: {fileID: 11400000, guid: b0fdab332fe8977488391fef8a1fc220, type: 2}
 --- !u!114 &-6386778401611614967
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,6 +337,7 @@ MonoBehaviour:
     - {fileID: 990043985730930311}
     - {fileID: 7972513725794733717}
     - {fileID: 6842706367085231591}
+    - {fileID: -7922644580244717873}
 --- !u!114 &-1191689950779877732
 MonoBehaviour:
   m_ObjectHideFlags: 1

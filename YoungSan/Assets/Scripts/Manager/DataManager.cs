@@ -75,7 +75,7 @@ public class DataManager : Manager
 
     void OnApplicationQuit()
     {
-        SetReFiles();
+        //SetReFiles();
     }
 
     private void SetDefaultData()
@@ -205,7 +205,7 @@ public class DataManager : Manager
 
     }
 
-    public static string Decrypt(string textToDecrypt, string key)
+	public static string Decrypt(string textToDecrypt, string key)
     {
         RijndaelManaged rijndaelCipher = new RijndaelManaged();
         rijndaelCipher.Mode = CipherMode.CBC;

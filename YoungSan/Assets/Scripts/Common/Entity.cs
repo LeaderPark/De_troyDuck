@@ -71,7 +71,7 @@ public class Entity : MonoBehaviour
             UIManager uimanager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
             QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 
-            questManager.AllResetQuests();
+            questManager.ResetQuests();
             uimanager.bossStatbar.gameObject.SetActive(false);
             uimanager.UISetActiveFalse();
 

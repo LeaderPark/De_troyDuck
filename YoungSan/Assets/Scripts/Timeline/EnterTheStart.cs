@@ -10,24 +10,31 @@ public class EnterTheStart : MonoBehaviour
     [SerializeField] private Quest triggerQuest;
     [SerializeField] private Quest isClearTriggerQuest;
     private QuestManager questManger;
-	private void Awake()
-	{
-        questManger = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-	}
-	private void OnTriggerEnter(Collider col) 
+    private void Awake()
     {
-        if(col.CompareTag("Player"))
+        questManger = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+    }
+    private void OnTriggerEnter(Collider col)
+    {
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        if (col.CompareTag("Player"))
         {
-            //triggerQuest°¡ ¾ø°Å³ª triggerQuest°¡ ÇöÀç ÁøÇàÁßÀÎ Äù½ºÆ®ÀÏ°æ¿ì ½ÇÇà
-            //ÇöÀç ÁøÇàÁßÀÌÁö ¾ÊÀ¸¸é ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+            //triggerQuestï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ triggerQuestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ï°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½
             if (triggerQuest == null || questManger.IsProceeding(triggerQuest))
             {
-                //isClearTriggerQuest°¡ ¾ø°Å³ª isClearTriggerQuest¸¦ ±úÁö ¾Ê¾Ò´Ù¸é ½ÇÇà
-                //²£À¸¸é ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+                //isClearTriggerQuestï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ isClearTriggerQuestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½
                 //if (isClearTriggerQuest == null || !isClearTriggerQuest.clear)
                 //{
+                gameManager.Player.ActiveScript(false);
+                uiManager.UISetActiveFalse();
+                uiManager.FadeInOut(true, true, () =>
+                {
                     if (timeLineName != null)
                     {
+
                         TimelineManager timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
                         timelineManager.StartCutScene(timeLineName);
                     }
@@ -36,7 +43,9 @@ public class EnterTheStart : MonoBehaviour
                         objs[i].SetActive(true);
                     }
                     gameObject.SetActive(false);
-               // }
+                    uiManager.FadeInOut(false, true);
+                });
+                // }
             }
         }
     }

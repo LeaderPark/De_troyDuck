@@ -31,14 +31,16 @@ public class SceneManager : Manager
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         string curSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        if (sceneStartPosition.Contains(curSceneName) && sceneStartPosition.Contains(sceneName))
+        {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            gameManager.Player.transform.position = (Vector3)sceneStartPosition[(curSceneName, sceneName)];
+        }
+
         uiManager.FadeInOut(true, false, () =>
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-            if (sceneStartPosition.Contains(curSceneName) && sceneStartPosition.Contains(sceneName))
-            {
-                GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-                gameManager.Player.transform.position = (Vector3)sceneStartPosition[(curSceneName, sceneName)];
-            }
         });
 
     }

@@ -14,7 +14,7 @@ public class HierarchySearcherWindow : EditorWindow
 
     private List<bool> selectedGameObjects = new List<bool>();
 
-    private string[] hierarchySearchOption = {"Option Name", "Option Component", "Option Tag", "Option Layer", "Option Function", "Option Field", "Option Property", "Option Active", "Option Has Children", "Option Has Parent" };
+    private string[] hierarchySearchOption = { "Option Name", "Option Component", "Option Tag", "Option Layer", "Option Function", "Option Field", "Option Property", "Option Active", "Option Has Children", "Option Has Parent" };
 
     private int selectedIndex = 0;
 
@@ -54,20 +54,20 @@ public class HierarchySearcherWindow : EditorWindow
 
         EditorGUILayout.Space(40);
 
-        
+
         EditorGUI.BeginChangeCheck();
 
         selectedIndex = Mathf.Clamp(selectedIndex, 0, hierarchySearchOption.Length - 1);
 
         EditorGUILayout.BeginHorizontal(GUILayout.Width(380), GUILayout.Height(20));
-        
+
         EditorGUILayout.Space(2);
         selectedIndex = EditorGUILayout.Popup(selectedIndex, hierarchySearchOption, GUILayout.Width(200), GUILayout.Height(20));
         EditorGUILayout.Space(10);
         bool addOption = GUILayout.Button("Add Option", GUILayout.Width(100), GUILayout.Height(20));
-        
+
         EditorGUILayout.EndHorizontal();
-        
+
         if (EditorGUI.EndChangeCheck())
         {
             if (addOption)
@@ -75,41 +75,41 @@ public class HierarchySearcherWindow : EditorWindow
                 switch (hierarchySearchOption[selectedIndex])
                 {
                     case "Option Name":
-                    searchOptions.Add(new OptionName());
-                    break;
+                        searchOptions.Add(new OptionName());
+                        break;
                     case "Option Component":
-                    searchOptions.Add(new OptionComponent());
-                    break;
+                        searchOptions.Add(new OptionComponent());
+                        break;
                     case "Option Tag":
-                    searchOptions.Add(new OptionTag());
-                    break;
+                        searchOptions.Add(new OptionTag());
+                        break;
                     case "Option Layer":
-                    searchOptions.Add(new OptionLayer());
-                    break;
+                        searchOptions.Add(new OptionLayer());
+                        break;
                     case "Option Function":
-                    searchOptions.Add(new OptionFunction());
-                    break;
+                        searchOptions.Add(new OptionFunction());
+                        break;
                     case "Option Field":
-                    searchOptions.Add(new OptionField());
-                    break;
+                        searchOptions.Add(new OptionField());
+                        break;
                     case "Option Property":
-                    searchOptions.Add(new OptionProperty());
-                    break;
+                        searchOptions.Add(new OptionProperty());
+                        break;
                     case "Option Active":
-                    searchOptions.Add(new OptionActive());
-                    break;
+                        searchOptions.Add(new OptionActive());
+                        break;
                     case "Option Has Children":
-                    searchOptions.Add(new OptionHasChildren());
-                    break;
+                        searchOptions.Add(new OptionHasChildren());
+                        break;
                     case "Option Has Parent":
-                    searchOptions.Add(new OptionHasParent());
-                    break;
+                        searchOptions.Add(new OptionHasParent());
+                        break;
                 }
             }
         }
 
         EditorGUILayout.Space(20);
-        
+
         optionScrollViewPosition = EditorGUILayout.BeginScrollView(optionScrollViewPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar, GUI.skin.box, GUILayout.Height((int)HierarchySearcher.window.position.height >> 1));
 
         for (int i = 0; i < searchOptions.Count; i++)
@@ -117,41 +117,41 @@ public class HierarchySearcherWindow : EditorWindow
             switch (searchOptions[i].GetType().ToString())
             {
                 case "OptionName":
-                OptionNameContent(i);
-                break;
+                    OptionNameContent(i);
+                    break;
                 case "OptionComponent":
-                OptionComponentContent(i);
-                break;
+                    OptionComponentContent(i);
+                    break;
                 case "OptionTag":
-                OptionTagContent(i);
-                break;
+                    OptionTagContent(i);
+                    break;
                 case "OptionLayer":
-                OptionLayerContent(i);
-                break;
+                    OptionLayerContent(i);
+                    break;
                 case "OptionFunction":
-                OptionFunctionContent(i);
-                break;
+                    OptionFunctionContent(i);
+                    break;
                 case "OptionField":
-                OptionFieldContent(i);
-                break;
+                    OptionFieldContent(i);
+                    break;
                 case "OptionProperty":
-                OptionPropertyContent(i);
-                break;
+                    OptionPropertyContent(i);
+                    break;
                 case "OptionActive":
-                OptionActiveContent(i);
-                break;
+                    OptionActiveContent(i);
+                    break;
                 case "OptionHasChildren":
-                OptionHasChildrenContent(i);
-                break;
+                    OptionHasChildrenContent(i);
+                    break;
                 case "OptionHasParent":
-                OptionHasParentContent(i);
-                break;
+                    OptionHasParentContent(i);
+                    break;
             }
         }
 
         EditorGUILayout.EndScrollView();
         EditorGUILayout.Space(20);
-        
+
         EditorGUI.BeginChangeCheck();
 
         bool searchGameObject = GUILayout.Button("Search GameObject", GUILayout.Width(380), GUILayout.Height(20));
@@ -163,7 +163,7 @@ public class HierarchySearcherWindow : EditorWindow
                 gameObjects.Clear();
                 selectedGameObjects.Clear();
                 selectedGameObject = -1;
-                
+
                 if (searchOptions.Count > 0)
                 {
                     gameObjects = searchOptions[0].SearchGameObject(gameObjects, true);
@@ -174,9 +174,9 @@ public class HierarchySearcherWindow : EditorWindow
                             gameObjects = searchOptions[i].SearchGameObject(gameObjects);
                         }
                     }
-                    
-                    gameObjects.Sort((a, b) => {return a.name.CompareTo(b.name);});
-                    
+
+                    gameObjects.Sort((a, b) => { return a.name.CompareTo(b.name); });
+
 
                     for (int i = 0; i < gameObjects.Count; i++)
                     {
@@ -265,7 +265,7 @@ public class HierarchySearcherWindow : EditorWindow
                         }
                     }
                     Selection.objects = selectObject.ToArray();
-                    
+
                 }
             }
 
@@ -280,7 +280,7 @@ public class HierarchySearcherWindow : EditorWindow
 
         EditorGUILayout.EndScrollView();
     }
-    
+
     private void OptionHasParentContent(int idx)
     {
         BeginOptionContent();
@@ -322,14 +322,14 @@ public class HierarchySearcherWindow : EditorWindow
         bool pressed = GUILayout.Button(searchOptions[idx].obj as string, EditorStyles.numberField, GUILayout.Width(150));
 
         EditorGUILayout.EndHorizontal();
-        
+
         if (EditorGUI.EndChangeCheck())
         {
             if (pressed)
             {
                 HashSet<string> items = new HashSet<string>();
-               // Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
-                UnityEngine.Object[] objects =  GameObject.FindObjectsOfType(typeof(GameObject), true);
+                // Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
+                UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
                     Component[] components = item.GetComponents<Component>();
@@ -367,7 +367,7 @@ public class HierarchySearcherWindow : EditorWindow
         bool pressed = GUILayout.Button(searchOptions[idx].obj as string, EditorStyles.numberField, GUILayout.Width(150));
 
         EditorGUILayout.EndHorizontal();
-        
+
         if (EditorGUI.EndChangeCheck())
         {
             if (pressed)
@@ -411,7 +411,7 @@ public class HierarchySearcherWindow : EditorWindow
         bool pressed = GUILayout.Button(searchOptions[idx].obj as string, EditorStyles.numberField, GUILayout.Width(150));
 
         EditorGUILayout.EndHorizontal();
-        
+
         if (EditorGUI.EndChangeCheck())
         {
             if (pressed)
@@ -474,7 +474,7 @@ public class HierarchySearcherWindow : EditorWindow
         bool pressed = GUILayout.Button(searchOptions[idx].obj as string, EditorStyles.numberField, GUILayout.Width(150));
 
         EditorGUILayout.EndHorizontal();
-        
+
         if (EditorGUI.EndChangeCheck())
         {
             if (pressed)
@@ -483,8 +483,8 @@ public class HierarchySearcherWindow : EditorWindow
                 UnityEngine.Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject), true);
                 foreach (GameObject item in objects)
                 {
-                    Entity[] components = item.GetComponents<Entity>();
-                    foreach (Entity component in components)
+                    AudioListener[] components = item.GetComponents<AudioListener>();
+                    foreach (AudioListener component in components)
                     {
                         if (!items.Contains(component.GetType().Name))
                         {
@@ -523,7 +523,7 @@ public class HierarchySearcherWindow : EditorWindow
         EditorGUI.BeginChangeCheck();
         EditorGUILayout.Space(10);
         bool removeOption = GUILayout.Button("Remove Option", GUILayout.Width(HierarchySearcher.window.position.width - HierarchySearcher.window.position.width / 10), GUILayout.Height(20));
-        
+
         if (EditorGUI.EndChangeCheck())
         {
             if (removeOption)

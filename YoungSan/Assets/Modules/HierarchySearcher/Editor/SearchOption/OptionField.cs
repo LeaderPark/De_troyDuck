@@ -15,8 +15,8 @@ public class OptionField : SearchOption
                 foreach (GameObject item in objects)
                 {
                     bool contains = false;
-                    Entity[] components = item.GetComponents<Entity>();
-                    foreach (Entity component in components)
+                    AudioListener[] components = item.GetComponents<AudioListener>();
+                    foreach (AudioListener component in components)
                     {
                         if (component.GetType().Name == (obj as string).Split('.')[0])
                         {
@@ -35,8 +35,8 @@ public class OptionField : SearchOption
                 foreach (GameObject item in gameObjects)
                 {
                     bool contains = false;
-                    Entity[] components = item.GetComponents<Entity>();
-                    foreach (Entity component in components)
+                    AudioListener[] components = item.GetComponents<AudioListener>();
+                    foreach (AudioListener component in components)
                     {
                         if (component.GetType().Name == (obj as string).Split('.')[0])
                         {

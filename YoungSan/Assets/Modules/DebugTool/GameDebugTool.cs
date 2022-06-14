@@ -1,15 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-#if UNITY_EDITOR
-
-#endif
 public class GameDebugTool : MonoBehaviour
 {
-
-#if UNITY_EDITOR
 
     private bool active;
 
@@ -289,6 +283,4 @@ public class GameDebugTool : MonoBehaviour
         rect.size = size;
         return rect;
     }
-
-#endif
 }

@@ -12,7 +12,7 @@ public class Skillinterface : MonoBehaviour
     public GameObject[] activation_image;
 
     private SkillSet skillSet;
-    void Awake()
+    void Start()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
@@ -35,7 +35,6 @@ public class Skillinterface : MonoBehaviour
 
     public void SetSkillDatas()
     {
-
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
         StopAllCoroutines();
@@ -45,7 +44,7 @@ public class Skillinterface : MonoBehaviour
             {
                 for (int i = 0; i < skillSet.skillCoolTimes[category].Length; i++)
                 {
-                    //CoolDown(category, i);
+                    Set_FillAmount(0, 0, i);
                 }
             }
         }

@@ -21,6 +21,7 @@ public class InputManager : Manager
     private Hashtable keyMappingTable; // 나중에 꼭 수정하자
     private Dictionary<KeyCode, ButtonState> keyTable;
     private Dictionary<MouseButton, ButtonState> mouseTable;
+    public bool isTimeStop = false;
 
     void Awake()
     {
@@ -75,28 +76,31 @@ public class InputManager : Manager
 
     void Update()
     {
-        foreach (KeyCode keyCode in keyTable.Keys.ToArray())
+        if (!isTimeStop)
         {
-            if (Input.GetKeyDown(keyCode))
-            keyTable[keyCode] = ButtonState.Down;
-            else if (Input.GetKeyUp(keyCode))
-            keyTable[keyCode] = ButtonState.Up;
-            else if (Input.GetKey(keyCode))
-            keyTable[keyCode] = ButtonState.Stay;
-            else
-            keyTable[keyCode] = ButtonState.None;
-        }
+            foreach (KeyCode keyCode in keyTable.Keys.ToArray())
+            {
+                if (Input.GetKeyDown(keyCode))
+                    keyTable[keyCode] = ButtonState.Down;
+                else if (Input.GetKeyUp(keyCode))
+                    keyTable[keyCode] = ButtonState.Up;
+                else if (Input.GetKey(keyCode))
+                    keyTable[keyCode] = ButtonState.Stay;
+                else
+                    keyTable[keyCode] = ButtonState.None;
+            }
 
-        foreach (MouseButton mouse in mouseTable.Keys.ToArray())
-        {
-            if (Input.GetMouseButtonDown((int)mouse))
-            mouseTable[mouse] = ButtonState.Down;
-            else if (Input.GetMouseButtonUp((int)mouse))
-            mouseTable[mouse] = ButtonState.Up;
-            else if (Input.GetMouseButton((int)mouse))
-            mouseTable[mouse] = ButtonState.Stay;
-            else
-            mouseTable[mouse] = ButtonState.None;
+            foreach (MouseButton mouse in mouseTable.Keys.ToArray())
+            {
+                if (Input.GetMouseButtonDown((int)mouse))
+                    mouseTable[mouse] = ButtonState.Down;
+                else if (Input.GetMouseButtonUp((int)mouse))
+                    mouseTable[mouse] = ButtonState.Up;
+                else if (Input.GetMouseButton((int)mouse))
+                    mouseTable[mouse] = ButtonState.Stay;
+                else
+                    mouseTable[mouse] = ButtonState.None;
+            }
         }
     }
 }

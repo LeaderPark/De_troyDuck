@@ -24,7 +24,7 @@ public class UIManager : Manager
 
     public bool important;
 
-    void Awake()
+    void Start()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
@@ -65,6 +65,9 @@ public class UIManager : Manager
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
+
+        InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
+        inputManager.isTimeStop = true;
     }
 
     public void CloseUI(CanvasGroup canvasGroup)
@@ -73,6 +76,9 @@ public class UIManager : Manager
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+
+        InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
+        inputManager.isTimeStop = false;
     }
     #endregion On Off
 

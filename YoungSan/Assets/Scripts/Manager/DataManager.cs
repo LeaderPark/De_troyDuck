@@ -26,8 +26,9 @@ public class Data
 
 public class DataManager : Manager
 {
-    private Data data = new Data();
-    private string key = "woansdldhflqortnraksemfrl";
+    public Data data = new Data();
+	private string key = "woansdldhflqortnraksemfrl";
+    //                    재문이 오리백숙 만들기
 
     void Update()
     {

@@ -718,6 +718,7 @@ MonoBehaviour:
     - {fileID: 2299651991525627454}
     - {fileID: 5296486755654049104}
     - {fileID: -8356640804297537055}
+    - {fileID: 2167431633972252050}
 --- !u!114 &-2797687935243969872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1283,6 +1284,20 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: b58bac8b32f2157489bd0d2e6e765c82
     defaultValue: {fileID: 0}
+--- !u!114 &2167431633972252050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abe84a4f4825484da4f8375ff2300c7, type: 3}
+  m_Name: Quest/QuestMarker
+  m_EditorClassIdentifier: 
+  m_Time: 13.266666666666667
+  quest: {fileID: 11400000, guid: a7e95dd2f9341d04e9b66b0e6d1cdecd, type: 2}
 --- !u!114 &2299651991525627454
 MonoBehaviour:
   m_ObjectHideFlags: 1

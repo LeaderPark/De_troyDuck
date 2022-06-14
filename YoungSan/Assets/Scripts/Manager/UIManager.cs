@@ -34,6 +34,7 @@ public class UIManager : Manager
 
     public void Init()
     {
+        important = false;
         skillinterface.Init();
         statbar.Init();
 
@@ -45,7 +46,6 @@ public class UIManager : Manager
 
             if (category == StatCategory.Health) enemyStatUI.EnemyHpBarUpdate(entity);
         }));
-        important = false;
     }
 
     #region On Off

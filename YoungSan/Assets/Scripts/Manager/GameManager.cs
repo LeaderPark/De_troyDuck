@@ -50,7 +50,7 @@ public class GameManager : Manager
     void Start()
     {
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-        soundManager.SetBgm("main theme");
+        soundManager.SetBgm(string.Empty);
     }
     public void PlayerFind()
     {

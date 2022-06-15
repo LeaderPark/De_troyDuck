@@ -34,7 +34,7 @@ public class SceneManager : Manager
 
         uiManager.FadeInOut(true, false, () =>
         {
-            if (sceneStartPosition.Contains(curSceneName) && sceneStartPosition.Contains(sceneName))
+            if (sceneStartPosition.Contains((curSceneName, sceneName)))
             {
                 GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
                 gameManager.Player.transform.position = (Vector3)sceneStartPosition[(curSceneName, sceneName)];

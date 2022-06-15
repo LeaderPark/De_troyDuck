@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,20 @@ public class LoadMapData : MonoBehaviour
     private void Awake()
     {
         if (quest == null) return;
+        SceneManager sceneManager = ManagerObject.Instance.GetManager(ManagerType.SceneManager) as SceneManager;
+
+        Action action = null;
+        action += () => gameObject.SetActive(active);
+        Action removeAction = null;
+        removeAction += () => { 
+            sceneManager.afterSceneLoadAction -= action;
+            sceneManager.afterSceneLoadAction -= removeAction;
+        };
         if (quest.clear)
         {
-            SceneManager sceneManager = ManagerObject.Instance.GetManager(ManagerType.SceneManager) as SceneManager;
-            sceneManager.afterSceneLoadAction += () => gameObject.SetActive(active);
+
+            sceneManager.afterSceneLoadAction += action;
+            sceneManager.afterSceneLoadAction += removeAction;
         }
     }
 }

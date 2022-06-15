@@ -37,6 +37,13 @@ public class QuestManager : Manager
             allQuests.Add(item.questId, item);
         }
     }
+    public void developerResetQuest()
+    {
+        foreach (Quest item in allQuests.Values)
+        {
+            ResetQuest(item);
+        }
+    }
 
     public void AllResetQuests()
     {
@@ -59,6 +66,7 @@ public class QuestManager : Manager
             ResetQuest(item);
         }
         proceedingQuests.Clear();
+        completedQuests.Clear();
 
     }
     public bool IsProceeding(Quest quest)
@@ -100,6 +108,7 @@ public class QuestManager : Manager
 
     public void ClearQuest(Quest quest)
     {
+        Debug.Log(quest);
         proceedingQuests.Remove(quest.questId);
         quest.clear = true;
         completedQuests.Add(quest.questId, quest);
@@ -216,29 +225,30 @@ public class QuestManager : Manager
 
     public void DebugQuest()
     {
+        return;
         foreach (var item in proceedingQuests.Values)
         {
-            //Debug.Log("proceedingQuests.Values : " + item);
+            Debug.Log("proceedingQuests.Values : " + item);
         }
         foreach (var item in proceedingQuests.Keys)
         {
-            //Debug.Log("proceedingQuests.Keys : " + item);
+            Debug.Log("proceedingQuests.Keys : " + item);
         }
         foreach (var item in completedQuests.Values)
         {
-            //Debug.Log("completedQuests.Values : " + item);
+            Debug.Log("completedQuests.Values : " + item);
         }
         foreach (var item in completedQuests.Keys)
         {
             Debug.Log("completedQuests.Keys : " + item);
         }
-        // foreach (var item in allQuests.Values)
-        // {
-        //     Debug.Log(item);
-        // }
-        // foreach (var item in allQuests.Keys)
-        // {
-        //     Debug.Log(item);
-        // }
+        foreach (var item in allQuests.Values)
+        {
+            Debug.Log(item);
+        }
+        foreach (var item in allQuests.Keys)
+        {
+            Debug.Log(item);
+        }
     }
 }

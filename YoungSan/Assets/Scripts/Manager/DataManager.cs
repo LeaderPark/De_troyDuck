@@ -27,7 +27,7 @@ public class Data
 public class DataManager : Manager
 {
     public Data data = new Data();
-	private string key = "woansdldhflqortnraksemfrl";
+    private string key = "woansdldhflqortnraksemfrl";
     //                    재문이 오리백숙 만들기
 
     void Update()
@@ -69,12 +69,13 @@ public class DataManager : Manager
     {
         File.Delete(Application.persistentDataPath + "/SaveData.json");
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-        questManager.AllResetQuests();
+        questManager.developerResetQuest();
+        Debug.Log("개발자 초기화 완료");
     }
 
     void OnApplicationQuit()
     {
-        SetReFiles();
+        //SetReFiles();
     }
 
     private void SetDefaultData()
@@ -198,11 +199,13 @@ public class DataManager : Manager
         //UI 세팅
 
         yield return null;
+        Debug.Log(uiManager);
+        uiManager.important = false;
         uiManager.Init();
 
     }
 
-    public static string Decrypt(string textToDecrypt, string key)
+	public static string Decrypt(string textToDecrypt, string key)
     {
         RijndaelManaged rijndaelCipher = new RijndaelManaged();
         rijndaelCipher.Mode = CipherMode.CBC;

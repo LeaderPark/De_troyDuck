@@ -29,9 +29,11 @@ public class EnterTheStart : MonoBehaviour
                 if (isClearTriggerQuest == null || !isClearTriggerQuest.clear)
                 {
                     gameManager.Player.ActiveScript(false);
-                    uiManager.UISetActiveFalse();
+                    uiManager.UISetActiveTimeLine(false);
                     uiManager.FadeInOut(true, true, () =>
                     {
+                        gameManager.Player.ActiveScript(true);
+                        uiManager.UISetActiveTimeLine(true);
                         if (timeLineName != null)
                         {
 

@@ -78,6 +78,7 @@ public class Entity : MonoBehaviour
             gameManager.deathWindow.TurnOnWindow(
                 () =>
                 {
+                    uimanager.important = false;
                     dataManager.Load();
                 }
             );

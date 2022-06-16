@@ -24,7 +24,7 @@ public class UIManager : Manager
 
     [SerializeField] private CanvasGroup fade;
 
-    public List<QuestUI> questUIObj = new List<QuestUI>();
+    public QuestUI[] questUIObj;
 
     public bool important;
 
@@ -62,11 +62,14 @@ public class UIManager : Manager
 
     public void SetQuestUI(Quest quest)
     {
-        Debug.Log("»ý¼º");
-        GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/QuestUI"), transform.position, Quaternion.identity, transform.GetChild(1).transform);
-        go.GetComponent<RectTransform>().anchoredPosition = new Vector2(1920, (questUIObj.Count * -200));
-        questUIObj.Add(go.GetComponent<QuestUI>());
-        go.GetComponent<QuestUI>().SetQuestUIText(quest);
+        for (int i = 0; i < questUIObj.Length; i++)
+        {
+            if (!questUIObj[i].isUsing)
+            {
+                questUIObj[i].SetQuestUIText(quest);
+                return;
+            }
+        }
     }
 
     #region On Off

@@ -15,6 +15,8 @@ public class QuestUI : MonoBehaviour
     public Vector2 startPostion;
 
     public bool isQuestUI = false;
+    public bool isUsing = false;
+    public int questUIIndex;
 
     void Start()
     {
@@ -24,8 +26,6 @@ public class QuestUI : MonoBehaviour
 
     void Update()
     {
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-
         if (isQuestUI)
         {
             rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, new Vector2(startPostion.x - 700, rectTransform.anchoredPosition.y), Time.deltaTime * 2f);
@@ -39,12 +39,13 @@ public class QuestUI : MonoBehaviour
     IEnumerator OpenQuestUI()
     {
         isQuestUI = true;
+        isUsing = true;
         yield return new WaitForSeconds(3f);
         isQuestUI = false;
         yield return new WaitForSeconds(1.6f);
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.questUIObj.Remove(this);
-        Destroy(this.gameObject);
+        isUsing = false;
+        if (!isQuestUI)
+            rectTransform.anchoredPosition = new Vector2(startPostion.x, startPostion.y);
     }
 
     public void SetQuestUIText(Quest msg)

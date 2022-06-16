@@ -218,6 +218,7 @@ public class Player : MonoBehaviour
             entity.hitable = false;
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { new Vector3(inputX, 0, inputY).normalized, 24 });
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0.0f });
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Dash" });
             entity.clone.SubStat(StatCategory.Stamina, 50);
 
             SkillSet skillSet = entity.GetComponentInChildren<SkillSet>();

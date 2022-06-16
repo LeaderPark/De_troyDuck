@@ -51,16 +51,20 @@ public class TimelineController : MonoBehaviour
 
         if (director.playableGraph.IsValid())
             if (director.playableGraph.IsPlaying())
-                if (Input.GetKeyDown(KeyCode.Space) /*&& director.state == PlayState.Playing*/)
+                if (director.duration - director.time > 5)
                 {
-                    isKeyDown = true;
+                    if (Input.GetKeyDown(KeyCode.Space) /*&& director.state == PlayState.Playing*/)
+                    {
+                        isKeyDown = true;
+                    }
+                    else if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        currentSkipTime = 0;
+                        isKeyDown = false;
+                        currentIsSkip = false;
+                    }
                 }
-                else if (Input.GetKeyUp(KeyCode.Space))
-                {
-                    currentSkipTime = 0;
-                    isKeyDown = false;
-                    currentIsSkip = false;
-                }
+
 
         if (isKeyDown)
         {
@@ -159,7 +163,7 @@ public class TimelineController : MonoBehaviour
                 if (loadmarker != null)
                 {
                     Debug.Log("아니 슈발 마커가 있다니깐");
-                    durationTime = loadmarker.time - 0.1f;
+                    durationTime = loadmarker.time - 0.01f;
                 }
             }
         }
@@ -167,7 +171,7 @@ public class TimelineController : MonoBehaviour
         FadeInOut(true);
         skip = true;
         yield return new WaitForSeconds(2f);
-        director.time = durationTime - 0.1f;
+        director.time = durationTime - 0.01f;
         FadeInOut(false);
         yield return new WaitForSeconds(1f);
         skip = false;

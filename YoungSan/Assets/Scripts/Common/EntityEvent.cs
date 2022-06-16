@@ -70,6 +70,7 @@ public class EntityEvent : MonoBehaviour
             }
 
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[] { new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) });
+            entity.GetProcessor(typeof(Processor.Collision))?.AddCommand("SetCollider", new object[] { GetComponent<SpriteRenderer>().sprite });
         }
 
     }

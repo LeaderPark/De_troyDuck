@@ -1,6 +1,9 @@
+#define USE_COLLISION
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 namespace Processor
 {
@@ -16,6 +19,7 @@ namespace Processor
 
         private void SetCollider(UnityEngine.Sprite sprite)
         {
+# if USE_COLLISION
             Vector2[] vertices = sprite.vertices;
             Rect rect = sprite.rect;
 
@@ -54,6 +58,7 @@ namespace Processor
             Vector2 pivot = verSize / 2 + new Vector2(minX, minY);
 
             collider.center = pivot;
+#endif
 
             if (spriteRenderer.flipX)
             {

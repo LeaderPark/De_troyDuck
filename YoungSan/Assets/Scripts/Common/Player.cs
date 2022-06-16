@@ -274,7 +274,8 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<Player>().enabled = active;
         gameObject.GetComponent<Entity>().enabled = active;
         gameObject.GetComponent<EntityEvent>().enabled = active;
-        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        entity.GetProcessor(typeof(Processor.Move)).AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
+        entity.GetProcessor(typeof(Processor.Animate)).AddCommand("PlayNoLock", new object[] { "Idle" });
     }
     void OnDrawGizmosSelected()
     {

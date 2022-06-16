@@ -107,8 +107,8 @@ public class QuestManager : Manager
     {
         RemoveQuestProceeding(id);
         SetQuestComplete(id);
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.SetQuestUI(GetQuest(id));
+        // UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        // uIManager.SetQuestUI(GetQuest(id));
     }
 
     public bool CheckAvailableQuest(int id)

@@ -57,6 +57,7 @@ public class UIManager : Manager
         {
             if (!questUIObj[i].isUsing)
             {
+                Debug.Log("하,,, 쓰벌");
                 questUIObj[i].SetQuestUIText(quest);
                 return;
             }

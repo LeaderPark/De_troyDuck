@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
                 entity.gameObject.GetComponent<AudioListener>().enabled = false;
                 entity.gameObject.layer = 7;
                 entity.gameObject.tag = "Enemy";
-                if (Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * gameManager.healthRate) != gameManager.Player.entity.clone.GetStat(StatCategory.Health))
+                if (Mathf.Max(1, Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * gameManager.healthRate)) != gameManager.Player.entity.clone.GetStat(StatCategory.Health))
                 {
                     gameManager.healthRate = hpRatio;
                 }
@@ -217,6 +217,19 @@ public class Player : MonoBehaviour
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             entity.hitable = false;
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { new Vector3(inputX, 0, inputY).normalized, 24 });
+
+            if (!(entity.GetProcessor(typeof(Processor.Animate)) as Processor.Animate).locking)
+            {
+                if (inputX > 0)
+                {
+                    direction = true;
+                }
+                else if (inputX < 0)
+                {
+                    direction = false;
+                }
+                entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
+            }
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0.0f });
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Dash" });
             entity.clone.SubStat(StatCategory.Stamina, 50);
@@ -274,8 +287,8 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<Player>().enabled = active;
         gameObject.GetComponent<Entity>().enabled = active;
         gameObject.GetComponent<EntityEvent>().enabled = active;
-        entity.GetProcessor(typeof(Processor.Move)).AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
-        entity.GetProcessor(typeof(Processor.Animate)).AddCommand("PlayNoLock", new object[] { "Idle" });
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        gameObject.GetComponent<Animator>().Play("Idle");
     }
     void OnDrawGizmosSelected()
     {

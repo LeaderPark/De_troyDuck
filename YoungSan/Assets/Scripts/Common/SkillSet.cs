@@ -88,8 +88,8 @@ public class SkillSet : MonoBehaviour
             if (skillData.hitBoxDatas.Length > skillData.targetIndex)
             {
                 skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
-                skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.ClearTargetSet();
-                skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.ClearTargetSet();
+                skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.gameObject.SetActive(false);
+                skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.gameObject.SetActive(false);
             }
         }
         foreach (var item in soundDatas)
@@ -176,6 +176,12 @@ public class SkillSet : MonoBehaviour
         skillData = data;
         this.isRight = isRight;
 
+        if (skillData.hitBoxDatas.Length > skillData.targetIndex)
+        {
+            skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.ClearTargetSet();
+            skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.ClearTargetSet();
+        }
+
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
         eventManager.GetEventTrigger(typeof(SkillEventTrigger)).Invoke(new object[] { entity, data });
         StartCoroutine(attackSound(data));
@@ -255,8 +261,8 @@ public class SkillSet : MonoBehaviour
                         if (skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox.transform.parent.gameObject.activeSelf)
                         {
                             skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
-                            skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.ClearTargetSet();
-                            skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.ClearTargetSet();
+                            skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.gameObject.SetActive(false);
+                            skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.gameObject.SetActive(false);
                         }
                     }
                 }

@@ -20,7 +20,7 @@ public class BloodEffect : MonoBehaviour
 
     IEnumerator OffEffect()
     {
-        yield return new WaitForSeconds(40f);
+        yield return new WaitForSeconds(10f);
         gameObject.SetActive(false);
     }
 }

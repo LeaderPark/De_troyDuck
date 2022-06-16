@@ -49,7 +49,8 @@ public class QuestUI : MonoBehaviour
 
     public void SetQuestUIText(Quest msg)
     {
-        clearImg.SetActive(msg.clear);
+        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+        clearImg.SetActive(questManager.IsComplete(msg.questId));
         questId.text = "Quest " + msg.questId;
         questTitle.text = msg.title;
         questContext.text = msg.context;
@@ -67,17 +68,6 @@ public class QuestUI : MonoBehaviour
             QuestUI questUI = qu.GetComponent<QuestUI>();
             questUI.questTitle.text = quest.title;
             questUI.questContext.text = quest.context;
-            for (int i = 0; i < quest.clearValue.values.Count; i++)
-            {
-                if (quest.clearValue.values[i].type == PropertyType.INT)
-                {
-                    questUI.questValue.text = quest.clearValue.values[i].currentIntValue + "/" + quest.clearValue.values[i].intValue;
-                }
-                else if (quest.clearValue.values[i].type == PropertyType.BOOL)
-                {
-                    questUI.questValue.text = "대충 뭔말 해야할지 모르겠다는 뜻";
-                }
-            }
         }
     }
 

@@ -12,8 +12,9 @@ public class LoadMapData : MonoBehaviour
     {
         if (quest == null) return;
         SceneManager sceneManager = ManagerObject.Instance.GetManager(ManagerType.SceneManager) as SceneManager;
+        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 
-        if (quest.clear)
+        if (questManager.IsComplete(quest.questId))
         {
             gameObject.SetActive(active);
         }

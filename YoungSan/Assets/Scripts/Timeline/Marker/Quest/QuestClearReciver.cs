@@ -5,18 +5,18 @@ using UnityEngine.Playables;
 
 public class QuestClearReciver : Receiver
 {
-	public override void OnNotify(Playable origin, INotification notification, object context)
-	{
-		base.OnNotify(origin, notification, context);
-		QuestClearMarker marker = notification as QuestClearMarker;
-		if (marker != null)
-		{
-			QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-            if(marker.quest != null)
+    public override void OnNotify(Playable origin, INotification notification, object context)
+    {
+        base.OnNotify(origin, notification, context);
+        QuestClearMarker marker = notification as QuestClearMarker;
+        if (marker != null)
+        {
+            QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+            if (marker.quest != null)
             {
-               // if(questManager.CheckClearQuest(marker.quest))
-                    questManager.ClearQuest(marker.quest);
+                // if(questManager.CheckClearQuest(marker.quest))
+                questManager.ClearQuest(marker.quest.questId);
             }
-		}
-	}
+        }
+    }
 }

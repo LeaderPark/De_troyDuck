@@ -88,6 +88,8 @@ public class SkillSet : MonoBehaviour
             if (skillData.hitBoxDatas.Length > skillData.targetIndex)
             {
                 skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
+                skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.ClearTargetSet();
+                skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.ClearTargetSet();
             }
         }
         foreach (var item in soundDatas)

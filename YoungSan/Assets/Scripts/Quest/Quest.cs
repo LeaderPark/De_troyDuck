@@ -11,11 +11,16 @@ public class Quest : ScriptableObject
     [TextArea()]
     public string context;
 
-    public ClearValue clearValue;
     public Quest prevQuest;
     public Quest nextQuest;
+    public QuestType type;
+    public int destination;
 
     public bool resetPrevQuest;
-    
-    public bool clear; 
+}
+
+public enum QuestType
+{
+    Condition,
+    EnemyHunt,
 }

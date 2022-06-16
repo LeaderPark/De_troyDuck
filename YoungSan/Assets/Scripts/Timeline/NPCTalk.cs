@@ -5,74 +5,68 @@ using UnityEngine.Timeline;
 
 public class NPCTalk : MonoBehaviour
 {
-	public NpcData[] npcData;
-	private QuestManager questManager;
-	private TimelineManager timelineManager;
-	private void Awake()
-	{
-		questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-		timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
-	}
-	private void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.H))
-			for (int i = 0; i < npcData.Length; i++)
-			{
-				questManager.SetQuestEmptyValue(npcData[i].quest);
-				questManager.completedQuests.Clear();
-				questManager.proceedingQuests.Clear();
-			}
-	}
-	public void Talk()
-	{
-		for (int i = 0; i < npcData.Length; i++)
-		{
-			//Äù½ºÆ® ¾øÀ»¶§
-			if (npcData[i].quest == null)
-			{
-				timelineManager.StartCutScene(npcData[i].noneQusetTimeline);
-				break;
-			}
-			//npc µ¥ÀÌÅÍ°¡ Áö´Ï°í ÀÖ´Â Äù½ºÆ®°¡ Å¬¸®¾î µÈ »óÅÂ°¡ ¾Æ´Ï¶ó¸é
-			if (!npcData[i].quest.clear)
-			{
-				//ÀÌÀü Äù½ºÆ®°¡ ¾ø°Å³ª ²£´Ù¸é
-				if (npcData[i].quest.prevQuest == null || npcData[i].quest.prevQuest.clear)
-				{
-					if (questManager.CheckAvailableQuest(npcData[i].quest))
-					{
-						timelineManager.StartCutScene(npcData[i].timelineList[0]);
-					}
-					//i¹øÂ° Äù½ºÆ®°¡ ÁøÇàÁß¿¡ µé¾î°¡ ÀÖ°í Å¬¸®¾î¿¡ µé¾îÀÖÁö ¾Ê´Ù¸é
-					else if (questManager.proceedingQuests.ContainsKey(npcData[i].quest.questId) && !questManager.CheckClearQuest(npcData[i].quest))
-					{
-						timelineManager.StartCutScene(npcData[i].timelineList[1]);
-					}
-					//Äù½ºÆ®°¡ Å¬¸®¾î¶ó¸é
-					else if (questManager.CheckClearQuest(npcData[i].quest))
-					{
-						questManager.ClearQuest(npcData[i].quest);
-						timelineManager.StartCutScene(npcData[i].timelineList[2]);
-					}
-					break;
-				}
-				//ÀÌÀü Äù½ºÆ®¸¦ ´ú ²£´Ù¸é
-				else
-				{
-					timelineManager.StartCutScene(npcData[i].noneQusetTimeline);
-					break;
-				}
-			}
-			//i¹øÂ° Äù½ºÆ®°¡ Å¬¸®¾î¶ó¸é
-			else
-			{
-				if (i + 1 <= npcData.Length)
-				{
-					continue;
-				}
-				timelineManager.StartCutScene(npcData[i].noneQusetTimeline);
-				break;
-			}
-		}
-	}
+    public NpcData[] npcData;
+    private QuestManager questManager;
+    private TimelineManager timelineManager;
+    private void Awake()
+    {
+        questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+        timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+            for (int i = 0; i < npcData.Length; i++)
+            {
+                questManager.completedQuests.Clear();
+                questManager.proceedingQuests.Clear();
+            }
+    }
+    public void Talk()
+    {
+        for (int i = 0; i < npcData.Length; i++)
+        {
+            //ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (npcData[i].quest == null)
+            {
+                timelineManager.StartCutScene(npcData[i].noneQusetTimeline);
+                break;
+            }
+            //npc ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½
+            if (!questManager.IsComplete(npcData[i].quest.questId))
+            {
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+                if (npcData[i].quest.prevQuest == null || questManager.IsComplete(npcData[i].quest.prevQuest.questId))
+                {
+                    if (questManager.CheckAvailableQuest(npcData[i].quest.questId))
+                    {
+                        timelineManager.StartCutScene(npcData[i].timelineList[0]);
+                    }
+                    //iï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½î°¡ ï¿½Ö°ï¿½ Å¬ï¿½ï¿½ï¿½î¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½
+                    else if (questManager.proceedingQuests.ContainsKey(npcData[i].quest.questId))
+                    {
+                        timelineManager.StartCutScene(npcData[i].timelineList[1]);
+                    }
+                    //ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    break;
+                }
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+                else
+                {
+                    timelineManager.StartCutScene(npcData[i].noneQusetTimeline);
+                    break;
+                }
+            }
+            //iï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            else
+            {
+                if (i + 1 <= npcData.Length)
+                {
+                    continue;
+                }
+                timelineManager.StartCutScene(npcData[i].noneQusetTimeline);
+                break;
+            }
+        }
+    }
 }

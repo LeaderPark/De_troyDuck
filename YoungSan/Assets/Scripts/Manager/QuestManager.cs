@@ -25,7 +25,7 @@ public class QuestManager : Manager
     {
         foreach (Quest item in allQuests.Values)
         {
-            ResetQuest(item);
+            ResetQuest(item.questId);
         }
     }
 
@@ -33,31 +33,34 @@ public class QuestManager : Manager
     {
         foreach (Quest item in proceedingQuests.Values)
         {
-            if(item.resetPrevQuest)
-            ResetQuest(item);
+            if (item != null && item.resetPrevQuest)
+                ResetQuest(item.questId);
         }
+        proceedingQuests.Clear();
+        completedQuests.Clear();
     }
 
-    public bool IsProceeding(Quest quest)
+    public Quest GetQuest(int id)
     {
-        return proceedingQuests.ContainsKey(quest.questId);
-    }
-    public bool IsComplete(Quest quest)
-    {
-        return completedQuests.ContainsKey(quest);
+        Debug.Assert(allQuests.ContainsKey(id), "Quest is unavailable.");
+        return allQuests[id] as Quest;
     }
 
-    private void ResetQuest(Quest quest)
+    public bool IsProceeding(int id)
     {
-        Quest resetQuest = quest;
+        return proceedingQuests.ContainsKey(id);
+    }
+    public bool IsComplete(int id)
+    {
+        return completedQuests.ContainsKey(id);
+    }
+
+    private void ResetQuest(int id)
+    {
+        Quest resetQuest = GetQuest(id);
         do
         {
-            resetQuest.clear = false;
-
-            if (completedQuests.ContainsKey(resetQuest.questId))
-            {
-                completedQuests.Remove(resetQuest.questId);
-            }
+            RemoveQuestComplete(id);
 
             if (resetQuest.resetPrevQuest && resetQuest.prevQuest != null)
             {
@@ -68,36 +71,55 @@ public class QuestManager : Manager
         } while (resetQuest != null);
     }
 
-    public void AddQuest(Quest quest)
+    public void SetQuestProceeding(int id)
     {
-        proceedingQuests.Add(quest.questId, quest);
+        Quest quest = GetQuest(id);
+        if (!IsProceeding(id))
+        {
+            proceedingQuests.Add(id, quest);
+            UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uIManager.questUI.SetQuestUIText(quest);
+        }
+    }
+
+    public void RemoveQuestProceeding(int id)
+    {
+        proceedingQuests.Remove(id);
+    }
+
+    public void SetQuestComplete(int id)
+    {
+        Quest quest = GetQuest(id);
+        if (!IsComplete(id))
+        {
+            completedQuests.Add(id, quest);
+            UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            uIManager.questUI.SetQuestUIText(quest);
+        }
+    }
+
+    public void RemoveQuestComplete(int id)
+    {
+        completedQuests.Remove(id);
+    }
+
+    public void ClearQuest(int id)
+    {
+        RemoveQuestProceeding(id);
+        SetQuestComplete(id);
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.questUI.SetQuestUIText(quest);
+        uIManager.questUI.SetQuestUIText(GetQuest(id));
     }
 
-    public void RemoveQuest(Quest quest)
-    {
-        proceedingQuests.Remove(quest.questId);
-    }
-
-    public void ClearQuest(Quest quest)
-    {
-        Debug.Log(quest);
-        proceedingQuests.Remove(quest.questId);
-        quest.clear = true;
-        completedQuests.Add(quest.questId, quest);
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.questUI.SetQuestUIText(quest);
-    }
-
-    public bool CheckAvailableQuest(Quest quest)
+    public bool CheckAvailableQuest(int id)
     {
         bool check = false;
-        if (quest.prevQuest == null || quest.prevQuest.clear)
+        Quest quest = GetQuest(id);
+        if (quest.prevQuest == null || IsComplete(quest.prevQuest.questId))
         {
             if (!proceedingQuests.ContainsKey(quest.questId))
             {
-                if (!quest.clear)
+                if (!IsComplete(quest.questId))
                 {
                     check = true;
                 }
@@ -119,81 +141,5 @@ public class QuestManager : Manager
             check = false;
         }
         return check;
-    }
-
-    public bool CheckClearQuest(Quest quest)
-    {
-        bool check = false;
-        for (int i = 0; i < quest.clearValue.values.Count; i++)
-        {
-            if (quest.clearValue.values[i].type == PropertyType.INT)
-            {
-                if (quest.clearValue.values[i].intValue <= quest.clearValue.values[i].currentIntValue)
-                {
-                    Debug.Log("퀘스트 클리어");
-                    check = true;
-                }
-            }
-            else if (quest.clearValue.values[i].type == PropertyType.BOOL)
-            {
-                if (quest.clearValue.values[i].boolValue)
-                {
-                    Debug.Log("퀘스트 클리어");
-                    check = true;
-                }
-            }
-
-            if (!check)
-            {
-                break;
-            }
-        }
-        return check;
-    }
-
-    public void SetQuestEmptyValue(Quest quest) //테스트용 초기화
-    {
-        for (int i = 0; i < quest.clearValue.values.Count; i++)
-        {
-            if (quest.clearValue.values[i].type == PropertyType.INT)
-            {
-                quest.clearValue.values[i].currentIntValue = 0;
-                quest.clear = false;
-                Debug.Log(quest.clearValue.values[i].intValue);
-                Debug.Log(quest.clearValue.values[i].currentIntValue);
-                Debug.Log(quest.clear);
-            }
-            else if (quest.clearValue.values[i].type == PropertyType.BOOL)
-            {
-                quest.clearValue.values[i].boolValue = false;
-                quest.clear = false;
-                Debug.Log(quest.clearValue.values[i].boolValue);
-            }
-        }
-    }
-
-    public void AddQuestValue(Quest quest)
-    {
-        EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
-        eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>
-        {
-            if (hitEntity.CompareTag("Enemy"))
-            {
-                for (int i = 0; i < quest.clearValue.values.Count; i++)
-                {
-                    if (hitEntity.entityData == quest.clearValue.values[i].entityData)
-                    {
-                        if (quest.clearValue.values[i].type == PropertyType.INT)
-                        {
-                            if (quest.clearValue.values[i].intValue > quest.clearValue.values[i].currentIntValue)
-                            {
-                                quest.clearValue.values[i].currentIntValue++;
-                                Debug.Log(quest.clearValue.values[i].currentIntValue);
-                            }
-                        }
-                    }
-                }
-            }
-        }));
     }
 }

@@ -12,16 +12,9 @@ public class Data
     public string sceneName;
     public string currentPlayer;
     public Vector3 currentPosition;
-    public float Health;
-    public float CurrentHealth;
-    public float Attack;
-    public float Speed;
-    public float Stamina;
-    public float CurrentStamina;
-    public float gold;
-    public float soul;
-    public int[] proceedingQuestKeys;
-    public int[] completedQuestKeys;
+    public Status status;
+    public int[] proceedingQuests;
+    public int[] completedQuests;
 }
 
 public class DataManager : Manager
@@ -83,12 +76,14 @@ public class DataManager : Manager
         data.sceneName = "Castle";
         data.currentPlayer = "MainChar";
         data.currentPosition = new Vector3(0, 0, 0);
-        data.Health = 400.0f;
-        data.CurrentHealth = 400.0f;
-        data.Attack = 12.0f;
-        data.Speed = 8.0f;
-        data.Stamina = 500.0f;
-        data.CurrentStamina = 500.0f;
+        Status status = new Status();
+        status.stats = new List<Stat>()
+        {
+            new Stat() { category = StatCategory.Health, minValue = 400, maxValue = 400 },
+            new Stat() { category = StatCategory.Attack, minValue = 12, maxValue = 12 },
+            new Stat() { category = StatCategory.Speed, minValue = 8, maxValue = 8 },
+            new Stat() { category = StatCategory.Stamina, minValue = 500, maxValue = 500 }
+        };
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);
@@ -103,51 +98,32 @@ public class DataManager : Manager
         data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         data.currentPlayer = entity.entityData.prefab.name;
         data.currentPosition = entity.gameObject.transform.position;
-        data.Health = entity.clone.GetMaxStat(StatCategory.Health);
-        data.CurrentHealth = entity.clone.GetStat(StatCategory.Health);
-        data.Attack = entity.clone.GetStat(StatCategory.Attack);
-        data.Speed = entity.clone.GetStat(StatCategory.Speed);
-        data.Stamina = entity.clone.GetMaxStat(StatCategory.Stamina);
-        data.CurrentStamina = entity.clone.GetStat(StatCategory.Stamina);
-
-        data.proceedingQuestKeys = new int[questManager.proceedingQuests.Keys.Count];
-        data.completedQuestKeys = new int[questManager.completedQuests.Keys.Count];
+        Status status = new Status();
+        status.stats = new List<Stat>();
+        foreach (var item in entity.entityData.status.stats)
         {
-            int i = 0;
+            status.stats.Add(new Stat() { category = item.category, minValue = entity.clone.GetStat(item.category), maxValue = entity.clone.GetMaxStat(item.category) });
+        };
+
+        data.proceedingQuests = new int[questManager.proceedingQuests.Keys.Count];
+        data.completedQuests = new int[questManager.completedQuests.Keys.Count];
+        int i = 0;
+        {
+            i = 0;
             foreach (int item in questManager.proceedingQuests.Keys)
             {
-                data.proceedingQuestKeys[i] = item;
+                data.proceedingQuests[i] = item;
                 ++i;
             }
         }
         {
-            int i = 0;
+            i = 0;
             foreach (int item in questManager.completedQuests.Keys)
             {
-                data.completedQuestKeys[i] = item;
+                data.completedQuests[i] = item;
                 ++i;
             }
         }
-    }
-
-    private IEnumerator DefaultLoad()
-    {
-        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-        UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Castle");
-
-        GameObject go = Instantiate(Resources.Load("Prefabs/EntityData/MainChar")) as GameObject;
-        go.tag = "Player";
-        go.layer = 6;
-        go.GetComponent<Player>().enabled = true;
-        gameManager.Player = go.GetComponent<Player>();
-        go.GetComponent<AudioListener>().enabled = true;
-        go.GetComponent<Entity>().isDead = false;
-
-        uiManager.Init();
-
-        yield return null;
     }
 
     private IEnumerator LoadApply()
@@ -162,6 +138,17 @@ public class DataManager : Manager
 
         string jsonDataString = File.ReadAllText(Application.persistentDataPath + "/SaveData.json");
         data = JsonUtility.FromJson<Data>(Decrypt(jsonDataString, key));
+
+
+        //퀘스트 적용
+        foreach (int questId in data.proceedingQuests)
+        {
+            questManager.SetQuestProceeding(questId);
+        }
+        foreach (int questId in data.completedQuests)
+        {
+            questManager.SetQuestComplete(questId);
+        }
 
         //씬 로드
         UnityEngine.SceneManagement.SceneManager.LoadScene(data.sceneName);
@@ -179,21 +166,10 @@ public class DataManager : Manager
 
         //스텟 적용
         Clone clone = go.GetComponent<Entity>().clone;
-        clone.SetMaxStat(StatCategory.Health, (int)data.Health);
-        clone.SetStat(StatCategory.Health, (int)data.CurrentHealth);
-        clone.SetStat(StatCategory.Attack, (int)data.Attack);
-        clone.SetStat(StatCategory.Speed, (int)data.Speed);
-        clone.SetMaxStat(StatCategory.Stamina, (int)data.Stamina);
-        clone.SetStat(StatCategory.Stamina, (int)data.CurrentStamina);
-
-        //퀘스트 적용
-        for (int i = 0; i < data.proceedingQuestKeys.Length; i++)
+        foreach (Stat stat in data.status.stats)
         {
-            questManager.proceedingQuests.Add(data.proceedingQuestKeys[i], questManager.allQuests[data.proceedingQuestKeys[i]]);
-        }
-        for (int i = 0; i < data.completedQuestKeys.Length; i++)
-        {
-            questManager.completedQuests.Add(data.completedQuestKeys[i], questManager.allQuests[data.completedQuestKeys[i]]);
+            clone.SetMaxStat(stat.category, stat.maxValue);
+            clone.SetStat(stat.category, stat.minValue);
         }
 
         //UI 세팅
@@ -205,7 +181,7 @@ public class DataManager : Manager
 
     }
 
-	public static string Decrypt(string textToDecrypt, string key)
+    public static string Decrypt(string textToDecrypt, string key)
     {
         RijndaelManaged rijndaelCipher = new RijndaelManaged();
         rijndaelCipher.Mode = CipherMode.CBC;

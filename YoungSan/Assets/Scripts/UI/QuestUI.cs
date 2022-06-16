@@ -5,35 +5,34 @@ using UnityEngine.UI;
 
 public class QuestUI : MonoBehaviour
 {
-    //Quest UI
     public Text questTitle;
     public Text questContext;
     public Text questValue;
     public Text questId;
     public GameObject clearImg;
 
-    public RectTransform questUI;
-    public GameObject questUIObj;
-    public GameObject questUIParent;
-    public Quest quest1;
+    public RectTransform rectTransform;
+    public Vector2 startPostion;
 
     public bool isQuestUI = false;
 
     void Start()
     {
-        //SetQuestUIText(quest1);
+        rectTransform = GetComponent<RectTransform>();
+        startPostion = new Vector2(rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+
         if (isQuestUI)
         {
-            questUI.anchoredPosition = Vector2.Lerp(questUI.anchoredPosition, new Vector2(960, 540), Time.deltaTime * 2f);
+            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, new Vector2(startPostion.x - 700, rectTransform.anchoredPosition.y), Time.deltaTime * 2f);
         }
         else
         {
-            questUI.anchoredPosition = Vector2.Lerp(questUI.anchoredPosition, new Vector2(1660, 540), Time.deltaTime * 2f);
+            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, new Vector2(startPostion.x, rectTransform.anchoredPosition.y), Time.deltaTime * 2f);
         }
     }
 
@@ -41,10 +40,11 @@ public class QuestUI : MonoBehaviour
     {
         isQuestUI = true;
         yield return new WaitForSeconds(3f);
-        questUI.anchoredPosition = new Vector2(960, 540);
         isQuestUI = false;
-        yield return new WaitForSeconds(3f);
-        questUI.anchoredPosition = new Vector2(1660, 540);
+        yield return new WaitForSeconds(1.6f);
+        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        uIManager.questUIObj.Remove(this);
+        Destroy(this.gameObject);
     }
 
     public void SetQuestUIText(Quest msg)
@@ -56,19 +56,4 @@ public class QuestUI : MonoBehaviour
         questContext.text = msg.context;
         StartCoroutine(OpenQuestUI());
     }
-
-    public void SetQuestUI()
-    {
-        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-        foreach (int item in questManager.proceedingQuests.Keys)
-        {
-            Quest quest = questManager.proceedingQuests[item] as Quest;
-            GameObject qu = Instantiate(questUIObj, transform.position, Quaternion.identity, questUIParent.transform)
-                ;
-            QuestUI questUI = qu.GetComponent<QuestUI>();
-            questUI.questTitle.text = quest.title;
-            questUI.questContext.text = quest.context;
-        }
-    }
-
 }

@@ -18,9 +18,13 @@ public class UIManager : Manager
     public StatUI statUI;
     public TimeLineSkipGage timeLineSkipGage;
 
+    public Quest quest1;
+
     [SerializeField] private CanvasGroup canvas;
 
     [SerializeField] private CanvasGroup fade;
+
+    public List<QuestUI> questUIObj = new List<QuestUI>();
 
     public bool important;
 
@@ -29,6 +33,14 @@ public class UIManager : Manager
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
             Init();
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SetQuestUI(quest1);
         }
     }
 
@@ -46,6 +58,14 @@ public class UIManager : Manager
 
             if (category == StatCategory.Health) enemyStatUI.EnemyHpBarUpdate(entity);
         }));
+    }
+
+    public void SetQuestUI(Quest quest)
+    {
+        GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/QuestUI"), transform.position, Quaternion.identity, transform.GetChild(1).transform);
+        go.GetComponent<RectTransform>().anchoredPosition = new Vector2(1920, (questUIObj.Count * -200));
+        questUIObj.Add(go.GetComponent<QuestUI>());
+        go.GetComponent<QuestUI>().SetQuestUIText(quest);
     }
 
     #region On Off

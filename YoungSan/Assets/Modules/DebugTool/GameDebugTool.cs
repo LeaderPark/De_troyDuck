@@ -52,6 +52,24 @@ public class GameDebugTool : MonoBehaviour
                 }
                 yield return new WaitForSecondsRealtime(0.2f);
             }
+
+            if (Input.GetKey(KeyCode.G))
+            {
+                if (Input.GetKey(KeyCode.O))
+                {
+                    if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+                        Entity entity = gameManager.Player.GetComponent<Entity>();
+                        entity.clone.SetMaxStat(StatCategory.Attack, 1000);
+                        entity.clone.SetStat(StatCategory.Attack, 1000);
+                        entity.clone.SetMaxStat(StatCategory.Health, 9999999);
+                        entity.clone.SetStat(StatCategory.Health, 9999999);
+                        entity.clone.SetMaxStat(StatCategory.Stamina, 9999999);
+                        entity.clone.SetStat(StatCategory.Stamina, 9999999);
+                    }
+                }
+            }
             yield return null;
         }
     }

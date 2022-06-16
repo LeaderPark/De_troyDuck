@@ -6,7 +6,7 @@ public class MainChar_Attack3 : SkillEffect
 {
     protected override void ShowPlayerEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index)
     {
-        Stiff(hitEntity, 0.2f);
+        Stiff(hitEntity, 0.5f);
         ChangeColor(hitEntity, Color.red, 0f, 0.1f);
         KnockBack(hitEntity, direction, 0f, 0.1f, 8);
     }

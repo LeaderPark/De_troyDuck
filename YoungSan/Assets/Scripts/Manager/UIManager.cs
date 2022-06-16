@@ -62,6 +62,7 @@ public class UIManager : Manager
 
     public void SetQuestUI(Quest quest)
     {
+        Debug.Log("»ý¼º");
         GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/QuestUI"), transform.position, Quaternion.identity, transform.GetChild(1).transform);
         go.GetComponent<RectTransform>().anchoredPosition = new Vector2(1920, (questUIObj.Count * -200));
         questUIObj.Add(go.GetComponent<QuestUI>());
@@ -141,6 +142,7 @@ public class UIManager : Manager
 
     private IEnumerator MakeEnemyDelay(Entity entity, float time)
     {
+        if (time <= 0) yield break;
         SpriteRenderer spriteRenderer = entity.GetComponent<SpriteRenderer>();
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         GameObject obj = poolManager.GetObject("EnemyDelay");

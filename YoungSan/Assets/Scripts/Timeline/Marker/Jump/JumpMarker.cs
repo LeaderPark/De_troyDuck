@@ -90,8 +90,8 @@ public class JumpEditor : Editor
 		jMarker.loopEndMarker = loopEndMarkers[markerIndex[1]];
 		
 		GUILayout.Space(10);
-
-		GUILayout.Label("����Ʈ ����");
+	GUILayout.Label("questRefuse");
+	
 		markerIndex[2] = EditorGUILayout.Popup(markerIndex[2], loopEndMarkerNames.ToArray());
 		jMarker.questRefuse = loopEndMarkers[markerIndex[2]];
 

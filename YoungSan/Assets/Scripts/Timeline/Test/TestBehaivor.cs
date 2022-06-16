@@ -92,11 +92,13 @@ public class TestBehaivor : PlayableBehaviour
 		{
 			if (talkObj != null)
 			{
-				if ((int)playable.GetTime() >= (int)playable.GetDuration())
-				{
-					//endImage.SetActive(false);
-					talkObj.SetActive(false);
-				}
+				talkObj.SetActive(false);
+
+				//if ((int)playable.GetTime() >= (int)playable.GetDuration())
+				//{
+				//	//endImage.SetActive(false);
+				//	talkObj.SetActive(false);
+				//}
 			}
 		}
 		else

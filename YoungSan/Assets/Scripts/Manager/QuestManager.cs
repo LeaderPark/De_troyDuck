@@ -33,13 +33,14 @@ public class QuestManager : Manager
     {
         foreach (Quest item in proceedingQuests.Values)
         {
+            if(item.resetPrevQuest)
             ResetQuest(item);
         }
     }
 
     public bool IsProceeding(Quest quest)
     {
-        return proceedingQuests.ContainsKey(quest);
+        return proceedingQuests.ContainsKey(quest.questId);
     }
     public bool IsComplete(Quest quest)
     {

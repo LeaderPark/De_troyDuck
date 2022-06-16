@@ -16,7 +16,6 @@ public class QuestUI : MonoBehaviour
 
     public bool isQuestUI = false;
     public bool isUsing = false;
-    public int questUIIndex;
 
     void Start()
     {

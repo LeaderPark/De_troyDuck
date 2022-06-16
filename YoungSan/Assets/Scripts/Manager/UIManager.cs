@@ -18,8 +18,6 @@ public class UIManager : Manager
     public StatUI statUI;
     public TimeLineSkipGage timeLineSkipGage;
 
-    public Quest quest1;
-
     [SerializeField] private CanvasGroup canvas;
 
     [SerializeField] private CanvasGroup fade;
@@ -36,13 +34,6 @@ public class UIManager : Manager
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SetQuestUI(quest1);
-        }
-    }
 
     public void Init()
     {

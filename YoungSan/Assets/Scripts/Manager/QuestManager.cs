@@ -78,7 +78,7 @@ public class QuestManager : Manager
         {
             proceedingQuests.Add(id, quest);
             UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uIManager.questUI.SetQuestUIText(quest);
+            uIManager.SetQuestUI(quest);
         }
     }
 
@@ -94,7 +94,7 @@ public class QuestManager : Manager
         {
             completedQuests.Add(id, quest);
             UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uIManager.questUI.SetQuestUIText(quest);
+            uIManager.SetQuestUI(quest);
         }
     }
 
@@ -108,7 +108,7 @@ public class QuestManager : Manager
         RemoveQuestProceeding(id);
         SetQuestComplete(id);
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.questUI.SetQuestUIText(GetQuest(id));
+        uIManager.SetQuestUI(GetQuest(id));
     }
 
     public bool CheckAvailableQuest(int id)

@@ -11,22 +11,6 @@ public class QuestManager : Manager
     void Awake()
     {
         LoadQuests();
-        //Test();
-    }
-
-    private void Update()
-    {
-        DebugQuest();
-    }
-    private void Test()
-    {
-        proceedingQuests.Add(1, allQuests[1]);
-        proceedingQuests.Add(2, allQuests[2]);
-        proceedingQuests.Add(3, allQuests[3]);
-
-        completedQuests.Add(4, allQuests[4]);
-        completedQuests.Add(5, allQuests[5]);
-        completedQuests.Add(6, allQuests[6]);
     }
 
     private void LoadQuests()
@@ -45,30 +29,14 @@ public class QuestManager : Manager
         }
     }
 
-    public void AllResetQuests()
-    {
-        foreach (Quest item in proceedingQuests.Values)
-        {
-            ResetQuest(item);
-        }
-        foreach (Quest item in completedQuests.Values)
-        {
-            ResetQuest(item);
-        }
-        proceedingQuests.Clear();
-        completedQuests.Clear();
-    }
-
     public void ResetQuests()
     {
         foreach (Quest item in proceedingQuests.Values)
         {
             ResetQuest(item);
         }
-        proceedingQuests.Clear();
-        completedQuests.Clear();
-
     }
+
     public bool IsProceeding(Quest quest)
     {
         return proceedingQuests.ContainsKey(quest);
@@ -77,6 +45,7 @@ public class QuestManager : Manager
     {
         return completedQuests.ContainsKey(quest);
     }
+
     private void ResetQuest(Quest quest)
     {
         Quest resetQuest = quest;
@@ -225,34 +194,5 @@ public class QuestManager : Manager
                 }
             }
         }));
-    }
-
-    public void DebugQuest()
-    {
-        return;
-        foreach (var item in proceedingQuests.Values)
-        {
-            Debug.Log("proceedingQuests.Values : " + item);
-        }
-        foreach (var item in proceedingQuests.Keys)
-        {
-            Debug.Log("proceedingQuests.Keys : " + item);
-        }
-        foreach (var item in completedQuests.Values)
-        {
-            Debug.Log("completedQuests.Values : " + item);
-        }
-        foreach (var item in completedQuests.Keys)
-        {
-            Debug.Log("completedQuests.Keys : " + item);
-        }
-        foreach (var item in allQuests.Values)
-        {
-            Debug.Log(item);
-        }
-        foreach (var item in allQuests.Keys)
-        {
-            Debug.Log(item);
-        }
     }
 }

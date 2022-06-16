@@ -790,6 +790,7 @@ MonoBehaviour:
     m_Objects:
     - {fileID: 3650016597056777056}
     - {fileID: 3924303257682326134}
+    - {fileID: -5370860714239379146}
 --- !u!114 &-7827515918689842530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2615,6 +2616,31 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &-5370860714239379146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 63.983333333333334
+  animationDatas: []
+  objectData:
+  - mainChar: 1
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &-4845792980970142805
 MonoBehaviour:
   m_ObjectHideFlags: 1

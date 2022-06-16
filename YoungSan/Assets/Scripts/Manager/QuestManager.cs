@@ -79,19 +79,23 @@ public class QuestManager : Manager
     }
     private void ResetQuest(Quest quest)
     {
-        quest.clear = false;
-        if (quest.resetPrevQuest && quest.prevQuest != null)
+        Quest resetQuest = quest;
+        do
         {
-            quest.prevQuest.clear = false;
-            if (completedQuests.ContainsKey(quest.prevQuest.questId))
-                completedQuests.Remove(quest.prevQuest.questId);
+            resetQuest.clear = false;
 
-            Debug.Log(quest.prevQuest + " : " + quest.prevQuest.clear);
-            if (quest.prevQuest.resetPrevQuest)
+            if (completedQuests.ContainsKey(resetQuest.questId))
             {
-                ResetQuest(quest.prevQuest);
+                completedQuests.Remove(resetQuest.questId);
             }
-        }
+
+            if (resetQuest.resetPrevQuest && resetQuest.prevQuest != null)
+            {
+                resetQuest = resetQuest.prevQuest;
+            }
+            else resetQuest = null;
+
+        } while (resetQuest != null);
     }
 
     public void AddQuest(Quest quest)

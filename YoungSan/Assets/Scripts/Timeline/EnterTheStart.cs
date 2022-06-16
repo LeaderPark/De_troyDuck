@@ -28,12 +28,12 @@ public class EnterTheStart : MonoBehaviour
                 //������ �������� �ʴ´�
                 if (isClearTriggerQuest == null || !isClearTriggerQuest.clear)
                 {
-                    gameManager.Player.ActiveScript(false);
-                    uiManager.UISetActiveTimeLine(false);
-                    uiManager.FadeInOut(true, true, () =>
-                    {
-                        gameManager.Player.ActiveScript(true);
-                        uiManager.UISetActiveTimeLine(true);
+                    //gameManager.Player.ActiveScript(false);
+                    //uiManager.UISetActiveTimeLine(false);
+                    //uiManager.FadeInOut(true, true, () =>
+                    //{
+                    //    gameManager.Player.ActiveScript(true);
+                    //    uiManager.UISetActiveTimeLine(true);
                         if (timeLineName != null)
                         {
 
@@ -45,8 +45,8 @@ public class EnterTheStart : MonoBehaviour
                             objs[i].SetActive(true);
                         }
                         gameObject.SetActive(false);
-                        uiManager.FadeInOut(false, true);
-                    });
+                        //uiManager.FadeInOut(false, true);
+                   // });
                 }
             }
         }

@@ -13,18 +13,22 @@ public class LoadMapData : MonoBehaviour
         if (quest == null) return;
         SceneManager sceneManager = ManagerObject.Instance.GetManager(ManagerType.SceneManager) as SceneManager;
 
-        Action action = null;
-        action += () => gameObject.SetActive(active);
-        Action removeAction = null;
-        removeAction += () => { 
-            sceneManager.afterSceneLoadAction -= action;
-            sceneManager.afterSceneLoadAction -= removeAction;
-        };
         if (quest.clear)
         {
-
-            sceneManager.afterSceneLoadAction += action;
-            sceneManager.afterSceneLoadAction += removeAction;
+            gameObject.SetActive(active);
         }
+        //Action action = null;
+        //action += () => gameObject.SetActive(active);
+        //Action removeAction = null;
+        //removeAction += () => { 
+        //    sceneManager.afterSceneLoadAction -= action;
+        //    sceneManager.afterSceneLoadAction -= removeAction;
+        //};
+        //if (quest.clear)
+        //{
+
+        //    sceneManager.afterSceneLoadAction += action;
+        //    sceneManager.afterSceneLoadAction += removeAction;
+        //}
     }
 }

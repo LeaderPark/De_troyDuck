@@ -168,6 +168,7 @@ public class SkillSet : MonoBehaviour
     {
         if (!isPlayer)
         {
+            if (entity.gameObject.CompareTag("Boss")) entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("Defend", new object[] { delayTime + 1, 0f });
             yield return new WaitForSeconds(delayTime);
         }
         action();

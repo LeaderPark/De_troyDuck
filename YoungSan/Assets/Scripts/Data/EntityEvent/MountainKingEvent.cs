@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class MountainKingEvent : EntityEvent
 {
-	protected override void Awake()
-	{
-		base.Awake();
-		DefalutAttack();
-		Skill1();
-	}
+    protected override void Awake()
+    {
+        base.Awake();
+        DefalutAttack();
+        Skill1();
+    }
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
-        null
+        (inputX, inputY, position, skillData) =>
+        {
+            Defend(0f, 1f, 0f);
+        }
         };
     }
 
@@ -24,6 +27,7 @@ public class MountainKingEvent : EntityEvent
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
+            Defend(0f, 2f, 0f);
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 16
                 , 1f, 0.15f);
         }

@@ -231,16 +231,15 @@ public class Player : MonoBehaviour
                 entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
             }
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0.0f });
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Move" });
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Dash" });
             entity.clone.SubStat(StatCategory.Stamina, 50);
 
             SkillSet skillSet = entity.GetComponentInChildren<SkillSet>();
             skillSet.StopSkill();
 
-            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Move", true });
-
             if (dashCo != null) StopCoroutine(dashCo);
-            dashCo = StartCoroutine(AttackVelocityTime(0.2f));
+            dashCo = StartCoroutine(AttackVelocityTime(skillSet, 0.2f));
             gameManager.AfterImage(entity, 0.2f);
             dash = true;
             dashCool = true;
@@ -268,7 +267,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private IEnumerator AttackVelocityTime(float time)
+    private IEnumerator AttackVelocityTime(SkillSet skillSet, float time)
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         // uIManager.skillinterface.time_coolTime = dashCoolTime + time + 0.27f;

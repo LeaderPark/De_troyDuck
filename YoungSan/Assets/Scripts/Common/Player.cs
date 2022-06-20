@@ -237,6 +237,8 @@ public class Player : MonoBehaviour
             SkillSet skillSet = entity.GetComponentInChildren<SkillSet>();
             skillSet.StopSkill();
 
+            entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Move", true });
+
             if (dashCo != null) StopCoroutine(dashCo);
             dashCo = StartCoroutine(AttackVelocityTime(0.2f));
             gameManager.AfterImage(entity, 0.2f);

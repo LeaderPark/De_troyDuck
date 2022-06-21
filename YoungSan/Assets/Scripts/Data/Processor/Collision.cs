@@ -51,18 +51,18 @@ namespace Processor
                 }
             }
 
-            Vector2 verSize = new Vector2(maxX - minX, maxY - minY);
+            Vector3 verSize = new Vector3(maxX - minX, maxY - minY);
 
             collider.size = new Vector3(verSize.x, verSize.y, collider.size.z);
 
-            Vector2 pivot = verSize / 2 + new Vector2(minX, minY);
+            Vector3 pivot = verSize / 2 + new Vector3(minX, minY,collider.center.z);
 
             collider.center = pivot;
 #endif
 
             if (spriteRenderer.flipX)
             {
-                collider.center = new Vector2(-collider.center.x, collider.center.y);
+                collider.center = new Vector3(-collider.center.x, collider.center.y,collider.center.z);
             }
         }
     }

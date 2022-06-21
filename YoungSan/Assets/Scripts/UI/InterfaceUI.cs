@@ -51,6 +51,8 @@ public class InterfaceUI : MonoBehaviour
 				{
                     item.SetActive(false);
 				}
+                if(interactibleOffBtn!=null)
+                interactibleOffBtn.interactable = true;
                 isEnabled = false;
             }
         }
@@ -78,6 +80,7 @@ public class InterfaceUI : MonoBehaviour
     }
     public void CreateQuestUI(Quest quest,Transform content)
     {
+        Debug.Log(quest + " " + content);
         GameObject questUI = GetObject(content);
         Button button = questUI.GetComponent<Button>();
         Text text = button.GetComponentInChildren<Text>();

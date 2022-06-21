@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
@@ -14,8 +15,8 @@ public class TestBehaivor : PlayableBehaviour
 	public AnimationCurve fontSizeCurve;
 
 
-	private Text talkBox;
-	private Text fakeTalkbox;
+	private TextMeshProUGUI talkBox;
+	private TextMeshProUGUI fakeTalkbox;
 	//private GameObject endImage;
 	private PoolManager poolManager;
 	private float time = 0;
@@ -40,7 +41,7 @@ public class TestBehaivor : PlayableBehaviour
 	{
 		if (Application.isPlaying)
 		{
-			talkObj = poolManager.GetUIObject("TalkBox");
+			talkObj = poolManager.GetUIObject("TalkBoxTMP");
 		}
 		else
 		{
@@ -64,12 +65,12 @@ public class TestBehaivor : PlayableBehaviour
 			}
 			if (talkObj == null)
 			{
-				talkObj = GameObject.Instantiate(Resources.Load<GameObject>("PoolObject/TalkBox"),canvas.transform);
+				talkObj = GameObject.Instantiate(Resources.Load<GameObject>("PoolObject/TalkBoxTMP"),canvas.transform);
 			}
 			
 		}
-		talkBox = talkObj.transform.Find("text").GetComponent<Text>();
-		fakeTalkbox = talkObj.transform.Find("fakeText").GetComponent<Text>();
+		talkBox = talkObj.transform.Find("text").GetComponent<TextMeshProUGUI>();
+		fakeTalkbox = talkObj.transform.Find("fakeText").GetComponent<TextMeshProUGUI>();
 		//endImage = talkObj.transform.Find("EndImage").gameObject;
 		timelineCon = GameObject.Find("CutScenePrefab").GetComponent<TimelineController>();
 		entityData = talker.GetComponent<Entity>().entityData;

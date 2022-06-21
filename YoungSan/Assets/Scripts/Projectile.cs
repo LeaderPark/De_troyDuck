@@ -29,11 +29,11 @@ public class Projectile : MonoBehaviour
         rigid.velocity = Vector3.zero;
         if (this.dirVec.z > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(Vector3.right, dirVec));
+            transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(Vector3.right, this.dirVec));
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(Vector3.right, dirVec));
+            transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(Vector3.right, this.dirVec));
         }
         transform.position = startPosition + Vector3.up * curve.Evaluate(timeStack);
         GetComponentInChildren<TrailRenderer>().Clear();

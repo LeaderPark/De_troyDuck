@@ -10,9 +10,16 @@ public class InterfaceUI : MonoBehaviour
     public GameObject questAllUI;
     public GameObject questUIPrefab;
 
-    public Text proceedingquestUIText;
-    public Text completequestUIText;
+    [SerializeField] private GameObject uiPrefab;
 
+    [SerializeField] private Text questName;
+    [SerializeField] private Text questContext;
+
+    [SerializeField] private GameObject proceedingList;
+    [SerializeField] private GameObject completedList;
+
+    private List<GameObject> objList = new List<GameObject>();
+    private Button interactibleOffBtn;
     private bool isEnabled;
 
 
@@ -32,12 +39,20 @@ public class InterfaceUI : MonoBehaviour
                 UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 uIManager.OpenUI(canvasGroup, true);
                 isEnabled = true;
+                questName.text = "--";
+                questContext.text = "--";
                 SetQuestUI();
             }
             else
             {
                 UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 uIManager.CloseUI(canvasGroup);
+				foreach (var item in objList)
+				{
+                    item.SetActive(false);
+				}
+                if(interactibleOffBtn!=null)
+                interactibleOffBtn.interactable = true;
                 isEnabled = false;
             }
         }
@@ -51,17 +66,54 @@ public class InterfaceUI : MonoBehaviour
 
     public void SetQuestUI()
     {
-        proceedingquestUIText.text = "";
-        completequestUIText.text = "";
+
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
-        foreach (var item in questManager.proceedingQuests.Values)
+        foreach (Quest item in questManager.proceedingQuests.Values)
         {
-            proceedingquestUIText.text += "ÏßÑÌñâÏ§ëÏù∏ ÌÄòÏä§Ìä∏" + item + "\n";
+            CreateQuestUI(item, proceedingList.transform);
         }
 
-        foreach (var item in questManager.completedQuests.Values)
+        foreach (Quest item in questManager.completedQuests.Values)
         {
-            completequestUIText.text += "ÌÅ¥Î¶¨Ïñ¥Ìïú ÌÄòÏä§Ìä∏" + item + "\n";
+            CreateQuestUI(item, completedList.transform);
         }
+    }
+    public void CreateQuestUI(Quest quest,Transform content)
+    {
+        Debug.Log(quest + " " + content);
+        GameObject questUI = GetObject(content);
+        Button button = questUI.GetComponent<Button>();
+        Text text = button.GetComponentInChildren<Text>();
+        button.onClick.RemoveAllListeners();
+
+        button.onClick.AddListener(() =>
+        {
+            if (interactibleOffBtn != null) interactibleOffBtn.interactable = true;
+            questName.text = quest.title;
+            questContext.text = quest.context;
+            button.interactable = false;
+            interactibleOffBtn = button;
+        });
+
+        text.text = quest.title+" "+ quest.name;
+    }
+    public GameObject GetObject(Transform content)
+    {
+            foreach (GameObject item in objList)
+            {
+                if (item == null)
+                {
+                    continue;
+                }
+                // πÃ∑°ø° ª©∞⁄¡ˆ
+                if (!item.activeSelf)
+                {
+                    item.SetActive(true);
+                    return item;
+                }
+            }
+
+            objList.Add(GameObject.Instantiate(uiPrefab, content));
+            return objList[objList.Count-1];
     }
 }

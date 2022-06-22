@@ -100,7 +100,7 @@ public class SkillSet : MonoBehaviour
         soundDatas.Clear();
         useSkill = false;
         running = false;
-        canAttack = false;
+        canAttack = true;
 
         EntityEvent entityEvent = entity.GetComponent<EntityEvent>();
         entityEvent.dontmove = false;

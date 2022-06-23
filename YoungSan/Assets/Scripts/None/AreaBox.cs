@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AreaBox : MonoBehaviour
 {
-    public SkillAreaData skillAreaData {get; set;}
+    public SkillAreaData skillAreaData { get; set; }
 
-    public AreaDirection areaDirection {get; set;}
-    
+    public AreaDirection areaDirection { get; set; }
+
+    Player player;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != null)
@@ -15,6 +17,7 @@ public class AreaBox : MonoBehaviour
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             if (other.gameObject.GetComponent<Player>() == gameManager.Player)
             {
+                player = gameManager.Player;
                 if (areaDirection == AreaDirection.Left)
                 {
                     skillAreaData.inLeftSkillArea = true;
@@ -32,8 +35,9 @@ public class AreaBox : MonoBehaviour
         if (other.gameObject != null)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            if (other.gameObject.GetComponent<Player>() == gameManager.Player)
+            if (other.gameObject.GetComponent<Player>() == gameManager.Player || player == other.gameObject.GetComponent<Player>())
             {
+                player = null;
                 if (areaDirection == AreaDirection.Left)
                 {
                     skillAreaData.inLeftSkillArea = false;

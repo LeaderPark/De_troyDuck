@@ -70,6 +70,8 @@ public class Bell : MonoBehaviour
 
     public void Ring()
     {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+        soundManager.SoundStart("Bell", transform);
         if (state == BellState.Bell)
         {
             timeStack = 0f;

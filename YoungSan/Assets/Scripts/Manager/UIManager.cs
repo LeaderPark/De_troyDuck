@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class UIManager : Manager
 {
@@ -217,6 +218,71 @@ public class UIManager : Manager
             alpha = Mathf.Clamp(alpha, 0, 1);
             fade.alpha = alpha;
             yield return null;
+        }
+    }
+    public IEnumerator TextAnimationPlay(TextMeshProUGUI talkBox, AnimationCurve curve)
+    {
+        yield return null;
+        int idx = 0;
+
+        while (true)
+        {
+            yield return null;
+            Vector3[] origineVertice;
+            origineVertice = talkBox.mesh.vertices;
+            StartCoroutine(TextAnimation(idx, talkBox, origineVertice));
+            Debug.Log(idx);
+            if (idx >= (origineVertice.Length / 4) - 1)
+            {
+                Debug.Log(idx + " , " + (origineVertice.Length / 4));
+                yield break;
+            }
+            Debug.Log(curve.Evaluate(idx * 0.1f));
+            yield return new WaitForSeconds(curve.Evaluate(idx*0.1f));
+            idx++;
+
+        }
+
+    }
+    public IEnumerator TextAnimation(int idx, TextMeshProUGUI talkBox, Vector3[] origineVertice)
+    {
+        yield return null;
+        Mesh mesh = talkBox.mesh;
+        Color32[] vertexColors = talkBox.textInfo.meshInfo[0].colors32;
+        Vector3[] startVertice = talkBox.mesh.vertices;
+
+        float time = 0;
+
+            Debug.Log(startVertice.Length/4 + " , "+idx);
+        while (true)
+        {
+            yield return null;
+            Vector3[] vertice = talkBox.mesh.vertices;
+
+            time += Time.deltaTime;
+            for (int i = 0; i < 4; i++)
+            {
+                vertice[idx * 4 + i] = Vector3.Lerp(origineVertice[idx * 4 + i] - new Vector3(0, 20, 0), origineVertice[idx * 4 + i], time / 0.1f);
+                vertexColors[idx * 4 + i].a = (byte)Mathf.Lerp(0, 255, time / 0.1f);
+            }
+
+            talkBox.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
+            mesh.vertices = vertice;
+            talkBox.canvasRenderer.SetMesh(mesh);
+
+            if (time > 0.1f)
+            {
+                time = 0.1f;
+                for (int i = 0; i < 4; i++)
+                {
+                    vertice[idx * 4 + i] = Vector3.Lerp(origineVertice[idx * 4 + i] - new Vector3(0, 20, 0), origineVertice[idx * 4 + i], time / 0.1f);
+                    vertexColors[idx * 4 + i].a = (byte)Mathf.Lerp(0, 255, time / 0.1f);
+                }
+                talkBox.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
+                mesh.vertices = vertice;
+                talkBox.canvasRenderer.SetMesh(mesh);
+                yield break;
+            }
         }
     }
 }

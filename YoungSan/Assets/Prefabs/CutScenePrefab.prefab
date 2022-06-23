@@ -59,10 +59,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onSceneLoadPlay: 0
+  startTimeline: {fileID: 11400000, guid: 32dfbf00741b56b41861bbc0962e9198, type: 2}
   fade: {fileID: 308921952408964684}
   talkLoop: 1
   jumpMarker: {fileID: 0}
   targetMarker: {fileID: 0}
+  skip: 0
   maxSkipTime: 1.5
 --- !u!320 &3945064489672053714
 PlayableDirector:

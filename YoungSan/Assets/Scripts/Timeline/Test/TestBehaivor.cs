@@ -4,6 +4,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
+using System.Threading;
 using UnityEngine.UI;
 
 public class TestBehaivor : PlayableBehaviour
@@ -14,15 +15,19 @@ public class TestBehaivor : PlayableBehaviour
 	public AnimationCurve delayCurve;
 	public AnimationCurve fontSizeCurve;
 
+	private Vector3[] vertice;
 
 	private TextMeshProUGUI talkBox;
 	private TextMeshProUGUI fakeTalkbox;
 	//private GameObject endImage;
 	private PoolManager poolManager;
+	private UIManager uiManager;
+
 	private float time = 0;
 	private int idx = 0;
 	private EntityData entityData;
 	private TimelineController timelineCon;
+
 
 	//타임라인 시작하면 실행
 	public override void OnGraphStart(Playable playable)
@@ -32,6 +37,7 @@ public class TestBehaivor : PlayableBehaviour
 			if (ManagerObject.Instance != null)
 			{
 				poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+				uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 			}
 		}
 		//Debug.Log("AAA");
@@ -74,14 +80,16 @@ public class TestBehaivor : PlayableBehaviour
 		//endImage = talkObj.transform.Find("EndImage").gameObject;
 		timelineCon = GameObject.Find("CutScenePrefab").GetComponent<TimelineController>();
 		entityData = talker.GetComponent<Entity>().entityData;
-		talkBox.text = "";
+		talkBox.text = txt;
 		fakeTalkbox.text = "";
-		for (int i = 0; i < txt.Length; i++)
-		{
-			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append("<size=" + fontSizeCurve[i].value + ">" + txt[i] + "</size>");
-			fakeTalkbox.text += stringBuilder;
-		}
+		uiManager.StartCoroutine(uiManager.TextAnimationPlay(talkBox, delayCurve));
+		//for (int i = 0; i < txt.Length; i++)
+		//{
+		//	StringBuilder stringBuilder = new StringBuilder();
+		//	//stringBuilder.Append("<size=" + fontSizeCurve[i].value + ">" + txt[i] + "</size>");
+		//	//fakeTalkbox.text += stringBuilder;
+		//	talkBox.text += stringBuilder;
+		//}
 		talkObj.SetActive(true);
 		SetBoxSize();
 
@@ -113,27 +121,35 @@ public class TestBehaivor : PlayableBehaviour
 	{
 		if (talker == null || delayCurve.length == 0)
 			return;
+		vertice = talkBox.mesh.vertices;
 		if (Application.isPlaying)
 		{
 			talkObj.transform.position = Camera.main.WorldToScreenPoint(talker.transform.position+new Vector3(0,entityData.uiPos,0));
 			time += Time.deltaTime* (float)playable.GetGraph().GetRootPlayable(0).GetSpeed();
 			//endImage.SetActive(timelineCon.timelinePause);
-			for (bool b = true; b;)
-			{
-				b = false;
-				if (time >= delayCurve.Evaluate(idx * 0.1f))
-				{
-					b = true;
-					time -= delayCurve.Evaluate(idx * 0.1f);
-					if (idx < txt.Length)
-					{
-						StringBuilder stringBuilder = new StringBuilder();
-						stringBuilder.Append("<size="+fontSizeCurve[idx].value+">"+txt[idx]+"</size>");
-						talkBox.text += stringBuilder;
-						idx = Mathf.Clamp(idx + 1, 0, txt.Length);
-					}
-				}
-			}
+			//for (bool b = true; b;)
+			//{
+			//	b = false;
+			//	if (time >= delayCurve.Evaluate(idx * 0.1f))
+			//	{
+			//		b = true;
+			//		time -= delayCurve.Evaluate(idx * 0.1f);
+			//		if (idx < txt.Length)
+			//		{
+			//			//StringBuilder stringBuilder = new StringBuilder();
+			//			//stringBuilder.Append("<size="+fontSizeCurve[idx].value+">"+txt[idx]+"</size>");
+			//			//talkBox.text += stringBuilder;
+			//			uiManager.StartCoroutine(uiManager.TextAnimation(idx, talkBox, vertice));
+			//			idx = Mathf.Clamp(idx + 1, 0, txt.Length - 1);
+			//		}
+			//	}
+			//}
+			//if (time >= delayCurve.Evaluate(idx * 0.1f))
+			//{
+			//	time = 0;
+			//	uiManager.StartCoroutine(uiManager.TextAnimation(idx, talkBox, vertice));
+			//	idx = Mathf.Clamp(idx + 1, 0, txt.Length - 1);
+			//}
 		}
 		else
 		{
@@ -165,10 +181,43 @@ public class TestBehaivor : PlayableBehaviour
 	public void SetBoxSize()
 	{
 		talkBox.rectTransform.anchoredPosition = new Vector2(0, 0);
-		float x = fakeTalkbox.preferredWidth;
-		float y = fakeTalkbox.preferredHeight;
+		float x = talkBox.preferredWidth;
+		float y = talkBox.preferredHeight;
+		//float x = fakeTalkbox.preferredWidth;
+		//float y = fakeTalkbox.preferredHeight;
 		RectTransform talkBoxRect = talkObj.GetComponent<RectTransform>();
 		talkBoxRect.sizeDelta = new Vector2(x, y) + new Vector2(50,50);
 		talkBox.rectTransform.anchoredPosition += new Vector2(50/2 ,0);
 	}
+	//public IEnumerator TextAnimation(int idx, TextMeshProUGUI talkBox)
+	//{
+	//	Mesh mesh = talkBox.mesh;
+	//	Vector3[] vertice = talkBox.mesh.vertices;
+	//	Vector3[] origineVertice = talkBox.mesh.vertices;
+	//	Color32[] vertexColors = talkBox.textInfo.meshInfo[0].colors32;
+	//	float time = 0;
+	//	while (true)
+	//	{
+	//		time += Time.deltaTime;
+	//		vertice[idx * 4 + 0] = Vector3.Lerp(origineVertice[idx * 4 + 0], origineVertice[idx * 4 + 0] + new Vector3(0, 10, 0), time / 0.1f);
+	//		vertice[idx * 4 + 1] = Vector3.Lerp(origineVertice[idx * 4 + 1], origineVertice[idx * 4 + 1] + new Vector3(0, 10, 0), time / 0.1f);
+	//		vertice[idx * 4 + 2] = Vector3.Lerp(origineVertice[idx * 4 + 2], origineVertice[idx * 4 + 2] + new Vector3(0, 10, 0), time / 0.1f);
+	//		vertice[idx * 4 + 3] = Vector3.Lerp(origineVertice[idx * 4 + 3], origineVertice[idx * 4 + 3] + new Vector3(0, 10, 0), time / 0.1f);
+
+	//		vertexColors[idx * 4 + 0].a = (byte)Mathf.Lerp(255, 0, time / 0.1f);
+	//		vertexColors[idx * 4 + 1].a = (byte)Mathf.Lerp(255, 0, time / 0.1f);
+	//		vertexColors[idx * 4 + 2].a = (byte)Mathf.Lerp(255, 0, time / 0.1f);
+	//		vertexColors[idx * 4 + 3].a = (byte)Mathf.Lerp(255, 0, time / 0.1f);
+
+	//		talkBox.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
+	//		mesh.vertices = vertice;
+	//		talkBox.canvasRenderer.SetMesh(mesh);
+
+	//		if (time > 0.1f)
+	//		{
+	//			yield break;
+	//		}
+	//	}
+	//	yield return null;
+	//}
 }

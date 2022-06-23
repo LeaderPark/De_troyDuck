@@ -82,6 +82,7 @@ public class SkillSet : MonoBehaviour
     public void StopSkill()
     {
         StopAllCoroutines();
+        if (!entity.CompareTag("Player")) entity.GetComponent<SpriteRenderer>().material.SetColor("_TingleColor", Color.black);
         active = false;
         if (skillData != null)
         {
@@ -153,8 +154,7 @@ public class SkillSet : MonoBehaviour
         }
         else
         {
-            UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uIManager.SetDelayUI(entity, delayTime);
+            StartCoroutine(EnemyTingle(delayTime));
             isPlayer = false;
         }
         SetCoolDown(category, index, skillDatas[category][index].coolTime);
@@ -187,6 +187,41 @@ public class SkillSet : MonoBehaviour
         eventManager.GetEventTrigger(typeof(SkillEventTrigger)).Invoke(new object[] { entity, data });
         StartCoroutine(attackSound(data));
         StartCoroutine(CheckRunning(data));
+    }
+
+    IEnumerator EnemyTingle(float delayTime)
+    {
+        float time = delayTime / 2;
+        float timeStack = 0;
+
+        SpriteRenderer sr = entity.GetComponent<SpriteRenderer>();
+
+        const float target = 0.6f;
+
+        while (timeStack < time)
+        {
+            timeStack += Time.deltaTime;
+            Color tingle = sr.material.GetColor("_TingleColor");
+            tingle.r = target * timeStack / time;
+            tingle.g = target * timeStack / time;
+            tingle.b = target * timeStack / time;
+            sr.material.SetColor("_TingleColor", tingle);
+            yield return null;
+        }
+        timeStack = 0;
+        sr.material.SetColor("_TingleColor", new Color(target, target, target));
+        while (timeStack < time)
+        {
+            timeStack += Time.deltaTime;
+            Color tingle = sr.material.GetColor("_TingleColor");
+            tingle.r = target - target * timeStack / time;
+            tingle.g = target - target * timeStack / time;
+            tingle.b = target - target * timeStack / time;
+            sr.material.SetColor("_TingleColor", tingle);
+            yield return null;
+        }
+        sr.material.SetColor("_TingleColor", Color.black);
+
     }
 
     IEnumerator CheckRunning(SkillData data)

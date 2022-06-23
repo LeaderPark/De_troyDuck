@@ -6,6 +6,7 @@ using Cinemachine;
 public class GameManager : Manager
 {
     public float healthRate;
+    public Bell bell;
     private Player player;
     public Player Player
     {

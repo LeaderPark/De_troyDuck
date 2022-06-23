@@ -19,10 +19,18 @@ public class Player : MonoBehaviour
         direction = false;
     }
 
+    void OnDisable()
+    {
+        dash = false;
+        dashCool = false;
+        Debug.Log("fdfd");
+    }
+
     private void Start()
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
     }
+
     void Update()
     {
         Process();

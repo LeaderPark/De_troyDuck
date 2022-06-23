@@ -52,7 +52,6 @@ public class TMPTEST2 : MonoBehaviour
     }
 	IEnumerator test()
 	{
-		tmp.text = "다 죽이고 싶다 후..";
 		yield return null;
 
 		while (true)

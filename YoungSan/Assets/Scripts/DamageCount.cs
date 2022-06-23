@@ -7,6 +7,7 @@ using UnityEngine;
 #endif
 public class DamageCount : MonoBehaviour
 {
+    [SerializeField] private Font font;
     bool isPlayer;
     bool isHeal;
     string text;
@@ -68,12 +69,14 @@ public class DamageCount : MonoBehaviour
     {
         if (loading)
         {
+            
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 
             if (gameManager.Player == null) return;
             if (gameManager.Player.GetComponent<Entity>().isDead) return;
 
             GUIStyle style = GUIStyle.none;
+            style.font = font;
             style.fontSize = fontSize;
             style.normal.textColor = Color.black;
             rect.position -= Vector2.one * 2;

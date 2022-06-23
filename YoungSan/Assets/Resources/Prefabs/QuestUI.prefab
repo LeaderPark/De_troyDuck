@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: de2d436f7ac6b2943b7c4cdb4dfbce0e, type: 3}
     m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: de2d436f7ac6b2943b7c4cdb4dfbce0e, type: 3}
     m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -301,8 +301,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 170
+    m_Font: {fileID: 12800000, guid: de2d436f7ac6b2943b7c4cdb4dfbce0e, type: 3}
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -313,7 +313,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Clear
+  m_Text: "\uC644\uB8CC\n"
 --- !u!1 &1794300504161421211
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: de2d436f7ac6b2943b7c4cdb4dfbce0e, type: 3}
     m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
@@ -447,11 +447,10 @@ MonoBehaviour:
   questValue: {fileID: 0}
   questId: {fileID: 1303187120469189854}
   clearImg: {fileID: 7383909189499142134}
-  questUI: {fileID: 0}
-  questUIObj: {fileID: 0}
-  questUIParent: {fileID: 0}
-  quest1: {fileID: 0}
+  rectTransform: {fileID: 0}
+  startPostion: {x: 0, y: 0}
   isQuestUI: 0
+  isUsing: 0
 --- !u!1 &7269687683834953889
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7710323196788531364
 RectTransform:
   m_ObjectHideFlags: 0

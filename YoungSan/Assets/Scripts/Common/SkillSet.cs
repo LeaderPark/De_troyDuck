@@ -82,7 +82,11 @@ public class SkillSet : MonoBehaviour
     public void StopSkill()
     {
         StopAllCoroutines();
-        if (!entity.CompareTag("Player")) entity.GetComponent<SpriteRenderer>().material.SetColor("_TingleColor", Color.black);
+        if (!entity.CompareTag("Player"))
+        {
+            entity.GetComponentInChildren<Silhouette>().GetComponent<SpriteRenderer>().material.SetColor("_TingleColor", Color.black);
+            entity.GetComponent<SpriteRenderer>().material.SetColor("_TingleColor", Color.black);
+        }
         active = false;
         if (skillData != null)
         {
@@ -195,32 +199,37 @@ public class SkillSet : MonoBehaviour
         float timeStack = 0;
 
         SpriteRenderer sr = entity.GetComponent<SpriteRenderer>();
+        SpriteRenderer silhouetteSr = entity.GetComponentInChildren<Silhouette>().GetComponent<SpriteRenderer>();
 
         const float target = 0.6f;
 
         while (timeStack < time)
         {
             timeStack += Time.deltaTime;
-            Color tingle = sr.material.GetColor("_TingleColor");
+            Color tingle = Color.black;
             tingle.r = target * timeStack / time;
             tingle.g = target * timeStack / time;
             tingle.b = target * timeStack / time;
             sr.material.SetColor("_TingleColor", tingle);
+            silhouetteSr.material.SetColor("_TingleColor", tingle);
             yield return null;
         }
         timeStack = 0;
         sr.material.SetColor("_TingleColor", new Color(target, target, target));
+        silhouetteSr.material.SetColor("_TingleColor", new Color(target, target, target));
         while (timeStack < time)
         {
             timeStack += Time.deltaTime;
-            Color tingle = sr.material.GetColor("_TingleColor");
+            Color tingle = Color.white;
             tingle.r = target - target * timeStack / time;
             tingle.g = target - target * timeStack / time;
             tingle.b = target - target * timeStack / time;
             sr.material.SetColor("_TingleColor", tingle);
+            silhouetteSr.material.SetColor("_TingleColor", tingle);
             yield return null;
         }
         sr.material.SetColor("_TingleColor", Color.black);
+        silhouetteSr.material.SetColor("_TingleColor", Color.black);
 
     }
 

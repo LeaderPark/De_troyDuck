@@ -237,7 +237,6 @@ public class UIManager : Manager
                 Debug.Log(idx + " , " + (origineVertice.Length / 4));
                 yield break;
             }
-            Debug.Log(curve.Evaluate(idx * 0.1f));
             yield return new WaitForSeconds(curve.Evaluate(idx*0.1f));
             idx++;
 
@@ -253,7 +252,6 @@ public class UIManager : Manager
 
         float time = 0;
 
-            Debug.Log(startVertice.Length/4 + " , "+idx);
         while (true)
         {
             yield return null;

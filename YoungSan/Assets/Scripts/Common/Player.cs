@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     {
         dash = false;
         dashCool = false;
-        Debug.Log("fdfd");
     }
 
     private void Start()
@@ -158,6 +157,7 @@ public class Player : MonoBehaviour
         }
 
 
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         if (inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
         {
             RaycastHit[] hits = Physics.SphereCastAll(transform.position + Vector3.up * 10, 2, Vector3.down, 20, LayerMask.GetMask(new string[] { "Enemy" }));
@@ -189,7 +189,6 @@ public class Player : MonoBehaviour
 
             if (target != null)
             {
-                GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
                 UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 
                 float hpRatio = uiManager.statbar.BackUpHpStat();
@@ -223,7 +222,6 @@ public class Player : MonoBehaviour
         }
         if (inputManager.CheckMouseState(MouseButton.Right, ButtonState.Down) && !dashCool && entity.clone.GetStat(StatCategory.Stamina) >= 50 && new Vector3(inputX, 0, inputY).normalized != Vector3.zero)
         {
-            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             entity.hitable = false;
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { new Vector3(inputX, 0, inputY).normalized, 24 });
 
@@ -272,6 +270,8 @@ public class Player : MonoBehaviour
             direction = false;
         }
 
+        if (inputX != 0 || inputY != 0) gameManager.bell.Move(direction);
+        else gameManager.bell.Idle();
         entityEvent.CallEvent(EventCategory.Move, inputX, inputY, direction, transform.position);
     }
 

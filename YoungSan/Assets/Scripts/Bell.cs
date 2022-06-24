@@ -35,7 +35,8 @@ public class Bell : MonoBehaviour
             switch (state)
             {
                 case BellState.Move:
-                    yield return MoveRoutine();
+                    GetComponent<SpriteRenderer>().flipX = !isRight;
+                    animator.Play("Move");
                     break;
                 case BellState.Bell:
                     yield return RingRoutine();
@@ -82,27 +83,13 @@ public class Bell : MonoBehaviour
 
     public void Move(bool isRight)
     {
-        if (state == BellState.Move)
-        {
-            timeStack = 0f;
-            GetComponent<Animator>().Play(moveClip.name, 0, 0.0f);
-        }
         state = BellState.Move;
         this.isRight = isRight;
     }
 
-    IEnumerator MoveRoutine()
+    public void Idle()
     {
-        timeStack = 0f;
-        while (timeStack < bellClip.length)
-        {
-            GetComponent<Animator>().Play(moveClip.name);
-            timeStack += Time.deltaTime;
-            GetComponent<SpriteRenderer>().flipX = !isRight;
-            yield return null;
-        }
         state = BellState.Idle;
-        yield return null;
     }
 
     IEnumerator RingRoutine()

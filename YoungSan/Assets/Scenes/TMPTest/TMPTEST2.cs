@@ -92,21 +92,21 @@ public class TMPTEST2 : MonoBehaviour
 			time += Time.deltaTime;
 			for (int i = 0; i < 4; i++)
 			{
-				vertice[idx * 4 + i] = Vector3.Lerp(origineVertice[idx * 4 + i] - new Vector3(0, 20, 0), origineVertice[idx * 4 + i], time/0.2f);
-				vertexColors[idx * 4 + i].a = (byte)Mathf.Lerp(0, 255, time / 0.2f);
+				vertice[idx * 4 + i] = Vector3.Lerp(origineVertice[idx * 4 + i] - new Vector3(0, 20, 0), origineVertice[idx * 4 + i], time/0.1f);
+				vertexColors[idx * 4 + i].a = (byte)Mathf.Lerp(0, 255, time / 0.1f);
 			}
 
 			talkBox.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
 			mesh.vertices = vertice;
 			talkBox.canvasRenderer.SetMesh(mesh);
 
-			if (time > 0.2f)
+			if (time > 0.1f)
 			{
-				time = 0.2f;
+				time = 0.1f;
 				for (int i = 0; i < 4; i++)
 				{
-					vertice[idx * 4 + i] = Vector3.Lerp(origineVertice[idx * 4 + i] - new Vector3(0, 20, 0), origineVertice[idx * 4 + i], time/0.2f);
-					vertexColors[idx * 4 + i].a = (byte)Mathf.Lerp(0, 255, time / 0.2f);
+					vertice[idx * 4 + i] = Vector3.Lerp(origineVertice[idx * 4 + i] - new Vector3(0, 20, 0), origineVertice[idx * 4 + i], time/0.1f);
+					vertexColors[idx * 4 + i].a = (byte)Mathf.Lerp(0, 255, time / 0.1f);
 				}
 				talkBox.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
 				mesh.vertices = vertice;

@@ -80,16 +80,18 @@ public class TestBehaivor : PlayableBehaviour
 		//endImage = talkObj.transform.Find("EndImage").gameObject;
 		timelineCon = GameObject.Find("CutScenePrefab").GetComponent<TimelineController>();
 		entityData = talker.GetComponent<Entity>().entityData;
-		talkBox.text = txt;
+		//talkBox.text = txt;
+		talkBox.text = "";
+		for (int i = 0; i < txt.Length; i++)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append("<size=" + fontSizeCurve[i].value + ">" + txt[i] + "</size>");
+			//fakeTalkbox.text += stringBuilder;
+			talkBox.text += stringBuilder;
+		}
 		fakeTalkbox.text = "";
 		uiManager.StartCoroutine(uiManager.TextAnimationPlay(talkBox, delayCurve));
-		//for (int i = 0; i < txt.Length; i++)
-		//{
-		//	StringBuilder stringBuilder = new StringBuilder();
-		//	//stringBuilder.Append("<size=" + fontSizeCurve[i].value + ">" + txt[i] + "</size>");
-		//	//fakeTalkbox.text += stringBuilder;
-		//	talkBox.text += stringBuilder;
-		//}
+
 		talkObj.SetActive(true);
 		SetBoxSize();
 

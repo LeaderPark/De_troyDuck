@@ -18,6 +18,7 @@ public class UIManager : Manager
     public Statbar statbar;
     public StatUI statUI;
     public TimeLineSkipGage timeLineSkipGage;
+    public DamageCountUI damageCountUI;
 
     [SerializeField] private CanvasGroup canvas;
 
@@ -139,19 +140,19 @@ public class UIManager : Manager
     private IEnumerator MakeEnemyDelay(Entity entity, float time)
     {
         if (time <= 0) yield break;
-		SpriteRenderer spriteRenderer = entity.GetComponent<SpriteRenderer>();
-		PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-		GameObject obj = poolManager.GetObject("EnemyDelay");
-		EnemyDelayUI enemyDelayUI = obj.GetComponentInChildren<EnemyDelayUI>();
-		enemyDelayUI.SetTarget(spriteRenderer);
-		enemyDelayUI.Play();
-		StartCoroutine(enemyDelayUI.AfterImageInActive(obj, time));
+        SpriteRenderer spriteRenderer = entity.GetComponent<SpriteRenderer>();
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        GameObject obj = poolManager.GetObject("EnemyDelay");
+        EnemyDelayUI enemyDelayUI = obj.GetComponentInChildren<EnemyDelayUI>();
+        enemyDelayUI.SetTarget(spriteRenderer);
+        enemyDelayUI.Play();
+        StartCoroutine(enemyDelayUI.AfterImageInActive(obj, time));
 
         //컬러 변경
-		//entity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetColor", new object[] { Color.white });
-		//yield return new WaitForSeconds(time);
-		//entity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetColor", new object[] { Color.black });
-		yield return null;
+        //entity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetColor", new object[] { Color.white });
+        //yield return new WaitForSeconds(time);
+        //entity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetColor", new object[] { Color.black });
+        yield return null;
     }
 
     private IEnumerator FadeOut(Action endAction, bool FadeOrLoading)
@@ -237,7 +238,7 @@ public class UIManager : Manager
                 Debug.Log(idx + " , " + (origineVertice.Length / 4));
                 yield break;
             }
-            yield return new WaitForSeconds(curve.Evaluate(idx*0.1f));
+            yield return new WaitForSeconds(curve.Evaluate(idx * 0.1f));
             idx++;
 
         }

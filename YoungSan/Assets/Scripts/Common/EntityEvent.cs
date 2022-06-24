@@ -214,6 +214,7 @@ public class EntityEvent : MonoBehaviour
         int healCount = (int)(time / delay);
         float timeStack = 0;
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 
         int count = healCount;
         while (count > 0)
@@ -227,8 +228,7 @@ public class EntityEvent : MonoBehaviour
                 int healValue = (int)(entity.clone.GetMaxStat(StatCategory.Health) * rate / healCount);
                 entity.clone.AddStat(StatCategory.Health, healValue);
 
-                DamageCount damageCount = poolManager.GetObject("DamageCount").GetComponent<DamageCount>();
-                damageCount.Play(entity.transform.position + Vector3.up * 0.5f, healValue, false, true);
+                uiManager.damageCountUI.Play(entity.transform.position + Vector3.up * entity.entityData.uiPos * 0.5f, healValue, false, true);
 
                 count--;
             }

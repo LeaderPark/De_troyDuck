@@ -2325,16 +2325,16 @@ MonoBehaviour:
       time: 0
       value: 30
       inSlope: 0
-      outSlope: 0
+      outSlope: 100
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 0.1
-      value: 30
-      inSlope: -0
-      outSlope: 0
+      value: 40
+      inSlope: 100
+      outSlope: -100
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
@@ -2342,7 +2342,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.2
       value: 30
-      inSlope: -0
+      inSlope: -100
       outSlope: 0
       tangentMode: 69
       weightedMode: 0
@@ -2361,16 +2361,16 @@ MonoBehaviour:
       time: 0.4
       value: 30
       inSlope: -0
-      outSlope: 0
+      outSlope: 100.00001
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 0.5
-      value: 30
-      inSlope: -0
-      outSlope: 0
+      value: 40
+      inSlope: 100.00001
+      outSlope: -99.99998
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
@@ -2378,7 +2378,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.6
       value: 30
-      inSlope: -0
+      inSlope: -99.99998
       outSlope: 0
       tangentMode: 69
       weightedMode: 0
@@ -2409,7 +2409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abe84a4f4825484da4f8375ff2300c7, type: 3}
   m_Name: Quest/QuestMarker
   m_EditorClassIdentifier: 
-  m_Time: 15.133333333333333
+  m_Time: 15.550000002235175
   quest: {fileID: 11400000, guid: b0fdab332fe8977488391fef8a1fc220, type: 2}
 --- !u!114 &1535915756948137194
 MonoBehaviour:

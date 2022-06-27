@@ -51,7 +51,7 @@ public class GameManager : Manager
     void Start()
     {
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-        soundManager.SetBgm(string.Empty);
+        soundManager.SetBgm("Forest");
     }
     public void PlayerFind()
     {

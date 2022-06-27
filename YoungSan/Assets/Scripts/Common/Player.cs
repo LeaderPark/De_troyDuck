@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     private bool skipMove;
     private void Process()
     {
+
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         InputManager inputManager = ManagerObject.Instance.GetManager(ManagerType.InputManager) as InputManager;
 
         float inputX = 0;
@@ -156,8 +158,6 @@ public class Player : MonoBehaviour
             }
         }
 
-
-        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         if (inputManager.CheckKeyState(KeyCode.Q, ButtonState.Down))
         {
             RaycastHit[] hits = Physics.SphereCastAll(transform.position + Vector3.up * 10, 2, Vector3.down, 20, LayerMask.GetMask(new string[] { "Enemy" }));
@@ -253,6 +253,16 @@ public class Player : MonoBehaviour
             UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 
         }
+
+        if (GetComponent<Rigidbody>().velocity.sqrMagnitude != 0)
+        {
+            gameManager.bell.Move(direction);
+        }
+        else
+        {
+            gameManager.bell.Idle();
+        }
+
         if (dash) return;
 
         if (skipMove && entityEvent.dontmove)
@@ -270,8 +280,6 @@ public class Player : MonoBehaviour
             direction = false;
         }
 
-        if (inputX != 0 || inputY != 0) gameManager.bell.Move(direction);
-        else gameManager.bell.Idle();
         entityEvent.CallEvent(EventCategory.Move, inputX, inputY, direction, transform.position);
     }
 

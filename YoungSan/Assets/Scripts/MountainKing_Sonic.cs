@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class MountainKing_Sonic : MonoBehaviour
 {
-    const float startTime = 1f;
     const float time = 0.15f;
 
     public void Play(Entity entity, Vector2 direction)
     {
-        GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Animator>().Play("MountainKing_Sonic", 0, 0f);
-        transform.rotation = Quaternion.AngleAxis(Vector2.Dot(Vector2.right, direction), Vector3.up);
+        if (direction.y > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(Vector3.right, new Vector3(direction.x, 0, direction.y)));
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(Vector3.right, new Vector3(direction.x, 0, direction.y)));
+        }
         StartCoroutine(Follow(entity));
     }
 
     IEnumerator Follow(Entity entity)
     {
-        yield return new WaitForSeconds(startTime);
-        GetComponent<SpriteRenderer>().enabled = true;
-
         float timeStack = 0;
         while (timeStack < time)
         {

@@ -9,6 +9,7 @@ public class MountainKingEvent : EntityEvent
         base.Awake();
         DefalutAttack();
         Skill1();
+        Skill2();
     }
     private void DefalutAttack()
     {
@@ -16,7 +17,7 @@ public class MountainKingEvent : EntityEvent
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) Defend(0f, 1f, 0f);
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) Defend(0f, skillData.skill.length, 0f);
         }
         };
     }
@@ -27,9 +28,20 @@ public class MountainKingEvent : EntityEvent
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) Defend(0f, 1f, 0f);
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) Defend(0f, skillData.skill.length, 0f);
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 16
                 , 1f, 0.15f);
+        }
+        };
+    }
+
+    private void Skill2()
+    {
+        maxAttackStack[EventCategory.Skill2] = 1;
+        attackProcess[EventCategory.Skill2] = new AttackProcess[]{
+        (inputX, inputY, position, skillData) =>
+        {
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) Defend(0f, skillData.skill.length, 0f);
         }
         };
     }

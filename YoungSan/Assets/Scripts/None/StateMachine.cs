@@ -31,9 +31,36 @@ namespace StateMachine
             state = GetStateTable(typeof(Idle));
         }
 
+        public static HashSet<Entity> fight = new HashSet<Entity>();
+
         void Update()
         {
             state = state.Process(this);
+
+            if (fight.Contains(Enemy.entity))
+            {
+                switch (state.ToString())
+                {
+                    case "StateMachine.Idle":
+                    case "StateMachine.Move":
+                        fight.Remove(Enemy.entity);
+                        break;
+                }
+            }
+            else
+            {
+                switch (state.ToString())
+                {
+                    case "StateMachine.Pursue":
+                    case "StateMachine.SkillCheck":
+                    case "StateMachine.Attack":
+                    case "StateMachine.Distance":
+                    case "StateMachine.Wait":
+                    case "StateMachine.AttackDelay":
+                        fight.Add(Enemy.entity);
+                        break;
+                }
+            }
         }
 
         public void SetState(System.Type type)

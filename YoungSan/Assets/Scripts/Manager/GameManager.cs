@@ -46,13 +46,10 @@ public class GameManager : Manager
     private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
     private void Awake()
     {
+        Shader.WarmupAllShaders();
         //PlayerFind();
     }
-    void Start()
-    {
-        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-        soundManager.SetBgm("Forest");
-    }
+
     public void PlayerFind()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().ToString() != "Title")

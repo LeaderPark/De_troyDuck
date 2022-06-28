@@ -12,6 +12,7 @@ public class SoundManager : Manager
 
     Hashtable MusicTable { get; set; }
     AudioSource bgm;
+    public bool bossBgm;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,9 +25,37 @@ public class SoundManager : Manager
         LoadSounds();
     }
 
+    string prevSound = string.Empty;
+
+    void Start()
+    {
+        SetBgm("Main_Theme");
+    }
+
+    void Update()
+    {
+        if (bossBgm) return;
+        if (StateMachine.StateMachine.fight.Count > 0)
+        {
+            if (prevSound == string.Empty)
+            {
+                prevSound = bgm.clip.name;
+                SetBgm("Fight");
+            }
+        }
+        else
+        {
+            if (prevSound != string.Empty)
+            {
+                SetBgm(prevSound);
+                prevSound = string.Empty;
+            }
+        }
+    }
+
     public void SetBgm(string name)
     {
-        if (!MusicTable.Contains(name) || name == string.Empty)
+        if (name == string.Empty || !MusicTable.Contains(name))
         {
             bgm.clip = null;
         }

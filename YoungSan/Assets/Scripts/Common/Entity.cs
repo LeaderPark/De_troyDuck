@@ -59,6 +59,7 @@ public class Entity : MonoBehaviour
         if (GetComponent<Enemy>() != null)
         {
             GetComponent<Enemy>().enabled = false;
+            StateMachine.StateMachine.fight.Remove(this);
         }
         if (GetComponent<StateMachine.StateMachine>() != null)
         {

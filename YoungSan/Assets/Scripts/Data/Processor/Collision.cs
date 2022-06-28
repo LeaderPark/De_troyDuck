@@ -1,5 +1,3 @@
-#define USE_COLLISION
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,10 +58,7 @@ namespace Processor
             collider.center = pivot;
 #endif
 
-            if (spriteRenderer.flipX)
-            {
-                collider.center = new Vector3(-collider.center.x, collider.center.y,collider.center.z);
-            }
+            collider.center = new Vector3((spriteRenderer.flipX ? -1 : 1) * Mathf.Abs(collider.center.x), collider.center.y, collider.center.z);
         }
     }
 }

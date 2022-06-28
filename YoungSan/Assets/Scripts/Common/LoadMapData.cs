@@ -8,7 +8,7 @@ public class LoadMapData : MonoBehaviour
     public Quest quest;
     public bool active;
 
-    private void Awake()
+    private void Start()
     {
         if (quest == null) return;
         SceneManager sceneManager = ManagerObject.Instance.GetManager(ManagerType.SceneManager) as SceneManager;

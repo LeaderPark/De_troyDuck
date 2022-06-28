@@ -32,7 +32,7 @@ public class SlaveEvent : EntityEvent
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 3f, 0.48f, 2f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 3f, 0.714f, 2f);
         },
         };
     }

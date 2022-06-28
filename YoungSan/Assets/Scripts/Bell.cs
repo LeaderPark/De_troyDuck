@@ -83,12 +83,14 @@ public class Bell : MonoBehaviour
 
     public void Move(bool isRight)
     {
+        if (state == BellState.Bell) return;
         state = BellState.Move;
         this.isRight = isRight;
     }
 
     public void Idle()
     {
+        if (state == BellState.Bell) return;
         state = BellState.Idle;
     }
 

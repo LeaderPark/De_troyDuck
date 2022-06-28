@@ -86,13 +86,16 @@ public class TestBehaivor : PlayableBehaviour
         //talkBox.text = txt;
         talkBox.text = "";
         Color[] colors = new Color[txt.Length];
-        for (int i = 0; i < textColors.Length; i++)
+        if (textColors != null)
         {
-            for (int j = 0; j < txt.Length; j++)
+            for (int i = 0; i < textColors.Length; i++)
             {
-                if (j >= textColors[i].startIndex && j < textColors[i].endIndex)
+                for (int j = 0; j < txt.Length; j++)
                 {
-                    colors[j] = textColors[i].color;
+                    if (j >= textColors[i].startIndex && j < textColors[i].endIndex)
+                    {
+                        colors[j] = textColors[i].color;
+                    }
                 }
             }
         }

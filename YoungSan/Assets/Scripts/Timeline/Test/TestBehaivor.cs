@@ -28,6 +28,8 @@ public class TestBehaivor : PlayableBehaviour
 	private EntityData entityData;
 	private TimelineController timelineCon;
 
+	private Coroutine textOut;
+
 
 	//타임라인 시작하면 실행
 	public override void OnGraphStart(Playable playable)
@@ -90,7 +92,7 @@ public class TestBehaivor : PlayableBehaviour
 			talkBox.text += stringBuilder;
 		}
 		fakeTalkbox.text = "";
-		uiManager.StartCoroutine(uiManager.TextAnimationPlay(talkBox, delayCurve));
+		textOut = uiManager.StartCoroutine(uiManager.TextAnimationPlay(talkBox, delayCurve));
 
 		talkObj.SetActive(true);
 		SetBoxSize();
@@ -104,7 +106,7 @@ public class TestBehaivor : PlayableBehaviour
 			if (talkObj != null)
 			{
 				talkObj.SetActive(false);
-
+				uiManager.StopCoroutine(textOut);
 				//if ((int)playable.GetTime() >= (int)playable.GetDuration())
 				//{
 				//	//endImage.SetActive(false);

@@ -74,7 +74,7 @@ public class DataManager : Manager
     private void SetDefaultData()
     {
         data.sceneName = "Castle";
-        data.currentPlayer = "MainChar";
+        data.currentPlayer = "MainCharSoul";
         data.currentPosition = new Vector3(0, 0, 0);
         Status status = new Status();
         status.stats = new List<Stat>()

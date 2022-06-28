@@ -1498,6 +1498,7 @@ MonoBehaviour:
     - {fileID: 7730577501163251023}
     - {fileID: -340400485386410387}
     - {fileID: 3411861016583478461}
+    - {fileID: 6996608812957395612}
 --- !u!114 &-2471627646639969327
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5011,6 +5012,36 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &6996608812957395612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  events:
+  - obj:
+      exposedName: 1b7c2797c258f384085343632782a2fc
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: SetHp
+    param:
+    - data: 0
+      type: float
+  - obj:
+      exposedName: 1b7c2797c258f384085343632782a2fc
+      defaultValue: {fileID: 0}
+    component: Entity
+    function: Die
+    param:
+    - data: True
+      type: bool
 --- !u!114 &7029106613810555328
 MonoBehaviour:
   m_ObjectHideFlags: 1

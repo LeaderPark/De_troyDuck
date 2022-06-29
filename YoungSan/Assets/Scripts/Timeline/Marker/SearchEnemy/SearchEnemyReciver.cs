@@ -22,6 +22,16 @@ public class SearchEnemyReciver : Receiver
 
 			nextTimeLine = marker.nextTimeLine;
 			waitTime = marker.waitTime;
+			if (marker.mainChar)
+			{
+				Entity playerEntity = gameManager.Player.GetComponent<Entity>();
+				playerEntity.dead += () =>
+				{
+					StartCoroutine(NextTimeLine(waitTime));
+
+				};
+				return;
+			}
 			if (marker.enemys.Length == 0)
 			{
 				StartCoroutine(NextTimeLine(0));

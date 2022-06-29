@@ -71,7 +71,7 @@ public class Bell : MonoBehaviour
 
     public void Ring()
     {
-        StartCoroutine(RingRoutine());
+        StartCoroutine(RingSound());
         if (state == BellState.Bell)
         {
             timeStack = 0f;
@@ -80,7 +80,7 @@ public class Bell : MonoBehaviour
         state = BellState.Bell;
     }
 
-    IEnumerator RingRoutine()
+    IEnumerator RingSound()
     {
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
 

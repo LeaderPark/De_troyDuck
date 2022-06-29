@@ -5,6 +5,8 @@ using UnityEditor;
 
 public class DeleteObj : MonoBehaviour
 {
+#if UNITY_EDITOR
+
     void OnEnable()
     {
         SceneView.duringSceneGui += OnSceneGUI;
@@ -18,4 +20,5 @@ public class DeleteObj : MonoBehaviour
     {
         //Handles.draw
     }
+#endif
 }

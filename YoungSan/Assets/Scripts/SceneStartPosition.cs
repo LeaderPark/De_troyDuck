@@ -9,6 +9,7 @@ public class SceneStartPosition : ScriptableObject
     public string beginScene;
     public string endScene;
     public Vector3 position;
+#if UNITY_EDITOR
 
 
     void OnEnable()
@@ -41,4 +42,5 @@ public class SceneStartPosition : ScriptableObject
 
         Handles.Label(position, labelContent, style);
     }
+#endif
 }

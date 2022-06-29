@@ -221,26 +221,19 @@ public class UIManager : Manager
             yield return null;
         }
     }
-    public IEnumerator TextAnimationPlay(TextMeshProUGUI talkBox, AnimationCurve curve)
+    public IEnumerator TextAnimationPlay(TextMeshProUGUI talkBox, AnimationCurve curve, TestBehaivor tb)
     {
         yield return null;
         int idx = 0;
+        Vector3[] origineVertice = talkBox.mesh.vertices;
 
-        while (true)
+        while (idx < (origineVertice.Length / 4) - 1)
         {
             yield return null;
-            Vector3[] origineVertice;
             origineVertice = talkBox.mesh.vertices;
-            StartCoroutine(TextAnimation(idx, talkBox, origineVertice));
-            Debug.Log(idx);
-            if (idx >= (origineVertice.Length / 4) - 1)
-            {
-                Debug.Log(idx + " , " + (origineVertice.Length / 4));
-                yield break;
-            }
+            tb.texts.Add(StartCoroutine(TextAnimation(idx, talkBox, origineVertice)));
             yield return new WaitForSeconds(curve.Evaluate(idx * 0.1f));
             idx++;
-
         }
 
     }

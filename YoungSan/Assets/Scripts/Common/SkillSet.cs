@@ -84,8 +84,8 @@ public class SkillSet : MonoBehaviour
         StopAllCoroutines();
         if (!entity.CompareTag("Player"))
         {
-            entity.GetComponentInChildren<Silhouette>().GetComponent<SpriteRenderer>().material.SetColor("_TingleColor", Color.black);
-            entity.GetComponent<SpriteRenderer>().material.SetColor("_TingleColor", Color.black);
+            entity.GetComponentInChildren<Silhouette>()?.GetComponent<SpriteRenderer>().material.SetColor("_TingleColor", Color.black);
+            entity.GetComponent<SpriteRenderer>()?.material.SetColor("_TingleColor", Color.black);
         }
         active = false;
         if (skillData != null)

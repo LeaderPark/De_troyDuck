@@ -17,6 +17,9 @@ public class ClickToPlay : MonoBehaviour
             if (!isRunning)
             {
                 isRunning = true;
+
+                SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+                soundManager.SetBgm(string.Empty);
                 DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
                 dataManager.Load();
             }

@@ -30,6 +30,7 @@ public class TestBehaivor : PlayableBehaviour
     private TimelineController timelineCon;
 
     private Coroutine textOut;
+    public List<Coroutine> texts = new List<Coroutine>();
 
 
     //Ÿ�Ӷ��� �����ϸ� ����
@@ -107,7 +108,6 @@ public class TestBehaivor : PlayableBehaviour
             stringBuilder.AppendFormat("{0:x2}", (int)(colors[i].g * 255));
             stringBuilder.AppendFormat("{0:x2}", (int)(colors[i].b * 255));
             stringBuilder.Append("ff>");
-            Debug.Log(stringBuilder.ToString());
             stringBuilder.Append("<size=");
             stringBuilder.Append(fontSizeCurve[i].value);
             stringBuilder.Append(">");
@@ -116,9 +116,8 @@ public class TestBehaivor : PlayableBehaviour
             stringBuilder.Append("</color>");
         }
         talkBox.text = stringBuilder.ToString();
-        Debug.Log(talkBox.text);
         fakeTalkbox.text = "";
-        textOut = uiManager.StartCoroutine(uiManager.TextAnimationPlay(talkBox, delayCurve));
+        textOut = uiManager.StartCoroutine(uiManager.TextAnimationPlay(talkBox, delayCurve, this));
 
         talkObj.SetActive(true);
         SetBoxSize();
@@ -133,6 +132,11 @@ public class TestBehaivor : PlayableBehaviour
             {
                 talkObj.SetActive(false);
                 uiManager.StopCoroutine(textOut);
+                foreach (Coroutine coroutine in texts)
+                {
+                    uiManager.StopCoroutine(coroutine);
+                }
+                texts.Clear();
                 //if ((int)playable.GetTime() >= (int)playable.GetDuration())
                 //{
                 //	//endImage.SetActive(false);

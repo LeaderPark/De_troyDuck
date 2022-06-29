@@ -39,17 +39,21 @@ public class SoundManager : Manager
         {
             if (prevSound == string.Empty)
             {
-                prevSound = bgm.clip.name;
+                if (bgm.clip == null)
+                {
+                    prevSound = string.Empty;
+                }
+                else
+                {
+                    prevSound = bgm.clip.name;
+                }
                 SetBgm("Fight");
             }
         }
         else
         {
-            if (prevSound != string.Empty)
-            {
-                SetBgm(prevSound);
-                prevSound = string.Empty;
-            }
+            SetBgm(prevSound);
+            prevSound = string.Empty;
         }
     }
 

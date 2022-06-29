@@ -71,14 +71,21 @@ public class Bell : MonoBehaviour
 
     public void Ring()
     {
-        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
-        soundManager.SoundStart("Bell", transform);
+        StartCoroutine(RingRoutine());
         if (state == BellState.Bell)
         {
             timeStack = 0f;
             GetComponent<Animator>().Play(bellClip.name, 0, 0.0f);
         }
         state = BellState.Bell;
+    }
+
+    IEnumerator RingRoutine()
+    {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+
+        yield return new WaitForSeconds(0.27f);
+        soundManager.SoundStart("Bell", transform);
     }
 
     public void Move(bool isRight)

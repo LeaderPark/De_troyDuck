@@ -254,14 +254,14 @@ public class Player : MonoBehaviour
 
         }
 
-        if (GetComponent<Rigidbody>().velocity.sqrMagnitude != 0)
-        {
-            gameManager.bell.Move(direction);
-        }
-        else
-        {
-            gameManager.bell.Idle();
-        }
+        // if (GetComponent<Rigidbody>().velocity.sqrMagnitude != 0)
+        // {
+        //     gameManager.bell.Move(direction);
+        // }
+        // else
+        // {
+        //     gameManager.bell.Idle();
+        // }
 
         if (dash) return;
 

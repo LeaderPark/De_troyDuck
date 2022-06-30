@@ -51,6 +51,10 @@ public class UIManager : Manager
 
             if (category == StatCategory.Health) enemyStatUI.EnemyHpBarUpdate(entity);
         }));
+        eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>
+        {
+            enemyStatUI.EnemyHpBarUpdate(hitEntity);
+        }));
     }
 
     public void SetQuestUI(Quest quest)

@@ -13,6 +13,8 @@ public class SoundManager : Manager
     Hashtable MusicTable { get; set; }
     AudioSource bgm;
 
+    public float volume = 0.5f;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,34 +33,81 @@ public class SoundManager : Manager
     void Start()
     {
         SetBgm("Main_Theme");
+        StartCoroutine(Routine());
     }
 
-    void Update()
+    IEnumerator Routine()
     {
-        if (bossBgm) return;
-        if (StateMachine.StateMachine.fight.Count > 0 && !isFight)
+        while (true)
         {
-            if (bgm.clip == null)
+            if (!bossBgm)
             {
-                prevSound = string.Empty;
+                if (StateMachine.StateMachine.fight.Count > 0 && !isFight)
+                {
+                    if (bgm.clip == null)
+                    {
+                        prevSound = string.Empty;
+                    }
+                    else
+                    {
+                        prevSound = bgm.clip.name;
+                    }
+                    isFight = true;
+                    SetBgm("Fight");
+                }
+                else if (StateMachine.StateMachine.fight.Count == 0 && isFight)
+                {
+                    isFight = false;
+                    SetBgm(prevSound);
+                    prevSound = string.Empty;
+                }
             }
-            else
-            {
-                prevSound = bgm.clip.name;
-            }
-            isFight = true;
-            SetBgm("Fight");
+            yield return null;
         }
-        else if (StateMachine.StateMachine.fight.Count == 0 && isFight)
+    }
+
+    IEnumerator BgmVolumeUp()
+    {
+        float timeStack = 0;
+
+        const float time = 1f;
+
+        while (timeStack < time)
         {
-            isFight = false;
-            SetBgm(prevSound);
-            prevSound = string.Empty;
+            timeStack += Time.deltaTime;
+
+            bgm.volume = Mathf.Lerp(0, volume, timeStack);
+            yield return null;
         }
+        bgm.volume = volume;
+        yield return null;
+    }
+
+    IEnumerator BgmVolumeDown()
+    {
+        float timeStack = 0;
+
+        const float time = 1f;
+
+        while (timeStack < time)
+        {
+            timeStack += Time.deltaTime;
+
+            bgm.volume = Mathf.Lerp(volume, 0, timeStack);
+            yield return null;
+        }
+        bgm.volume = 0;
+        yield return null;
     }
 
     public void SetBgm(string name)
     {
+        StartCoroutine(SetBgmRoutine(name));
+    }
+
+    IEnumerator SetBgmRoutine(string name)
+    {
+        yield return BgmVolumeDown();
         if (name == string.Empty || !MusicTable.Contains(name))
         {
             bgm.clip = null;
@@ -67,8 +116,10 @@ public class SoundManager : Manager
         {
             bgm.clip = MusicTable[name] as AudioClip;
             bgm.Play();
+            yield return BgmVolumeUp();
         }
     }
+
     private void LoadMusics()
     {
         AudioClip[] prefabs = Resources.LoadAll<AudioClip>("Music");
@@ -113,6 +164,7 @@ public class SoundManager : Manager
         AudioClip clip = GetSound(soundName);
 
         audioSource.spatialBlend = is3DSound ? 1 : 0;
+        audioSource.volume = volume;
 
         //audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFX")[0];
         audioSource.clip = clip;
@@ -132,13 +184,33 @@ public class SoundManager : Manager
 
     public void SoundStop(object soundData)
     {
+        StartCoroutine(SoundStopRoutine(soundData));
+    }
+
+    IEnumerator SoundStopRoutine(object soundData)
+    {
         var coroutine = ((Coroutine, AudioSource))soundData;
         if (coroutine.Item1 != null)
         {
             StopCoroutine(coroutine.Item1);
+
+            float timeStack = 0;
+
+            const float time = 1f;
+
+            while (timeStack < time)
+            {
+                timeStack += Time.deltaTime;
+
+                coroutine.Item2.volume = Mathf.Lerp(volume, 0, timeStack);
+                yield return null;
+            }
+            coroutine.Item2.volume = 0;
+
             coroutine.Item2.Stop();
             coroutine.Item2.gameObject.SetActive(false);
         }
+        yield return null;
     }
 
 

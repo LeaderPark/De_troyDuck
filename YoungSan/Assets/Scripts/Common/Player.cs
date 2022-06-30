@@ -290,6 +290,12 @@ public class Player : MonoBehaviour
         // uIManager.skillinterface.time_coolTime = dashCoolTime + time + 0.27f;
         // uIManager.skillinterface.Trigger_Skill(); //새롭게 추가 추후 수정
 
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        Effect dashEffect = poolManager.GetObject("DashEffect").GetComponent<Effect>();
+        dashEffect.transform.position = entity.transform.position + Vector3.up * 0.5f;
+
+        dashEffect.Play("DashEffect");
+
         yield return new WaitForSeconds(time);
         dash = false;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });

@@ -20,7 +20,7 @@ public abstract class SkillEffect : MonoBehaviour
         PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         if (hitEntity != null)
         {
-            HitEffect hitEffect = poolManager.GetObject("HitEffect").GetComponent<HitEffect>();
+            Effect hitEffect = poolManager.GetObject("HitEffect").GetComponent<Effect>();
             hitEffect.transform.position = hitEntity.transform.position + Vector3.up * 0.5f;
             hitEffect.Play(hitEffectClips[index]);
             BloodEffect bloodEffect = poolManager.GetObject("BloodEffect").GetComponent<BloodEffect>();

@@ -36,8 +36,8 @@ namespace StateMachine
                 }
 
                 Vector2 dirVec = destination - new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z);
-                
-                if (dirVec.magnitude < stateMachine.stateMachineData.destinationRadius) 
+
+                if (dirVec.magnitude < stateMachine.stateMachineData.destinationRadius)
                 {
                     stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, 0, 0, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
                     return stateMachine.GetStateTable(typeof(SkillCheck));
@@ -45,7 +45,7 @@ namespace StateMachine
 
                 Vector3 pos = stateMachine.Enemy.transform.position + boxCollider.center;
                 Vector3 dir = new Vector3(dirVec.x, 0, dirVec.y);
-                if (Physics.BoxCast(pos - dir.normalized * 0.1f, boxCollider.size / 2, dir, Quaternion.identity, 0.5f, LayerMask.GetMask(new string[]{"Wall"})))
+                if (Vector2.Distance(new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z), new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z)) > stateMachine.stateMachineData.searchRadius && Physics.BoxCast(pos - dir.normalized * 0.1f, boxCollider.size / 2, dir, Quaternion.identity, 0.5f, LayerMask.GetMask(new string[] { "Wall" })))
                 {
                     start = false;
                     return stateMachine.GetStateTable(typeof(Move));
@@ -56,7 +56,7 @@ namespace StateMachine
                     start = false;
                     return stateMachine.GetStateTable(typeof(Move));
                 }
-                
+
                 if (dirVec.x > 0)
                 {
                     stateMachine.Enemy.direction = true;
@@ -66,7 +66,7 @@ namespace StateMachine
                     stateMachine.Enemy.direction = false;
                 }
                 stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, dirVec.x, dirVec.y, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
-                
+
             }
             return stateMachine.GetStateTable(typeof(SkillCheck));
         }

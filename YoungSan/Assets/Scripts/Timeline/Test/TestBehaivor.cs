@@ -23,6 +23,7 @@ public class TestBehaivor : PlayableBehaviour
     //private GameObject endImage;
     private PoolManager poolManager;
     private UIManager uiManager;
+    public AudioClip test;
 
     private float time = 0;
     private int idx = 0;
@@ -49,6 +50,10 @@ public class TestBehaivor : PlayableBehaviour
     //�÷��̾�� Ʈ���� ����ɶ� �ѹ� ����
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
+        if (test == null)
+        {
+            test = Resources.Load("Sounds/Test6") as AudioClip;
+        }
         if (Application.isPlaying)
         {
             talkObj = poolManager.GetUIObject("TalkBoxTMP");

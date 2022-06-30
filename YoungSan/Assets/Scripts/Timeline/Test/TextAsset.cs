@@ -13,6 +13,7 @@ public class TextAsset : PlayableAsset
     public AnimationCurve delayCurve;
     public AnimationCurve fontSizeCurve;
     public TextColor[] textColors;
+    public AudioClip test;
     public float activeTime;
 
     public ScriptPlayable<TestBehaivor> playable;
@@ -43,6 +44,8 @@ public class TextAsset : PlayableAsset
         behaviour.textColors = textColors;
         behaviour.talker = talker.Resolve(graph.GetResolver());
         behaviour.txt = dialogueMessage;
+        if(test!=null)
+        behaviour.test = test;
 
         return playable;
     }

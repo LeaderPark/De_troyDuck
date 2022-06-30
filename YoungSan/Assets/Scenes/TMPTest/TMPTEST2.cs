@@ -8,6 +8,7 @@ public class TMPTEST2 : MonoBehaviour
     public TextMeshProUGUI tmp;
 	Vector3[] vertice;
 	public int asd = 0;
+	public string txt;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class TMPTEST2 : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.I))
 		{
+			tmp.text = txt;
 			vertice = tmp.mesh.vertices;
 			asd = 0;
 			StartCoroutine(test());
@@ -58,9 +60,10 @@ public class TMPTEST2 : MonoBehaviour
 		{
 			yield return null;
 			vertice = tmp.mesh.vertices;
+			Debug.Log(tmp.mesh.vertexCount/4);
 			StartCoroutine(TextAnimation(asd, tmp, vertice));
 			asd++;
-			Debug.Log(asd);
+			//Debug.Log(asd);
 			if (asd >= (vertice.Length / 4) - 1)
 			{
 				Debug.Log(asd + " , " + (vertice.Length / 4));
@@ -74,6 +77,7 @@ public class TMPTEST2 : MonoBehaviour
 	public IEnumerator TextAnimation(int idx, TextMeshProUGUI talkBox,Vector3[] origineVertice)
 	{
 		Mesh mesh = talkBox.mesh;
+		//Debug.Log(mesh.vertices.Length / 4);
 		Color32[] vertexColors = talkBox.textInfo.meshInfo[0].colors32;
 		Vector3[] vertice = talkBox.mesh.vertices;
 

@@ -229,13 +229,18 @@ public class UIManager : Manager
     {
         yield return null;
         int idx = 0;
+        int le= 0;
         Vector3[] origineVertice = talkBox.mesh.vertices;
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
 
         while (idx < (origineVertice.Length / 4) - 1)
         {
-            yield return null;
+
+            //yield return null;
+            soundManager.SoundStart("Test6", transform, false);
             origineVertice = talkBox.mesh.vertices;
             tb.texts.Add(StartCoroutine(TextAnimation(idx, talkBox, origineVertice)));
+            Debug.Log(idx + " , " + curve.Evaluate(idx * 0.1f));
             yield return new WaitForSeconds(curve.Evaluate(idx * 0.1f));
             idx++;
         }
@@ -244,6 +249,8 @@ public class UIManager : Manager
     public IEnumerator TextAnimation(int idx, TextMeshProUGUI talkBox, Vector3[] origineVertice)
     {
         yield return null;
+
+
         Mesh mesh = talkBox.mesh;
         Color32[] vertexColors = talkBox.textInfo.meshInfo[0].colors32;
         Vector3[] startVertice = talkBox.mesh.vertices;

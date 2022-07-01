@@ -90,7 +90,9 @@ public class TimelineController : MonoBehaviour
         {
             talkLoop = false;
             if (!jumpMarker.qeustSelect)
+            {
                 director.time = jumpMarker.loopEndMarker.time;
+            }
             jumpMarker = null;
         }
     }

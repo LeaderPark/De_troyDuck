@@ -47,6 +47,58 @@ public class Entity : MonoBehaviour
             isDead = false;
         }
     }
+    public void DieEvent(bool isDie = true)
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            return;
+        }
+        clone.SetStat(StatCategory.Health, 0);
+
+        dead?.Invoke();
+        hitable = false;
+
+        if (GetComponent<Player>() != null)
+        {
+            GetComponent<Player>().enabled = false;
+        }
+        if (GetComponent<Enemy>() != null)
+        {
+            GetComponent<Enemy>().enabled = false;
+            StateMachine.StateMachine.fight.Remove(this);
+        }
+        if (GetComponent<StateMachine.StateMachine>() != null)
+        {
+            GetComponent<StateMachine.StateMachine>().enabled = false;
+        }
+        if (gameObject.CompareTag("Player") && isDie)
+        {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
+            UIManager uimanager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+            QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+
+            questManager.ResetQuests();
+            uimanager.bossName.gameObject.SetActive(false);
+            uimanager.bossStatbar.gameObject.SetActive(false);
+            uimanager.UISetActiveFalse();
+
+            gameManager.deathWindow.TurnOnWindow(
+                () =>
+                {
+                    uimanager.important = false;
+                    dataManager.Load();
+                }
+            );
+        }
+        GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { 1f });
+        GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
+        GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[] { });
+        GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0f });
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Die" });
+        StartCoroutine(DieAnimationComplete());
+    }
     public void Die(bool isDie = true)
     {
         dead?.Invoke();
@@ -73,6 +125,7 @@ public class Entity : MonoBehaviour
             QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 
             questManager.ResetQuests();
+            uimanager.bossName.gameObject.SetActive(false);
             uimanager.bossStatbar.gameObject.SetActive(false);
             uimanager.UISetActiveFalse();
 

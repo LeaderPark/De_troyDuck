@@ -7,10 +7,10 @@ using UnityEngine.Playables;
 public class BossSelectReciver : Receiver
 {
 	Entity bossEntity;
-	UIManager uIManager;
+	UIManager uiManager;
 	private void Start()
 	{
-		uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+		uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 	}
 	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
@@ -34,23 +34,26 @@ public class BossSelectReciver : Receiver
 			}
 
 			bossEntity = bossObj.GetComponent<Entity>();
-			uIManager.bossStatbar.entity = bossEntity;
-			uIManager.bossStatbar.gameObject.SetActive(true);
-			StartCoroutine(OpenHpBar(uIManager.bossStatbar.transform.localScale));
+			uiManager.bossStatbar.entity = bossEntity;
+			uiManager.bossName.text = "¡º"+bossEntity.entityData.entityName+ "¡»";
+			uiManager.bossName.gameObject.SetActive(true);
+			uiManager.bossStatbar.gameObject.SetActive(true);
+			StartCoroutine(OpenHpBar(uiManager.bossStatbar.transform.localScale));
 		}
 	}
 	IEnumerator OpenHpBar(Vector3 origin)
 	{
 		float time = 0;
+
 		while (true)
 		{
 			time +=Time.deltaTime;
 			float hp = Mathf.Lerp(0, bossEntity.clone.GetStat(StatCategory.Health), time);
-			uIManager.bossStatbar.UpdateStatBar(hp);
+			uiManager.bossStatbar.UpdateStatBar(hp);
 
 			if (time >= 1)
 			{
-				uIManager.bossStatbar.UpdateStatBar(bossEntity.clone.GetStat(StatCategory.Health));
+				uiManager.bossStatbar.UpdateStatBar(bossEntity.clone.GetStat(StatCategory.Health));
 				yield break;
 			}
 			yield return null;

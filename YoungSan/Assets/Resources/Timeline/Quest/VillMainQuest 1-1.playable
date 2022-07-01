@@ -2279,7 +2279,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2640,6 +2658,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   textColors: []
+  test: {fileID: 0}
   activeTime: 1
 --- !u!74 &-3927487548025484602
 AnimationClip:
@@ -6610,6 +6629,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   textColors: []
+  test: {fileID: 0}
   activeTime: 1
 --- !u!114 &4702961257319305555
 MonoBehaviour:
@@ -7084,6 +7104,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   textColors: []
+  test: {fileID: 0}
   activeTime: 1
 --- !u!114 &5287603136044798621
 MonoBehaviour:
@@ -7470,6 +7491,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   textColors: []
+  test: {fileID: 0}
   activeTime: 1
 --- !u!114 &5889500285126941251
 MonoBehaviour:
@@ -7905,6 +7927,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   textColors: []
+  test: {fileID: 0}
   activeTime: 0.5
 --- !u!114 &9126969960734856556
 MonoBehaviour:
@@ -8115,4 +8138,5 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   textColors: []
+  test: {fileID: 0}
   activeTime: 1

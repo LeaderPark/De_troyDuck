@@ -9,6 +9,7 @@ using TMPro;
 public class UIManager : Manager
 {
     public BossStatUI bossStatbar;
+    public TextMeshProUGUI bossName;
     public DieUI dieUI;
     public EnemyDelayUI enemyDelayUI;
     public EnemyStaUIt enemyStatUI;
@@ -232,13 +233,13 @@ public class UIManager : Manager
         Vector3[] origineVertice = talkBox.mesh.vertices;
         SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
 
-        while (idx < (talkBox.textInfo.meshInfo[0].vertexCount / 4))
+        while (idx < (origineVertice.Length / 4) - 1)
         {
-
             //yield return null;
             soundManager.SoundStart("Test6", transform, false);
             origineVertice = talkBox.mesh.vertices;
             tb.texts.Add(StartCoroutine(TextAnimation(idx, talkBox, origineVertice)));
+            Debug.Log(idx + " , " + curve.Evaluate(idx * 0.1f));
             yield return new WaitForSeconds(curve.Evaluate(idx * 0.1f));
             idx++;
         }

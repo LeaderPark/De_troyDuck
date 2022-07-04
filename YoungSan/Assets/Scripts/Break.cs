@@ -22,10 +22,10 @@ public class Break : MonoBehaviour
 #if UNITY_EDITOR
     private void Update()
 	{
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Play();
-        }
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    Play();
+        //}
 	}
 
 	private void OnDrawGizmos()

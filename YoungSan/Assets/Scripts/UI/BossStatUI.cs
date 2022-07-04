@@ -10,11 +10,13 @@ public class BossStatUI : MonoBehaviour
     public RectTransform hpRect;
     public RectTransform fakeHpRect;
     private float minHealth;
+    private UIManager uIManager;
 
     public Image hpStain;
 
     private void Awake()
     {
+        uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         minHealth = hpRect.anchoredPosition.x - hpRect.rect.width;
     }
     public void UpdateStatBar(float curHp)
@@ -59,5 +61,6 @@ public class BossStatUI : MonoBehaviour
     {
         StopAllCoroutines();
         gameObject.SetActive(false);
+        uIManager.bossName.gameObject.SetActive(false);
     }
 }

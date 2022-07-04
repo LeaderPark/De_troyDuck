@@ -53,7 +53,24 @@ public class SoundManager : Manager
                         prevSound = bgm.clip.name;
                     }
                     isFight = true;
-                    SetBgm("Fight");
+
+                    var enumerator = StateMachine.StateMachine.fight.GetEnumerator();
+                    enumerator.MoveNext();
+                    switch (enumerator.Current.entityData.prefab.name)
+                    {
+                        case "MountainKing":
+                            SetBgm("MountainKing_Theme");
+                            break;
+                        case "Slave":
+                            SetBgm("Slave_Theme");
+                            break;
+                        case "Satto":
+                            SetBgm("Satto_Theme");
+                            break;
+                        default:
+                            SetBgm("Fight");
+                            break;
+                    }
                 }
                 else if (StateMachine.StateMachine.fight.Count == 0 && isFight)
                 {

@@ -109,6 +109,11 @@ public class TimelineController : MonoBehaviour
         //	director.playableGraph.GetRootPlayable(0).SetTime(director.playableGraph.GetRootPlayable(0).GetTime());
 
     }
+    public void ClearAfterImage()
+    {
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        gameManager.ClearAfterImage();
+    }
     public void UISetActiveFalse()
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;

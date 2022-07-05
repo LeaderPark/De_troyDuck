@@ -9,6 +9,7 @@ public class EnterTheStart : MonoBehaviour
     public GameObject[] objs;
     [SerializeField] private Quest triggerQuest;
     [SerializeField] private Quest isClearTriggerQuest;
+    [SerializeField] private bool loop = false;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -41,6 +42,7 @@ public class EnterTheStart : MonoBehaviour
                     {
                         objs[i].SetActive(true);
                     }
+                    if(!loop)
                     gameObject.SetActive(false);
                     //uiManager.FadeInOut(false, true);
                     // });

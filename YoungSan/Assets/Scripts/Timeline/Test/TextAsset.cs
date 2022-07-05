@@ -8,6 +8,7 @@ using UnityEngine.Timeline;
 public class TextAsset : PlayableAsset
 {
     public ExposedReference<GameObject> talker;
+    public bool mainChar;
     public string dialogueMessage;
 
     public AnimationCurve delayCurve;
@@ -42,6 +43,11 @@ public class TextAsset : PlayableAsset
         behaviour.delayCurve = delayCurve;
         behaviour.fontSizeCurve = fontSizeCurve;
         behaviour.textColors = textColors;
+        if (mainChar&&Application.isPlaying)
+        {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            behaviour.talker = gameManager.Player.gameObject;
+        }
         behaviour.talker = talker.Resolve(graph.GetResolver());
         behaviour.txt = dialogueMessage;
         if(test!=null)

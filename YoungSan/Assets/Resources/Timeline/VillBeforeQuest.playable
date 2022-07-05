@@ -25,6 +25,29 @@ MonoBehaviour:
     m_Objects:
     - {fileID: 7444072755954300029}
     - {fileID: -7460193580176953720}
+    - {fileID: -8257384915223125949}
+--- !u!114 &-8257384915223125949
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 1.9500000141561031
+  animationDatas:
+  - mainChar: 1
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    animation: Move
+    flipX: 1
+  objectData: []
 --- !u!114 &-7460193580176953720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,6 +305,7 @@ MonoBehaviour:
   talker:
     exposedName: 
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "(\uB9C8\uC744\uC5D0\uC11C \uC8FC\uBAA8\uB97C \uCC3E\uC544 \uB9D0\uC744
     \uAC78\uC790)"
   delayCurve:

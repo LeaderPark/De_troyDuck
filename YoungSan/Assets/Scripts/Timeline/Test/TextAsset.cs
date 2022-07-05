@@ -43,12 +43,15 @@ public class TextAsset : PlayableAsset
         behaviour.delayCurve = delayCurve;
         behaviour.fontSizeCurve = fontSizeCurve;
         behaviour.textColors = textColors;
-        if (mainChar&&Application.isPlaying)
+        if (mainChar && Application.isPlaying)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             behaviour.talker = gameManager.Player.gameObject;
         }
-        behaviour.talker = talker.Resolve(graph.GetResolver());
+        else
+        {
+            behaviour.talker = talker.Resolve(graph.GetResolver());
+        }
         behaviour.txt = dialogueMessage;
         if(test!=null)
         behaviour.test = test;

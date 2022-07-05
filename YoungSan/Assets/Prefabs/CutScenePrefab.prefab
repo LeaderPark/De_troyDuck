@@ -140,6 +140,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c6e6eeb8d7bdfce4ebd89e2f2632bf6c, type: 2}
     - {fileID: 11400000, guid: 63c930794035a65408fa33c6f1dceeae, type: 2}
     - {fileID: 11400000, guid: 6b88fd310cc37fe45afb3ed703fe5de3, type: 2}
+    - {fileID: 11400000, guid: 2e1c3f9d0c5850242ade2654d53e2d0c, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -258,6 +259,20 @@ MonoBehaviour:
         - m_Target: {fileID: 2289989693407090794}
           m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
           m_MethodName: Save
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2289989693407090794}
+          m_TargetAssemblyTypeName: TimelineController, Assembly-CSharp
+          m_MethodName: ClearAfterImage
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

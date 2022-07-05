@@ -41,6 +41,8 @@ public class GameManager : Manager
         }
     }
 
+    HashSet<GameObject> afterImages = new HashSet<GameObject>();
+
     public CinemachineVirtualCamera playerFollowCam;
     public DeathWindow deathWindow;
     private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
@@ -84,6 +86,7 @@ public class GameManager : Manager
             AfterImage afterImage = obj.GetComponent<AfterImage>();
             afterImage.SetTarget(spriteRenderer);
             afterImage.Play();
+            afterImages.Add(obj);
             StartCoroutine(AfterImageInActive(obj, 0.1f));
             yield return new WaitForSeconds(0.05f);
         }
@@ -93,5 +96,13 @@ public class GameManager : Manager
     {
         yield return new WaitForSeconds(time);
         afterImage.SetActive(false);
+    }
+
+    public void ClearAfterImage()
+    {
+        foreach (GameObject obj in afterImages)
+        {
+            obj.SetActive(false);
+        }
     }
 }

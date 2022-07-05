@@ -17,7 +17,39 @@ public class AreaBox : MonoBehaviour
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
             if (other.gameObject.GetComponent<Player>() == gameManager.Player)
             {
-                player = gameManager.Player;
+                player = other.gameObject.GetComponent<Player>();
+                if (areaDirection == AreaDirection.Left)
+                {
+                    skillAreaData.inLeftSkillArea = true;
+                }
+                else
+                {
+                    skillAreaData.inRightSkillArea = true;
+                }
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject != null)
+        {
+            GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+            if (player == other.gameObject.GetComponent<Player>())
+            {
+                player = null;
+                if (areaDirection == AreaDirection.Left)
+                {
+                    skillAreaData.inLeftSkillArea = false;
+                }
+                else
+                {
+                    skillAreaData.inRightSkillArea = false;
+                }
+            }
+            else if (other.gameObject.GetComponent<Player>() == gameManager.Player)
+            {
+                player = other.gameObject.GetComponent<Player>();
                 if (areaDirection == AreaDirection.Left)
                 {
                     skillAreaData.inLeftSkillArea = true;
@@ -35,9 +67,8 @@ public class AreaBox : MonoBehaviour
         if (other.gameObject != null)
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-            if (other.gameObject.GetComponent<Player>() == gameManager.Player || player == other.gameObject.GetComponent<Player>())
+            if (other.gameObject.GetComponent<Player>() == gameManager.Player)
             {
-                player = null;
                 if (areaDirection == AreaDirection.Left)
                 {
                     skillAreaData.inLeftSkillArea = false;

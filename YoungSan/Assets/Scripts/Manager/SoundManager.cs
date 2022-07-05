@@ -29,67 +29,70 @@ public class SoundManager : Manager
     public bool bossBgm;
     string prevSound = string.Empty;
     bool isFight;
+    bool isChange;
 
-    // void Start()
-    // {
-    //     SetBgm("Main_Theme");
-    //     StartCoroutine(Routine());
-    // }
+    Coroutine bgmCoroutine;
 
-    // IEnumerator Routine()
-    // {
-    //     while (true)
-    //     {
-    //         if (!bossBgm)
-    //         {
-    //             if (StateMachine.StateMachine.fight.Count > 0 && !isFight)
-    //             {
-    //                 if (bgm.clip == null)
-    //                 {
-    //                     prevSound = string.Empty;
-    //                 }
-    //                 else
-    //                 {
-    //                     prevSound = bgm.clip.name;
-    //                 }
-    //                 isFight = true;
+    void Start()
+    {
+        SetBgm("Main_Theme");
+        StartCoroutine(Routine());
+    }
 
-    //                 var enumerator = StateMachine.StateMachine.fight.GetEnumerator();
-    //                 enumerator.MoveNext();
-    //                 switch (enumerator.Current.entityData.prefab.name)
-    //                 {
-    //                     case "MountainKing":
-    //                         SetBgm("MountainKing_Theme");
-    //                         break;
-    //                     case "Slave":
-    //                         SetBgm("Slave_Theme");
-    //                         break;
-    //                     case "Satto":
-    //                         SetBgm("Satto_Theme");
-    //                         break;
-    //                     default:
-    //                         SetBgm("Fight");
-    //                         break;
-    //                 }
-    //             }
-    //             else if (StateMachine.StateMachine.fight.Count == 0 && isFight)
-    //             {
-    //                 isFight = false;
-    //                 SetBgm(prevSound);
-    //                 prevSound = string.Empty;
-    //             }
-    //         }
-    //         yield return null;
-    //     }
-    // }
+    IEnumerator Routine()
+    {
+        while (true)
+        {
+            if (!bossBgm && !isChange)
+            {
+                if (StateMachine.StateMachine.fight.Count > 0 && !isFight)
+                {
+                    if (bgm.clip == null)
+                    {
+                        prevSound = string.Empty;
+                    }
+                    else
+                    {
+                        prevSound = bgm.clip.name;
+                    }
+                    isFight = true;
+
+                    var enumerator = StateMachine.StateMachine.fight.GetEnumerator();
+                    enumerator.MoveNext();
+                    switch (enumerator.Current.entityData.prefab.name)
+                    {
+                        case "MountainKing":
+                            SetBgm("MountainKing_Theme");
+                            break;
+                        case "Slave":
+                            SetBgm("Slave_Theme");
+                            break;
+                        case "Satto":
+                            SetBgm("Satto_Theme");
+                            break;
+                        default:
+                            SetBgm("Fight");
+                            break;
+                    }
+                }
+                else if (StateMachine.StateMachine.fight.Count == 0 && isFight)
+                {
+                    isFight = false;
+                    SetBgm(prevSound);
+                    prevSound = string.Empty;
+                }
+            }
+            yield return null;
+        }
+    }
 
     IEnumerator BgmVolumeUp()
     {
         float timeStack = 0;
 
-        const float time = 0.5f;
+        const float time = 5f;
 
-        while (timeStack < time)
+        while (timeStack < time && bgm.clip != null)
         {
             timeStack += Time.deltaTime;
 
@@ -104,13 +107,13 @@ public class SoundManager : Manager
     {
         float timeStack = 0;
 
-        const float time = 0.5f;
+        const float time = 5f;
 
-        while (timeStack < time)
+        while (timeStack < time && bgm.clip != null)
         {
             timeStack += Time.deltaTime;
 
-            bgm.volume = Mathf.Lerp(volume, 0, timeStack);
+            bgm.volume = volume - Mathf.Lerp(0, volume, timeStack);
             yield return null;
         }
         bgm.volume = 0;
@@ -119,11 +122,17 @@ public class SoundManager : Manager
 
     public void SetBgm(string name)
     {
-        StartCoroutine(SetBgmRoutine(name));
+        if (bgmCoroutine != null)
+        {
+            StopCoroutine(bgmCoroutine);
+        }
+        isChange = false;
+        bgmCoroutine = StartCoroutine(SetBgmRoutine(name));
     }
 
     IEnumerator SetBgmRoutine(string name)
     {
+        isChange = true;
         yield return BgmVolumeDown();
         if (name == string.Empty || !MusicTable.Contains(name))
         {
@@ -133,8 +142,10 @@ public class SoundManager : Manager
         {
             bgm.clip = MusicTable[name] as AudioClip;
             bgm.Play();
+            isChange = false;
             yield return BgmVolumeUp();
         }
+        isChange = false;
     }
 
     private void LoadMusics()

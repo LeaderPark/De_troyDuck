@@ -39,6 +39,7 @@ public class ObjectControlReciver :Receiver
 					Animator objAnimator = obj.GetComponent<Animator>();
 					if (marker.animationDatas[i].getMainCharAnimator)
 					{
+						obj.gameObject.transform.localScale = gameManager.Player.gameObject.transform.localScale;
 						objAnimator.runtimeAnimatorController = gameManager.Player.GetComponent<Animator>().runtimeAnimatorController;
 					}
 					objAnimator.Play(clip);

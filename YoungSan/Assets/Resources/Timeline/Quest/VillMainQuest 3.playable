@@ -215,6 +215,7 @@ MonoBehaviour:
     - {fileID: -2441300432907553630}
     - {fileID: -3798659007919180249}
     - {fileID: -4006963828042077861}
+    - {fileID: 508371480347477386}
 --- !u!114 &-2441300432907553630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,7 +419,7 @@ MonoBehaviour:
       exposedName: 50c45e907e5d4534889ae0613f223e01
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    flipX: 1
   - mainChar: 0
     getMainCharAnimator: 0
     contorolObject:
@@ -482,6 +483,22 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 1816892977305796099}
+--- !u!114 &508371480347477386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 6b88fd310cc37fe45afb3ed703fe5de3, type: 2}
 --- !u!114 &618806852571479093
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -80,6 +80,8 @@ public class InterfaceUI : MonoBehaviour
     }
     public void CreateQuestUI(Quest quest,Transform content)
     {
+        QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
+
         Debug.Log(quest + " " + content);
         GameObject questUI = GetObject(content);
         Button button = questUI.GetComponent<Button>();

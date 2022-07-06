@@ -16,7 +16,6 @@ public class TimelineController : MonoBehaviour
     [SerializeField] private Image fade;
     public bool talkLoop = true;
 
-
     [HideInInspector]
     public JumpMarker jumpMarker;
     public LoopEndMarker targetMarker;
@@ -36,6 +35,7 @@ public class TimelineController : MonoBehaviour
     {
         if (jumpMarker != null)
         {
+            Debug.Log(jumpMarker);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 StartTimeline();
@@ -113,6 +113,7 @@ public class TimelineController : MonoBehaviour
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         gameManager.ClearAfterImage();
+        gameManager.StopAfterImage(gameManager.Player.gameObject.GetComponent<Entity>());
     }
     public void UISetActiveFalse()
     {
@@ -182,6 +183,7 @@ public class TimelineController : MonoBehaviour
         FadeInOut(false);
         yield return new WaitForSeconds(1f);
         skip = false;
+        jumpMarker = null;
         currentSkipTime = 0;
         isKeyDown = false;
     }

@@ -103,6 +103,7 @@ public class Entity : MonoBehaviour
     {
         dead?.Invoke();
         hitable = false;
+        isDead = true;
 
         if (GetComponent<Player>() != null)
         {

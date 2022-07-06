@@ -8,8 +8,10 @@ public class ClickToPlay : MonoBehaviour
     bool isRunning = false;
     void Awake()
     {
-        Debug.Log(ManagerObject.Instance);
-    }
+		Debug.Log(ManagerObject.Instance);
+		//if (ManagerObject.Instance == null)
+		//	Application.Quit();
+	}
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

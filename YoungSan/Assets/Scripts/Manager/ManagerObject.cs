@@ -11,7 +11,7 @@ public class ManagerObject : MonoBehaviour
         {
             if (instance == null)
             {
-                Instantiate(Resources.Load<GameObject>("ManagerObject"));
+                 Instantiate(Resources.Load<GameObject>("ManagerObject"));
             }
             return instance;
         }

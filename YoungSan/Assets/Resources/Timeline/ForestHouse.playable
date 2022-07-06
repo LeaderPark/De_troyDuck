@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abe84a4f4825484da4f8375ff2300c7, type: 3}
   m_Name: Quest/QuestMarker
   m_EditorClassIdentifier: 
-  m_Time: 9.016666666666667
+  m_Time: 9.05
   quest: {fileID: 11400000, guid: 47fb072c04a1c9d40ae887e1694701d9, type: 2}
 --- !u!114 &-8719484833815953646
 MonoBehaviour:
@@ -360,7 +360,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -387,7 +405,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -467,6 +503,7 @@ MonoBehaviour:
   talker:
     exposedName: 71d77d23230f9ad4a860e5a254af3c67
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "\uBC29\uAE08 \uADF8\uAC74 \uBB50\uC600\uC9C0..?"
   delayCurve:
     serializedVersion: 2
@@ -784,6 +821,7 @@ MonoBehaviour:
   talker:
     exposedName: e78258ea02c102941b743a27bdabc4ef
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "\uC5B4\uB5BB\uAC8C \uB41C\uAC70\uC9C0..?"
   delayCurve:
     serializedVersion: 2
@@ -992,7 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 9.016666666666667
+  m_Time: 9.05
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 67850259cb446694aa7a544f06a173bd, type: 2}
@@ -1056,6 +1094,7 @@ MonoBehaviour:
   talker:
     exposedName: c342c51d823cee04cbad7e0ac4db5bde
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: '!!'
   delayCurve:
     serializedVersion: 2
@@ -1246,6 +1285,7 @@ MonoBehaviour:
   talker:
     exposedName: 5008d04de82d98b46910c34ae8e76e55
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "\uBD84\uBA85 \uB098\uB294 \uC9D1\uC55E\uC5D0\uC11C.."
   delayCurve:
     serializedVersion: 2
@@ -2108,7 +2148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 9.016666666666667
+  m_Time: 9.05
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 63c930794035a65408fa33c6f1dceeae, type: 2}
@@ -2153,6 +2193,7 @@ MonoBehaviour:
   talker:
     exposedName: 9c6f7d71747d3c64286ac9839816e793
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: ....
   delayCurve:
     serializedVersion: 2
@@ -2404,6 +2445,7 @@ MonoBehaviour:
   talker:
     exposedName: 9f89138634888d4458a47f57f397b17a
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: ...?
   delayCurve:
     serializedVersion: 2
@@ -2760,7 +2802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
   m_Name: Object/ObjControl
   m_EditorClassIdentifier: 
-  m_Time: 8.983333333333333
+  m_Time: 9.05
   animationDatas: []
   objectData:
   - mainChar: 1

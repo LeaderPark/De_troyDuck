@@ -48,7 +48,7 @@ public class GameManager : Manager
     private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
     private void Awake()
     {
-        Shader.WarmupAllShaders();
+        //Shader.WarmupAllShaders();
         //PlayerFind();
     }
 

@@ -56,16 +56,23 @@ public class SearchEnemyReciver : Receiver
 
 					if (enemyEntity != null)
 					{
-						enemyEntity.dead += () =>
+						if (enemyEntity.isDead)
 						{
 							enemys.Add(enemyEntity);
-							if (enemys.Count >= enemyCount)
+						}
+						else
+						{
+							enemyEntity.dead += () =>
 							{
-								enemys.Clear();
-								StartCoroutine(NextTimeLine(waitTime));
-							}
-							enemyEntity.dead = null;
-						};
+								enemys.Add(enemyEntity);
+								if (enemys.Count >= enemyCount)
+								{
+									enemys.Clear();
+									StartCoroutine(NextTimeLine(waitTime));
+								}
+								enemyEntity.dead = null;
+							};
+						}
 						if (enemyEntity.gameObject.CompareTag("Boss"))
 						{
 							enemyEntity.dead += () =>

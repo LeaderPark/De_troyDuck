@@ -24,6 +24,8 @@ public class SpawnMultiGuardSpear : Installation
 
     public Transform source;
 
+    public AudioClip sound;
+
     void Awake()
     {
         int realCount = count * 2;
@@ -163,7 +165,9 @@ public class SpawnMultiGuardSpear : Installation
 
     private IEnumerator Dash(float speed, float startTime, float time, int index)
     {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
         yield return new WaitForSeconds(startTime);
+        soundManager.SoundStart(sound.name, guardSpears[index].transform);
         rigid[index].velocity = moveDir[index] * speed;
 
         RaycastHit hit;

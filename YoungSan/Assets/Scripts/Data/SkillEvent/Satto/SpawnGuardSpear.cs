@@ -20,6 +20,8 @@ public class SpawnGuardSpear : Installation
     public HitBox leftHitBox;
     public HitBox rightHitBox;
 
+    public AudioClip sound;
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -131,7 +133,9 @@ public class SpawnGuardSpear : Installation
 
     private IEnumerator Dash(float speed, float startTime, float time)
     {
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
         yield return new WaitForSeconds(startTime);
+        soundManager.SoundStart(sound.name, transform);
         rigid.velocity = moveDir * speed;
 
         RaycastHit hit;

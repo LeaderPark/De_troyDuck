@@ -21,6 +21,8 @@ public class SattoMultiGuardArcher : Installation
 
     public Transform source;
 
+    public AudioClip sound;
+
     void Awake()
     {
         int realCount = count * 2;
@@ -115,6 +117,9 @@ public class SattoMultiGuardArcher : Installation
         guardArchers[index].GetComponent<SpriteRenderer>().enabled = true;
         yield return cloud.End();
         animator[index].Play("Attack");
+
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+        soundManager.SoundStart(sound.name, guardArchers[index].transform);
 
         StartCoroutine(Projectile(moveDir[index].x, moveDir[index].z, "Arrow", skillData, spawnPosition[index], 1f));
         yield return new WaitForSeconds(1f);

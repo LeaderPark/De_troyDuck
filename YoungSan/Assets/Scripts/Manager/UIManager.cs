@@ -29,11 +29,48 @@ public class UIManager : Manager
 
     public bool important;
 
+    bool cursorState;
+    bool cursor;
+
     void Start()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
             Init();
+        }
+    }
+
+    void Update()
+    {
+        if (Time.timeScale != 1)
+        {
+            Cursor.visible = true;
+            return;
+        }
+        else
+        {
+            if (cursor)
+            {
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.visible = false;
+            }
+        }
+
+        if (cursorState)
+        {
+
+            if (cursor)
+            {
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.visible = false;
+            }
+            cursorState = false;
         }
     }
 
@@ -113,9 +150,17 @@ public class UIManager : Manager
     public void UISetActiveTimeLine(bool active)
     {
         if (active)
+        {
             canvas.alpha = 1;
+            cursor = true;
+            cursorState = true;
+        }
         else
+        {
             canvas.alpha = 0;
+            cursor = false;
+            cursorState = true;
+        }
     }
 
     public void UISetActiveFalse()

@@ -18,6 +18,7 @@ public class SearchEnemyReciver : Receiver
 		SearchEnemyMarker marker = notification as SearchEnemyMarker;
 		if (marker != null)
 		{
+
 			gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 
 			nextTimeLine = marker.nextTimeLine;
@@ -28,12 +29,12 @@ public class SearchEnemyReciver : Receiver
 				playerEntity.dead += () =>
 				{
 					StartCoroutine(NextTimeLine(waitTime));
-
 				};
 				return;
 			}
 			if (marker.enemys.Length == 0)
 			{
+				Debug.Log("일단 실행");
 				StartCoroutine(NextTimeLine(0));
 			}
 			else

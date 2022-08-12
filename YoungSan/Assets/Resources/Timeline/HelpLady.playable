@@ -409,6 +409,7 @@ MonoBehaviour:
   talker:
     exposedName: 309fcb9d9db31bb4fa819badb540b57f
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "\uC77C\uB2E8 \uC5EC\uAE34 \uC704\uD5D8\uD560\uAC70 \uAC19\uC73C\uB2C8
     \uB9C8\uC744\uAE4C\uC9C0 \uAC00\uC11C \uC598\uAE30\uD558\uC8E0."
   delayCurve:
@@ -1270,25 +1271,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1741,6 +1724,7 @@ MonoBehaviour:
   talker:
     exposedName: f5f3a8443a369c840bb42315d211d2f4
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: " \uAD6C\uD574\uC8FC\uC154\uC11C \uAC00,\uAC10\uC0AC\uD569\uB2C8\uB2E4"
   delayCurve:
     serializedVersion: 2

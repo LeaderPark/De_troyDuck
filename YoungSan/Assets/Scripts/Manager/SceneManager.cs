@@ -67,10 +67,10 @@ public class SceneManager : Manager
         DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
 
         uIManager.UISetActiveTimeLine(true);
-        if (timelineCon.onSceneLoadPlay && timelineCon.startTimeline != null)
-        {
-            timelineManager.StartCutScene(timelineCon.startTimeline);
-        }
-        afterSceneLoadAction?.Invoke();
+		if (timelineCon.onSceneLoadPlay && timelineCon.startTimeline != null)
+		{
+			timelineManager.StartCutScene(timelineCon.startTimeline);
+		}
+		afterSceneLoadAction?.Invoke();
     }
 }

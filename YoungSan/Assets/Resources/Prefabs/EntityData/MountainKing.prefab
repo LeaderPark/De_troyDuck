@@ -974,6 +974,7 @@ GameObject:
   - component: {fileID: 1236690625908380987}
   - component: {fileID: 1236690625908380990}
   - component: {fileID: 1236690625908380986}
+  - component: {fileID: -1813810922228532793}
   m_Layer: 7
   m_Name: MountainKing
   m_TagString: Boss
@@ -1081,9 +1082,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityStatusAilment: {fileID: -1813810922228532793}
   entityData: {fileID: 11400000, guid: 7494ef614ff734645986cfcfc531937a, type: 2}
   isDead: 0
   hitable: 0
+  isGround: 0
 --- !u!114 &1236690625908380960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,7 +1127,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &1236690625908380988
 MonoBehaviour:
@@ -1176,6 +1179,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236690625908380985}
   m_Enabled: 0
+--- !u!114 &-1813810922228532793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236690625908380985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d858617e0ddfe4d9f08a800a28bfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1236690625929019418
 GameObject:
   m_ObjectHideFlags: 0

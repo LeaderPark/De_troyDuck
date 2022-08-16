@@ -1518,6 +1518,7 @@ GameObject:
   - component: {fileID: 8188069216176593936}
   - component: {fileID: 3573420335943397471}
   - component: {fileID: 6191760318068564993}
+  - component: {fileID: 3397608905563127455}
   m_Layer: 7
   m_Name: GlaveSoldier
   m_TagString: Enemy
@@ -1625,9 +1626,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityStatusAilment: {fileID: 3397608905563127455}
   entityData: {fileID: 11400000, guid: b7623e2ba72ba2145a011f04054e8702, type: 2}
   isDead: 0
   hitable: 0
+  isGround: 0
 --- !u!114 &7230566578263696745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,7 +1687,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &8188069216176593936
 MonoBehaviour:
@@ -1720,6 +1723,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7230566578263696722}
   m_Enabled: 0
+--- !u!114 &3397608905563127455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7230566578263696722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d858617e0ddfe4d9f08a800a28bfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7718390568580092740
 GameObject:
   m_ObjectHideFlags: 0

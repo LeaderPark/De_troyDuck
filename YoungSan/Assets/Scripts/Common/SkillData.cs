@@ -10,11 +10,13 @@ public class SkillData : MonoBehaviour
 
     public HitBoxData[] hitBoxDatas;
 
-    public SkillSet skillSet {get; set;}
+    public SkillSet skillSet { get; set; }
     public float[] soundStartTimes;
 
     public string[] skillDamageForms;
 
+    public bool canmove;
+    public bool canrotate;
     public float coolTime;
     public float waitTime;
     public string useStaminaForm;
@@ -31,7 +33,7 @@ public class SkillData : MonoBehaviour
             temp = temp.Replace("{" + item + "}", skillSet.entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
             temp = temp.Replace("{Max" + item + "}", skillSet.entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
         }
-        
+
         Expression ex = new Expression(temp);
         object obj = ex.Evaluate();
 
@@ -53,7 +55,7 @@ public class SkillData : MonoBehaviour
             temp = temp.Replace("{" + item + "}", skillSet.entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
             temp = temp.Replace("{Max" + item + "}", skillSet.entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
         }
-        
+
         Expression ex = new Expression(temp);
         object obj = ex.Evaluate();
 
@@ -69,15 +71,15 @@ public class SkillData : MonoBehaviour
 
     void Awake()
     {
-        for(int i = 0; i < hitBoxDatas.Length; i++)
+        for (int i = 0; i < hitBoxDatas.Length; i++)
         {
             hitBoxDatas[i].LeftHitBox.skillData = this;
         }
-        for(int i = 0; i < hitBoxDatas.Length; i++)
+        for (int i = 0; i < hitBoxDatas.Length; i++)
         {
             hitBoxDatas[i].RightHitBox.skillData = this;
         }
-        
+
     }
 
     public void ActiveHitBox(bool isRight)

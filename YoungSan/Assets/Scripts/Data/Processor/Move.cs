@@ -18,6 +18,11 @@ namespace Processor
         private void SetVelocity(Vector3 normal, float power)
         {
             if (Locker) return;
+            Entity entity = rigidbody.GetComponent<Entity>();
+            if (entity.entityStatusAilment != null)
+            {
+                if (entity.entityStatusAilment.GetEntityStatus(typeof(Airbone)).Activated()) return;
+            }
             Vector3 velocity = normal * power;
 
             RaycastHit hit;
@@ -34,6 +39,11 @@ namespace Processor
 
         private void SetVelocityNoLock(Vector3 normal, float power)
         {
+            Entity entity = rigidbody.GetComponent<Entity>();
+            if (entity.entityStatusAilment != null)
+            {
+                if (entity.entityStatusAilment.GetEntityStatus(typeof(Airbone)).Activated()) return;
+            }
             Vector3 velocity = normal * power;
 
             RaycastHit hit;
@@ -47,16 +57,16 @@ namespace Processor
 
             rigidbody.velocity = velocity;
         }
-        
+
 
         protected override void StartLock()
         {
-            
+
         }
         protected override void EndLock()
         {
 
         }
-        
+
     }
 }

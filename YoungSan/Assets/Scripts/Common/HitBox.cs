@@ -37,45 +37,43 @@ public class HitBox : MonoBehaviour
             {
                 if (entity.isDead) return;
                 if (!entity.hitable) return;
+                if (!entity.entityStatusAilment) return;
 
                 if (targets.Contains(entity)) return;
                 targets.Add(entity);
 
                 Processor.HitBody hitBody = entity?.GetProcessor(typeof(Processor.HitBody)) as Processor.HitBody;
 
-                switch (entity.gameObject.tag)
+                EntityStatus blocking = entity.entityStatusAilment.GetEntityStatus(typeof(Blocking));
+
+                if (!blocking.Activated())
                 {
-                    case "Player": // player
+                    switch (entity.gameObject.tag)
+                    {
+                        case "Player": // player
+                            DamageEffect.Instance?.OnDamageEffect();
+
+                            break;
+                        case "Enemy": // enemy
+
+                            break;
+                        case "Boss": // enemy
+
+                            break;
+                    }
+
+                    EntityStatus superArmour = entity.entityStatusAilment.GetEntityStatus(typeof(SuperArmour));
+                    if (!superArmour.Activated())
+                    {
                         CameraShake.Instance.Shake();
                         entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
-                        hitBody?.AddCommand("DamageOnBody", new object[] { skillData.CalculateSkillDamage(), skillData.skillSet.entity });
-                        DamageEffect.Instance?.OnDamageEffect();
+                    }
+                    hitBody?.AddCommand("DamageOnBody", new object[] { skillData.CalculateSkillDamage(), skillData.skillSet.entity });
 
-                        if (!hitBody.isDefencing)
-                        {
-                            skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction, skillData.targetIndex);
-                        }
-
-                        break;
-                    case "Enemy": // enemy
-                        CameraShake.Instance.Shake();
-                        entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
-                        hitBody?.AddCommand("DamageOnBody", new object[] { skillData.CalculateSkillDamage(), skillData.skillSet.entity });
-
-                        if (!hitBody.isDefencing)
-                        {
-                            skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction, skillData.targetIndex);
-                        }
-                        break;
-                    case "Boss": // enemy
-                        CameraShake.Instance.Shake();
-                        hitBody?.AddCommand("DamageOnBody", new object[] { skillData.CalculateSkillDamage(), skillData.skillSet.entity });
-
-                        if (!hitBody.isDefencing)
-                        {
-                            skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction, skillData.targetIndex);
-                        }
-                        break;
+                    if (!superArmour.Activated())
+                    {
+                        skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction, skillData.targetIndex);
+                    }
                 }
             }
         }

@@ -7,12 +7,16 @@ public class Entity : MonoBehaviour
 {
     private Hashtable Processors { get; set; }
 
+    public EntityStatusAilment entityStatusAilment;
     public EntityData entityData;
     public Clone clone;
+    public Dictionary<StatCategory, int> extraStat;
 
     public bool isDead;
     public bool hitable;
     public Action dead = null;
+
+    public bool isGround;
 
     public Processor.Processor GetProcessor(Type processor)
     {
@@ -35,10 +39,17 @@ public class Entity : MonoBehaviour
     {
         Processors = new Hashtable();
         clone = new Clone(this, entityData);
+        extraStat = new Dictionary<StatCategory, int>();
         isDead = false;
         hitable = true;
         SettingProcessor();
+
+        extraStat[StatCategory.Health] = 0;
+        extraStat[StatCategory.Attack] = 0;
+        extraStat[StatCategory.Stamina] = 0;
+        extraStat[StatCategory.Speed] = 0;
     }
+
     public void SetHp(float hp)
     {
         clone.SetStat(StatCategory.Health, (int)(clone.GetMaxStat(StatCategory.Health) * hp));
@@ -47,6 +58,7 @@ public class Entity : MonoBehaviour
             isDead = false;
         }
     }
+
     public void DieEvent(bool isDie = true)
     {
         if (gameObject.CompareTag("Player"))
@@ -91,11 +103,11 @@ public class Entity : MonoBehaviour
                 }
             );
         }
-        GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { 1f });
+        GetProcessor(typeof(Processor.Move))?.AddCommand("LockTime", new object[] { 1f });
         GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
         GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[] { });
         GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
-        GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0f });
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("LockTime", new object[] { 0f });
         GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Die" });
         StartCoroutine(DieAnimationComplete());
     }
@@ -138,11 +150,11 @@ public class Entity : MonoBehaviour
                 }
             );
         }
-        GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { 1f });
+        GetProcessor(typeof(Processor.Move))?.AddCommand("LockTime", new object[] { 1f });
         GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
         GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[] { });
         GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
-        GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { 0f });
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("LockTime", new object[] { 0f });
         GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Die" });
         StartCoroutine(DieAnimationComplete());
     }
@@ -214,6 +226,23 @@ public class Entity : MonoBehaviour
         else
         {
             staminaCount -= Time.deltaTime;
+        }
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 10)
+        {
+            isGround = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 10)
+        {
+            isGround = false;
         }
     }
 

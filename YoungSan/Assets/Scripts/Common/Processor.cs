@@ -31,31 +31,42 @@ namespace Processor
 
             if (Locker)
             {
-                LockTimer -= Time.deltaTime;
                 if (LockTimer <= 0)
                 {
+                    if (LockTimer == -1) return;
                     Locker = false;
                     EndLock();
                 }
+                LockTimer -= Time.deltaTime;
             }
         }
 
         protected bool Locker;
         private float LockTimer;
 
-        protected void Lock(float time)
+        protected void LockTime(float time)
         {
+            LockTimer = time;
+            StartLock();
+
             if (!Locker)
             {
-                if (LockTimer < time) LockTimer = time;
-                StartLock();
                 Locker = true;
             }
-            else
-            {
-                LockTimer = time;
-                StartLock();
-            }
+        }
+
+        protected void Lock()
+        {
+            LockTimer = -1;
+            StartLock();
+            Locker = true;
+        }
+
+        protected void UnLock()
+        {
+            LockTimer = 0;
+            Locker = false;
+            EndLock();
         }
 
         protected virtual void StartLock()

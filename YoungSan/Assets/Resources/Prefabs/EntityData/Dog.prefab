@@ -596,6 +596,7 @@ GameObject:
   - component: {fileID: 7416194803970039989}
   - component: {fileID: 2800419473770614010}
   - component: {fileID: 4803033221667821732}
+  - component: {fileID: -7320161980385716136}
   m_Layer: 7
   m_Name: Dog
   m_TagString: Enemy
@@ -703,9 +704,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityStatusAilment: {fileID: -7320161980385716136}
   entityData: {fileID: 11400000, guid: aecf20ba5c5f92841943d60224ca3c2f, type: 2}
   isDead: 0
   hitable: 0
+  isGround: 0
 --- !u!114 &8291797127244749260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,7 +765,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &7416194803970039989
 MonoBehaviour:
@@ -798,6 +801,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8291797127244749303}
   m_Enabled: 0
+--- !u!114 &-7320161980385716136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8291797127244749303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d858617e0ddfe4d9f08a800a28bfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9151992854544562796
 PrefabInstance:
   m_ObjectHideFlags: 0

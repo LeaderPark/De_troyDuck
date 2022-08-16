@@ -18,6 +18,11 @@ namespace Processor
         private void UseSkill(EventCategory category, int index, Vector2 direction, bool isRight, System.Action action)
         {
             if (Locker) return;
+            Entity entity = skillSet.entity;
+            if (entity.entityStatusAilment != null)
+            {
+                if (entity.entityStatusAilment.GetEntityStatus(typeof(Airbone)).Activated()) return;
+            }
             skillSet.ActiveSkill(category, index, direction, isRight, action);
         }
 

@@ -839,9 +839,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityStatusAilment: {fileID: 0}
   entityData: {fileID: 11400000, guid: 207825c7e6b463a418321fa8bda7c0a6, type: 2}
   isDead: 0
   hitable: 0
+  isGround: 0
 --- !u!114 &8052359390661717761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +884,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &8319161989941001351
 MonoBehaviour:

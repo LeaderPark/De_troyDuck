@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 803396161309198646}
   - component: {fileID: 5409025189464450425}
   - component: {fileID: 3416662188766343463}
+  - component: {fileID: 2900032054281551515}
   m_Layer: 7
   m_Name: SlaveFat
   m_TagString: Enemy
@@ -408,9 +409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityStatusAilment: {fileID: 2900032054281551515}
   entityData: {fileID: 11400000, guid: 140e72b3a77d3c74f82f3b6ca281354c, type: 2}
   isDead: 0
   hitable: 0
+  isGround: 0
 --- !u!114 &2224708821530652751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,7 +470,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &803396161309198646
 MonoBehaviour:
@@ -503,6 +506,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2224708821530652788}
   m_Enabled: 0
+--- !u!114 &2900032054281551515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2224708821530652788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d858617e0ddfe4d9f08a800a28bfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2616217041828416396
 GameObject:
   m_ObjectHideFlags: 0

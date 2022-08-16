@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 4580442240323297771}
   - component: {fileID: 5261142048948540176}
   - component: {fileID: 7365705623806924774}
+  - component: {fileID: -7148848232764730078}
   m_Layer: 6
   m_Name: MainChar
   m_TagString: Player
@@ -513,9 +514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityStatusAilment: {fileID: -7148848232764730078}
   entityData: {fileID: 11400000, guid: 207825c7e6b463a418321fa8bda7c0a6, type: 2}
   isDead: 0
   hitable: 0
+  isGround: 0
 --- !u!114 &2075073055555241510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,7 +559,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &1009489312
 MonoBehaviour:
@@ -608,6 +611,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075073055555241501}
   m_Enabled: 1
+--- !u!114 &-7148848232764730078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075073055555241501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d858617e0ddfe4d9f08a800a28bfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2388458980938419714
 GameObject:
   m_ObjectHideFlags: 0

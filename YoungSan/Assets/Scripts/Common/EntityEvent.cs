@@ -54,19 +54,39 @@ public class EntityEvent : MonoBehaviour
     public bool reservate;
     protected void CallMove(float inputX, float inputY, bool direction, Vector3 position)
     {
+        if (skillSet.running && skillSet.skillData)
+        {
+            dontmove = !skillSet.skillData.canmove;
+        }
         if (!dontmove)
         {
-            if (!(entity.GetProcessor(typeof(Processor.Animate)) as Processor.Animate).locking)
+            if (skillSet.running && skillSet.skillData)
             {
-                entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
-            }
-            if (inputX == 0 && inputY == 0)
-            {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Idle", false });
+                if (skillSet.skillData.canrotate)
+                {
+                    if (!(entity.GetProcessor(typeof(Processor.Animate)) as Processor.Animate).locking)
+                    {
+                        entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
+                    }
+                }
             }
             else
             {
-                entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Move", false });
+                if (!(entity.GetProcessor(typeof(Processor.Animate)) as Processor.Animate).locking)
+                {
+                    entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
+                }
+            }
+            if (!skillSet.running)
+            {
+                if (inputX == 0 && inputY == 0)
+                {
+                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Idle", false });
+                }
+                else
+                {
+                    entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[] { "Move", false });
+                }
             }
 
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[] { new Vector3(inputX, 0, inputY).normalized, entity.clone.GetStat(StatCategory.Speed) });
@@ -123,7 +143,6 @@ public class EntityEvent : MonoBehaviour
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("Play", new object[]{skillSet.skillDatas[category][skillSet.skillStackAmount[category]].skill.name, true});
             entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocity", new object[]{Vector3.zero, 0});
             attackProcess[category][skillSet.skillStackAmount[category]]?.Invoke(inputX, inputY, position, skillSet.skillDatas[category][skillSet.skillStackAmount[category]]);
-            dontmove = true;
             reservate = true;
         })});
     }
@@ -236,19 +255,100 @@ public class EntityEvent : MonoBehaviour
         }
     }
 
-    protected void Defend(float startTime, float time, float rate)
+    protected void Buff(float startTime, float time, StatCategory category, int value)
     {
         int idx = coroutines.Count;
-        Coroutine routine = this.StartCoroutine(DefendRoutine(idx, startTime, time, rate));
+        Coroutine routine = this.StartCoroutine(BuffRoutine(idx, startTime, time, category, value));
         coroutines.Add((false, routine));
     }
 
-    private IEnumerator DefendRoutine(int idx, float startTime, float time, float rate)
+    private IEnumerator BuffRoutine(int idx, float startTime, float time, StatCategory category, int value)
     {
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
 
-        entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("Defend", new object[] { time, rate });
+        entity.extraStat[category] += value;
+        entity.clone.SetMaxStat(category, entity.clone.GetMaxStat(category) + value);
+        entity.clone.SetStat(category, entity.clone.GetStat(category) + value);
+
+        yield return new WaitForSeconds(time);
+
+        entity.extraStat[category] -= value;
+        entity.clone.SetStat(category, entity.clone.GetStat(category) - value);
+        entity.clone.SetMaxStat(category, entity.clone.GetMaxStat(category) - value);
+    }
+
+    protected void Defend(float startTime, float time, float rate, int value)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(DefendRoutine(idx, startTime, time, rate, value));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator DefendRoutine(int idx, float startTime, float time, float rate, int value)
+    {
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+
+        Defending defending = entity.entityStatusAilment.GetEntityStatus(typeof(Defending)) as Defending;
+
+        defending.SetData(rate, value);
+        defending.ActivateForTime(time);
+    }
+
+    protected void SuperArmour(float startTime, float time)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(SuperArmourRoutine(idx, startTime, time));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator SuperArmourRoutine(int idx, float startTime, float time)
+    {
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+
+        SuperArmour superArmour = entity.entityStatusAilment.GetEntityStatus(typeof(SuperArmour)) as SuperArmour;
+
+        superArmour.SetData(entity);
+        superArmour.ActivateForTime(time);
+    }
+
+    protected void Blocking(float startTime, float time)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(BlockingRoutine(idx, startTime, time));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator BlockingRoutine(int idx, float startTime, float time)
+    {
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+
+        Blocking blocking = entity.entityStatusAilment.GetEntityStatus(typeof(Blocking)) as Blocking;
+
+        blocking.SetData(entity);
+        blocking.ActivateForTime(time);
+    }
+
+    protected void Airbone(float startTime, Vector3 power)
+    {
+        int idx = coroutines.Count;
+        Coroutine routine = this.StartCoroutine(AirboneRoutine(idx, startTime, power));
+        coroutines.Add((false, routine));
+    }
+
+    private IEnumerator AirboneRoutine(int idx, float startTime, Vector3 power)
+    {
+        yield return new WaitForSeconds(startTime);
+        coroutines[idx] = (true, coroutines[idx].Item2);
+
+        Airbone airbone = entity.entityStatusAilment.GetEntityStatus(typeof(Airbone)) as Airbone;
+
+        entity.GetComponentInChildren<SkillSet>().StopSkill();
+        airbone.SetData(entity, power);
+        airbone.Activate();
     }
 
     private IEnumerator AttackEndCheck(EventCategory category)

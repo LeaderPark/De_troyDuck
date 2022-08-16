@@ -24,9 +24,9 @@ public class SkillSet : MonoBehaviour
     public bool useSkill;
     public bool active;
     public float delayTime;
-    private SkillData skillData;
-    private bool isRight;
-    private bool running;
+    public SkillData skillData;
+    private SpriteRenderer spriteRenderer;
+    public bool running;
     private bool canAttack;
 
     private List<object> soundDatas;
@@ -40,6 +40,7 @@ public class SkillSet : MonoBehaviour
         skillStackAmount = new Dictionary<EventCategory, int>();
         soundDatas = new List<object>();
         entity = GetComponentInParent<Entity>();
+        spriteRenderer = entity.GetComponent<SpriteRenderer>();
 
         foreach (SkillDataCategory category in skillDataCategories)
         {
@@ -85,7 +86,7 @@ public class SkillSet : MonoBehaviour
         if (!entity.CompareTag("Player"))
         {
             entity.GetComponentInChildren<Silhouette>()?.GetComponent<SpriteRenderer>().material.SetColor("_TingleColor", Color.black);
-            entity.GetComponent<SpriteRenderer>()?.material.SetColor("_TingleColor", Color.black);
+            spriteRenderer?.material.SetColor("_TingleColor", Color.black);
         }
         active = false;
         if (skillData != null)
@@ -172,14 +173,19 @@ public class SkillSet : MonoBehaviour
     {
         if (!isPlayer)
         {
-            if (entity.gameObject.CompareTag("Boss")) entity?.GetProcessor(typeof(Processor.HitBody))?.AddCommand("Defend", new object[] { delayTime + 1, 0f });
+            if (entity.gameObject.CompareTag("Boss"))
+            {
+                SuperArmour superArmour = entity.entityStatusAilment.GetEntityStatus(typeof(SuperArmour)) as SuperArmour;
+
+                superArmour.SetData(entity);
+                superArmour.ActivateForTime(1);
+            }
             yield return new WaitForSeconds(delayTime);
         }
         action();
         SkillData data = skillDatas[category][index];
         data.direction = direction;
         skillData = data;
-        this.isRight = isRight;
 
         if (skillData.hitBoxDatas.Length > skillData.targetIndex)
         {
@@ -198,7 +204,7 @@ public class SkillSet : MonoBehaviour
         float time = delayTime / 2;
         float timeStack = 0;
 
-        SpriteRenderer sr = entity.GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = spriteRenderer;
         SpriteRenderer silhouetteSr = entity.GetComponentInChildren<Silhouette>().GetComponent<SpriteRenderer>();
 
         const float target = 0.6f;
@@ -291,7 +297,7 @@ public class SkillSet : MonoBehaviour
                 if (skillData.hitBoxDatas.Length > skillData.targetIndex)
                 {
                     skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(true);
-                    skillData.ActiveHitBox(isRight);
+                    skillData.ActiveHitBox(!spriteRenderer.flipX);
                 }
             }
         }

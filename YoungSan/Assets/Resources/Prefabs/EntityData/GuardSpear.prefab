@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 6501346687116338786}
   - component: {fileID: 1877973629714500141}
   - component: {fileID: 9112256457195724403}
+  - component: {fileID: 1951002045785506580}
   m_Layer: 7
   m_Name: GuardSpear
   m_TagString: Enemy
@@ -282,9 +283,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityStatusAilment: {fileID: 1951002045785506580}
   entityData: {fileID: 11400000, guid: 749db8e78489e0b49ac23503a2b7cf5d, type: 2}
   isDead: 0
   hitable: 0
+  isGround: 0
 --- !u!114 &5746751670080446235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +344,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &6501346687116338786
 MonoBehaviour:
@@ -377,6 +380,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5746751670080446240}
   m_Enabled: 0
+--- !u!114 &1951002045785506580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5746751670080446240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d858617e0ddfe4d9f08a800a28bfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5984355647233408523
 GameObject:
   m_ObjectHideFlags: 0

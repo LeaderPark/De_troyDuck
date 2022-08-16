@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 3595972222753245494}
   - component: {fileID: 8201616643318965625}
   - component: {fileID: 1561382424874807591}
+  - component: {fileID: 2996322298261064179}
   m_Layer: 7
   m_Name: Gunner
   m_TagString: Enemy
@@ -320,9 +321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a7347c63beaf94a8882ea2ee3378e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityStatusAilment: {fileID: 2996322298261064179}
   entityData: {fileID: 11400000, guid: 698e01afc2ff73347966caf48e23a6dd, type: 2}
   isDead: 0
   hitable: 0
+  isGround: 0
 --- !u!114 &2602669095276867663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +382,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &3595972222753245494
 MonoBehaviour:
@@ -415,6 +418,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2602669095276867700}
   m_Enabled: 0
+--- !u!114 &2996322298261064179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602669095276867700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d858617e0ddfe4d9f08a800a28bfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4094522149886900283
 GameObject:
   m_ObjectHideFlags: 0

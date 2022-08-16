@@ -51,16 +51,77 @@ public abstract class SkillEffect : MonoBehaviour
 
     protected void Stiff(Entity entity, float time)
     {
-        entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { time });
-        entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { time });
-        entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[] { time });
+        Fainting fainting = entity.entityStatusAilment.GetEntityStatus(typeof(Fainting)) as Fainting;
+
+        fainting.SetData(entity);
+        fainting.ActivateForTime(time);
     }
 
-    protected void TickDamage(string objectName, Entity sourceEntity, Entity targetEntity, float delay, float time)
+    protected void TickDamage(TickAilment tickAilment, Entity sourceEntity, Entity targetEntity, float delay, float time, string tickDamageForm)
     {
-        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-        TickDamage tick = poolManager.GetObject(objectName).GetComponent<TickDamage>();
-        tick.SetData(sourceEntity, targetEntity, delay, time);
+        switch (tickAilment)
+        {
+            case TickAilment.Igniting:
+
+                Igniting igniting = targetEntity.entityStatusAilment.GetEntityStatus(typeof(Igniting)) as Igniting;
+
+                igniting.SetData(sourceEntity, targetEntity, delay, time, tickDamageForm);
+                igniting.ActivateForTime(time);
+
+                break;
+            case TickAilment.Poisoning:
+
+                Poisoning poisoning = targetEntity.entityStatusAilment.GetEntityStatus(typeof(Poisoning)) as Poisoning;
+
+                poisoning.SetData(sourceEntity, targetEntity, delay, time, tickDamageForm);
+                poisoning.ActivateForTime(time);
+
+                break;
+            case TickAilment.Bleeding:
+
+                Bleeding bleeding = targetEntity.entityStatusAilment.GetEntityStatus(typeof(Bleeding)) as Bleeding;
+
+                bleeding.SetData(sourceEntity, targetEntity, delay, time, tickDamageForm);
+                bleeding.ActivateForTime(time);
+
+                break;
+        }
+    }
+
+    protected void Buff(Entity targetEntity, float startTime, float time, StatCategory category, int value)
+    {
+        Coroutine routine = this.StartCoroutine(BuffRoutine(targetEntity, startTime, time, category, value));
+    }
+
+    private IEnumerator BuffRoutine(Entity targetEntity, float startTime, float time, StatCategory category, int value)
+    {
+        yield return new WaitForSeconds(startTime);
+
+        targetEntity.extraStat[category] += value;
+        targetEntity.clone.SetMaxStat(category, targetEntity.clone.GetMaxStat(category) + value);
+        targetEntity.clone.SetStat(category, targetEntity.clone.GetStat(category) + value);
+
+        yield return new WaitForSeconds(time);
+
+        targetEntity.extraStat[category] -= value;
+        targetEntity.clone.SetStat(category, targetEntity.clone.GetStat(category) - value);
+        targetEntity.clone.SetMaxStat(category, targetEntity.clone.GetMaxStat(category) - value);
+    }
+
+    protected void Airbone(Entity targetEntity, float startTime, Vector3 power)
+    {
+        Coroutine routine = this.StartCoroutine(AirboneRoutine(targetEntity, startTime, power));
+    }
+
+    private IEnumerator AirboneRoutine(Entity targetEntity, float startTime, Vector3 power)
+    {
+        yield return new WaitForSeconds(startTime);
+
+        Airbone airbone = targetEntity.entityStatusAilment.GetEntityStatus(typeof(Airbone)) as Airbone;
+
+        targetEntity.GetComponentInChildren<SkillSet>().StopSkill();
+        airbone.SetData(targetEntity, power);
+        airbone.Activate();
     }
 
     protected void Grab(Entity sourceEntity, Entity targetEntity, float speed, float startTime, float time)
@@ -76,14 +137,14 @@ public abstract class SkillEffect : MonoBehaviour
         while (timeStack < time && Vector3.Distance(sourceEntity.transform.position, targetEntity.transform.position) > 1f)
         {
             timeStack += Time.deltaTime;
-            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { Time.deltaTime });
+            targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("LockTime", new object[] { Time.deltaTime });
             targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { (sourceEntity.transform.position - targetEntity.transform.position).normalized, speed });
             yield return null;
         }
         targetEntity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
     }
 
-    protected void ChangeColor(Entity entity, Color color, float startTime, float time)
+    public void ChangeColor(Entity entity, Color color, float startTime, float time)
     {
         StartCoroutine(ChangeColorProcess(entity, color, startTime, time));
     }

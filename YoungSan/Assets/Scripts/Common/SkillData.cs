@@ -15,6 +15,7 @@ public class SkillData : MonoBehaviour
 
     public string[] skillDamageForms;
 
+    public bool targeting;
     public bool canmove;
     public bool canrotate;
     public float coolTime;
@@ -24,6 +25,7 @@ public class SkillData : MonoBehaviour
     public SkillEffect skillEffect;
     public AudioClip[] attackSounds;
     public Vector2 direction;
+    public Entity target;
 
     public int CalculateSkillDamage()
     {

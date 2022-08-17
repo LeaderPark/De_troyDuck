@@ -12,11 +12,18 @@ public class Player : MonoBehaviour
 
     public float dashCoolTime = 1f;
 
+    public bool targeting;
+    public EventCategory targetSkillCategory;
+    public SpriteRenderer targetSelect;
+
     void Awake()
     {
         entity = GetComponent<Entity>();
         entityEvent = GetComponent<EntityEvent>();
         direction = false;
+
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        targetSelect = poolManager.GetObject("TargetSelect").GetComponent<SpriteRenderer>();
     }
 
     void OnDisable()
@@ -67,6 +74,42 @@ public class Player : MonoBehaviour
             inputY = -1f;
         }
 
+        Entity prevTarget = null;
+        if (targeting)
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), 1, Camera.main.transform.forward, 2000, LayerMask.GetMask(new string[] { "Enemy" }));
+            if (hits.Length > 0)
+            {
+                float min = Vector2.Distance(Camera.main.WorldToScreenPoint(hits[0].transform.position), Input.mousePosition);
+                prevTarget = hits[0].transform.GetComponent<Entity>();
+                for (int i = 1; i < hits.Length; i++)
+                {
+                    float temp = Vector2.Distance(Camera.main.WorldToScreenPoint(hits[i].transform.position), Input.mousePosition);
+                    if (min > temp)
+                    {
+                        min = temp;
+                        prevTarget = hits[i].transform.GetComponent<Entity>();
+                    }
+                }
+            }
+
+            if (prevTarget)
+            {
+                SpriteRenderer sr = prevTarget.GetComponent<SpriteRenderer>();
+                targetSelect.sprite = sr.sprite;
+                targetSelect.flipX = sr.flipX;
+                targetSelect.transform.position = prevTarget.transform.position;
+                targetSelect.transform.localScale = prevTarget.transform.localScale;
+            }
+            else
+            {
+                targetSelect.sprite = null;
+            }
+        }
+        else
+        {
+            targetSelect.sprite = null;
+        }
 
         //if (Input.GetMouseButtonDown(0))
         if (Input.GetKeyDown(KeyCode.Z))
@@ -75,50 +118,118 @@ public class Player : MonoBehaviour
         }
         if (inputManager.CheckMouseState(MouseButton.Left, ButtonState.Down))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+            if (targeting)
             {
-                Vector3 mousePos = hit.point - transform.position;
-                bool attackDirection = (mousePos.x > 0f);
-                direction = attackDirection;
-                entityEvent.CallEvent(EventCategory.DefaultAttack, mousePos.x, mousePos.z, attackDirection, hit.point);
-                skipMove = true;
+                if (prevTarget != null)
+                {
+                    SkillSet skillSet = GetComponentInChildren<SkillSet>();
+                    skillSet.skillDatas[targetSkillCategory][skillSet.skillStackAmount[targetSkillCategory]].target = prevTarget;
+
+                    Vector3 mousePos = prevTarget.transform.position - transform.position;
+                    bool attackDirection = (mousePos.x > 0f);
+                    direction = attackDirection;
+                    entityEvent.CallEvent(targetSkillCategory, mousePos.x, mousePos.z, attackDirection, prevTarget.transform.position);
+                    skipMove = true;
+
+                    targeting = false;
+                }
+            }
+            else
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+                {
+                    Vector3 mousePos = hit.point - transform.position;
+                    bool attackDirection = (mousePos.x > 0f);
+                    direction = attackDirection;
+                    entityEvent.CallEvent(EventCategory.DefaultAttack, mousePos.x, mousePos.z, attackDirection, hit.point);
+                    skipMove = true;
+                }
             }
         }
         if (inputManager.CheckKeyState(KeyCode.E, ButtonState.Down))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+            SkillSet skillSet = GetComponentInChildren<SkillSet>();
+            if (skillSet.skillDatas.ContainsKey(EventCategory.Skill1) && skillSet.skillDatas[EventCategory.Skill1][skillSet.skillStackAmount[EventCategory.Skill1]].targeting)
             {
-                Vector3 mousePos = hit.point - transform.position;
-                bool attackDirection = (mousePos.x > 0f);
-                direction = attackDirection;
-                entityEvent.CallEvent(EventCategory.Skill1, mousePos.x, mousePos.z, attackDirection, hit.point);
-                skipMove = true;
+                targeting = true;
+                targetSkillCategory = EventCategory.Skill1;
+            }
+            else
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+                {
+                    Vector3 mousePos = hit.point - transform.position;
+                    bool attackDirection = (mousePos.x > 0f);
+                    direction = attackDirection;
+                    entityEvent.CallEvent(EventCategory.Skill1, mousePos.x, mousePos.z, attackDirection, hit.point);
+                    skipMove = true;
+                }
             }
         }
         if (inputManager.CheckKeyState(KeyCode.R, ButtonState.Down))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+            SkillSet skillSet = GetComponentInChildren<SkillSet>();
+            if (skillSet.skillDatas.ContainsKey(EventCategory.Skill2) && skillSet.skillDatas[EventCategory.Skill2][skillSet.skillStackAmount[EventCategory.Skill2]].targeting)
             {
-                Vector3 mousePos = hit.point - transform.position;
-                bool attackDirection = (mousePos.x > 0f);
-                direction = attackDirection;
-                entityEvent.CallEvent(EventCategory.Skill2, mousePos.x, mousePos.z, attackDirection, hit.point);
-                skipMove = true;
+                targeting = true;
+                targetSkillCategory = EventCategory.Skill2;
+            }
+            else
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+                {
+                    Vector3 mousePos = hit.point - transform.position;
+                    bool attackDirection = (mousePos.x > 0f);
+                    direction = attackDirection;
+                    entityEvent.CallEvent(EventCategory.Skill2, mousePos.x, mousePos.z, attackDirection, hit.point);
+                    skipMove = true;
+                }
             }
         }
         if (inputManager.CheckKeyState(KeyCode.F, ButtonState.Down))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+            SkillSet skillSet = GetComponentInChildren<SkillSet>();
+            if (skillSet.skillDatas.ContainsKey(EventCategory.Skill3) && skillSet.skillDatas[EventCategory.Skill3][skillSet.skillStackAmount[EventCategory.Skill3]].targeting)
             {
-                Vector3 mousePos = hit.point - transform.position;
-                bool attackDirection = (mousePos.x > 0f);
-                direction = attackDirection;
-                entityEvent.CallEvent(EventCategory.Skill3, mousePos.x, mousePos.z, attackDirection, hit.point);
-                skipMove = true;
+                targeting = true;
+                targetSkillCategory = EventCategory.Skill3;
+            }
+            else
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+                {
+                    Vector3 mousePos = hit.point - transform.position;
+                    bool attackDirection = (mousePos.x > 0f);
+                    direction = attackDirection;
+                    entityEvent.CallEvent(EventCategory.Skill3, mousePos.x, mousePos.z, attackDirection, hit.point);
+                    skipMove = true;
+                }
+            }
+        }
+
+        if (inputManager.CheckKeyState(KeyCode.E, ButtonState.Up))
+        {
+            if (targetSkillCategory == EventCategory.Skill1)
+            {
+                targeting = false;
+            }
+        }
+        if (inputManager.CheckKeyState(KeyCode.R, ButtonState.Up))
+        {
+            if (targetSkillCategory == EventCategory.Skill2)
+            {
+                targeting = false;
+            }
+        }
+        if (inputManager.CheckKeyState(KeyCode.F, ButtonState.Up))
+        {
+            if (targetSkillCategory == EventCategory.Skill3)
+            {
+                targeting = false;
             }
         }
 

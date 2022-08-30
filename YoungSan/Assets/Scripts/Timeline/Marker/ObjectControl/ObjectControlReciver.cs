@@ -25,7 +25,7 @@ public class ObjectControlReciver :Receiver
 				if (marker.animationDatas[i].mainChar)
 				{
 					obj = gameManager.Player.gameObject;
-					obj.GetComponent<SpriteRenderer>().flipX = marker.animationDatas[i].flipX;
+					obj.GetComponent<SpriteRenderer>().flipX = marker.animationDatas[i].isLeft;
 				}
 				else
 				{

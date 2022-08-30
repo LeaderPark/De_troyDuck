@@ -6,7 +6,7 @@ using System.IO;
 
 namespace MapEditor
 {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public class BrushSelector : EditorWindow
     {
         bool brushing;
@@ -62,7 +62,7 @@ namespace MapEditor
         private void OnGUI()
         {
             Event e = Event.current;
-            
+
             if (e != null)
             {
                 if (e.isKey)
@@ -71,22 +71,22 @@ namespace MapEditor
                     {
                         case KeyCode.Z:
                             MapEditor.objects["brushIndex"] = 0;
-                        break;
+                            break;
                         case KeyCode.X:
                             MapEditor.objects["brushIndex"] = 1;
-                        break;
+                            break;
                         case KeyCode.C:
                             MapEditor.objects["brushIndex"] = 2;
-                        break;
+                            break;
                         case KeyCode.V:
                             MapEditor.objects["brushIndex"] = 3;
-                        break;
+                            break;
                         case KeyCode.F:
-                    MapEditor.objects["brushSize"] = Mathf.Clamp((float)MapEditor.objects["brushSize"] + 0.5f, 0.1f, 100f);
-                        break;
+                            MapEditor.objects["brushSize"] = Mathf.Clamp((float)MapEditor.objects["brushSize"] + 0.5f, 0.1f, 100f);
+                            break;
                         case KeyCode.R:
-                    MapEditor.objects["brushSize"] = Mathf.Clamp((float)MapEditor.objects["brushSize"] - 0.5f, 0.1f, 100f);
-                        break;
+                            MapEditor.objects["brushSize"] = Mathf.Clamp((float)MapEditor.objects["brushSize"] - 0.5f, 0.1f, 100f);
+                            break;
                     }
                 }
             }
@@ -124,8 +124,8 @@ namespace MapEditor
 
             Vector2 temp = EditorGUILayout.Vector2Field("Grid Interval", (Vector2)MapEditor.objects["gridInterval"], GUILayout.Width(200));
             MapEditor.objects["gridInterval"] = new Vector2(Mathf.Clamp(temp.x, 0.1f, 100f), Mathf.Clamp(temp.y, 0.1f, 100f));
-            
-            MapEditor.objects["gridHeight"] = Mathf.Clamp(EditorGUILayout.FloatField("Grid Height", (float)MapEditor.objects["gridHeight"], GUILayout.Width(200)), 0.0f, 100f);
+
+            MapEditor.objects["gridHeight"] = Mathf.Clamp(EditorGUILayout.FloatField("Grid Height", (float)MapEditor.objects["gridHeight"], GUILayout.Width(200)), -100.0f, 100f);
             MapEditor.objects["brushParent"] = EditorGUILayout.ObjectField("BrushParent", (Object)MapEditor.objects["brushParent"], typeof(Transform), true, GUILayout.Width(200));
             MapEditor.objects["brushDensity"] = Mathf.Clamp(EditorGUILayout.IntField("Brush Density", (int)MapEditor.objects["brushDensity"], GUILayout.Width(200)), 1, 100);
             MapEditor.objects["gridActive"] = EditorGUILayout.Toggle("Grid Active", (bool)MapEditor.objects["gridActive"], GUILayout.Width(200));
@@ -143,7 +143,7 @@ namespace MapEditor
             GUILayout.EndHorizontal();
 
             GUILayout.Space(10);
-            
+
             if ((bool)MapEditor.objects["spriteMode"])
             {
                 MapEditor.objects["sprite"] = EditorGUILayout.ObjectField("Sprite", (Object)MapEditor.objects["sprite"], typeof(Sprite), false);
@@ -169,6 +169,6 @@ namespace MapEditor
             }
         }
     }
-    
-    #endif
+
+#endif
 }

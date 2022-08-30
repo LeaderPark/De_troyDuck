@@ -212,6 +212,20 @@ public class Entity : MonoBehaviour
     void LateUpdate()
     {
         Process();
+
+        RaycastHit hit;
+
+        if (entityStatusAilment != null)
+        {
+            if (entityStatusAilment.GetEntityStatus(typeof(Airbone)).Activated()) return;
+        }
+
+        Vector3 pos = transform.position;
+        if (Physics.Raycast(new Ray(new Vector3(pos.x, 1000, pos.z), Vector3.down), out hit, 2000, LayerMask.GetMask(new string[] { "Ground" })))
+        {
+            pos.y = hit.point.y;
+            transform.position = pos;
+        }
     }
 
 

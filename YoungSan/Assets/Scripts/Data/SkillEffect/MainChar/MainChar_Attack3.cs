@@ -16,7 +16,6 @@ public class MainChar_Attack3 : SkillEffect
         Stiff(hitEntity, 0.4f);
         ChangeColor(hitEntity, Color.red, 0f, 0.1f);
         KnockBack(hitEntity, direction, 0f, 0.1f, 10);
-        TickDamage(TickAilment.Bleeding, attackEntity, hitEntity, 1, 5, "20");
     }
 
     protected override void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index)

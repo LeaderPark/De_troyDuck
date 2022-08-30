@@ -19,12 +19,10 @@ public class MainCharEvent : EntityEvent
         (inputX, inputY, position, skillData) =>
         {
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0, 0.08f);
-            Blocking(0f, 2f);
         },
         (inputX, inputY, position, skillData) =>
         {
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0, 0.08f);
-            SuperArmour(0f, 2f);
         },
         (inputX, inputY, position, skillData) =>
         {

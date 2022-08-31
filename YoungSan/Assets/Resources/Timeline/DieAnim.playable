@@ -109,51 +109,6 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: f88e012b07325e84dba49d1c93639fa0
     defaultValue: {fileID: 0}
---- !u!114 &-7128795677465793160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
-  m_Name: Object/ObjControl
-  m_EditorClassIdentifier: 
-  m_Time: 9.35000001192093
-  animationDatas: []
-  objectData:
-  - mainChar: 0
-    obj:
-      exposedName: 3cc114acfbf794448bf9d242a53c804c
-      defaultValue: {fileID: 0}
-    active: 1
-    objPos: {x: 0, y: 0, z: 0}
-    objTrm:
-      exposedName: 9e41234d3d2366b4e874561340ba1b9d
-      defaultValue: {fileID: 0}
-    mainCharTrm: 0
-  - mainChar: 0
-    obj:
-      exposedName: 4e817363d56d7954b9f4040970d8f5e0
-      defaultValue: {fileID: 0}
-    active: 0
-    objPos: {x: 0, y: 0, z: 0}
-    objTrm:
-      exposedName: 762329811a4b5584c8a9efa631fad74c
-      defaultValue: {fileID: 0}
-    mainCharTrm: 0
-  - mainChar: 0
-    obj:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    active: 0
-    objPos: {x: 0, y: 0, z: 0}
-    objTrm:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    mainCharTrm: 0
 --- !u!114 &-7008428286199206629
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -428,7 +383,6 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects:
-    - {fileID: -7128795677465793160}
     - {fileID: 4374733904660860892}
     - {fileID: -433689673335159142}
 --- !u!114 &-2451779108261144685
@@ -511,16 +465,6 @@ MonoBehaviour:
   m_Time: 0
   animationDatas: []
   objectData:
-  - mainChar: 0
-    obj:
-      exposedName: 5886c0f7fd9db2545addb5b5c66eea82
-      defaultValue: {fileID: 0}
-    active: 0
-    objPos: {x: 0, y: 0, z: 0}
-    objTrm:
-      exposedName: 9f2b319a5c5260340babc8e135ce843b
-      defaultValue: {fileID: 0}
-    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 24c2d4405dbda9544bee0623983492db
@@ -1268,7 +1212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
   m_Name: Search Enemy Marker
   m_EditorClassIdentifier: 
-  m_Time: 9.333333333333334
+  m_Time: 10.5
   mainChar: 0
   enemys: []
   nextTimeLine: {fileID: 11400000, guid: 32dfbf00741b56b41861bbc0962e9198, type: 2}
@@ -1705,25 +1649,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1750,49 +1676,13 @@ MonoBehaviour:
     m_BlendOutDuration: 2.0500000000000007
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

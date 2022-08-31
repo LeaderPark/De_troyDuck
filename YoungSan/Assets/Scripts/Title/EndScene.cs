@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class EndScene : MonoBehaviour
 {
-    public void Retry()
+	private void Awake()
+	{
+        Time.timeScale = 1.001f;
+        Cursor.visible = true;
+	}
+	public void Retry()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }

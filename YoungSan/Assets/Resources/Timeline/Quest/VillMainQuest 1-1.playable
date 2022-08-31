@@ -1619,14 +1619,14 @@ MonoBehaviour:
       exposedName: 948aaff51902f0047b3f3cbaa1dca57b
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 1
+    isLeft: 0
   - mainChar: 0
     getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!74 &-7282603105056393099
 AnimationClip:
@@ -2324,49 +2324,13 @@ MonoBehaviour:
     m_BlendOutDuration: 0.4499999999999993
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2393,25 +2357,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -3005,14 +2951,14 @@ MonoBehaviour:
       exposedName: 948aaff51902f0047b3f3cbaa1dca57b
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    isLeft: 0
   - mainChar: 0
     getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &-2840003949785728247
 MonoBehaviour:
@@ -4464,14 +4410,14 @@ MonoBehaviour:
       exposedName: 948aaff51902f0047b3f3cbaa1dca57b
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 1
+    isLeft: 0
   - mainChar: 0
     getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &225193396964914002
 MonoBehaviour:
@@ -4521,14 +4467,14 @@ MonoBehaviour:
       exposedName: 948aaff51902f0047b3f3cbaa1dca57b
       defaultValue: {fileID: 0}
     animation: Move
-    flipX: 1
+    isLeft: 0
   - mainChar: 0
     getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &362788727469510195
 MonoBehaviour:
@@ -5298,14 +5244,14 @@ MonoBehaviour:
       exposedName: 948aaff51902f0047b3f3cbaa1dca57b
       defaultValue: {fileID: 0}
     animation: Move
-    flipX: 1
+    isLeft: 0
   - mainChar: 0
     getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &805419661862450090
 MonoBehaviour:
@@ -7813,7 +7759,7 @@ MonoBehaviour:
   m_Name: Quest/QuestClearMarker
   m_EditorClassIdentifier: 
   m_Time: 0
-  quest: {fileID: 11400000, guid: c0e62b619cc098e42969875b08c54028, type: 2}
+  quest: {fileID: 11400000, guid: 1ae33134822079043a7d4525d52ebf29, type: 2}
 --- !u!114 &9052299742963015610
 MonoBehaviour:
   m_ObjectHideFlags: 1

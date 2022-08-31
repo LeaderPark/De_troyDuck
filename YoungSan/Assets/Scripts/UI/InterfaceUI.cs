@@ -19,6 +19,7 @@ public class InterfaceUI : MonoBehaviour
     [SerializeField] private GameObject completedList;
 
     private List<GameObject> objList = new List<GameObject>();
+
     private Button interactibleOffBtn;
     private bool isEnabled;
 
@@ -66,7 +67,6 @@ public class InterfaceUI : MonoBehaviour
 
     public void SetQuestUI()
     {
-
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         foreach (Quest item in questManager.proceedingQuests.Values)
         {
@@ -111,6 +111,7 @@ public class InterfaceUI : MonoBehaviour
                 if (!item.activeSelf)
                 {
                     item.SetActive(true);
+                    item.transform.parent = content;
                     return item;
                 }
             }

@@ -26,12 +26,6 @@ public class EnterTheStart : MonoBehaviour
                 //������ �������� �ʴ´�
                 if (isClearTriggerQuest == null || !questManager.IsComplete(isClearTriggerQuest.questId))
                 {
-                    //gameManager.Player.ActiveScript(false);
-                    //uiManager.UISetActiveTimeLine(false);
-                    //uiManager.FadeInOut(true, true, () =>
-                    //{
-                    //    gameManager.Player.ActiveScript(true);
-                    //    uiManager.UISetActiveTimeLine(true);
                     if (timeLineName != null)
                     {
 

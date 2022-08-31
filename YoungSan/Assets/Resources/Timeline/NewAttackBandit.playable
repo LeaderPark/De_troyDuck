@@ -2490,6 +2490,7 @@ MonoBehaviour:
     - {fileID: -8793813184506467991}
     - {fileID: -735295505296523083}
     - {fileID: -2487118099008346108}
+    - {fileID: 3246572179560044860}
 --- !u!114 &1531321230395508675
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2728,6 +2729,41 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: c6e6eeb8d7bdfce4ebd89e2f2632bf6c, type: 2}
+--- !u!114 &3246572179560044860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 13.683333333333334
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: b28d5d86bc3897641a7dea8ce3bceae2
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 90558520bdbdb6046986e1aa9e607927
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
+  - mainChar: 0
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &3264750693936553514
 MonoBehaviour:
   m_ObjectHideFlags: 1

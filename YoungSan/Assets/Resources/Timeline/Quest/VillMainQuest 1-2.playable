@@ -20,7 +20,7 @@ MonoBehaviour:
       exposedName: 6bfe02561004c814fb13113009f25f41
       defaultValue: {fileID: 0}
     animation: Move
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &-8910149954452021581
 MonoBehaviour:
@@ -2373,7 +2373,7 @@ MonoBehaviour:
       exposedName: e7b126c0530a4f04b9330f95fe7ae289
       defaultValue: {fileID: 0}
     animation: Hit
-    flipX: 1
+    isLeft: 0
   objectData: []
 --- !u!114 &-609319182974539810
 MonoBehaviour:
@@ -2526,7 +2526,7 @@ MonoBehaviour:
       exposedName: 6bfe02561004c814fb13113009f25f41
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &-279540237224094788
 MonoBehaviour:
@@ -5362,14 +5362,14 @@ MonoBehaviour:
       exposedName: f458da1d7438ec24e95444a5498b94fe
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 1
+    isLeft: 0
   - mainChar: 0
     getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &8590914388296362618
 MonoBehaviour:

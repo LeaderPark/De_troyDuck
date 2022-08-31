@@ -110,6 +110,9 @@ MonoBehaviour:
   - 0
   skillDamageForms:
   - '{Attack} * 2'
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 0
   waitTime: 0.4
   useStaminaForm: '{Attack}'
@@ -117,6 +120,7 @@ MonoBehaviour:
   attackSounds:
   - {fileID: 8300000, guid: 3920734de112b45449b6a2f380819be6, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &2952767003807170733
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +263,9 @@ MonoBehaviour:
   - 0.1
   skillDamageForms:
   - '{Attack} * 6'
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 0
   waitTime: 0
   useStaminaForm: '{Attack}'
@@ -266,6 +273,7 @@ MonoBehaviour:
   attackSounds:
   - {fileID: 8300000, guid: c97cc8912d6c0ac42b274bab265ce93e, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &4182184893782320943
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +324,8 @@ MonoBehaviour:
   useSkill: 0
   active: 0
   delayTime: 0.1
+  skillData: {fileID: 0}
+  running: 0
 --- !u!1 &4678916962916287072
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +443,9 @@ MonoBehaviour:
   - 0.1
   skillDamageForms:
   - ({Attack} + 2) * 2 + 10
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 0
   waitTime: 0.5
   useStaminaForm: '{Attack}'
@@ -440,6 +453,7 @@ MonoBehaviour:
   attackSounds:
   - {fileID: 8300000, guid: 830d4c0f905a3174491ba1e31b04716e, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &5932959285181671205
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +871,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCoolTime: 0
+  targeting: 0
+  targetSkillCategory: 0
+  targetSelect: {fileID: 0}
 --- !u!65 &8052359390661717822
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -868,8 +885,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.84, y: 1.77, z: 0.6}
-  m_Center: {x: 0, y: 0.885, z: -0.15}
+  m_Size: {x: 0.852991, y: 0.52043676, z: 0.69187355}
+  m_Center: {x: -0.0064955354, y: 0.26021838, z: 2.0793505}
 --- !u!54 &8052359390661717760
 Rigidbody:
   m_ObjectHideFlags: 0

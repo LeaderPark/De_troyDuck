@@ -6,12 +6,43 @@ public class EnterToOpenText : MonoBehaviour
 {
 	public TextMesh mesh;
 	float time = 0;
+	public List<EntityData> entityDatas = new List<EntityData>();
+	Collider col;
+	private void Awake()
+	{
+		col = GetComponent<Collider>();
+	}
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			col.enabled = false;
+			col.enabled = true;
+		}
+	}
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player"))
 		{
-			StopAllCoroutines();
-			StartCoroutine(OpenText(true));
+			Entity playerEntity = other.gameObject.GetComponent<Entity>();
+			if (entityDatas.Count == 0)
+			{
+				StopAllCoroutines();
+				StartCoroutine(OpenText(true));
+			}
+			else
+			{
+				foreach (var item in entityDatas)
+				{
+					if (playerEntity.entityData == item)
+					{
+						StopAllCoroutines();
+						StartCoroutine(OpenText(true));
+					}
+				}
+			}
+			
 		}
 
 	}

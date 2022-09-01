@@ -90,18 +90,22 @@ public class SettingUI : MonoBehaviour
     void SetResolution()
     {
         resolutions.AddRange(Screen.resolutions);
+
         setResolutionDropdown.options.Clear();
 
         int optionNum = 0;
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            if (Screen.resolutions[i].refreshRate == 60 || Screen.resolutions[i].refreshRate == 144)
+            
+            if (Screen.resolutions[i].refreshRate >= 60 || Screen.resolutions[i].refreshRate <= 144)
             {
                 double result = (double)((double)Screen.resolutions[i].width / (double)Screen.resolutions[i].height);
                 float resultTruncate = (float)(Math.Truncate((result * 10000)) / 10000);
+                Debug.Log(Screen.resolutions[i]);
 
-                if (resultTruncate == 1.7777f)
-                {
+                //if (resultTruncate == 1.7777f)
+                //{
+                    
                     string resolutionSize = Screen.resolutions[i].width + " X " + Screen.resolutions[i].height + " @ " + Screen.resolutions[i].refreshRate + "hz";
                     resolutionText.Add(resolutionSize);
                     setResolutions.Add(Screen.resolutions[i]);
@@ -111,7 +115,7 @@ public class SettingUI : MonoBehaviour
                         StartCoroutine(SetValue(optionNum));
                     }
                     optionNum++;
-                }
+                //}
             }
         }
 

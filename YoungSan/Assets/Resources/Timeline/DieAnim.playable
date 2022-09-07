@@ -150,6 +150,31 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-5340802223368792228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 9.35000001192093
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: d18cf91eee930274ca4e64b26831f671
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: c7985cb070d50f84ba1634056bd4de17
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &-3370628071181927916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -385,6 +410,7 @@ MonoBehaviour:
     m_Objects:
     - {fileID: 4374733904660860892}
     - {fileID: -433689673335159142}
+    - {fileID: -5340802223368792228}
 --- !u!114 &-2451779108261144685
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1212,10 +1238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
   m_Name: Search Enemy Marker
   m_EditorClassIdentifier: 
-  m_Time: 10.5
+  m_Time: 9.333333333333334
   mainChar: 0
   enemys: []
-  nextTimeLine: {fileID: 11400000, guid: 32dfbf00741b56b41861bbc0962e9198, type: 2}
+  nextTimeLine: {fileID: 11400000, guid: ee59bc4ede3548044bec71fbb8b51061, type: 2}
   waitTime: 0
 --- !u!114 &4411394487417275114
 MonoBehaviour:

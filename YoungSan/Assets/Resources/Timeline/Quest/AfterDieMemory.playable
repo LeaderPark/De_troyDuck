@@ -170,6 +170,8 @@ MonoBehaviour:
     - {fileID: -3252409943114019630}
     - {fileID: -936118450023300461}
     - {fileID: -4830915964011440034}
+    - {fileID: -1232652647617903546}
+    - {fileID: 1637983837779008546}
 --- !u!114 &-2765992275728230783
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,6 +252,41 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &-1232652647617903546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: 5b8ca427e5d8fdb4a83a0cae63bb4289
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 1
+  - mainChar: 1
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 1
 --- !u!114 &-1035106835588349305
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -412,6 +449,41 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: -1858081231808782840}
+--- !u!114 &1637983837779008546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 1.9833333333333334
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: 1c0056667f150674c8ac1bd56a5466ec
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 1
+  - mainChar: 1
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 1
 --- !u!114 &2569591224886538756
 MonoBehaviour:
   m_ObjectHideFlags: 1

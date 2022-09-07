@@ -14,6 +14,7 @@ public class Entity : MonoBehaviour
 
     public bool isDead;
     public bool hitable;
+    public bool cantChange;
     public Action dead = null;
 
     public bool isGround;

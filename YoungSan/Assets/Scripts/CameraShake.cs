@@ -31,6 +31,13 @@ public class CameraShake : MonoBehaviour
     {
         StartCoroutine(ShakeRepeat(Camera.main.GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>(), count, delay));
     }
+    public void ShakeOpenDoor()
+    {
+        camShakePower = 1.2f;
+        StartCoroutine(ShakeRepeat(Camera.main.GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>(), 3, 0.1f));
+
+
+    }
     public void Shake()
     {
         camShakePower = 1f;

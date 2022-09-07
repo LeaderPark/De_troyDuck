@@ -18,12 +18,8 @@ public class EnterTheStart : MonoBehaviour
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         if (col.CompareTag("Player"))
         {
-            //triggerQuest�� ���ų� triggerQuest�� ���� �������� ����Ʈ�ϰ�� ����
-            //���� ���������� ������ �������� �ʴ´�
             if (triggerQuest == null || questManager.IsProceeding(triggerQuest.questId))
             {
-                //isClearTriggerQuest�� ���ų� isClearTriggerQuest�� ���� �ʾҴٸ� ����
-                //������ �������� �ʴ´�
                 if (isClearTriggerQuest == null || !questManager.IsComplete(isClearTriggerQuest.questId))
                 {
                     if (timeLineName != null)

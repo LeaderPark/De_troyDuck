@@ -49,7 +49,8 @@ public class OpenRoof : MonoBehaviour
             {
                 if (roofFadeRoutine != null)
                 {
-                    StopCoroutine(roofFadeRoutine);
+                    //StopCoroutine(roofFadeRoutine);
+                    StopAllCoroutines();
                 }
                 roofFadeRoutine = StartCoroutine((inBound ? FadeOut() : FadeIn()));
                 isOpen = !isOpen;
@@ -59,7 +60,7 @@ public class OpenRoof : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        const float targetAlpha = 0f;
+        const float targetAlpha = 0.01f;
         SpriteRenderer[] srs = new SpriteRenderer[fadeObjects.Length];
         for (int objectIndex = 0; objectIndex < fadeObjects.Length; objectIndex++)
         {
@@ -102,7 +103,7 @@ public class OpenRoof : MonoBehaviour
         }
         float currentAlpha = srs[0].color.a;
 
-        const float timeScale = 2f;
+        const float timeScale = 0.5f;
         float time = (targetAlpha - currentAlpha) / timeScale;
 
         while (time > 0)

@@ -519,6 +519,7 @@ MonoBehaviour:
     - {fileID: 5439654699344631684}
     - {fileID: 8907238623748879709}
     - {fileID: 2697160310360100771}
+    - {fileID: 1390077611661064331}
 --- !u!114 &598636094177783306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,6 +532,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
+--- !u!114 &1390077611661064331
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
+  m_Name: Search Enemy Marker
+  m_EditorClassIdentifier: 
+  m_Time: 6.283333333333333
+  mainChar: 0
+  enemys: []
+  nextTimeLine: {fileID: 11400000, guid: ae6265bf42411d94f9a9c8f53a771a27, type: 2}
+  waitTime: 0
 --- !u!114 &2697160310360100771
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -543,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
   m_Name: Object/ObjControl
   m_EditorClassIdentifier: 
-  m_Time: 6.283333333333333
+  m_Time: 6.2666666666666675
   animationDatas: []
   objectData:
   - mainChar: 0

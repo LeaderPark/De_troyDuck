@@ -65,9 +65,9 @@ public class HitBox : MonoBehaviour
                     EntityStatus superArmour = entity.entityStatusAilment.GetEntityStatus(typeof(SuperArmour));
                     if (!superArmour.Activated())
                     {
-                        CameraShake.Instance.Shake();
                         entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
                     }
+                    CameraShake.Instance.Shake();
                     hitBody?.AddCommand("DamageOnBody", new object[] { skillData.CalculateSkillDamage(), skillData.skillSet.entity });
 
                     if (!superArmour.Activated())

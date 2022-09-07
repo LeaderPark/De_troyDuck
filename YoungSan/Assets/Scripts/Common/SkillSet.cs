@@ -314,6 +314,9 @@ public class SkillSet : MonoBehaviour
                             skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.transform.parent.gameObject.SetActive(false);
                             skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.gameObject.SetActive(false);
                             skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.gameObject.SetActive(false);
+
+                            skillData.hitBoxDatas[skillData.targetIndex].LeftHitBox?.ClearTargetSet();
+                            skillData.hitBoxDatas[skillData.targetIndex].RightHitBox?.ClearTargetSet();
                         }
                     }
                 }

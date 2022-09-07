@@ -7,9 +7,9 @@ using UnityEngine.Timeline;
 
 public class SearchEnemyReciver : Receiver
 {
-	private TimelineAsset nextTimeLine;
+	//private TimelineAsset nextTimeLine;
 	GameManager gameManager;
-	List<Entity> enemys = new List<Entity>();
+	//List<Entity> enemys = new List<Entity>();
 	float waitTime;
 	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
@@ -21,24 +21,25 @@ public class SearchEnemyReciver : Receiver
 
 			gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 
-			nextTimeLine = marker.nextTimeLine;
+			TimelineAsset nextTimeLine = marker.nextTimeLine;
 			waitTime = marker.waitTime;
 			if (marker.mainChar)
 			{
 				Entity playerEntity = gameManager.Player.GetComponent<Entity>();
 				playerEntity.dead += () =>
 				{
-					StartCoroutine(NextTimeLine(waitTime));
+					StartCoroutine(NextTimeLine(waitTime, nextTimeLine));
 				};
 				return;
 			}
 			if (marker.enemys.Length == 0)
 			{
 				Debug.Log("일단 실행");
-				StartCoroutine(NextTimeLine(0));
+				StartCoroutine(NextTimeLine(0, nextTimeLine));
 			}
 			else
 			{
+				List<Entity> enemys = new List<Entity>();
 				int enemyCount = 0;
 				for (int i = 0; i < marker.enemys.Length; i++)
 				{
@@ -57,36 +58,40 @@ public class SearchEnemyReciver : Receiver
 
 					if (enemyEntity != null)
 					{
-						if (enemyEntity.isDead)
+						if (enemyEntity.isDead|| enemyEntity.gameObject.CompareTag("Player"))
 						{
 							enemys.Add(enemyEntity);
 						}
 						else
 						{
-							enemyEntity.dead += () =>
+							System.Action deadAction = null;
+								
+							deadAction += () => 
 							{
 								enemys.Add(enemyEntity);
 								if (enemys.Count >= enemyCount)
 								{
 									enemys.Clear();
-									StartCoroutine(NextTimeLine(waitTime));
+									StartCoroutine(NextTimeLine(waitTime, nextTimeLine));
 								}
-								enemyEntity.dead = null;
+								enemyEntity.dead -= deadAction;
 							};
-						}
-						if (enemyEntity.gameObject.CompareTag("Boss"))
-						{
-							enemyEntity.dead += () =>
+							if (enemyEntity.gameObject.CompareTag("Boss"))
 							{
-								StartCoroutine(TestSlow());
-							};
+								deadAction += () =>
+								{
+									StartCoroutine(TestSlow());
+								};
+							}
+							enemyEntity.dead += deadAction;
 						}
+
 					}
 				}
 			}
 		}
 	}
-	private IEnumerator NextTimeLine(float waitTime)
+	private IEnumerator NextTimeLine(float waitTime,TimelineAsset nextTimeLine)
 	{
 		yield return new WaitForSecondsRealtime(waitTime);
 		if (nextTimeLine != null)
@@ -96,7 +101,6 @@ public class SearchEnemyReciver : Receiver
 		}
 		else
 		{
-			//Debug.Log("��ư �����ɷ� �Ѿ��");
 		}
 	}
 	private IEnumerator TestSlow()

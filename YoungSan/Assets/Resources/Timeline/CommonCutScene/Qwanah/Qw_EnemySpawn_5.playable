@@ -1,0 +1,562 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6543303906635558457
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: 
+  DisplayName: 
+  VirtualCamera:
+    exposedName: a69b0e80897bb7146bfb92ddd682b999
+    defaultValue: {fileID: 0}
+--- !u!114 &-3902001340758182245
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9677fe87bdbda47af0c19e3b92453e, type: 3}
+  m_Name: Object/CSControl
+  m_EditorClassIdentifier: 
+  m_Time: 0.016666666666666666
+  enemyObjs:
+  - obj:
+      exposedName: b03764413832e5b4f8dd616c0915e0be
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: e55f516c417fee741849c9e742368164
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 8b6723b5fa45729468ef8f613cfb09fa
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 9a3ba67c18a6b6547970776837af17a9
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 82d45ac1bb8281e4294c3af26565de20
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 79490a55f5840e9469c9bcb47e5c47b2
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 18bf6475a08b40a43969d40fbbea6b5d
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 2d7d5bda109c9d84288187a5f47b195c
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: b94965f9e8ec45348bf11c50d0df0e69
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 8d2a5bc5d0cf9b84fac8fa0535f18ce6
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 44b6debd761157d45a1ee433c6d309a4
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: bad849a86fb98cd47b5b79b1f732116c
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 69341d80eb4aef84886a0c542dc7f759
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: a7684726fe96e254ba5ace0c0722cf34
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 84df09fda29533f4faebaccf7e75fef0
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 4d53b242bca09af499f6572a8af1b579
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: d45c4a6f558c7d248b2a6b367b653ceb
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  scriptEnable: 0
+--- !u!114 &-3807442731110900764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 7.85
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 63c930794035a65408fa33c6f1dceeae, type: 2}
+--- !u!114 &-3289289980465847890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -3902001340758182245}
+    - {fileID: -1814478247597500387}
+    - {fileID: -2567818016759601265}
+    - {fileID: 4063499115934537343}
+    - {fileID: 1326506063916281463}
+    - {fileID: -3807442731110900764}
+--- !u!114 &-2735152743191019821
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05acc715f855ced458d76ee6f8ac6c61, type: 3}
+  m_Name: Cinemachine Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 0.8833333333333333
+    m_ClipIn: 0
+    m_Asset: {fileID: -1917822055327146148}
+    m_Duration: 5.533333333333333
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -2735152743191019821}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 1.4333333333333336
+    m_BlendOutDuration: 2.2666666666666657
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: EnemyCam 1
+  - m_Version: 1
+    m_Start: 0
+    m_ClipIn: 0
+    m_Asset: {fileID: 3260974333464903992}
+    m_Duration: 2.316666666666667
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -2735152743191019821}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: 1.4333333333333336
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: PlayerFollowCam (1)
+  - m_Version: 1
+    m_Start: 4.15
+    m_ClipIn: 0
+    m_Asset: {fileID: -6543303906635558457}
+    m_Duration: 3.6999999999999993
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -2735152743191019821}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 2.2666666666666657
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: EnemyCam 2
+  m_Markers:
+    m_Objects: []
+--- !u!114 &-2567818016759601265
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: 2a13a30a02718c046aa87e0163a6fa5b
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 0bb97def863db50468ed05f08edfb05d
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
+--- !u!114 &-1917822055327146148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: 
+  DisplayName: 
+  VirtualCamera:
+    exposedName: 6e5b6872e39169b45b2a6f08174b5cd8
+    defaultValue: {fileID: 0}
+--- !u!114 &-1814478247597500387
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9677fe87bdbda47af0c19e3b92453e, type: 3}
+  m_Name: Object/CSControl
+  m_EditorClassIdentifier: 
+  m_Time: 7.85
+  enemyObjs:
+  - obj:
+      exposedName: d32d90dd050c6c44084186191dd0f1ac
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 6443a31784379f344a3887ada1c2f278
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: b45037aa9bcf83a46bc93baf47b059fb
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: df662f3bef5faa240aeadf71b6113972
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 0932f6521291cc64692376a4b86ae97f
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: c775e59b1e9b9194eacbf52a6cf5b99d
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: bf90c96c2a79394438725c7bf43a8b2f
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: c33626018874637439760a1ba4ba30c9
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: a263a1ee0f08e094a916c765e9a84cf6
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: c94fd467c63d9db49b24025dc94a185c
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 096e9e7659d165e429d87eadaaaa9ab8
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 3e0f8cc271c249442ba6c608ebd337ce
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 124a7a67abd5d9743a38a727152bb2cb
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 084a9ca0208a90440aaf9f2414ed307a
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 040adbabb8ef56c4a911e64177378c3f
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 49b7d79a28581564eb5372c2cd239a01
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 19993592cad995b44969cc4c9ba94e54
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  scriptEnable: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+  m_Name: Qw_EnemySpawn_5
+  m_EditorClassIdentifier: 
+  m_Version: 0
+  m_Tracks:
+  - {fileID: -2735152743191019821}
+  - {fileID: -3289289980465847890}
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+    m_ScenePreview: 1
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 5200915073830932343}
+--- !u!114 &1326506063916281463
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: c6e6eeb8d7bdfce4ebd89e2f2632bf6c, type: 2}
+--- !u!114 &3260974333464903992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot(Clone)
+  m_EditorClassIdentifier: 
+  DisplayName: 
+  VirtualCamera:
+    exposedName: 9494d56b795eb43448601592f6121ca0
+    defaultValue: {fileID: 0}
+--- !u!114 &4063499115934537343
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
+  m_Name: Search Enemy Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  mainChar: 0
+  enemys:
+  - enemy:
+      exposedName: 888a7797b537691479286b24a868f241
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: db706075c2a5de0489086bd07596cd43
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 1c375225fbc8c124cb1bed795135ff66
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 19a6fd9a2ab99d44885d8e297460fa79
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 7ece66c7a75b35e48a4c661663678439
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: b15cdb421dfb9ad4697f361ab2cd19d0
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 2fb868dbeba718a4f86056bb395ebf79
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 4b360c3a812cd9f4482f5c970c929652
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: db904634f7e07ca47803b567e77d071d
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 0c8005e5afb776248a7598960be84972
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 86fdb8ff60dbda846bc8792014f4f3c8
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  nextTimeLine: {fileID: 11400000, guid: c3074b84a3801b24cbec5503a6ecced7, type: 2}
+  waitTime: 0
+--- !u!114 &5200915073830932343
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a16748d9461eae46a725db9776d5390, type: 3}
+  m_Name: Markers
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
+--- !u!114 &6948781080471264637
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 1.4333333333333331
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 63c930794035a65408fa33c6f1dceeae, type: 2}
+--- !u!114 &7573784958837896606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: c6e6eeb8d7bdfce4ebd89e2f2632bf6c, type: 2}

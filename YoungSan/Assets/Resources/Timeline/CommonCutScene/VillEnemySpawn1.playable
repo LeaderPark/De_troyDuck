@@ -240,6 +240,7 @@ MonoBehaviour:
     - {fileID: -6109317852274670846}
     - {fileID: -6107973603427590581}
     - {fileID: 3574802263846318507}
+    - {fileID: 3779721370804256771}
 --- !u!114 &3574802263846318507
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,6 +297,74 @@ MonoBehaviour:
     component: Break
     function: Play
     param: []
+--- !u!114 &3779721370804256771
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
+  m_Name: Search Enemy Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0.03333333333333333
+  mainChar: 0
+  enemys:
+  - enemy:
+      exposedName: c3222cf78d28f2643a5f6a32d7ea0076
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 2393897ceb3c2b641bc86dc9fe8bc7b5
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 52b1e9cee81fc854ca6d69feebe3b283
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 4869a63dbeffe6444a84d61b13d9d0c4
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 9b6c831e3f8488448b65712652adc8d2
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: d58e52e60b1487f47adb6bb7029a37af
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 2df019c085fea0c46b2b68c274b7d8b4
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 128ba3abe78784f4fafb26b37efccc0a
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: b667d031f4cc107418482353ba629478
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: fb3decf787be368419c06817438bde07
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: d3e1f3c82a9864b4db0e8708b2acdd71
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 717788c62568ba642ba323608d26463e
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 34851b67240f76e42ad86ededd2fa1e4
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: b3ca7d7900035504a92210a48a4cd5ff
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 8f1afa408254aeb499483463a1e562f3
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: cbab426138b125b46bf66569bc4c8e27
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  nextTimeLine: {fileID: 11400000, guid: ab7d211743fb8ab4d951421149f8e61c, type: 2}
+  waitTime: 0
 --- !u!114 &4166660454259990342
 MonoBehaviour:
   m_ObjectHideFlags: 1

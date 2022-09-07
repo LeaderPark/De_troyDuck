@@ -107,7 +107,7 @@ public class Entity : MonoBehaviour
         GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
         GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[] { });
         GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
-        GetProcessor(typeof(Processor.Animate))?.AddCommand("LockTime", new object[] { 0f });
+        GetProcessor(typeof(Processor.Animate))?.AddCommand("LockTime", new object[] { 1f });
         GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Die" });
         StartCoroutine(DieAnimationComplete());
     }

@@ -59,11 +59,12 @@ public class OpenRoof : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        const float targetAlpha = 0.01f;
+        const float targetAlpha = 0f;
         SpriteRenderer[] srs = new SpriteRenderer[fadeObjects.Length];
         for (int objectIndex = 0; objectIndex < fadeObjects.Length; objectIndex++)
         {
             srs[objectIndex] = fadeObjects[objectIndex].GetComponent<SpriteRenderer>();
+            srs[objectIndex].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         }
         float currentAlpha = srs[0].color.a;
 
@@ -97,6 +98,7 @@ public class OpenRoof : MonoBehaviour
         for (int objectIndex = 0; objectIndex < fadeObjects.Length; objectIndex++)
         {
             srs[objectIndex] = fadeObjects[objectIndex].GetComponent<SpriteRenderer>();
+            srs[objectIndex].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         }
         float currentAlpha = srs[0].color.a;
 

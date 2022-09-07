@@ -415,7 +415,7 @@ public class Samulnori : MonoBehaviour
             {
                 for (int index = 0; index < positions.Length; index++)
                 {
-                    samulEntities[index].transform.position = new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y);
+                    rushOrder[index].transform.position = new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y);
                 }
             }
 

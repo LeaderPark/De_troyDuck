@@ -415,9 +415,12 @@ public class Samulnori : MonoBehaviour
             {
                 for (int index = 0; index < positions.Length; index++)
                 {
+                    if (rushOrder[index].isDead) continue;
                     rushOrder[index].transform.position = new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y);
                 }
             }
+
+            if (samulCount == 0) break;
 
             for (int index = 0; index < positions.Length; index++)
             {

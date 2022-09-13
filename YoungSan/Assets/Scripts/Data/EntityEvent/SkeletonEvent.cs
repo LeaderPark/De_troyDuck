@@ -17,7 +17,7 @@ public class SkeletonEvent : EntityEvent
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, 10f, 0.475f, 0.1f);
+            Dash(inputX, inputY, 10f, 0.4f, 0.1f);
         }
         };
     }

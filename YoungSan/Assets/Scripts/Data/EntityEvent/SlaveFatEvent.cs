@@ -19,7 +19,7 @@ public class SlaveFatEvent : EntityEvent
         null,
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, 8, 0.225f, 0.1f);
+            Dash(inputX, inputY, 8, 0.125f, 0.1f);
         }
         };
     }

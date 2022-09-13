@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
         rigid.velocity = (dirVec - Vector3.up * (startPosition.y + curve.Evaluate(timeStack))) * speed;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
 
         if (other.gameObject != null)

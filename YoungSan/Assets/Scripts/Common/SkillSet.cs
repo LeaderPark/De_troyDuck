@@ -52,14 +52,6 @@ public class SkillSet : MonoBehaviour
             skillWaitTimes[key] = new float[skillDatas[key].Length];
             skillStackAmount[key] = 0;
             skillChargeAmount[key] = 0;
-            foreach (var item in skillDatas[key])
-            {
-                item.skillSet = this;
-                foreach (var i in item.hitBoxDatas)
-                {
-                    i.LeftHitBox.transform.parent.gameObject.SetActive(false);
-                }
-            }
         }
     }
 

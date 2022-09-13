@@ -6,6 +6,7 @@ public class Samulnori : MonoBehaviour
 {
     public List<Entity> samulEntities = new List<Entity>();
     List<EntityEvent> samulEntityEvents = new List<EntityEvent>(4);
+    public RotationAttack rotationAttack;
 
     public float radius;
     public float assembleRadius;
@@ -13,6 +14,7 @@ public class Samulnori : MonoBehaviour
     public float rushAttackRadius;
     public float rushAttackInterval;
 
+    int health;
     int samulCount;
     bool samulDead;
 
@@ -51,6 +53,14 @@ public class Samulnori : MonoBehaviour
         List<int> removes = new List<int>();
         while (true)
         {
+            health = 0;
+            for (int i = 0; i < samulEntities.Count; i++)
+            {
+                if (!samulEntities[i].isDead)
+                {
+                    health += samulEntities[i].clone.GetStat(StatCategory.Health);
+                }
+            }
 
             for (int i = 0; i < samulEntities.Count; i++)
             {
@@ -64,6 +74,7 @@ public class Samulnori : MonoBehaviour
             {
                 samulEntities.RemoveAt(removes[removes.Count - i - 1]);
                 samulEntityEvents.RemoveAt(removes[removes.Count - i - 1]);
+                rotationAttack.DeActive(i);
                 samulCount--;
                 samulDead = true;
             }
@@ -186,6 +197,7 @@ public class Samulnori : MonoBehaviour
                 }
                 else
                 {
+                    rotationAttack.Active(index);
                     samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("LockTime", new object[] { 0f });
                     samulEntityEvents[index].CallEvent(EventCategory.Move, 0, 0, !samulEntities[index].GetComponent<SpriteRenderer>().flipX, samulEntities[index].transform.position);
                     standardAngle -= 360 / samulCount * Time.deltaTime;
@@ -197,11 +209,12 @@ public class Samulnori : MonoBehaviour
 
             if (turnCount >= 50f)
             {
-                yield break;
+                break;
             }
 
             yield return null;
         }
+        rotationAttack.DeActiveAll();
     }
 
     IEnumerator AssembleRoutine()
@@ -292,6 +305,7 @@ public class Samulnori : MonoBehaviour
                     }
                     else
                     {
+                        rotationAttack.Active(index);
                         samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("LockTime", new object[] { 0f });
                         samulEntityEvents[index].CallEvent(EventCategory.Move, 0, 0, !samulEntities[index].GetComponent<SpriteRenderer>().flipX, samulEntities[index].transform.position);
                         standardAngle -= 360 / samulCount * Time.deltaTime;
@@ -306,6 +320,7 @@ public class Samulnori : MonoBehaviour
         {
             samulEntities[index].GetComponent<StateMachine.StateMachine>().enabled = false;
         }
+        rotationAttack.DeActiveAll();
     }
 
     IEnumerator AllAttackRoutine()
@@ -354,6 +369,8 @@ public class Samulnori : MonoBehaviour
     {
         Entity[] rushOrder = new Entity[samulCount];
         Vector2[] positions = new Vector2[rushOrder.Length];
+
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 
         for (int index = 0; index < samulCount; index++)
         {
@@ -422,9 +439,10 @@ public class Samulnori : MonoBehaviour
 
             if (samulCount == 0) break;
 
+            Vector2 rushDirection = (new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z) - positions[0]).normalized;
             for (int index = 0; index < positions.Length; index++)
             {
-                Vector3 pos3 = transform.position + Quaternion.AngleAxis(180 + randomAngle, Vector3.up) * (Vector3.forward * (rushAttackRadius + rushAttackInterval * (positions.Length - 1 - index)));
+                Vector3 pos3 = transform.position + new Vector3(rushDirection.x, 0, rushDirection.y) * rushAttackRadius * 2 + Quaternion.AngleAxis(randomAngle, Vector3.up) * (Vector3.forward * (rushAttackRadius + rushAttackInterval * index));
                 positions[index] = new Vector2(pos3.x, pos3.z);
             }
 
@@ -435,6 +453,7 @@ public class Samulnori : MonoBehaviour
                 float epsilon = samulEntities[0].clone.GetStat(StatCategory.Speed) / 30f;
                 for (int index = 0; index < samulCount; index++)
                 {
+                    rotationAttack.Active(index);
                     if (Vector2.Distance(new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z), positions[index]) > epsilon)
                     {
                         Vector2 moveDirection = positions[index] - new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z);
@@ -455,6 +474,7 @@ public class Samulnori : MonoBehaviour
         {
             samulEntities[index].clone.SetMaxStat(StatCategory.Speed, (int)(samulEntities[index].clone.GetMaxStat(StatCategory.Speed) * 0.5f));
             samulEntities[index].clone.SetStat(StatCategory.Speed, samulEntities[index].clone.GetMaxStat(StatCategory.Speed));
+            rotationAttack.DeActiveAll();
         }
     }
 

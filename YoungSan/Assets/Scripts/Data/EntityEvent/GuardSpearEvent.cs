@@ -14,10 +14,10 @@ public class GuardSpearEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
-        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
+        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, 8, 0.4f, 0.4f);
+            Dash(inputX, inputY, 8, 0.5f, 0.4f);
         }
         };
     }

@@ -15,11 +15,11 @@ public class SlaveFatEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 2;
-        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
+        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         null,
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, 8, 0f, 0.1f);
+            Dash(inputX, inputY, 8, 0.225f, 0.1f);
         }
         };
     }
@@ -27,7 +27,7 @@ public class SlaveFatEvent : EntityEvent
     private void Skill1()
     {
         maxAttackStack[EventCategory.Skill1] = 1;
-        attackProcess[EventCategory.Skill1] = new AttackProcess[]{ 
+        attackProcess[EventCategory.Skill1] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
             Heal(0.9f, 1f, 0.2f, 0.4f);

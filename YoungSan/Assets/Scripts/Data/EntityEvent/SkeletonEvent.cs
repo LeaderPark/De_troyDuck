@@ -14,10 +14,10 @@ public class SkeletonEvent : EntityEvent
     private void DefalutAttack()
     {
         maxAttackStack[EventCategory.DefaultAttack] = 1;
-        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{ 
+        attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, 10f, 0.3f, 0.1f);
+            Dash(inputX, inputY, 10f, 0.475f, 0.1f);
         }
         };
     }

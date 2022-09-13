@@ -127,8 +127,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2, y: 2.7, z: 1.5}
-  m_Center: {x: 1.1, y: 1.5, z: 0}
+  m_Size: {x: 5.5, y: 2.7, z: 4}
+  m_Center: {x: -0.45, y: 1.5, z: 1.25}
 --- !u!114 &2601119440525341906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,8 +231,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.228819, y: 2.7, z: 1.5}
-  m_Center: {x: -1.614409, y: 1.5, z: 0}
+  m_Size: {x: 5.5, y: 2.7, z: 4}
+  m_Center: {x: 0.45, y: 1.5000001, z: 1.25}
 --- !u!114 &2601119440568902273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,8 +390,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2, y: 2.7, z: 1.5}
-  m_Center: {x: -1.1, y: 1.5, z: 0}
+  m_Size: {x: 5.5, y: 2.7, z: 4}
+  m_Center: {x: 0.45, y: 1.5, z: 1.25}
 --- !u!114 &2601119440899275683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,8 +778,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.228819, y: 2.7, z: 1.5}
-  m_Center: {x: 1.6144094, y: 1.5, z: 0}
+  m_Size: {x: 5.5, y: 2.7, z: 4}
+  m_Center: {x: -0.45, y: 1.5, z: 1.25}
 --- !u!114 &2601119441453240942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,6 +1640,7 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: b7623e2ba72ba2145a011f04054e8702, type: 2}
   isDead: 0
   hitable: 0
+  cantChange: 0
   isGround: 0
 --- !u!114 &7230566578263696745
 MonoBehaviour:

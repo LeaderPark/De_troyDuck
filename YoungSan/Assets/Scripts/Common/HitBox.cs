@@ -21,7 +21,7 @@ public class HitBox : MonoBehaviour
         wall = false;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject != null)
         {

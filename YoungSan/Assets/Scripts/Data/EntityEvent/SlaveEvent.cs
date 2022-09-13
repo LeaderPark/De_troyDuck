@@ -19,12 +19,12 @@ public class SlaveEvent : EntityEvent
         (inputX, inputY, position, skillData) =>
         {
             if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(0f, skillData.skill.length);
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.1f, 0.1f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.3f, 0.1f);
         },
         (inputX, inputY, position, skillData) =>
         {
             if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(0f, skillData.skill.length);
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.2f, 0.1f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.3f, 0.1f);
         },
         };
     }

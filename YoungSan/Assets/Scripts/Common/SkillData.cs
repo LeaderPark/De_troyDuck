@@ -82,6 +82,12 @@ public class SkillData : MonoBehaviour
             hitBoxDatas[i].RightHitBox.skillData = this;
         }
 
+        skillSet = transform.parent.GetComponent<SkillSet>();
+        foreach (var item in hitBoxDatas)
+        {
+            item.LeftHitBox.transform.parent.gameObject.SetActive(false);
+        }
+
     }
 
     public void ActiveHitBox(bool isRight)

@@ -1,5 +1,46 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7426043218716586785
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
+  m_Name: Search Enemy Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  mainChar: 0
+  enemys:
+  - enemy:
+      exposedName: 94d21a1553b12e24bae24bd3bbb6058d
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 1dcbac58d8b0e1942b4961c226907323
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: b4ba8176a4bae514aa85491fc22bcb5b
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 1856134456990c647b69248af82d4490
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 0ae1e14388bb6ab4cb448f0c8be31589
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 906984d6948cad84c90f1cb4a2038868
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 0cd6807a6e614b649970505f91bf8b77
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  nextTimeLine: {fileID: 11400000, guid: 424dec72884808b42883cb39224fe1ba, type: 2}
+  waitTime: 0
 --- !u!114 &-2973273567258449721
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,25 +184,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -203,6 +226,7 @@ MonoBehaviour:
     - {fileID: 7573784958837896606}
     - {fileID: 6948781080471264637}
     - {fileID: 7017555407891426479}
+    - {fileID: -7426043218716586785}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

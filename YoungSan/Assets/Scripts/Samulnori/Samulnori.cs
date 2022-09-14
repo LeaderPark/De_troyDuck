@@ -263,6 +263,7 @@ public class Samulnori : MonoBehaviour
     {
         int randomSamul = Random.Range(0, samulCount);
         samulEntities[randomSamul].GetComponent<StateMachine.StateMachine>().enabled = true;
+        Entity checkRandom = samulEntities[randomSamul];
 
         Vector2[] positions = new Vector2[samulCount];
 
@@ -273,7 +274,7 @@ public class Samulnori : MonoBehaviour
 
         bool attacking = true;
 
-        while (arrivedCount != samulCount)
+        while (arrivedCount != samulCount && !samulDead)
         {
             arrivedCount = 0;
 
@@ -442,7 +443,7 @@ public class Samulnori : MonoBehaviour
             Vector2 rushDirection = (new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z) - positions[0]).normalized;
             for (int index = 0; index < positions.Length; index++)
             {
-                Vector3 pos3 = transform.position + new Vector3(rushDirection.x, 0, rushDirection.y) * rushAttackRadius * 2 + Quaternion.AngleAxis(randomAngle, Vector3.up) * (Vector3.forward * (rushAttackRadius + rushAttackInterval * index));
+                Vector3 pos3 = transform.position + new Vector3(rushDirection.x, 0, rushDirection.y) * (rushAttackRadius * 2 + rushAttackInterval * (positions.Length - 1 - index)) + Quaternion.AngleAxis(randomAngle, Vector3.up) * Vector3.forward * rushAttackRadius;
                 positions[index] = new Vector2(pos3.x, pos3.z);
             }
 

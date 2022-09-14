@@ -246,8 +246,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7272997, y: 2, z: 2.8}
-  m_Center: {x: -0.3021145, y: 1.1000001, z: 0}
+  m_Size: {x: 2.609263, y: 2, z: 2.8}
+  m_Center: {x: -0.4756558, y: 1.1000001, z: 0}
 --- !u!114 &1236690624451897843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,6 +503,8 @@ MonoBehaviour:
   useSkill: 0
   active: 0
   delayTime: 0.1
+  skillData: {fileID: 0}
+  running: 0
 --- !u!1 &1236690625197313508
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,8 +766,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7272997, y: 2, z: 2.8}
-  m_Center: {x: 0.3021145, y: 1.1000001, z: 0}
+  m_Size: {x: 2.609263, y: 2, z: 2.8}
+  m_Center: {x: 0.4756558, y: 1.1000001, z: 0}
 --- !u!114 &1236690625435851071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,6 +833,9 @@ MonoBehaviour:
   - 0
   skillDamageForms:
   - '{Attack} * 4'
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 10
   waitTime: 0
   useStaminaForm: 0
@@ -838,6 +843,7 @@ MonoBehaviour:
   attackSounds:
   - {fileID: 8300000, guid: 03eb7622ac80ca84bbc52059628b953d, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &1236690625879922859
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +954,9 @@ MonoBehaviour:
   - 0.4
   skillDamageForms:
   - '{Attack}'
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 1
   waitTime: 0
   useStaminaForm: 0
@@ -955,6 +964,7 @@ MonoBehaviour:
   attackSounds:
   - {fileID: 8300000, guid: ea80cbee0405b984485b9963846baf64, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &1236690625908380985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1096,7 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 7494ef614ff734645986cfcfc531937a, type: 2}
   isDead: 0
   hitable: 0
+  cantChange: 0
   isGround: 0
 --- !u!114 &1236690625908380960
 MonoBehaviour:
@@ -1100,6 +1111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCoolTime: 0
+  targeting: 0
+  targetSkillCategory: 0
+  targetSelect: {fileID: 0}
 --- !u!65 &1236690625908380991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1661,6 +1675,9 @@ MonoBehaviour:
   - 0.5
   skillDamageForms:
   - '{Attack} * 3'
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 5
   waitTime: 0
   useStaminaForm: 0
@@ -1668,6 +1685,7 @@ MonoBehaviour:
   attackSounds:
   - {fileID: 8300000, guid: ea80cbee0405b984485b9963846baf64, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &8954245862275848696
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,10 +37,35 @@ namespace StateMachine
 
                 Vector2 dirVec = destination - new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z);
 
-                if (dirVec.magnitude < stateMachine.stateMachineData.destinationRadius)
+                float distance = Vector2.Distance(new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z), new Vector2(stateMachine.Enemy.transform.position.x, stateMachine.Enemy.transform.position.z));
+                SkillSet skillSet = stateMachine.Enemy.GetComponentInChildren<SkillSet>();
+                int coolCount = 0;
+                foreach (var skillAreaBundle in stateMachine.Enemy.skillArea.skillAreaBundles)
                 {
-                    stateMachine.Enemy.entityEvent.CallEvent(EventCategory.Move, 0, 0, stateMachine.Enemy.direction, stateMachine.Enemy.transform.position);
-                    return stateMachine.GetStateTable(typeof(SkillCheck));
+                    if (skillSet.skillStackAmount[skillAreaBundle.eventCategory] < skillSet.skillCoolTimes[skillAreaBundle.eventCategory].Length)
+                    {
+                        if (skillSet.skillCoolTimes[skillAreaBundle.eventCategory][skillSet.skillStackAmount[skillAreaBundle.eventCategory]] > 0)
+                        {
+                            coolCount++;
+                            continue;
+                        }
+                    }
+
+                    foreach (var item in skillAreaBundle.skillAreaDatas)
+                    {
+                        if (item.inLeftSkillArea || item.inRightSkillArea)
+                        {
+                            float attackQuest = Random.Range(0, 10);
+                            if (attackQuest < 9)
+                            {
+                                return stateMachine.GetStateTable(typeof(Attack));
+                            }
+                            else
+                            {
+                                return stateMachine.GetStateTable(typeof(Wait));
+                            }
+                        }
+                    }
                 }
 
                 Vector3 pos = stateMachine.Enemy.transform.position + boxCollider.center;

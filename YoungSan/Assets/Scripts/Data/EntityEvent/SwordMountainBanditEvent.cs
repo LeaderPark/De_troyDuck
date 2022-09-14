@@ -18,7 +18,7 @@ public class SwordMountainBanditEvent : EntityEvent
         null,
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 4, 0.1f, 0.08f);
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 8, 0.1f, 0.08f);
         }
         };
     }

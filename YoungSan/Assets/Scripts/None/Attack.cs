@@ -14,8 +14,6 @@ namespace StateMachine
         {
             GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 
-            if (Random.Range(0, 100) < 60) return stateMachine.GetStateTable(typeof(SkillCheck));
-
             bundles.Clear();
             directions.Clear();
 

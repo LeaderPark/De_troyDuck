@@ -18,7 +18,7 @@ namespace StateMachine
             {
                 if (skillSet.skillStackAmount[skillAreaBundle.eventCategory] < skillSet.skillCoolTimes[skillAreaBundle.eventCategory].Length)
                 {
-                    if (skillSet.skillCoolTimes[skillAreaBundle.eventCategory][skillSet.skillStackAmount[skillAreaBundle.eventCategory]] > 0) 
+                    if (skillSet.skillCoolTimes[skillAreaBundle.eventCategory][skillSet.skillStackAmount[skillAreaBundle.eventCategory]] > 0)
                     {
                         coolCount++;
                         continue;
@@ -29,23 +29,19 @@ namespace StateMachine
                 {
                     if (item.inLeftSkillArea || item.inRightSkillArea)
                     {
-                        if (distance < stateMachine.stateMachineData.distanceRadius)
-                        {
-                            return stateMachine.GetStateTable(typeof(Distance));
-                        }
                         float attackQuest = Random.Range(0, 10);
-                        if (attackQuest < 8)
+                        if (attackQuest < 9)
                         {
                             return stateMachine.GetStateTable(typeof(Attack));
                         }
                         else
                         {
-                            return stateMachine.GetStateTable(typeof(Distance));
+                            return stateMachine.GetStateTable(typeof(Wait));
                         }
                     }
                 }
             }
-            
+
             if (distance < stateMachine.stateMachineData.distanceRadius || stateMachine.Enemy.skillArea.skillAreaBundles.Length == coolCount)
             {
                 return stateMachine.GetStateTable(typeof(Distance));

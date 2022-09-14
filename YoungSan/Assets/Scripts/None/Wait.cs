@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace StateMachine
 {
-    public class Wait : State 
+    public class Wait : State
     {
         float timeStack;
 
@@ -19,13 +19,13 @@ namespace StateMachine
             if (!start)
             {
                 timeStack = 0;
-                moveDir = Random.Range(0, 5);
+                moveDir = Random.Range(0, 3);
                 start = true;
             }
             else
             {
                 timeStack += Time.deltaTime;
-                
+
                 if (moveDir > 1)
                 {
                     if (stateMachine.stateMachineData.waitTime + stateMachine.stateMachineData.stopTime <= timeStack)
@@ -42,10 +42,10 @@ namespace StateMachine
                         return stateMachine.GetStateTable(typeof(SkillCheck));
                     }
                 }
-                
+
                 Vector3 dirVec = stateMachine.Enemy.transform.position - gameManager.Player.transform.position;
                 dirVec.y = 0;
-                
+
                 dirVec = Quaternion.AngleAxis(90, Vector3.up) * dirVec;
                 if (moveDir == 1) dirVec *= -1;
                 if (moveDir > 1) dirVec *= 0;

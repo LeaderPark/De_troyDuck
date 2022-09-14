@@ -278,7 +278,7 @@ public class Player : MonoBehaviour
             {
                 Entity hitEntity = hit.transform.GetComponent<Entity>();
 
-                if (hitEntity != null && hitEntity.isDead&&!hitEntity.cantChange)
+                if (hitEntity != null && hitEntity.isDead && !hitEntity.cantChange)
                 {
                     if (target == null)
                     {
@@ -411,9 +411,10 @@ public class Player : MonoBehaviour
         dash = false;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
 
+        yield return new WaitForSeconds(0.3f);
         entity.hitable = true;
 
-        yield return new WaitForSeconds(dashCoolTime);
+        yield return new WaitForSeconds(dashCoolTime - 0.3f);
 
         dashCool = false;
     }

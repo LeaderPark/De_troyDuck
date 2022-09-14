@@ -29,6 +29,11 @@ namespace Processor
             int oldHealth = entity.clone.GetStat(StatCategory.Health);
             int tempDamage = damage;
 
+            if (entity.gameObject.layer == 7)
+            {
+                entity.GetComponent<StateMachine.StateMachine>().SetState(typeof(StateMachine.Pursue));
+            }
+
             Defending defending = entity.entityStatusAilment.GetEntityStatus(typeof(Defending)) as Defending;
             if (defending.Activated())
             {

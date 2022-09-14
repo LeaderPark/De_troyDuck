@@ -15,6 +15,7 @@ public class Fainting : EntityStatus
     {
         base.Activate();
 
+        if (entity.gameObject.CompareTag("Boss")) return;
         entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("Lock", new object[] { });
         entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { });
         entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[] { });
@@ -24,6 +25,7 @@ public class Fainting : EntityStatus
     {
         base.DeActivate();
 
+        if (entity.gameObject.CompareTag("Boss")) return;
         entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("UnLock", new object[] { });
         entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("UnLock", new object[] { });
         entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("UnLock", new object[] { });

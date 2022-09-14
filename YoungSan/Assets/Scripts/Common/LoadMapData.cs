@@ -7,6 +7,7 @@ public class LoadMapData : MonoBehaviour
 {
     public Quest quest;
     public bool active;
+    public List<GameObject> activeObj;
 
     private void Start()
     {
@@ -17,6 +18,10 @@ public class LoadMapData : MonoBehaviour
         if (questManager.IsComplete(quest.questId))
         {
             gameObject.SetActive(active);
+			foreach (var item in activeObj)
+			{
+                item.SetActive(active);
+			}
         }
         //Action action = null;
         //action += () => gameObject.SetActive(active);

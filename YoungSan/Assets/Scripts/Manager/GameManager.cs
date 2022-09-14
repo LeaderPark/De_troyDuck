@@ -7,6 +7,7 @@ public class GameManager : Manager
 {
     public float healthRate;
     public Bell bell;
+    public CinemachineVirtualCamera playerFollowCam;
     private Player player;
     public Player Player
     {
@@ -29,12 +30,26 @@ public class GameManager : Manager
             if (player != null)
             {
                 player.transform.SetParent(transform);
+                if (playerFollowCam == null)
+                {
+                    if (Camera.main.GetComponent<CinemachineBrain>() != null)
+                    {
+                        if (Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera != null)
+                            if (!Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("BossCam"))
+                            {
+                                playerFollowCam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera as CinemachineVirtualCamera;
+                            }
+                    }
+                }
                 if (Camera.main.GetComponent<CinemachineBrain>() != null)
                 {
                     if (Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera != null)
                         if (!Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("BossCam"))
                         {
-                            Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Follow = player.transform;
+                            if (playerFollowCam != null)
+                            {
+                                playerFollowCam.Follow = player.transform;
+                            }
                         }
                 }
             }
@@ -43,7 +58,6 @@ public class GameManager : Manager
 
     HashSet<GameObject> afterImages = new HashSet<GameObject>();
 
-    public CinemachineVirtualCamera playerFollowCam;
     public DeathWindow deathWindow;
     private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
     private void Awake()

@@ -406,6 +406,22 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &-6000317927907021474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: c6e6eeb8d7bdfce4ebd89e2f2632bf6c, type: 2}
 --- !u!114 &-5904417033308139672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1070,6 +1086,7 @@ MonoBehaviour:
     - {fileID: 5419318965825314057}
     - {fileID: -2131526843225162221}
     - {fileID: -2269859762885581863}
+    - {fileID: -6000317927907021474}
 --- !u!114 &-3313227829684014563
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2156,7 +2173,27 @@ MonoBehaviour:
       defaultValue: {fileID: 0}
     animation: Move
     isLeft: 0
-  objectData: []
+  objectData:
+  - mainChar: 1
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 1
+  - mainChar: 0
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &861370609382555656
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -395,13 +395,15 @@ public class Samulnori : MonoBehaviour
 
         int randomRushCount = Random.Range(3, 5);
 
+        Vector3 startPointDirection = Vector3.zero;
+
         for (int rushStack = 0; rushStack < randomRushCount; rushStack++)
         {
-            float randomAngle = Random.Range(0f, 360f);
+            startPointDirection = (gameManager.Player.transform.position - transform.position).normalized;
 
             for (int index = 0; index < positions.Length; index++)
             {
-                Vector3 pos3 = transform.position + Quaternion.AngleAxis(randomAngle, Vector3.up) * (Vector3.forward * (rushAttackRadius + rushAttackInterval * index));
+                Vector3 pos3 = transform.position + startPointDirection * (rushAttackRadius + rushAttackInterval * index);
                 positions[index] = new Vector2(pos3.x, pos3.z);
             }
 
@@ -440,10 +442,9 @@ public class Samulnori : MonoBehaviour
 
             if (samulCount == 0) break;
 
-            Vector2 rushDirection = (new Vector2(gameManager.Player.transform.position.x, gameManager.Player.transform.position.z) - positions[0]).normalized;
             for (int index = 0; index < positions.Length; index++)
             {
-                Vector3 pos3 = transform.position + new Vector3(rushDirection.x, 0, rushDirection.y) * (rushAttackRadius * 2 + rushAttackInterval * (positions.Length - 1 - index)) + Quaternion.AngleAxis(randomAngle, Vector3.up) * Vector3.forward * rushAttackRadius;
+                Vector3 pos3 = transform.position - startPointDirection * (rushAttackRadius + rushAttackInterval * (positions.Length - 1 - index));
                 positions[index] = new Vector2(pos3.x, pos3.z);
             }
 

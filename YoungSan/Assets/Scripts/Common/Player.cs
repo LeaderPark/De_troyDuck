@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        if (inputManager.CheckKeyState(KeyCode.R, ButtonState.Down))
+        else if (inputManager.CheckKeyState(KeyCode.R, ButtonState.Down))
         {
             SkillSet skillSet = GetComponentInChildren<SkillSet>();
             if (skillSet.skillDatas.ContainsKey(EventCategory.Skill2) && skillSet.skillDatas[EventCategory.Skill2][skillSet.skillStackAmount[EventCategory.Skill2]].targeting)
@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        if (inputManager.CheckKeyState(KeyCode.F, ButtonState.Down))
+        else if (inputManager.CheckKeyState(KeyCode.F, ButtonState.Down))
         {
             SkillSet skillSet = GetComponentInChildren<SkillSet>();
             if (skillSet.skillDatas.ContainsKey(EventCategory.Skill3) && skillSet.skillDatas[EventCategory.Skill3][skillSet.skillStackAmount[EventCategory.Skill3]].targeting)

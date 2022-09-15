@@ -1852,6 +1852,23 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 63c930794035a65408fa33c6f1dceeae, type: 2}
+--- !u!114 &-1664310466380940984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
+  m_Name: Search Enemy Marker
+  m_EditorClassIdentifier: 
+  m_Time: 16.55
+  mainChar: 1
+  enemys: []
+  nextTimeLine: {fileID: 11400000, guid: 03775b540d4af8d46a8de9b6658630ce, type: 2}
+  waitTime: 0
 --- !u!114 &-367852923958209236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1962,6 +1979,7 @@ MonoBehaviour:
     m_Objects:
     - {fileID: 4648264812562822589}
     - {fileID: -5040772036632183890}
+    - {fileID: -1664310466380940984}
 --- !u!114 &1815327672220508930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3332,6 +3350,16 @@ MonoBehaviour:
     objPos: {x: 0, y: 0, z: 0}
     objTrm:
       exposedName: 14c58dac45349ab41b792fee09303993
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
+  - mainChar: 0
+    obj:
+      exposedName: 5c860701bba27c14c85105a351159255
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: d062157a969aaed4d9f2fdbba57ff51b
       defaultValue: {fileID: 0}
     mainCharTrm: 0
   - mainChar: 0

@@ -8,7 +8,11 @@ public class EndScene : MonoBehaviour
 	private void Awake()
 	{
         Time.timeScale = 1.001f;
-        Cursor.visible = true;
+	}
+	private void Start()
+	{
+        UIManager manager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        manager.cursor = true;
 	}
 	public void Retry()
     {

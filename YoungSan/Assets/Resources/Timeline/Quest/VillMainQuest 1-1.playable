@@ -755,24 +755,6 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 11b0ba2b7716c1e429a9dc804fb84172, type: 2}
---- !u!114 &-8432238486317188106
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d5c67f4841b3a47a4b093b8c88061f, type: 3}
-  m_Name: Jump Marker
-  m_EditorClassIdentifier: 
-  m_Time: 12.25
-  loopMarker: {fileID: -3514428594887204703}
-  loopEndMarker: {fileID: -1916110190765684923}
-  questRefuse: {fileID: 0}
-  qeustSelect: 0
-  quest: {fileID: 0}
 --- !u!114 &-8103360077867448069
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2393,7 +2375,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2624,15 +2624,6 @@ MonoBehaviour:
     - {fileID: -4006647510767600963}
     - {fileID: -3183694956211123910}
     - {fileID: -8489239304876564938}
-    - {fileID: -2840003949785728247}
-    - {fileID: 7431948849709516278}
-    - {fileID: 35736785095240591}
-    - {fileID: -3514428594887204703}
-    - {fileID: -8432238486317188106}
-    - {fileID: -1916110190765684923}
-    - {fileID: 6820167304022919677}
-    - {fileID: 2920190773335731921}
-    - {fileID: 5889500285126941251}
     - {fileID: -5026110289303654664}
 --- !u!114 &-4006647510767600963
 MonoBehaviour:
@@ -2915,19 +2906,6 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: d45333702e035c6428c9267af3e27e32
     defaultValue: {fileID: 0}
---- !u!114 &-3514428594887204703
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753c9143d17060b4986633757de62967, type: 3}
-  m_Name: 2 start
-  m_EditorClassIdentifier: 
-  m_Time: 11.349999999999998
 --- !u!114 &-3230823930691475109
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2995,24 +2973,6 @@ MonoBehaviour:
     animation: 
     isLeft: 0
   objectData: []
---- !u!114 &-2840003949785728247
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d5c67f4841b3a47a4b093b8c88061f, type: 3}
-  m_Name: Jump Marker
-  m_EditorClassIdentifier: 
-  m_Time: 0.95
-  loopMarker: {fileID: 7431948849709516278}
-  loopEndMarker: {fileID: 35736785095240591}
-  questRefuse: {fileID: 0}
-  qeustSelect: 0
-  quest: {fileID: 0}
 --- !u!114 &-2486475476932487813
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3740,19 +3700,6 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
---- !u!114 &-1916110190765684923
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d038bd25fe3bd45990d6db0a45e6b2, type: 3}
-  m_Name: 2 end
-  m_EditorClassIdentifier: 
-  m_Time: 12.633333333333333
 --- !u!114 &-1914359694617920573
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4412,19 +4359,6 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: -7064634656622148097}
---- !u!114 &35736785095240591
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d038bd25fe3bd45990d6db0a45e6b2, type: 3}
-  m_Name: 1 end
-  m_EditorClassIdentifier: 
-  m_Time: 1.4833333333333334
 --- !u!114 &214584355062512274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5879,24 +5813,6 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
---- !u!114 &2920190773335731921
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d5c67f4841b3a47a4b093b8c88061f, type: 3}
-  m_Name: Jump Marker
-  m_EditorClassIdentifier: 
-  m_Time: 15.916666666666666
-  loopMarker: {fileID: 6820167304022919677}
-  loopEndMarker: {fileID: 5889500285126941251}
-  questRefuse: {fileID: 0}
-  qeustSelect: 0
-  quest: {fileID: 0}
 --- !u!114 &3113426219692546652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7554,19 +7470,6 @@ MonoBehaviour:
   textColors: []
   test: {fileID: 0}
   activeTime: 1
---- !u!114 &5889500285126941251
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d038bd25fe3bd45990d6db0a45e6b2, type: 3}
-  m_Name: 3 end
-  m_EditorClassIdentifier: 
-  m_Time: 16.350000013411044
 --- !u!114 &5929591207467303481
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7717,32 +7620,6 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: 66b4ca97cfb2d2549901dbdae2dd7c2c
     defaultValue: {fileID: 0}
---- !u!114 &6820167304022919677
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753c9143d17060b4986633757de62967, type: 3}
-  m_Name: 3 start
-  m_EditorClassIdentifier: 
-  m_Time: 14.449999999999998
---- !u!114 &7431948849709516278
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753c9143d17060b4986633757de62967, type: 3}
-  m_Name: 1 start
-  m_EditorClassIdentifier: 
-  m_Time: 0.36666666443149215
 --- !u!114 &7819877280032185673
 MonoBehaviour:
   m_ObjectHideFlags: 1

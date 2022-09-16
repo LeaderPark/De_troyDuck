@@ -7,18 +7,12 @@ public class EnterToOpenText : MonoBehaviour
 	public TextMesh mesh;
 	float time = 0;
 	public List<EntityData> entityDatas = new List<EntityData>();
-	Collider col;
+	bool notEntityData;
 	private void Awake()
 	{
-		col = GetComponent<Collider>();
 	}
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			col.enabled = false;
-			col.enabled = true;
-		}
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -53,6 +47,14 @@ public class EnterToOpenText : MonoBehaviour
 			StopAllCoroutines();
 			StartCoroutine(OpenText(false));
 		}
+	}
+	public bool entityCheck(EntityData playerEntity, EntityData checkEntity)
+	{
+		bool val;
+		val = playerEntity == checkEntity;
+		if (notEntityData)
+			val = !val;
+		return val;
 	}
 	IEnumerator OpenText(bool on)
 	{

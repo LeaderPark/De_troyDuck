@@ -13,21 +13,31 @@ public class SuperArmourEffect : MonoBehaviour
         this.entity = entity;
         entitySr = entity.GetComponent<SpriteRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        transform.position = entity.transform.position + new Vector3(0, -0.1f, 0);
-        transform.localScale = entity.transform.localScale + Vector3.one * 0.2f;
+        transform.position = entity.transform.position;
+        transform.localScale = entity.transform.localScale;
         spriteRenderer.sprite = entitySr.sprite;
         spriteRenderer.flipX = entitySr.flipX;
     }
 
-    void Update()
+    void OnEnable()
     {
-        if (entity == null)
-        {
-            gameObject.SetActive(false);
-        }
+        StartCoroutine(Routine());
+    }
 
-        transform.position = entity.transform.position + new Vector3(0, -0.1f, 0);
-        spriteRenderer.sprite = entitySr.sprite;
-        spriteRenderer.flipX = entitySr.flipX;
+    IEnumerator Routine()
+    {
+        while (true)
+        {
+            if (entity == null)
+            {
+                gameObject.SetActive(false);
+            }
+
+            transform.position = entity.transform.position;
+            spriteRenderer.sprite = entitySr.sprite;
+            spriteRenderer.flipX = entitySr.flipX;
+
+            yield return null;
+        }
     }
 }

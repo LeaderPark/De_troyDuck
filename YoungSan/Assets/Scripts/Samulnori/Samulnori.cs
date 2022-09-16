@@ -118,7 +118,7 @@ public class Samulnori : MonoBehaviour
                 if (samulDead) continue;
                 if (Random.Range(0, 2) == 0)
                 {
-                    yield return OneAttackRoutine();
+                    yield return RushAttackRoutine();
                     if (samulDead) continue;
                 }
                 else
@@ -130,7 +130,7 @@ public class Samulnori : MonoBehaviour
                     }
                     else
                     {
-                        yield return RushAttackRoutine();
+                        yield return OneAttackRoutine();
                         if (samulDead) continue;
                     }
                 }
@@ -384,6 +384,11 @@ public class Samulnori : MonoBehaviour
             rushOrder[index] = samulEntities[index];
         }
 
+        for (int index = 0; index < rushOrder.Length; index++)
+        {
+            rushOrder[index].GetComponent<BoxCollider>().isTrigger = true;
+        }
+
         int shuffleIndex = 3;
         for (int index = 0; index < rushOrder.Length - 2; index++)
         {
@@ -477,6 +482,11 @@ public class Samulnori : MonoBehaviour
             samulEntities[index].clone.SetMaxStat(StatCategory.Speed, (int)(samulEntities[index].clone.GetMaxStat(StatCategory.Speed) * 0.5f));
             samulEntities[index].clone.SetStat(StatCategory.Speed, samulEntities[index].clone.GetMaxStat(StatCategory.Speed));
             rotationAttack.DeActiveAll();
+        }
+
+        for (int index = 0; index < rushOrder.Length; index++)
+        {
+            rushOrder[index].GetComponent<BoxCollider>().isTrigger = false;
         }
     }
 

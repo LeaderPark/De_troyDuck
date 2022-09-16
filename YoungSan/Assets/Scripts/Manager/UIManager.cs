@@ -30,7 +30,7 @@ public class UIManager : Manager
     public bool important;
 
     bool cursorState;
-    bool cursor;
+    public bool cursor;
 
     void Start()
     {

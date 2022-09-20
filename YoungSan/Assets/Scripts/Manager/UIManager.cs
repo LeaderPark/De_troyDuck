@@ -42,6 +42,7 @@ public class UIManager : Manager
 
     void Update()
     {
+        Debug.Log(Time.timeScale);
         if (Time.timeScale != 1)
         {
             Cursor.visible = true;

@@ -17,6 +17,7 @@ public class Samulnori : MonoBehaviour
     int health;
     int samulCount;
     bool samulDead;
+    int deadCount;
 
     void Awake()
     {
@@ -77,6 +78,7 @@ public class Samulnori : MonoBehaviour
                 samulEntities.RemoveAt(removes[removes.Count - i - 1]);
                 samulEntityEvents.RemoveAt(removes[removes.Count - i - 1]);
                 samulCount--;
+                deadCount++;
                 samulDead = true;
             }
 
@@ -106,11 +108,17 @@ public class Samulnori : MonoBehaviour
                 yield return AssembleRoutine();
                 yield return new WaitForSeconds(1);
 
-                for (int index = 0; index < samulCount; index++)
+                for (int c = 0; c < deadCount; c++)
                 {
-                    samulEntities[index].clone.SetMaxStat(StatCategory.Speed, (int)(samulEntities[index].clone.GetMaxStat(StatCategory.Speed) * 1.5f));
-                    samulEntities[index].clone.SetStat(StatCategory.Speed, samulEntities[index].clone.GetMaxStat(StatCategory.Speed));
+                    for (int index = 0; index < samulCount; index++)
+                    {
+                        samulEntities[index].clone.SetMaxStat(StatCategory.Speed, (int)(samulEntities[index].clone.GetMaxStat(StatCategory.Speed) * 1.5f));
+                        samulEntities[index].clone.SetStat(StatCategory.Speed, samulEntities[index].clone.GetMaxStat(StatCategory.Speed));
+                    }
                 }
+
+                deadCount = 0;
+
                 yield return PositionRoutine();
             }
             else
@@ -271,7 +279,7 @@ public class Samulnori : MonoBehaviour
     IEnumerator OneAttackRoutine()
     {
         int randomSamul = Random.Range(0, samulCount);
-        samulEntities[randomSamul].GetComponent<StateMachine.StateMachine>().enabled = true;
+        if (!samulEntities[randomSamul].isDead) samulEntities[randomSamul].GetComponent<StateMachine.StateMachine>().enabled = true;
         Entity checkRandom = samulEntities[randomSamul];
 
         Vector2[] positions = new Vector2[samulCount];

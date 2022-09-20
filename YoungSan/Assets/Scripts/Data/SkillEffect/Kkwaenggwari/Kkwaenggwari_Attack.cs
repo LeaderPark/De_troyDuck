@@ -8,14 +8,16 @@ public class Kkwaenggwari_Attack : SkillEffect
     {
         Stiff(hitEntity, 0.2f);
         ChangeColor(hitEntity, Color.red, 0f, 0.1f);
-        KnockBack(hitEntity, direction, 0f, 0.1f, 8);
+        Vector3 dir = hitEntity.transform.position - attackEntity.transform.position;
+        KnockBack(hitEntity, new Vector2(dir.x, dir.z), 0f, 0.2f, attackEntity.clone.GetStat(StatCategory.Speed));
     }
 
     protected override void ShowEnemyEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index)
     {
         Stiff(hitEntity, 0.4f);
         ChangeColor(hitEntity, Color.red, 0f, 0.1f);
-        KnockBack(hitEntity, direction, 0f, 0.2f, 8);
+        Vector3 dir = hitEntity.transform.position - attackEntity.transform.position;
+        KnockBack(hitEntity, new Vector2(dir.x, dir.z), 0f, 0.2f, attackEntity.clone.GetStat(StatCategory.Speed));
     }
 
     protected override void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index)

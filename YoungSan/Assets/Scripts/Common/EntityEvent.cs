@@ -64,7 +64,7 @@ public class EntityEvent : MonoBehaviour
             {
                 if (skillSet.skillData.canrotate)
                 {
-                    if (!(entity.GetProcessor(typeof(Processor.Animate)) as Processor.Animate).locking)
+                    if (!(entity.GetProcessor(typeof(Processor.Sprite)) as Processor.Sprite).locking)
                     {
                         entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
                     }
@@ -72,7 +72,7 @@ public class EntityEvent : MonoBehaviour
             }
             else
             {
-                if (!(entity.GetProcessor(typeof(Processor.Animate)) as Processor.Animate).locking)
+                if (!(entity.GetProcessor(typeof(Processor.Sprite)) as Processor.Sprite).locking)
                 {
                     entity.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetDirection", new object[] { direction });
                 }

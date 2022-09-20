@@ -72,9 +72,10 @@ public class Samulnori : MonoBehaviour
 
             for (int i = 0; i < removes.Count; i++)
             {
+                samulEntities[removes[removes.Count - i - 1]].GetComponent<BoxCollider>().isTrigger = false;
+                rotationAttack.DeActive(removes[removes.Count - i - 1]);
                 samulEntities.RemoveAt(removes[removes.Count - i - 1]);
                 samulEntityEvents.RemoveAt(removes[removes.Count - i - 1]);
-                rotationAttack.DeActive(i);
                 samulCount--;
                 samulDead = true;
             }
@@ -161,7 +162,7 @@ public class Samulnori : MonoBehaviour
                 if (Vector2.Distance(new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z), positions[index]) > epsilon)
                 {
                     Vector2 moveDirection = positions[index] - new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z);
-                    if (!samulDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
+                    if (!samulEntities[index].isDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
                     dontArrived = true;
                 }
                 else
@@ -193,12 +194,16 @@ public class Samulnori : MonoBehaviour
                 if (distance > epsilon)
                 {
                     Vector2 moveDirection = positions[index] - new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z);
-                    if (!samulDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
+                    if (!samulEntities[index].isDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
                 }
                 else
                 {
-                    rotationAttack.Active(index);
-                    samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("LockTime", new object[] { 0f });
+                    if (!samulEntities[index].isDead)
+                    {
+                        rotationAttack.Active(index);
+                        samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("Lock", new object[] { });
+                        samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("PlayNoLock", new object[] { "BossAttack" });
+                    }
                     samulEntityEvents[index].CallEvent(EventCategory.Move, 0, 0, !samulEntities[index].GetComponent<SpriteRenderer>().flipX, samulEntities[index].transform.position);
                     standardAngle -= 360 / samulCount * Time.deltaTime;
                     if (standardAngle < 0) standardAngle += 360;
@@ -213,6 +218,10 @@ public class Samulnori : MonoBehaviour
             }
 
             yield return null;
+        }
+        for (int index = 0; index < samulCount; index++)
+        {
+            samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("UnLock", new object[] { });
         }
         rotationAttack.DeActiveAll();
     }
@@ -236,7 +245,7 @@ public class Samulnori : MonoBehaviour
                 if (Vector2.Distance(new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z), positions[index]) > epsilon)
                 {
                     Vector2 moveDirection = positions[index] - new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z);
-                    if (!samulDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
+                    if (!samulEntities[index].isDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
                     dontArrived = true;
                 }
                 else
@@ -301,13 +310,19 @@ public class Samulnori : MonoBehaviour
                     if (distance > epsilon)
                     {
                         Vector2 moveDirection = positions[index] - new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z);
-                        if (!samulDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
+                        if (!samulEntities[index].isDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
                         arrivedCount++;
                     }
                     else
                     {
-                        rotationAttack.Active(index);
-                        samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("LockTime", new object[] { 0f });
+                        if (index == randomSamul) continue;
+                        if (!samulEntities[index].isDead)
+                        {
+                            rotationAttack.Active(index);
+                            samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("Lock", new object[] { });
+                            samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("PlayNoLock", new object[] { "BossAttack" });
+                        }
+
                         samulEntityEvents[index].CallEvent(EventCategory.Move, 0, 0, !samulEntities[index].GetComponent<SpriteRenderer>().flipX, samulEntities[index].transform.position);
                         standardAngle -= 360 / samulCount * Time.deltaTime;
                         if (standardAngle < 0) standardAngle += 360;
@@ -320,6 +335,7 @@ public class Samulnori : MonoBehaviour
         for (int index = 0; index < samulCount; index++)
         {
             samulEntities[index].GetComponent<StateMachine.StateMachine>().enabled = false;
+            samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("UnLock", new object[] { });
         }
         rotationAttack.DeActiveAll();
     }
@@ -343,7 +359,7 @@ public class Samulnori : MonoBehaviour
                 if (Vector2.Distance(new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z), positions[index]) > epsilon)
                 {
                     Vector2 moveDirection = positions[index] - new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z);
-                    if (!samulDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
+                    if (!samulEntities[index].isDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
                     dontArrived = true;
                 }
                 else
@@ -398,7 +414,7 @@ public class Samulnori : MonoBehaviour
             rushOrder[shuffleIndex] = temp;
         }
 
-        int randomRushCount = Random.Range(3, 5);
+        int randomRushCount = Random.Range(6 - samulCount / 2, 6 - samulCount / 2 + 4 - samulCount);
 
         Vector3 startPointDirection = Vector3.zero;
 
@@ -424,7 +440,7 @@ public class Samulnori : MonoBehaviour
                         if (Vector2.Distance(new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z), positions[index]) > epsilon)
                         {
                             Vector2 moveDirection = positions[index] - new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z);
-                            if (!samulDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
+                            if (!samulEntities[index].isDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
                         }
                         else
                         {
@@ -441,7 +457,7 @@ public class Samulnori : MonoBehaviour
                 for (int index = 0; index < positions.Length; index++)
                 {
                     if (rushOrder[index].isDead) continue;
-                    rushOrder[index].transform.position = new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y);
+                    rushOrder[index].transform.position = new Vector3(positions[index].x, rushOrder[index].transform.position.y, positions[index].y);
                 }
             }
 
@@ -458,13 +474,19 @@ public class Samulnori : MonoBehaviour
             {
                 samulStack = 0;
                 float epsilon = samulEntities[0].clone.GetStat(StatCategory.Speed) / 30f;
+                rotationAttack.DeActiveAll();
                 for (int index = 0; index < samulCount; index++)
                 {
-                    rotationAttack.Active(index);
+                    if (!samulEntities[index].isDead)
+                    {
+                        rotationAttack.Active(index);
+                        samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("Lock", new object[] { });
+                        samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("PlayNoLock", new object[] { "BossAttack" });
+                    }
                     if (Vector2.Distance(new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z), positions[index]) > epsilon)
                     {
                         Vector2 moveDirection = positions[index] - new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z);
-                        if (!samulDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
+                        if (!samulEntities[index].isDead) samulEntityEvents[index].CallEvent(EventCategory.Move, moveDirection.x, moveDirection.y, moveDirection.x > 0, new Vector3(positions[index].x, samulEntities[index].transform.position.y, positions[index].y));
                     }
                     else
                     {
@@ -481,6 +503,7 @@ public class Samulnori : MonoBehaviour
         {
             samulEntities[index].clone.SetMaxStat(StatCategory.Speed, (int)(samulEntities[index].clone.GetMaxStat(StatCategory.Speed) * 0.5f));
             samulEntities[index].clone.SetStat(StatCategory.Speed, samulEntities[index].clone.GetMaxStat(StatCategory.Speed));
+            samulEntities[index].GetProcessor(typeof(Processor.Animate)).AddCommand("UnLock", new object[] { });
             rotationAttack.DeActiveAll();
         }
 

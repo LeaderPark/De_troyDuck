@@ -17,10 +17,6 @@ public class SuperArmourEffect : MonoBehaviour
         transform.localScale = entity.transform.localScale;
         spriteRenderer.sprite = entitySr.sprite;
         spriteRenderer.flipX = entitySr.flipX;
-    }
-
-    void OnEnable()
-    {
         StartCoroutine(Routine());
     }
 

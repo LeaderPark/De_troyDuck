@@ -11,7 +11,7 @@ public class RotationAttack : MonoBehaviour
 
     Dictionary<Entity, SkillData> skills;
 
-    void Start()
+    public void Play()
     {
         skills = new Dictionary<Entity, SkillData>();
         for (int count = 0; count < 4; count++)

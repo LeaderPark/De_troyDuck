@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BossStatUI : MonoBehaviour
 {
-    public Entity entity;
+    public List<Entity> entityList;
 
     public RectTransform hpRect;
     public RectTransform fakeHpRect;
@@ -19,20 +19,22 @@ public class BossStatUI : MonoBehaviour
         uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         minHealth = hpRect.anchoredPosition.x - hpRect.rect.width;
     }
-    public void UpdateStatBar(float curHp)
+    public void UpdateStatBar()
     {
-        if (entity.isDead)
+        float maxHp = 0;
+
+        float hp = 0;
+        foreach (var item in entityList)
         {
-            return;
+            maxHp += item.clone.GetMaxStat(StatCategory.Health);
+            hp += item.clone.GetStat(StatCategory.Health);
         }
-        float maxHp = entity.clone.GetMaxStat(StatCategory.Health);
-        float hp = curHp;
 
         float currentHp = minHealth * (1 - (hp / maxHp));
         hpRect.anchoredPosition = new Vector2(currentHp, 0);
         hpStain.fillAmount = (hp / maxHp) - 0.02f;
 
-        if (entity.clone.GetStat(StatCategory.Health) <= 0)
+        if (hp <= 0)
         {
             Invoke("uiActiveFalse", 1f);
         }

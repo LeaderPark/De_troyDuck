@@ -447,6 +447,39 @@ MonoBehaviour:
   textColors: []
   test: {fileID: 0}
   activeTime: 1.2
+--- !u!114 &-6488243812646034043
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6fa60956946034a9270f1aa690ec64, type: 3}
+  m_Name: Boss Select Marker
+  m_EditorClassIdentifier: 
+  m_Time: 20.75
+  bossName: "\uD48D\uBB3C\uB180\uC774"
+  bossObjs:
+  - bossObj:
+      exposedName: 92a6614803c30c4459be72e94710620d
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: 56b007cc708993a42a827084397d4116
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: 12fa493bf5805214683fc57d1c0a5405
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: cff4c380705d7c24eb36baa6550e797c
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  bossCamObj:
+    exposedName: 
+    defaultValue: {fileID: 0}
 --- !u!114 &-6124747087800149041
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -646,25 +679,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2810,6 +2825,7 @@ MonoBehaviour:
     - {fileID: -5867257475161452600}
     - {fileID: 8922795024381882209}
     - {fileID: -7378224312437950950}
+    - {fileID: -6488243812646034043}
 --- !u!74 &2376685871303559607
 AnimationClip:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 
 public class BossSelectReciver : Receiver
 {
-	Entity bossEntity;
+	List<Entity> bossEntityList = new List<Entity>();
 	UIManager uiManager;
 	private void Start()
 	{
@@ -20,43 +20,56 @@ public class BossSelectReciver : Receiver
 
 		if (marker != null)
 		{
+			bossEntityList.Clear();
 			GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-			GameObject bossObj = marker.bossObj.Resolve(origin.GetGraph().GetResolver());
+			//GameObject bossObj = marker.bossObj.Resolve(origin.GetGraph().GetResolver());
 			GameObject bossCamObj = marker.bossCamObj.Resolve(origin.GetGraph().GetResolver());
-
-			if (bossCamObj != null)
+			foreach (var item in marker.bossObjs)
 			{
-				bossCamObj.GetComponent<CinemachineVirtualCamera>().Follow = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>().gameObject.transform;
-				bossCamObj.SetActive(true);
-				CinemachineTargetGroup targetGroup = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>();
-				targetGroup.m_Targets[0].target = gameManager.Player.gameObject.transform;
-				targetGroup.m_Targets[1].target = bossObj.transform;
+				if (item.bossObj.Resolve(origin.GetGraph().GetResolver()) != null)
+				{
+					bossEntityList.Add(item.bossObj.Resolve(origin.GetGraph().GetResolver()).GetComponent<Entity>());
+				}
 			}
+			//if (bossCamObj != null)
+			//{
+			//	bossCamObj.GetComponent<CinemachineVirtualCamera>().Follow = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>().gameObject.transform;
+			//	bossCamObj.SetActive(true);
+			//	CinemachineTargetGroup targetGroup = bossCamObj.GetComponentInChildren<CinemachineTargetGroup>();
+			//	targetGroup.m_Targets[0].target = gameManager.Player.gameObject.transform;
+			//	targetGroup.m_Targets[1].target = bossObj.transform;
+			//}
 
-			bossEntity = bossObj.GetComponent<Entity>();
-			uiManager.bossStatbar.entity = bossEntity;
-			uiManager.bossName.text = "¡º"+bossEntity.entityData.entityName+ "¡»";
+			//bossEntity = bossObj.GetComponent<Entity>();
+
+			uiManager.bossStatbar.entityList = bossEntityList;
+			uiManager.bossName.text = "¡º"+marker.bossName+ "¡»";
 			uiManager.bossName.gameObject.SetActive(true);
 			uiManager.bossStatbar.gameObject.SetActive(true);
-			StartCoroutine(OpenHpBar(uiManager.bossStatbar.transform.localScale));
+			//StartCoroutine(OpenHpBar(uiManager.bossStatbar.transform.localScale));
 		}
 	}
-	IEnumerator OpenHpBar(Vector3 origin)
-	{
-		float time = 0;
+	//IEnumerator OpenHpBar(Vector3 origin)
+	//{
+	//	float time = 0;
 
-		while (true)
-		{
-			time +=Time.deltaTime;
-			float hp = Mathf.Lerp(0, bossEntity.clone.GetStat(StatCategory.Health), time);
-			uiManager.bossStatbar.UpdateStatBar(hp);
+	//	while (true)
+	//	{
+	//		float lerpHp = 0;
+	//		foreach (var item in bossEntityList)
+	//		{
+	//			lerpHp += item.clone.GetStat(StatCategory.Health);
+	//		}
+	//		time +=Time.deltaTime;
+	//		float hp = Mathf.Lerp(0, lerpHp, time);
+	//		uiManager.bossStatbar.UpdateStatBar(hp);
 
-			if (time >= 1)
-			{
-				uiManager.bossStatbar.UpdateStatBar(bossEntity.clone.GetStat(StatCategory.Health));
-				yield break;
-			}
-			yield return null;
-		}
-	}
+	//		if (time >= 1)
+	//		{
+	//			uiManager.bossStatbar.UpdateStatBar(lerpHp);
+	//			yield break;
+	//		}
+	//		yield return null;
+	//	}
+	//}
 }

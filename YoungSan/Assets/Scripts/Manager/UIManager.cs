@@ -42,7 +42,6 @@ public class UIManager : Manager
 
     void Update()
     {
-        Debug.Log(Time.timeScale);
         if (Time.timeScale != 1)
         {
             Cursor.visible = true;
@@ -88,7 +87,8 @@ public class UIManager : Manager
             statbar.UpdateStatBar();
             statbar.UpdateStatText();
 
-            if (category == StatCategory.Health) enemyStatUI.EnemyHpBarUpdate(entity);
+            if (category == StatCategory.Health) 
+                enemyStatUI.EnemyHpBarUpdate(entity);
         }));
         eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>
         {

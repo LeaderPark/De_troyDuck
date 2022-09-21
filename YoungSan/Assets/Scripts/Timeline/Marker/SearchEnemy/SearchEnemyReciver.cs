@@ -34,7 +34,7 @@ public class SearchEnemyReciver : Receiver
 			}
 			if (marker.enemys.Length == 0)
 			{
-				Debug.Log("일단 실행");
+				//Debug.Log("일단 실행");
 				StartCoroutine(NextTimeLine(0, nextTimeLine));
 			}
 			else

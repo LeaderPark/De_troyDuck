@@ -2,38 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEditor.UIElements;
 
 public class LoadingUI : MonoBehaviour
 {
+    [SerializeField]
+    Slider progressBar;
+    public static string nextScene;
+
     public GameObject loadingObj;
-    private Image loadingImage;
+    public Image loadingImage;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        loadingImage = GetComponent<Image>();
-    }
+    private AsyncOperation op;
 
     void Update()
     { 
-            //SetPivot();
-            loadingImage.sprite = loadingObj.GetComponent<SpriteRenderer>().sprite;
+        loadingImage.sprite = loadingObj.GetComponent<SpriteRenderer>().sprite;
     }
 
-    void SetPivot()
+    public void LoadScene(string sceneName)
     {
-        Vector2 imageSprite = gameObject.GetComponent<Image>().sprite.pivot; //256, 320
-        Vector2 imageRect = gameObject.GetComponent<Image>().sprite.rect.size; //4 , 4
-        Vector2 imagePivot = imageSprite / imageRect; //0.4 , 0.5
+        progressBar.value = 0;
+        loadingObj.SetActive(true);
+        nextScene = sceneName;
+        StartCoroutine(LoadScene());
+    }
 
-        Vector2 rectSize = gameObject.GetComponent<RectTransform>().sizeDelta; //300 , 300
-        Vector2 rectPivot = gameObject.GetComponent<RectTransform>().pivot; //0.5 , 0.5
+    IEnumerator LoadScene()
+    {
+        yield return null;
 
-        Vector2 pivotValue = rectPivot - imagePivot; //0.1, 0.0
-        Vector2 valueSize = pivotValue * rectSize;
-        valueSize.y -= 150 / (imageRect.y / 160);
+        op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextScene);
+        op.allowSceneActivation = false;
 
-        gameObject.GetComponent<RectTransform>().anchoredPosition = valueSize;
+        float timer = 0.0f;
+        while (!op.isDone)
+        {
+            yield return null;
+            timer += Time.deltaTime * 3f;
+            if (op.progress < 0.9f)
+            {
+                progressBar.value = Mathf.Lerp(progressBar.value, op.progress, timer);
+                if (progressBar.value >= op.progress)
+                {
+                    timer = 0f;
+                }
+            }
+            else
+            {
+                progressBar.value = Mathf.Lerp(progressBar.value, 1f, timer);
+                if (progressBar.value == 1.0f)
+                {
+                    yield return new WaitForSeconds(2f);
+                    op.allowSceneActivation = true;
+                    yield break;
+                }
+            }
+        }
+
     }
 }

@@ -39,7 +39,7 @@ public class SceneManager : Manager
                 GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
                 gameManager.Player.transform.position = (Vector3)sceneStartPosition[(curSceneName, sceneName)];
             }
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            uiManager.loadingUI.LoadScene(sceneName);
         });
 
     }
@@ -47,7 +47,6 @@ public class SceneManager : Manager
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        //Debug.LogError(gameManager.Player);
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
             uiManager.FadeInOut(false, false);

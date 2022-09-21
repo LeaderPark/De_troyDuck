@@ -34,7 +34,10 @@ public class JingEvent : EntityEvent
     {
         maxAttackStack[EventCategory.Skill2] = 1;
         attackProcess[EventCategory.Skill2] = new AttackProcess[]{
-            null
+        (inputX, inputY, position, skillData) =>
+        {
+            Installation(position, skillData, "FlyingJing", 0.5f);
+        }
         };
     }
 

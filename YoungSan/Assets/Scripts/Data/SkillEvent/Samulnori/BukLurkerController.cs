@@ -47,9 +47,10 @@ public class BukLurkerController : Installation
     IEnumerator ControlRoutine()
     {
         int count = (int)(radius / interval);
+        int random = Random.Range(0, 180);
         for (int c = 0; c < count; c++)
         {
-            for (float r = 0; r < 360; r += rotateInterval)
+            for (float r = random; r < random + 360; r += rotateInterval)
             {
                 Vector3 point = transform.position + Quaternion.AngleAxis(r, Vector3.up) * Vector3.forward * (c + 1) * interval;
                 GetBukLurker().SetData(point, skillData);

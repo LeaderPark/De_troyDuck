@@ -32,6 +32,7 @@ MonoBehaviour:
     - {fileID: 7192472004271053635}
     - {fileID: 1703836755921161769}
     - {fileID: -619558249010457727}
+    - {fileID: -190892844694864678}
 --- !u!114 &-8812840585358819353
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -447,6 +448,39 @@ MonoBehaviour:
   textColors: []
   test: {fileID: 0}
   activeTime: 1.2
+--- !u!114 &-6488243812646034043
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6fa60956946034a9270f1aa690ec64, type: 3}
+  m_Name: Boss Select Marker
+  m_EditorClassIdentifier: 
+  m_Time: 20.75
+  bossName: "\uD48D\uBB3C\uB180\uC774"
+  bossObjs:
+  - bossObj:
+      exposedName: 92a6614803c30c4459be72e94710620d
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: 56b007cc708993a42a827084397d4116
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: 12fa493bf5805214683fc57d1c0a5405
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: cff4c380705d7c24eb36baa6550e797c
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  bossCamObj:
+    exposedName: 
+    defaultValue: {fileID: 0}
 --- !u!114 &-6124747087800149041
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1720,6 +1754,38 @@ MonoBehaviour:
     component: 
     function: 
     param: []
+--- !u!114 &-190892844694864678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
+  m_Name: Search Enemy Marker
+  m_EditorClassIdentifier: 
+  m_Time: 20.75
+  mainChar: 0
+  enemys:
+  - enemy:
+      exposedName: 1ce7a88be0e878640a79398ca1445ef1
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 7c080a919b5043b4fa1abe67692f0337
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 58f36878306ed6947aaee8fddc3bae62
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: b7014ada87865cb458c494eb4ed1af6d
+      defaultValue: {fileID: 0}
+  - enemy:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  nextTimeLine: {fileID: 11400000, guid: 32dfbf00741b56b41861bbc0962e9198, type: 2}
+  waitTime: 0
 --- !u!114 &-113979169186330585
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2810,6 +2876,7 @@ MonoBehaviour:
     - {fileID: -5867257475161452600}
     - {fileID: 8922795024381882209}
     - {fileID: -7378224312437950950}
+    - {fileID: -6488243812646034043}
 --- !u!74 &2376685871303559607
 AnimationClip:
   m_ObjectHideFlags: 0

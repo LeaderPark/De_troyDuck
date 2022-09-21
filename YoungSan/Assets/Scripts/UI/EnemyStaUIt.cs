@@ -88,8 +88,8 @@ public class EnemyStaUIt : MonoBehaviour
         else if (entity.gameObject.tag == "Boss")
         {
             UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-            uIManager.bossStatbar.entity = entity;
-            uIManager.bossStatbar.UpdateStatBar(entity.clone.GetStat(StatCategory.Health));
+            //uIManager.bossStatbar.entity = entity;
+            uIManager.bossStatbar.UpdateStatBar();
         }
     }
 }

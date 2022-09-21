@@ -540,9 +540,14 @@ MonoBehaviour:
   m_Name: Boss Select Marker
   m_EditorClassIdentifier: 
   m_Time: 16.550000002980234
-  bossObj:
-    exposedName: cc87e884aa2b11f4990a08ec8ae3cf2d
-    defaultValue: {fileID: 0}
+  bossName: 
+  bossObjs:
+  - bossObj:
+      exposedName: b48a2985ee55ebb4085baaaef79c8417
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: 
+      defaultValue: {fileID: 0}
   bossCamObj:
     exposedName: 
     defaultValue: {fileID: 0}
@@ -762,9 +767,8 @@ MonoBehaviour:
   m_Name: Boss Select Marker
   m_EditorClassIdentifier: 
   m_Time: 10.066666679332654
-  bossObj:
-    exposedName: 9a86a073c3a86e24894ff75d1a826508
-    defaultValue: {fileID: 0}
+  bossName: 
+  bossObjs: []
   bossCamObj:
     exposedName: 
     defaultValue: {fileID: 0}
@@ -1279,7 +1283,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

@@ -160,9 +160,14 @@ MonoBehaviour:
   m_Name: Boss Select Marker
   m_EditorClassIdentifier: 
   m_Time: 0
-  bossObj:
-    exposedName: c02faaa5ba3bec24caa5fdcd1277f6fb
-    defaultValue: {fileID: 0}
+  bossName: 
+  bossObjs:
+  - bossObj:
+      exposedName: 85173b1727171c9459c3251bebadcb88
+      defaultValue: {fileID: 0}
+  - bossObj:
+      exposedName: 
+      defaultValue: {fileID: 0}
   bossCamObj:
     exposedName: 7362d792e10c13447a3b6733ea4c0953
     defaultValue: {fileID: 0}

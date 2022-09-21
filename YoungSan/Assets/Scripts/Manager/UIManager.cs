@@ -87,7 +87,8 @@ public class UIManager : Manager
             statbar.UpdateStatBar();
             statbar.UpdateStatText();
 
-            if (category == StatCategory.Health) enemyStatUI.EnemyHpBarUpdate(entity);
+            if (category == StatCategory.Health) 
+                enemyStatUI.EnemyHpBarUpdate(entity);
         }));
         eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>
         {

@@ -34,7 +34,10 @@ public class JangguEvent : EntityEvent
     {
         maxAttackStack[EventCategory.Skill2] = 1;
         attackProcess[EventCategory.Skill2] = new AttackProcess[]{
-            null
+        (inputX, inputY, position, skillData) =>
+        {
+            Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.3f, 0.2f);
+        }
         };
     }
 

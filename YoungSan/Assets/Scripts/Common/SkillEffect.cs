@@ -7,7 +7,7 @@ public abstract class SkillEffect : MonoBehaviour
     public AnimationClip[] hitEffectClips;
     public AudioClip[] hitSoundClips;
 
-    public void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index)
+    public void ShowSkillEffect(Entity attackEntity, Entity hitEntity, Vector3 hitPoint, Vector2 direction, int index)
     {
         if (hitEntity == null)
         {
@@ -32,21 +32,21 @@ public abstract class SkillEffect : MonoBehaviour
         {
             case "Player": // player
                 hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Hit" });
-                ShowPlayerEffect(attackEntity, hitEntity, direction, index);
+                ShowPlayerEffect(attackEntity, hitEntity, hitPoint, direction, index);
                 break;
             case "Enemy": // enemy
                 hitEntity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Hit" });
-                ShowEnemyEffect(attackEntity, hitEntity, direction, index);
+                ShowEnemyEffect(attackEntity, hitEntity, hitPoint, direction, index);
                 break;
             case "Boss": // enemy
-                ShowEnemyEffect(attackEntity, hitEntity, direction, index);
+                ShowEnemyEffect(attackEntity, hitEntity, hitPoint, direction, index);
                 break;
         }
     }
 
-    protected abstract void ShowPlayerEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
-    protected abstract void ShowEnemyEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
-    protected abstract void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector2 direction, int index);
+    protected abstract void ShowPlayerEffect(Entity attackEntity, Entity hitEntity, Vector3 hitPoint, Vector2 direction, int index);
+    protected abstract void ShowEnemyEffect(Entity attackEntity, Entity hitEntity, Vector3 hitPoint, Vector2 direction, int index);
+    protected abstract void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector3 hitPoint, Vector2 direction, int index);
     protected virtual void ShowWallEffect(Entity attackEntity, Vector2 direction, int index) { }
 
     protected void Stiff(Entity entity, float time)

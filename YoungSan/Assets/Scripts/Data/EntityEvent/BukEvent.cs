@@ -34,7 +34,10 @@ public class BukEvent : EntityEvent
     {
         maxAttackStack[EventCategory.Skill2] = 1;
         attackProcess[EventCategory.Skill2] = new AttackProcess[]{
-            null
+        (inputX, inputY, position, skillData) =>
+        {
+            Installation(entity.transform.position, skillData, "BukLurkerController", 0.5f);
+        }
         };
     }
 

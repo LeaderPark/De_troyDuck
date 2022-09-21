@@ -29,7 +29,7 @@ public class HitBox : MonoBehaviour
             if (!wall && other.gameObject.layer == 9)
             {
                 wall = true;
-                skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, null, skillData.direction, skillData.targetIndex);
+                skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, null, transform.position, skillData.direction, skillData.targetIndex);
             }
             if (entity == null) return;
             if (skillData == null) return;
@@ -72,7 +72,9 @@ public class HitBox : MonoBehaviour
 
                     if (!superArmour.Activated())
                     {
-                        skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, skillData.direction, skillData.targetIndex);
+                        Vector3 hitPoint = transform.position;
+                        hitPoint.y = 0;
+                        skillData.skillEffect?.ShowSkillEffect(skillData.skillSet.entity, entity, hitPoint, skillData.direction, skillData.targetIndex);
                     }
                 }
             }

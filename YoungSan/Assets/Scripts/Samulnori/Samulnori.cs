@@ -14,7 +14,6 @@ public class Samulnori : MonoBehaviour
     public float rushAttackRadius;
     public float rushAttackInterval;
 
-    int health;
     int samulCount;
     bool samulDead;
     int deadCount;
@@ -54,15 +53,6 @@ public class Samulnori : MonoBehaviour
         List<int> removes = new List<int>();
         while (true)
         {
-            health = 0;
-            for (int i = 0; i < samulEntities.Count; i++)
-            {
-                if (!samulEntities[i].isDead)
-                {
-                    health += samulEntities[i].clone.GetStat(StatCategory.Health);
-                }
-            }
-
             for (int i = 0; i < samulEntities.Count; i++)
             {
                 if (samulEntities[i].isDead)

@@ -18,6 +18,97 @@ public class Samulnori : MonoBehaviour
     bool samulDead;
     int deadCount;
 
+    const int patternCount = 3;
+    public System.Func<IEnumerator>[] patternList = new System.Func<IEnumerator>[patternCount];
+    int patternIndex = 0;
+
+    void ClearPattern()
+    {
+        patternList[0] = PatternPackA;
+        patternList[1] = PatternPackB;
+        patternList[2] = PatternPackC;
+
+        void Swap(int a, int b)
+        {
+            var temp = patternList[a];
+            patternList[a] = patternList[b];
+            patternList[b] = temp;
+        }
+
+        for (int i = 0; i < patternList.Length - 1; i++)
+        {
+            Swap(i, Random.Range(i + 1, patternList.Length - 1));
+        }
+        for (int i = 0; i < patternList.Length - 1; i++)
+        {
+            Swap(i, Random.Range(i + 1, patternList.Length - 1));
+        }
+    }
+
+    IEnumerator PatternA()
+    {
+        Debug.Log("-A");
+        if (samulDead) yield break;
+        yield return OneAttackRoutine();
+        if (samulDead) yield break;
+        yield return AllAttackRoutine();
+        if (samulDead) yield break;
+        yield return OneAttackRoutine();
+        if (samulDead) yield break;
+    }
+    IEnumerator PatternB()
+    {
+        Debug.Log("-B");
+        if (samulDead) yield break;
+        yield return RushAttackRoutine();
+        if (samulDead) yield break;
+        yield return AllAttackRoutine();
+        if (samulDead) yield break;
+    }
+    IEnumerator PatternC()
+    {
+        Debug.Log("-C");
+        if (samulDead) yield break;
+        yield return AllAttackRoutine();
+        if (samulDead) yield break;
+        yield return AllAttackRoutine();
+        if (samulDead) yield break;
+    }
+    IEnumerator PatternD()
+    {
+        Debug.Log("-D");
+        if (samulDead) yield break;
+        yield return OneAttackRoutine();
+        if (samulDead) yield break;
+        yield return RushAttackRoutine();
+        if (samulDead) yield break;
+        yield return OneAttackRoutine();
+        if (samulDead) yield break;
+    }
+
+    IEnumerator PatternPackA()
+    {
+        Debug.Log("A");
+        yield return PatternD();
+        yield return PatternC();
+        yield return PatternA();
+        yield return PatternB();
+    }
+    IEnumerator PatternPackB()
+    {
+        Debug.Log("B");
+        yield return PatternD();
+        yield return PatternC();
+        yield return PatternD();
+    }
+    IEnumerator PatternPackC()
+    {
+        Debug.Log("C");
+        yield return PatternB();
+        yield return PatternA();
+        yield return PatternD();
+    }
+
     void Awake()
     {
         samulCount = 4;
@@ -88,6 +179,7 @@ public class Samulnori : MonoBehaviour
 
     IEnumerator PlayRoutine()
     {
+        ClearPattern();
         yield return PositionRoutine();
 
         while (samulCount > 0)
@@ -115,24 +207,16 @@ public class Samulnori : MonoBehaviour
             {
                 yield return RotationRoutine();
                 if (samulDead) continue;
-                if (Random.Range(0, 2) == 0)
+
+                yield return patternList[patternIndex]();
+                patternIndex++;
+
+                if (patternIndex == patternCount)
                 {
-                    yield return RushAttackRoutine();
-                    if (samulDead) continue;
+                    patternIndex = 0;
+                    ClearPattern();
                 }
-                else
-                {
-                    if (Random.Range(0, 2) == 0)
-                    {
-                        yield return AllAttackRoutine();
-                        if (samulDead) continue;
-                    }
-                    else
-                    {
-                        yield return OneAttackRoutine();
-                        if (samulDead) continue;
-                    }
-                }
+
             }
             yield return null;
         }

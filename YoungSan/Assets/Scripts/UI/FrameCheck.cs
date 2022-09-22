@@ -12,6 +12,7 @@ public class FrameCheck : MonoBehaviour
         style = new GUIStyle(); style.alignment = TextAnchor.UpperLeft; style.fontSize = h * 4 / 100; style.normal.textColor = Color.cyan;
         StartCoroutine("worstReset");
     }
+
     IEnumerator worstReset()
     {
         while (true)
@@ -31,7 +32,7 @@ public class FrameCheck : MonoBehaviour
         msec = deltaTime* 1000.0f;    fps = 1.0f / deltaTime; 
         if (fps<worstFps)    
             worstFps = fps;
-        text = msec.ToString ("F1") + "ms (" + fps.ToString ("F1") + ") //worst : " + worstFps.ToString ("F1");
+        text = msec.ToString ("F1") + "ms (" + fps.ToString ("F1") + ")  //worst : " + worstFps.ToString ("F1");
         GUI.Label(rect, text, style);
     }
 } 

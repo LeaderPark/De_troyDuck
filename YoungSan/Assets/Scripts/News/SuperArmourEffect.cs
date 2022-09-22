@@ -27,6 +27,7 @@ public class SuperArmourEffect : MonoBehaviour
             if (entity == null)
             {
                 gameObject.SetActive(false);
+                yield break;
             }
 
             transform.position = entity.transform.position;

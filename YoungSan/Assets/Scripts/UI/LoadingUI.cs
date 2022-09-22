@@ -56,6 +56,7 @@ public class LoadingUI : MonoBehaviour
                 {
                     yield return new WaitForSeconds(2f);
                     op.allowSceneActivation = true;
+                    progressBar.value = 0;
                     yield break;
                 }
             }

@@ -32,7 +32,7 @@ public class DataManager : Manager
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            if (Input.GetKeyDown(KeyCode.Delete))
+            if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 SetReFiles();
             }

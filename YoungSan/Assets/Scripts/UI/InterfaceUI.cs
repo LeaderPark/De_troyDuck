@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,17 +73,23 @@ public class InterfaceUI : MonoBehaviour
         {
             CreateQuestUI(item, proceedingList.transform);
         }
-
-        foreach (Quest item in questManager.completedQuests.Values)
+        if (questManager.haveSort)
         {
-            CreateQuestUI(item, completedList.transform);
+            questManager.completeQuestIds = questManager.completedQuests.Keys.Cast<int>().ToList() ;
+            questManager.completeQuestIds.Sort();
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            questManager.haveSort = false;
+        }
+        foreach (int item in questManager.completeQuestIds)
+        {
+            CreateQuestUI(questManager.GetQuest(item), completedList.transform);
         }
     }
     public void CreateQuestUI(Quest quest,Transform content)
     {
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 
-        Debug.Log(quest + " " + content);
+        //Debug.Log(quest + " " + content);
         GameObject questUI = GetObject(content);
         Button button = questUI.GetComponent<Button>();
         Text text = button.GetComponentInChildren<Text>();

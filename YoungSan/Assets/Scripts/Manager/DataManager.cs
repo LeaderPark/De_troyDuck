@@ -145,6 +145,7 @@ public class DataManager : Manager
         {
             questManager.SetQuestProceeding(questId);
         }
+        Array.Sort(data.completedQuests);
         foreach (int questId in data.completedQuests)
         {
             questManager.SetQuestComplete(questId);

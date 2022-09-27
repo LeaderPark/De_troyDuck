@@ -320,6 +320,7 @@ public class Player : MonoBehaviour
                 gameManager.Player.GetComponent<AudioListener>().enabled = true;
                 gameManager.Player.enabled = true;
                 gameManager.Player.entity.isDead = false;
+                gameManager.Player.entity.hitable = true;
                 gameManager.Player.gameObject.layer = 6;
                 gameManager.Player.gameObject.tag = "Player";
                 gameManager.Player.entity.clone.SetStat(StatCategory.Health, Mathf.RoundToInt((float)(gameManager.Player.entity.clone.GetMaxStat(StatCategory.Health)) * gameManager.healthRate));
@@ -357,7 +358,7 @@ public class Player : MonoBehaviour
             skillSet.StopSkill();
 
             if (dashCo != null) StopCoroutine(dashCo);
-            dashCo = StartCoroutine(AttackVelocityTime(skillSet, 0.2f));
+            dashCo = StartCoroutine(AttackVelocityTime(skillSet, 0.2f, new object[] { new Vector3(inputX, 0, inputY).normalized, 24 }));
             gameManager.AfterImage(entity, 0.2f);
             dash = true;
             dashCool = true;
@@ -395,7 +396,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private IEnumerator AttackVelocityTime(SkillSet skillSet, float time)
+    private IEnumerator AttackVelocityTime(SkillSet skillSet, float time, object[] o)
     {
         UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         // uIManager.skillinterface.time_coolTime = dashCoolTime + time + 0.27f;
@@ -407,7 +408,16 @@ public class Player : MonoBehaviour
 
         dashEffect.Play("DashEffect");
 
-        yield return new WaitForSeconds(time);
+        float timeStack = 0;
+
+        while (timeStack < time)
+        {
+            timeStack += Time.deltaTime;
+
+            entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", o);
+            yield return null;
+        }
+
         dash = false;
         entity.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
 

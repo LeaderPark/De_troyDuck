@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9677fe87bdbda47af0c19e3b92453e, type: 3}
   m_Name: Object/CSControl
   m_EditorClassIdentifier: 
-  m_Time: 2.5
+  m_Time: 3.486888064692418
   enemyObjs:
   - obj:
       exposedName: 64f4474e64e0b0e4a98931ea9abec588
@@ -247,6 +247,7 @@ MonoBehaviour:
     - {fileID: -7821657253412105740}
     - {fileID: 2283659272931268477}
     - {fileID: 2647346852356260146}
+    - {fileID: -612934048827441414}
 --- !u!114 &-7657454526049785806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,6 +612,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 0.9333333333333333
   events: []
+--- !u!114 &-612934048827441414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9677fe87bdbda47af0c19e3b92453e, type: 3}
+  m_Name: Object/CSControl
+  m_EditorClassIdentifier: 
+  m_Time: 1.1666666666666667
+  enemyObjs:
+  - obj:
+      exposedName: 2fad1c4042b8065499a19ba0695be2a0
+      defaultValue: {fileID: 0}
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+  scriptEnable: 0
 --- !u!114 &-509513249246092482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1625,7 +1647,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

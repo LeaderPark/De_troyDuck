@@ -27,18 +27,14 @@ public class SceneManager : Manager
         }
     }
 
+    string curSceneName;
     public void LoadScene(string sceneName)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        string curSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
         uiManager.FadeInOut(true, false, () =>
         {
-            if (sceneStartPosition.Contains((curSceneName, sceneName)))
-            {
-                GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-                gameManager.Player.transform.position = (Vector3)sceneStartPosition[(curSceneName, sceneName)];
-            }
+            curSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             uiManager.loadingUI.LoadScene(sceneName);
         });
 
@@ -50,6 +46,11 @@ public class SceneManager : Manager
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
             uiManager.FadeInOut(false, false);
+            if (sceneStartPosition.Contains((curSceneName, scene.name)))
+            {
+                GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+                gameManager.Player.transform.position = (Vector3)sceneStartPosition[(curSceneName, scene.name)];
+            }
             StartCoroutine(test1());
         }
     }
@@ -67,10 +68,10 @@ public class SceneManager : Manager
         DataManager dataManager = ManagerObject.Instance.GetManager(ManagerType.DataManager) as DataManager;
 
         uIManager.UISetActiveTimeLine(true);
-		if (timelineCon.onSceneLoadPlay && timelineCon.startTimeline != null)
-		{
-			timelineManager.StartCutScene(timelineCon.startTimeline);
-		}
-		afterSceneLoadAction?.Invoke();
+        if (timelineCon.onSceneLoadPlay && timelineCon.startTimeline != null)
+        {
+            timelineManager.StartCutScene(timelineCon.startTimeline);
+        }
+        afterSceneLoadAction?.Invoke();
     }
 }

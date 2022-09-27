@@ -97,15 +97,21 @@ public abstract class SkillEffect : MonoBehaviour
     {
         yield return new WaitForSeconds(startTime);
 
+        int tempMaxStat = targetEntity.clone.GetMaxStat(category);
+        int tempStat = targetEntity.clone.GetStat(category);
+
         targetEntity.extraStat[category] += value;
-        targetEntity.clone.SetMaxStat(category, targetEntity.clone.GetMaxStat(category) + value);
-        targetEntity.clone.SetStat(category, targetEntity.clone.GetStat(category) + value);
+        targetEntity.clone.SetMaxStat(category, tempMaxStat + value);
+        targetEntity.clone.SetStat(category, tempStat + value);
 
         yield return new WaitForSeconds(time);
 
+        tempMaxStat = targetEntity.clone.GetMaxStat(category);
+        tempStat = targetEntity.clone.GetStat(category);
+
         targetEntity.extraStat[category] -= value;
-        targetEntity.clone.SetStat(category, targetEntity.clone.GetStat(category) - value);
-        targetEntity.clone.SetMaxStat(category, targetEntity.clone.GetMaxStat(category) - value);
+        targetEntity.clone.SetMaxStat(category, tempMaxStat - value);
+        targetEntity.clone.SetStat(category, tempStat - value);
     }
 
     protected void Airbone(Entity targetEntity, float startTime, Vector3 power)

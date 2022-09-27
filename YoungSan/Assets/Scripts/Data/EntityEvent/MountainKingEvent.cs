@@ -17,7 +17,7 @@ public class MountainKingEvent : EntityEvent
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(0f, skillData.skill.length);
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(entity, 0f, skillData.skill.length);
         }
         };
     }
@@ -28,7 +28,7 @@ public class MountainKingEvent : EntityEvent
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(0f, skillData.skill.length);
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(entity, 0f, skillData.skill.length);
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 16, 1f, 0.15f);
 
             int idx = coroutines.Count;
@@ -53,7 +53,7 @@ public class MountainKingEvent : EntityEvent
         attackProcess[EventCategory.Skill2] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(0f, skillData.skill.length);
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(entity, 0f, skillData.skill.length);
         }
         };
     }

@@ -29,9 +29,9 @@ public class SuperArmourEffect : MonoBehaviour
                 gameObject.SetActive(false);
             }
 
-            transform.position = entity.transform.position;
-            spriteRenderer.sprite = entitySr.sprite;
-            spriteRenderer.flipX = entitySr.flipX;
+            if (entity) transform.position = entity.transform.position;
+            if (entity) spriteRenderer.sprite = entitySr.sprite;
+            if (entity) spriteRenderer.flipX = entitySr.flipX;
 
             yield return null;
         }

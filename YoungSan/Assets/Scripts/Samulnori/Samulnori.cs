@@ -352,9 +352,39 @@ public class Samulnori : MonoBehaviour
 
     IEnumerator OneAttackRoutine()
     {
-        int randomSamul = Random.Range(0, samulCount);
-        if (!samulEntities[randomSamul].isDead) samulEntities[randomSamul].GetComponent<StateMachine.StateMachine>().enabled = true;
-        Entity checkRandom = samulEntities[randomSamul];
+        int randomSamul = Random.Range(1, samulCount + 1);
+
+        int[] randoms = new int[randomSamul];
+
+        {
+            int[] temp = new int[samulCount];
+            for (int i = 0; i < samulCount; i++)
+            {
+                temp[i] = i;
+            }
+
+            for (int c = 0; c < 2; c++)
+            {
+                int t = 0;
+                for (int i = 0; i < samulCount - 1; i++)
+                {
+                    int rand = Random.Range(i + 1, samulCount);
+                    t = temp[rand];
+                    temp[rand] = temp[i];
+                    temp[i] = t;
+                }
+            }
+
+            for (int i = 0; i < randomSamul; i++)
+            {
+                randoms[i] = temp[i];
+            }
+        }
+
+        for (int i = 0; i < randomSamul; i++)
+        {
+            if (!samulEntities[randoms[i]].isDead) samulEntities[randoms[i]].GetComponent<StateMachine.StateMachine>().enabled = true;
+        }
 
         Vector2[] positions = new Vector2[samulCount];
 
@@ -373,7 +403,10 @@ public class Samulnori : MonoBehaviour
             if (attackTime <= 0)
             {
                 attacking = false;
-                samulEntities[randomSamul].GetComponent<StateMachine.StateMachine>().enabled = false;
+                for (int i = 0; i < randomSamul; i++)
+                {
+                    if (!samulEntities[randoms[i]].isDead) samulEntities[randoms[i]].GetComponent<StateMachine.StateMachine>().enabled = false;
+                }
             }
 
             for (int index = 0; index < samulCount; index++)
@@ -385,7 +418,12 @@ public class Samulnori : MonoBehaviour
             float epsilon = samulEntities[0].clone.GetStat(StatCategory.Speed) / 30f;
             for (int index = 0; index < samulCount; index++)
             {
-                if (attacking && randomSamul == index) continue;
+                bool check = false;
+                for (int i = 0; i < randomSamul; i++)
+                {
+                    if (randoms[i] == index) check = true;
+                }
+                if (attacking && check) continue;
                 else
                 {
                     float distance = Vector2.Distance(new Vector2(samulEntities[index].transform.position.x, samulEntities[index].transform.position.z), positions[index]);
@@ -397,7 +435,12 @@ public class Samulnori : MonoBehaviour
                     }
                     else
                     {
-                        if (index == randomSamul) continue;
+                        check = false;
+                        for (int i = 0; i < randomSamul; i++)
+                        {
+                            if (randoms[i] == index) check = true;
+                        }
+                        if (check) continue;
                         if (!samulEntities[index].isDead)
                         {
                             rotationAttack.Active(index);

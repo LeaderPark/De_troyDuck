@@ -267,15 +267,22 @@ public class EntityEvent : MonoBehaviour
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
 
+
+        int tempMaxStat = entity.clone.GetMaxStat(category);
+        int tempStat = entity.clone.GetStat(category);
+
         entity.extraStat[category] += value;
-        entity.clone.SetMaxStat(category, entity.clone.GetMaxStat(category) + value);
-        entity.clone.SetStat(category, entity.clone.GetStat(category) + value);
+        entity.clone.SetMaxStat(category, tempMaxStat + value);
+        entity.clone.SetStat(category, tempStat + value);
 
         yield return new WaitForSeconds(time);
 
+        tempMaxStat = entity.clone.GetMaxStat(category);
+        tempStat = entity.clone.GetStat(category);
+
         entity.extraStat[category] -= value;
-        entity.clone.SetStat(category, entity.clone.GetStat(category) - value);
-        entity.clone.SetMaxStat(category, entity.clone.GetMaxStat(category) - value);
+        entity.clone.SetMaxStat(category, tempMaxStat - value);
+        entity.clone.SetStat(category, tempStat - value);
     }
 
     protected void Defend(float startTime, float time, float rate, int value)
@@ -296,21 +303,21 @@ public class EntityEvent : MonoBehaviour
         defending.ActivateForTime(time);
     }
 
-    protected void SuperArmour(float startTime, float time)
+    protected void SuperArmour(Entity target, float startTime, float time)
     {
         int idx = coroutines.Count;
-        Coroutine routine = this.StartCoroutine(SuperArmourRoutine(idx, startTime, time));
+        Coroutine routine = this.StartCoroutine(SuperArmourRoutine(idx, target, startTime, time));
         coroutines.Add((false, routine));
     }
 
-    private IEnumerator SuperArmourRoutine(int idx, float startTime, float time)
+    private IEnumerator SuperArmourRoutine(int idx, Entity target, float startTime, float time)
     {
         yield return new WaitForSeconds(startTime);
         coroutines[idx] = (true, coroutines[idx].Item2);
 
-        SuperArmour superArmour = entity.entityStatusAilment.GetEntityStatus(typeof(SuperArmour)) as SuperArmour;
+        SuperArmour superArmour = target.entityStatusAilment.GetEntityStatus(typeof(SuperArmour)) as SuperArmour;
 
-        superArmour.SetData(entity);
+        superArmour.SetData(target);
         superArmour.ActivateForTime(time);
     }
 

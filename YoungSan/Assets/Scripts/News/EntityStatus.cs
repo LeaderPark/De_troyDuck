@@ -31,10 +31,7 @@ public class EntityStatus
 
     public virtual void Activate()
     {
-        if (activated)
-        {
-            DeActivate();
-        }
+        DeActivate();
 
         activateTime = -1;
         activated = true;
@@ -51,6 +48,7 @@ public class EntityStatus
 
     public void ActivateForTime(float time)
     {
+        if (activateTime > time) return;
         Activate();
         activateTime = time;
     }

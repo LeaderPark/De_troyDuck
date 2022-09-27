@@ -8,14 +8,14 @@ public class Buk_Skill1 : SkillEffect
     {
         Stiff(hitEntity, 0.2f);
         ChangeColor(hitEntity, Color.red, 0f, 0.1f);
-        KnockBack(hitEntity, direction, 0f, 0.1f, 8);
+        Buff(hitEntity, 0f, 10f, StatCategory.Speed, -hitEntity.clone.GetStat(StatCategory.Speed) / 2);
     }
 
     protected override void ShowEnemyEffect(Entity attackEntity, Entity hitEntity, Vector3 hitPoint, Vector2 direction, int index)
     {
         Stiff(hitEntity, 0.4f);
         ChangeColor(hitEntity, Color.red, 0f, 0.1f);
-        KnockBack(hitEntity, direction, 0f, 0.2f, 8);
+        Buff(hitEntity, 0f, 10f, StatCategory.Speed, -hitEntity.clone.GetStat(StatCategory.Speed) / 2);
     }
 
     protected override void ShowBossEffect(Entity attackEntity, Entity hitEntity, Vector3 hitPoint, Vector2 direction, int index)

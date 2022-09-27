@@ -20,6 +20,8 @@ public class Fainting : EntityStatus
         entity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("Lock", new object[] { });
         entity?.GetProcessor(typeof(Processor.Animate))?.AddCommand("Lock", new object[] { });
         entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("Lock", new object[] { });
+        entity?.GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
+        entity?.GetProcessor(typeof(Processor.Skill))?.AddCommand("StopSkill", new object[] { });
     }
 
     public override void DeActivate()

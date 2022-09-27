@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JingEvent : EntityEvent
 {
+    public Entity[] friends;
 
     protected override void Awake()
     {
@@ -26,7 +27,18 @@ public class JingEvent : EntityEvent
     {
         maxAttackStack[EventCategory.Skill1] = 1;
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
-            null
+            (inputX, inputY, position, skillData) =>
+            {
+                Installation(entity.transform.position + Vector3.up * 1.2f, skillData, "SoundWave", 0.55f);
+                SuperArmour(entity, 0.55f, 10f);
+                if (entity.CompareTag("Boss"))
+                {
+                    foreach (var friend in friends)
+                    {
+                        if (friend && friend.CompareTag("Boss")) SuperArmour(friend, 0.55f, 10f);
+                    }
+                }
+            }
         };
     }
 

@@ -18,12 +18,12 @@ public class SlaveEvent : EntityEvent
         attackProcess[EventCategory.DefaultAttack] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(0f, skillData.skill.length);
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(entity, 0f, skillData.skill.length);
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.3f, 0.1f);
         },
         (inputX, inputY, position, skillData) =>
         {
-            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(0f, skillData.skill.length);
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(entity, 0f, skillData.skill.length);
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 2, 0.3f, 0.1f);
         },
         };
@@ -34,7 +34,7 @@ public class SlaveEvent : EntityEvent
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(0f, skillData.skill.length);
+            if (skillData.skillSet.entity.gameObject.CompareTag("Boss")) SuperArmour(entity, 0f, skillData.skill.length);
             Dash(inputX, inputY, entity.clone.GetStat(StatCategory.Speed) * 3f, 0.714f, 2f);
         },
         };

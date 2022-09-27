@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FlyingJing : Installation
 {
-    public HitBox hitBox;
     public Rigidbody rigidbody;
 
     bool flying;
@@ -13,9 +12,6 @@ public class FlyingJing : Installation
     {
         transform.position = ownerEntity.transform.position + Vector3.up * 0.8f;
 
-        hitBox.skillData = skillData;
-        hitBox.ClearTargetSet();
-
         flying = true;
 
         StartCoroutine(FlyingRoutine());
@@ -23,6 +19,7 @@ public class FlyingJing : Installation
 
     IEnumerator FlyingRoutine()
     {
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
         while (flying)
         {
             rigidbody.velocity = (position - transform.position).normalized * ownerEntity.clone.GetStat(StatCategory.Speed) * 4;
@@ -33,11 +30,14 @@ public class FlyingJing : Installation
 
         rigidbody.velocity = Vector3.zero;
 
-        hitBox.GetComponent<BoxCollider>().enabled = true;
+        SoundWave soundWave = poolManager.GetObject("SoundWave").GetComponent<SoundWave>();
 
-        yield return new WaitForSeconds(1);
+        soundWave.transform.position = transform.position;
 
-        hitBox.GetComponent<BoxCollider>().enabled = false;
+        soundWave.SetData(null, transform.position, skillData);
+
+        yield return new WaitForSeconds(2f);
+
         gameObject.SetActive(false);
     }
 

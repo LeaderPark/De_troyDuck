@@ -26,7 +26,10 @@ public class KkwaenggwariEvent : EntityEvent
     {
         maxAttackStack[EventCategory.Skill1] = 1;
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
-            null
+            (inputX, inputY, position, skillData) =>
+            {
+                Installation(entity.transform.position + Vector3.up * 1.2f, skillData, "SoundWave", 0.55f);
+            }
         };
     }
 

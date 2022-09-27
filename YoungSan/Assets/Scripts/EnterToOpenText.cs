@@ -58,7 +58,6 @@ public class EnterToOpenText : MonoBehaviour
 	}
 	IEnumerator OpenText(bool on)
 	{
-		Debug.Log("A");
 		float val = on ? 1 : -1;
 		//time = Mathf.Clamp(-val, 0, 1);
 		time = mesh.color.a;

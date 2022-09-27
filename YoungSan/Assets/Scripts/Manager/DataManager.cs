@@ -32,7 +32,7 @@ public class DataManager : Manager
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            if (Input.GetKeyDown(KeyCode.Delete))
+            if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 SetReFiles();
             }
@@ -73,7 +73,6 @@ public class DataManager : Manager
 
     private void SetDefaultData()
     {
-        //data.sceneName = "Castle";
         data.sceneName = "Forest";
         data.currentPlayer = "MainCharSoul";
         data.currentPosition = new Vector3(0, 0, 0);
@@ -146,13 +145,15 @@ public class DataManager : Manager
         {
             questManager.SetQuestProceeding(questId);
         }
+        Array.Sort(data.completedQuests);
         foreach (int questId in data.completedQuests)
         {
             questManager.SetQuestComplete(questId);
         }
 
         //씬 로드
-        UnityEngine.SceneManagement.SceneManager.LoadScene(data.sceneName);
+        SceneManager sceneManager = ManagerObject.Instance.GetManager(ManagerType.SceneManager) as SceneManager;
+        sceneManager.LoadScene(data.sceneName);
 
         //플레이어 생성
         GameObject go = Instantiate(Resources.Load("Prefabs/EntityData/" + data.currentPlayer)) as GameObject;
@@ -176,7 +177,7 @@ public class DataManager : Manager
         //UI 세팅
 
         yield return null;
-        Debug.Log(uiManager);
+
         uiManager.important = false;
         uiManager.Init();
 

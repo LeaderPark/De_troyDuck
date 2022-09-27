@@ -101,7 +101,7 @@ public class SettingUI : MonoBehaviour
             {
                 double result = (double)((double)Screen.resolutions[i].width / (double)Screen.resolutions[i].height);
                 float resultTruncate = (float)(Math.Truncate((result * 10000)) / 10000);
-                Debug.Log(Screen.resolutions[i]);
+                //Debug.Log(Screen.resolutions[i]);
 
                 //if (resultTruncate == 1.7777f)
                 //{

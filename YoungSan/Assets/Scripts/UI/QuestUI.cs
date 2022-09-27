@@ -51,7 +51,8 @@ public class QuestUI : MonoBehaviour
     {
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         clearImg.SetActive(questManager.IsComplete(msg.questId));
-        questId.text = "Quest " + msg.questId;
+        //questId.text = "Quest " + msg.questId;
+        questId.text = "";
         questTitle.text = msg.title;
         questContext.text = msg.context;
         StartCoroutine(OpenQuestUI());

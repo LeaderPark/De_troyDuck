@@ -6,7 +6,9 @@ public class QuestManager : Manager
 {
     public Hashtable proceedingQuests = new Hashtable();
     public Hashtable completedQuests = new Hashtable();
-    public Hashtable allQuests = new Hashtable();
+    public List<int> completeQuestIds = new List<int>();
+    public bool haveSort;
+    private Hashtable allQuests = new Hashtable();
 
     void Awake()
     {
@@ -92,6 +94,7 @@ public class QuestManager : Manager
         Quest quest = GetQuest(id);
         if (!IsComplete(id))
         {
+            haveSort = true;
             completedQuests.Add(id, quest);
             UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
             uIManager.SetQuestUI(quest);

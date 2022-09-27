@@ -20,6 +20,7 @@ public class UIManager : Manager
     public StatUI statUI;
     public TimeLineSkipGage timeLineSkipGage;
     public DamageCountUI damageCountUI;
+    public LoadingUI loadingUI;
 
     [SerializeField] private CanvasGroup canvas;
 
@@ -102,7 +103,6 @@ public class UIManager : Manager
         {
             if (!questUIObj[i].isUsing)
             {
-                Debug.Log("하,,, 쓰벌");
                 questUIObj[i].SetQuestUIText(quest);
                 return;
             }

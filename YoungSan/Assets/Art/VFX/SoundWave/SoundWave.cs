@@ -24,7 +24,7 @@ public class SoundWave : Installation
         visualEffect.SetBool("Loop", false);
         yield return new WaitForSeconds(0.1f);
         GetComponent<BoxCollider>().enabled = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
         GetComponent<BoxCollider>().enabled = false;
 
         gameObject.SetActive(false);

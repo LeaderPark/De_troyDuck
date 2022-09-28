@@ -115,6 +115,41 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 7890483649761924261}
+--- !u!114 &2603240606917985231
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 2.5166666666666666
+  animationDatas: []
+  objectData:
+  - mainChar: 0
+    obj:
+      exposedName: c7103d3371f4ef74ea2a0c97898c6a4c
+      defaultValue: {fileID: 0}
+    active: 1
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 14c9d7b959cca2a4a9dc589b45a6c137
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
+  - mainChar: 0
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
 --- !u!114 &7890483649761924261
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,6 +201,7 @@ MonoBehaviour:
     - {fileID: -3900396182345375569}
     - {fileID: 7995594117633909983}
     - {fileID: -1251848337809259307}
+    - {fileID: 2603240606917985231}
 --- !u!114 &7995594117633909983
 MonoBehaviour:
   m_ObjectHideFlags: 1

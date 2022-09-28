@@ -46,6 +46,7 @@ public class BossSelectReciver : Receiver
 			uiManager.bossName.text = "¡º"+marker.bossName+ "¡»";
 			uiManager.bossName.gameObject.SetActive(true);
 			uiManager.bossStatbar.gameObject.SetActive(true);
+			uiManager.bossStatbar.UpdateStatBar();
 			//StartCoroutine(OpenHpBar(uiManager.bossStatbar.transform.localScale));
 		}
 	}

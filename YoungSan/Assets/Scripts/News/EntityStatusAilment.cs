@@ -41,7 +41,10 @@ public class EntityStatusAilment : MonoBehaviour
     {
         foreach (EntityStatus status in entityStatus.Values)
         {
-            status.DeActivate();
+            if (status.Activated())
+            {       
+                status.DeActivate();
+            }
         }
     }
 }

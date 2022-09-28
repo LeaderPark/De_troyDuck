@@ -18,7 +18,7 @@ public enum GameKey
 
 public class InputManager : Manager
 {
-    private Hashtable keyMappingTable; // 나중에 꼭 수정하자
+    private Hashtable keyMappingTable; // 나중에 꼭 수정하자 // 그렇게 영원히 잊혀졌다...
     private Dictionary<KeyCode, ButtonState> keyTable;
     private Dictionary<MouseButton, ButtonState> mouseTable;
     public bool isTimeStop = false;

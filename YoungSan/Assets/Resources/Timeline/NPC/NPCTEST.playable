@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Time: 1.3233333275963859
   loopMarker: {fileID: 7431948849709516278}
   loopEndMarker: {fileID: 35736785095240591}
+  questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
 --- !u!114 &-1334883753112728651
@@ -222,23 +223,26 @@ MonoBehaviour:
   m_Time: 0
   animationDatas:
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 4bd0a864db68a164c90c2e97560073a2
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    isLeft: 0
   - mainChar: 1
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    isLeft: 0
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &-279540237224094788
 MonoBehaviour:
@@ -430,6 +434,7 @@ MonoBehaviour:
   talker:
     exposedName: 2430516bd887e0c45884f41bb2d11d34
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "(\uB300\uCDA9 \uD018\uC2A4\uD2B8)"
   delayCurve:
     serializedVersion: 2
@@ -509,6 +514,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fontSizeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  textColors: []
+  test: {fileID: 0}
   activeTime: 0.01
 --- !u!114 &805419661862450090
 MonoBehaviour:
@@ -570,6 +583,7 @@ MonoBehaviour:
   m_Time: 0.48333333333333334
   loopMarker: {fileID: 0}
   loopEndMarker: {fileID: 0}
+  questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
 --- !u!74 &3391901728187160438
@@ -840,6 +854,7 @@ MonoBehaviour:
   m_Time: 0
   loopMarker: {fileID: 0}
   loopEndMarker: {fileID: 0}
+  questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
 --- !u!114 &7431948849709516278
@@ -870,8 +885,9 @@ MonoBehaviour:
   m_Time: 1.906666660929719
   loopMarker: {fileID: 2325078944832490617}
   loopEndMarker: {fileID: -8911769168450049200}
+  questRefuse: {fileID: 0}
   qeustSelect: 1
-  quest: {fileID: 11400000, guid: 7d352919ae4ab1f4397bec6c7cf9ee91, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &9126969960734856556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -887,6 +903,7 @@ MonoBehaviour:
   talker:
     exposedName: 44aed1cdbc966104b98214331b805ea1
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: Dialogue Test Text
   delayCurve:
     serializedVersion: 2
@@ -966,4 +983,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fontSizeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  textColors: []
+  test: {fileID: 0}
   activeTime: 0.01

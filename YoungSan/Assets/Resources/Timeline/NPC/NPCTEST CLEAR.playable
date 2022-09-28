@@ -218,23 +218,26 @@ MonoBehaviour:
   m_Time: 0
   animationDatas:
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 4bd0a864db68a164c90c2e97560073a2
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    isLeft: 0
   - mainChar: 1
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    isLeft: 0
   - mainChar: 0
+    getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &-279540237224094788
 MonoBehaviour:
@@ -462,6 +465,7 @@ MonoBehaviour:
   talker:
     exposedName: 2430516bd887e0c45884f41bb2d11d34
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "\uD074\uB9AC\uC5B4"
   delayCurve:
     serializedVersion: 2
@@ -541,6 +545,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fontSizeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  textColors: []
+  test: {fileID: 0}
   activeTime: 0.01
 --- !u!114 &805419661862450090
 MonoBehaviour:
@@ -586,6 +598,7 @@ MonoBehaviour:
   m_Time: 0.95
   loopMarker: {fileID: -5568922305480026708}
   loopEndMarker: {fileID: 9925081503316438}
+  questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
 --- !u!114 &2377275659175219891
@@ -858,6 +871,7 @@ MonoBehaviour:
   m_Time: 0.7833333333333333
   loopMarker: {fileID: -3080206166107670947}
   loopEndMarker: {fileID: 8732652718102317892}
+  questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
 --- !u!114 &3936239592535735536
@@ -889,6 +903,7 @@ MonoBehaviour:
   m_Time: 0
   loopMarker: {fileID: 0}
   loopEndMarker: {fileID: 0}
+  questRefuse: {fileID: 0}
   qeustSelect: 0
   quest: {fileID: 0}
 --- !u!114 &8732652718102317892
@@ -919,6 +934,7 @@ MonoBehaviour:
   talker:
     exposedName: 44aed1cdbc966104b98214331b805ea1
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "\uD018\uC2A4\uD2B8"
   delayCurve:
     serializedVersion: 2
@@ -998,4 +1014,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fontSizeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  textColors: []
+  test: {fileID: 0}
   activeTime: 0.01

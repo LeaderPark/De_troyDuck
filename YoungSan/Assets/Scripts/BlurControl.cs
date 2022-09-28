@@ -17,6 +17,7 @@ public class BlurControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             Debug.Log(depth);
@@ -35,6 +36,7 @@ public class BlurControl : MonoBehaviour
             }
             
         }
+#endif
     }
     public void Blur(bool active,float fadeTime)
     {

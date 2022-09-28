@@ -197,21 +197,21 @@ MonoBehaviour:
       exposedName: 4bd0a864db68a164c90c2e97560073a2
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    isLeft: 0
   - mainChar: 1
     getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: Idle
-    flipX: 0
+    isLeft: 0
   - mainChar: 0
     getMainCharAnimator: 0
     contorolObject:
       exposedName: 
       defaultValue: {fileID: 0}
     animation: 
-    flipX: 0
+    isLeft: 0
   objectData: []
 --- !u!114 &-279540237224094788
 MonoBehaviour:
@@ -403,6 +403,7 @@ MonoBehaviour:
   talker:
     exposedName: 2430516bd887e0c45884f41bb2d11d34
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "\uC9C4\uD589 \uC911\uC774\uC796\uC544 \uC2F4\uBC1C\uC544"
   delayCurve:
     serializedVersion: 2
@@ -509,6 +510,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fontSizeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  textColors: []
+  test: {fileID: 0}
   activeTime: 0.01
 --- !u!114 &805419661862450090
 MonoBehaviour:
@@ -903,6 +912,7 @@ MonoBehaviour:
   talker:
     exposedName: 44aed1cdbc966104b98214331b805ea1
     defaultValue: {fileID: 0}
+  mainChar: 0
   dialogueMessage: "\uD018\uC2A4\uD2B8\uB97C"
   delayCurve:
     serializedVersion: 2
@@ -946,4 +956,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fontSizeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  textColors: []
+  test: {fileID: 0}
   activeTime: 0.01

@@ -543,6 +543,7 @@ MonoBehaviour:
   m_Name: Search Enemy Marker
   m_EditorClassIdentifier: 
   m_Time: 2.1333333333333333
+  mainChar: 0
   enemys:
   - enemy:
       exposedName: 979dcedb78b060c4ab46ff1585eaa33f
@@ -568,9 +569,8 @@ MonoBehaviour:
   m_Name: Boss Select Marker
   m_EditorClassIdentifier: 
   m_Time: 1.9333333333333333
-  bossObj:
-    exposedName: 17b67696d0f21ff4f842c65358e02fd3
-    defaultValue: {fileID: 0}
+  bossName: 
+  bossObjs: []
   bossCamObj:
     exposedName: 
     defaultValue: {fileID: 0}

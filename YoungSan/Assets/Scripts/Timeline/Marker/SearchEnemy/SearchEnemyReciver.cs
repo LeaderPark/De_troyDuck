@@ -10,7 +10,6 @@ public class SearchEnemyReciver : Receiver
 	//private TimelineAsset nextTimeLine;
 	GameManager gameManager;
 	//List<Entity> enemys = new List<Entity>();
-	float waitTime;
 	public override void OnNotify(Playable origin, INotification notification, object context)
 	{
 		base.OnNotify(origin, notification, context);
@@ -22,7 +21,7 @@ public class SearchEnemyReciver : Receiver
 			gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 
 			TimelineAsset nextTimeLine = marker.nextTimeLine;
-			waitTime = marker.waitTime;
+			float waitTime = marker.waitTime;
 			if (marker.mainChar)
 			{
 				Entity playerEntity = gameManager.Player.GetComponent<Entity>();
@@ -35,7 +34,7 @@ public class SearchEnemyReciver : Receiver
 			if (marker.enemys.Length == 0)
 			{
 				//Debug.Log("일단 실행");
-				StartCoroutine(NextTimeLine(0, nextTimeLine));
+				StartCoroutine(NextTimeLine(waitTime, nextTimeLine));
 			}
 			else
 			{
@@ -80,7 +79,7 @@ public class SearchEnemyReciver : Receiver
 							{
 								deadAction += () =>
 								{
-									StartCoroutine(TestSlow());
+									StartCoroutine(TestSlow(waitTime));
 								};
 							}
 							enemyEntity.dead += deadAction;
@@ -103,7 +102,7 @@ public class SearchEnemyReciver : Receiver
 		{
 		}
 	}
-	private IEnumerator TestSlow()
+	private IEnumerator TestSlow(float waitTime)
 	{
 		gameManager.Player.ActiveScript(false);
 		gameManager.CamFollowFind();

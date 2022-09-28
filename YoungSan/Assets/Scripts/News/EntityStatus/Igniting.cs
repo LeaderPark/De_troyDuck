@@ -14,9 +14,6 @@ public class Igniting : EntityStatus
 
     public Igniting()
     {
-        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-        tickDamage = poolManager.GetObject("Igniting").GetComponent<TickDamage>();
-        tickDamage.enabled = false;
     }
 
     public void SetData(Entity sourceEntity, Entity targetEntity, float delay, float time, string tickDamageForm)
@@ -32,14 +29,15 @@ public class Igniting : EntityStatus
     {
         base.Activate();
 
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        tickDamage = poolManager.GetObject("Igniting").GetComponent<TickDamage>();
         tickDamage.SetData(sourceEntity, targetEntity, delay, time, tickDamageForm);
-        tickDamage.enabled = true;
     }
 
     public override void DeActivate()
     {
         base.DeActivate();
         tickDamage.GetComponent<UnityEngine.VFX.VisualEffect>().enabled = false;
-        tickDamage.enabled = false;
+        tickDamage.gameObject.SetActive(false);
     }
 }

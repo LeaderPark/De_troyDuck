@@ -14,16 +14,12 @@ public class Player : MonoBehaviour
 
     public bool targeting;
     public EventCategory targetSkillCategory;
-    public SpriteRenderer targetSelect;
 
     void Awake()
     {
         entity = GetComponent<Entity>();
         entityEvent = GetComponent<EntityEvent>();
         direction = false;
-
-        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-        targetSelect = poolManager.GetObject("TargetSelect").GetComponent<SpriteRenderer>();
     }
 
     void OnDisable()
@@ -96,19 +92,19 @@ public class Player : MonoBehaviour
             if (prevTarget)
             {
                 SpriteRenderer sr = prevTarget.GetComponent<SpriteRenderer>();
-                targetSelect.sprite = sr.sprite;
-                targetSelect.flipX = sr.flipX;
-                targetSelect.transform.position = prevTarget.transform.position;
-                targetSelect.transform.localScale = prevTarget.transform.localScale;
+                gameManager.targetSelect.sprite = sr.sprite;
+                gameManager.targetSelect.flipX = sr.flipX;
+                gameManager.targetSelect.transform.position = prevTarget.transform.position;
+                gameManager.targetSelect.transform.localScale = prevTarget.transform.localScale;
             }
             else
             {
-                targetSelect.sprite = null;
+                gameManager.targetSelect.sprite = null;
             }
         }
         else
         {
-            targetSelect.sprite = null;
+            gameManager.targetSelect.sprite = null;
         }
 
         //if (Input.GetMouseButtonDown(0))

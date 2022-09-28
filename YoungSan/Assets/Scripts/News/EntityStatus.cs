@@ -31,7 +31,10 @@ public class EntityStatus
 
     public virtual void Activate()
     {
-        DeActivate();
+        if (activated)
+        {
+            DeActivate();
+        }
 
         activateTime = -1;
         activated = true;

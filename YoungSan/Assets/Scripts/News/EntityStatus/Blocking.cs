@@ -6,29 +6,30 @@ public class Blocking : EntityStatus
 {
     BlockingEffect blockingEffect;
 
+    Entity entity;
+
     public Blocking()
     {
-        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
-        blockingEffect = poolManager.GetObject("BlockingEffect").GetComponent<BlockingEffect>();
-        blockingEffect.enabled = false;
     }
 
     public void SetData(Entity entity)
     {
-        blockingEffect.SetData(entity);
+        this.entity = entity;
     }
 
     public override void Activate()
     {
         base.Activate();
-        blockingEffect.enabled = true;
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        blockingEffect = poolManager.GetObject("BlockingEffect").GetComponent<BlockingEffect>();
+        blockingEffect.SetData(entity);
         blockingEffect.GetComponent<MeshRenderer>().enabled = true;
     }
 
     public override void DeActivate()
     {
         base.DeActivate();
-        blockingEffect.enabled = false;
         blockingEffect.GetComponent<MeshRenderer>().enabled = false;
+        blockingEffect.gameObject.SetActive(false);
     }
 }

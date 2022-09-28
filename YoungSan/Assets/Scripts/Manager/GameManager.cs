@@ -60,10 +60,17 @@ public class GameManager : Manager
 
     public DeathWindow deathWindow;
     private Dictionary<Entity, bool> afterImageState = new Dictionary<Entity, bool>();
+    public SpriteRenderer targetSelect;
     private void Awake()
     {
         //Shader.WarmupAllShaders();
         //PlayerFind();
+    }
+
+    void Start()
+    {
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+        targetSelect = poolManager.GetObject("TargetSelect").GetComponent<SpriteRenderer>();
     }
 
     public void PlayerFind()

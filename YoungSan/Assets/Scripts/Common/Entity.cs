@@ -112,6 +112,7 @@ public class Entity : MonoBehaviour
         GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Die" });
         StartCoroutine(DieAnimationComplete());
     }
+
     public void Die(bool isDie = true)
     {
         dead?.Invoke();

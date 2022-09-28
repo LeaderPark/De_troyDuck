@@ -31,7 +31,9 @@ public class SceneManager : Manager
     public void LoadScene(string sceneName)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
 
+        soundManager.SetBgm("");
         uiManager.FadeInOut(true, false, () =>
         {
             curSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
@@ -43,8 +45,11 @@ public class SceneManager : Manager
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+        SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
         {
+            soundManager.SetBgm(scene.name);
             uiManager.FadeInOut(false, false);
             if (sceneStartPosition.Contains((curSceneName, scene.name)))
             {

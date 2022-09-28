@@ -8,8 +8,6 @@ public class SoundManager : Manager
     public AudioMixer mixer;
     Hashtable SoundTable { get; set; }
 
-    Hashtable InstanceSounds { get; set; }
-
     Hashtable MusicTable { get; set; }
     AudioSource bgm;
 
@@ -17,7 +15,6 @@ public class SoundManager : Manager
     void Awake()
     {
         SoundTable = new Hashtable();
-        InstanceSounds = new Hashtable();
         MusicTable = new Hashtable();
         bgm = GetComponent<AudioSource>();
         LoadMusics();

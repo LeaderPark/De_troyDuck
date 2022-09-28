@@ -13,8 +13,6 @@ public class SoundManager : Manager
     Hashtable MusicTable { get; set; }
     AudioSource bgm;
 
-    public float volume = 0.5f;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,9 +24,6 @@ public class SoundManager : Manager
         LoadSounds();
     }
 
-    public bool bossBgm;
-    string prevSound = string.Empty;
-    bool isFight;
     bool isChange;
 
     Coroutine bgmCoroutine;
@@ -36,70 +31,27 @@ public class SoundManager : Manager
     void Start()
     {
         SetBgm("Main_Theme");
-        StartCoroutine(Routine());
     }
 
-    IEnumerator Routine()
+    public void SetBgmCurrent()
     {
-        while (true)
-        {
-            if (!bossBgm && !isChange)
-            {
-                if (StateMachine.StateMachine.fight.Count > 0 && !isFight)
-                {
-                    if (bgm.clip == null)
-                    {
-                        prevSound = string.Empty;
-                    }
-                    else
-                    {
-                        prevSound = bgm.clip.name;
-                    }
-                    isFight = true;
-
-                    var enumerator = StateMachine.StateMachine.fight.GetEnumerator();
-                    enumerator.MoveNext();
-                    switch (enumerator.Current.entityData.prefab.name)
-                    {
-                        case "MountainKing":
-                            SetBgm("MountainKing_Theme");
-                            break;
-                        case "Slave":
-                            SetBgm("Slave_Theme");
-                            break;
-                        case "Satto":
-                            SetBgm("Satto_Theme");
-                            break;
-                        default:
-                            SetBgm("Fight");
-                            break;
-                    }
-                }
-                else if (StateMachine.StateMachine.fight.Count == 0 && isFight)
-                {
-                    isFight = false;
-                    SetBgm(prevSound);
-                    prevSound = string.Empty;
-                }
-            }
-            yield return null;
-        }
+        SetBgm(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     IEnumerator BgmVolumeUp()
     {
         float timeStack = 0;
 
-        const float time = 5f;
+        const float time = 2f;
 
         while (timeStack < time && bgm.clip != null)
         {
             timeStack += Time.deltaTime;
 
-            bgm.volume = Mathf.Lerp(0, volume, timeStack);
+            bgm.volume = Mathf.Lerp(0, 1, timeStack);
             yield return null;
         }
-        bgm.volume = volume;
+        bgm.volume = 1;
         yield return null;
     }
 
@@ -107,13 +59,13 @@ public class SoundManager : Manager
     {
         float timeStack = 0;
 
-        const float time = 5f;
+        const float time = 2f;
 
         while (timeStack < time && bgm.clip != null)
         {
             timeStack += Time.deltaTime;
 
-            bgm.volume = volume - Mathf.Lerp(0, volume, timeStack);
+            bgm.volume = 1 - Mathf.Lerp(0, 1, timeStack);
             yield return null;
         }
         bgm.volume = 0;
@@ -192,7 +144,7 @@ public class SoundManager : Manager
         AudioClip clip = GetSound(soundName);
 
         audioSource.spatialBlend = is3DSound ? 1 : 0;
-        audioSource.volume = volume;
+        audioSource.volume = 1;
 
         //audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFX")[0];
         audioSource.clip = clip;
@@ -230,7 +182,7 @@ public class SoundManager : Manager
             {
                 timeStack += Time.deltaTime;
 
-                coroutine.Item2.volume = Mathf.Lerp(volume, 0, timeStack);
+                coroutine.Item2.volume = Mathf.Lerp(1, 0, timeStack);
                 yield return null;
             }
             coroutine.Item2.volume = 0;

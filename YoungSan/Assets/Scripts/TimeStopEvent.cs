@@ -41,18 +41,31 @@ public class TimeStopEvent : MonoBehaviour
         Time.timeScale = 0;
         while (true)
         {
-            foreach (KeyCode item in inputKey)
+            if (inputKey.Length != 0)
             {
-                if (Input.GetKey(item))
+                foreach (KeyCode item in inputKey)
                 {
-                    if (mouseRight == false || Input.GetMouseButton(1))
+                    if (Input.GetKey(item))
                     {
-                        tutorialUi.SetActive(false);
-                        Time.timeScale = 1;
-                        yield break;
+                        if (mouseRight == false || Input.GetMouseButton(1))
+                        {
+                            tutorialUi.SetActive(false);
+                            Time.timeScale = 1;
+                            yield break;
+                        }
                     }
                 }
             }
+            else
+            {
+                if (Input.anyKey)
+                {
+                    tutorialUi.SetActive(false);
+                    Time.timeScale = 1;
+                    yield break;
+                }
+            }
+
             yield return null;
         }
     }

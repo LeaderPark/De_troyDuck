@@ -104,6 +104,7 @@ public class Entity : MonoBehaviour
                 }
             );
         }
+        entityStatusAilment.DeActiveAll();
         GetProcessor(typeof(Processor.Move))?.AddCommand("LockTime", new object[] { 1f });
         GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
         GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[] { });
@@ -152,6 +153,7 @@ public class Entity : MonoBehaviour
                 }
             );
         }
+        entityStatusAilment.DeActiveAll();
         GetProcessor(typeof(Processor.Move))?.AddCommand("LockTime", new object[] { 1f });
         GetProcessor(typeof(Processor.Move))?.AddCommand("SetVelocityNoLock", new object[] { Vector3.zero, 0 });
         GetProcessor(typeof(Processor.Skill))?.AddCommand("Reset", new object[] { });

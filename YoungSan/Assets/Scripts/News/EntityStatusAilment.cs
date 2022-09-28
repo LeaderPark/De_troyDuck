@@ -36,6 +36,14 @@ public class EntityStatusAilment : MonoBehaviour
             status.OnUpdate();
         }
     }
+
+    public void DeActiveAll()
+    {
+        foreach (EntityStatus status in entityStatus.Values)
+        {
+            status.DeActivate();
+        }
+    }
 }
 
 public enum TickAilment

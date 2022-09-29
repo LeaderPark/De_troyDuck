@@ -85,7 +85,6 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -2586586525582405893}
-    - {fileID: 6078183687266176756}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,48 +156,6 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
---- !u!114 &6078183687266176756
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
-  m_Name: Object/ObjControl
-  m_EditorClassIdentifier: 
-  m_Time: 0.05
-  animationDatas:
-  - mainChar: 1
-    getMainCharAnimator: 1
-    contorolObject:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    animation: Move
-    isLeft: 1
-  objectData:
-  - mainChar: 0
-    obj:
-      exposedName: 716821ae00d3c0c4989eb020564ac6a6
-      defaultValue: {fileID: 0}
-    active: 0
-    objPos: {x: 0, y: 0, z: 0}
-    objTrm:
-      exposedName: c83b112ac71e22e42baa54a26009272b
-      defaultValue: {fileID: 0}
-    mainCharTrm: 0
-  - mainChar: 0
-    obj:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    active: 0
-    objPos: {x: 0, y: 0, z: 0}
-    objTrm:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    mainCharTrm: 0
 --- !u!114 &6316330910539928812
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,6 +9,7 @@ public class Skillinterface : MonoBehaviour
 {
     public Text[] text_CoolTime;
     public Image[] image_fill;
+    public Image[] skillIcons;
     public GameObject[] activation_image;
 
     private SkillSet skillSet;
@@ -36,37 +37,39 @@ public class Skillinterface : MonoBehaviour
     public void SetSkillDatas()
     {
         StopAllCoroutines();
-        foreach (EventCategory category in skillSet.skillDatas.Keys)
-        {
-            if (skillSet.skillCoolTimes.ContainsKey(category))
-            {
-                Set_FillAmount(0, 0, (int)category);
-            }
-        }
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
-
-        foreach (EventCategory category in skillSet.skillDatas.Keys)
+        for (int i = 2; i < 5; i++)
         {
+            EventCategory category = (EventCategory)i;
+
             if (skillSet.skillCoolTimes.ContainsKey(category))
             {
-                Set_FillAmount(skillSet.skillCoolTimes[category][skillSet.skillDatas[category][skillSet.skillStackAmount[category]].targetIndex], skillSet.skillDatas[category][skillSet.skillStackAmount[category]].coolTime, (int)category);
+                Set_FillAmount(0, 0, (int)category-2);
+            }
+            if (skillSet.skillCoolTimes.ContainsKey(category))
+            {
+                Set_FillAmount(skillSet.skillCoolTimes[category][skillSet.skillDatas[category][skillSet.skillStackAmount[category]].targetIndex], skillSet.skillDatas[category][skillSet.skillStackAmount[category]].coolTime, (int)category - 2);
             }
         }
-        SkillUIActivation();
+        SkillUIActivation(gameManager.Player.GetComponent<Entity>());
     }
 
-    public void SkillUIActivation()
+    public void SkillUIActivation(Entity entity)
     {
         for (int i = 0; i < activation_image.Length; i++)
         {
             activation_image[i].SetActive(true);
         }
-        for (int i = 0; i < skillSet.skillDatas.Count + 1; i++)
+        for (int i = 0; i < skillSet.skillDatas.Count-1; i++)
         {
             //추후 여기다가 스킬 이미지 갔다가 넣는거 만들면 됨 미래의 친구ssssss 
+            //미래의 친구가 나였던거냐고 wwwwwwwwwww
+            if(entity.entityData.skillIcon.Length>=i)
+            skillIcons[i].sprite = entity.entityData.skillIcon[i];
             activation_image[i].SetActive(false);
         }
+
     }
 
     public void CoolDown(EventCategory eventCategory, int index)
@@ -79,12 +82,13 @@ public class Skillinterface : MonoBehaviour
     }
     IEnumerator Cool(EventCategory eventCategory, float cool, int index)
     {
+        if (eventCategory == EventCategory.DefaultAttack) yield break;
         float time = cool;
         //Debug.Log(time);
         while (true)
         {
             time -= Time.deltaTime;
-            Set_FillAmount(time, cool, (int)eventCategory);
+            Set_FillAmount(time, cool, (int)eventCategory-2);
             if (time <= 0)
             {
                 //skillCoolTimes.RemoveAt(index);
@@ -115,8 +119,6 @@ public class Skillinterface : MonoBehaviour
 }
 public enum KeyType
 {
-    M1,
-    M2,
     E,
     R,
     F

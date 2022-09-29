@@ -9,19 +9,31 @@ public class MoveBehavior : PlayableBehaviour
 	public Vector3 startPos;
 	public GameObject moveObj;
 	private float time = 0;
+	private Animator animaotr;
 	GameManager gameManager;
 	public override void OnGraphStart(Playable playable)
 	{
 		base.OnGraphStart(playable);
 		Debug.Log("A");
 		startPos = moveObj.transform.position;
-
 		//gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
 
 	}
 	public override void OnBehaviourPlay(Playable playable, FrameData info)
 	{
 		base.OnBehaviourPlay(playable, info);
+		animaotr = moveObj.GetComponent<Animator>();
+		animaotr.runtimeAnimatorController = moveObj.GetComponent<Animator>().runtimeAnimatorController;
+
+		animaotr.Play("Move");
+		if (moveObj.transform.position.x < movePos.x)
+		{
+			moveObj.GetComponent<SpriteRenderer>().flipX = true;
+		}
+		else
+		{
+			moveObj.GetComponent<SpriteRenderer>().flipX = false;
+		}
 		Debug.Log(moveObj);
 	}
 	public override void ProcessFrame(Playable playable, FrameData info, object playerData)

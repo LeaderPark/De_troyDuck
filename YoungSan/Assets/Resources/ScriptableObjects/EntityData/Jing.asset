@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d106605545c71c4dae1dda60baf5e05, type: 3}
+  m_Name: Jing
+  m_EditorClassIdentifier: 
+  entityName: "\uC9D5"
+  skillIcon:
+  - {fileID: -1975685843305818248, guid: 41f072fadf029174e90edeabb1e0092f, type: 3}
+  - {fileID: -2028569886869117640, guid: 41f072fadf029174e90edeabb1e0092f, type: 3}
+  status:
+    stats:
+    - category: 0
+      minValue: 1000
+      maxValue: 1000
+    - category: 1
+      minValue: 50
+      maxValue: 50
+    - category: 2
+      minValue: 8
+      maxValue: 8
+    - category: 3
+      minValue: 500
+      maxValue: 500
+  playerStatus:
+    stats:
+    - category: 0
+      minValue: 0
+      maxValue: 0
+    - category: 0
+      minValue: 0
+      maxValue: 0
+    - category: 0
+      minValue: 0
+      maxValue: 0
+    - category: 0
+      minValue: 0
+      maxValue: 0
+  prefab: {fileID: 8290785518187476745, guid: 912b14c52680ace46a47801ebb9d1fe4, type: 3}
+  uiPos: 3.75

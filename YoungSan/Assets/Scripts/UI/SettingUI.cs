@@ -45,17 +45,17 @@ public class SettingUI : MonoBehaviour
         SetBackGroundSound();
         SetSFXSound();
 
+        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isEnabled)
+            if (!isEnabled && uIManager.interfaceUI.GetComponent<CanvasGroup>().alpha == 0 && uIManager.loadingUI.transform.parent.GetComponent<CanvasGroup>().alpha == 0 && Time.timeScale == 1)
             {
-                UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 uIManager.OpenUI(canvasGroup, true);
                 isEnabled = true;
             }
-            else
+            else if (isEnabled)
             {
-                UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 uIManager.CloseUI(canvasGroup);
                 isEnabled = false;
             }
@@ -96,7 +96,7 @@ public class SettingUI : MonoBehaviour
         int optionNum = 0;
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            
+
             if (Screen.resolutions[i].refreshRate >= 60 || Screen.resolutions[i].refreshRate <= 144)
             {
                 double result = (double)((double)Screen.resolutions[i].width / (double)Screen.resolutions[i].height);
@@ -105,16 +105,16 @@ public class SettingUI : MonoBehaviour
 
                 //if (resultTruncate == 1.7777f)
                 //{
-                    
-                    string resolutionSize = Screen.resolutions[i].width + " X " + Screen.resolutions[i].height + " @ " + Screen.resolutions[i].refreshRate + "hz";
-                    resolutionText.Add(resolutionSize);
-                    setResolutions.Add(Screen.resolutions[i]);
 
-                    if (Screen.resolutions[i].width == Screen.width && Screen.resolutions[i].height == Screen.height)
-                    {
-                        StartCoroutine(SetValue(optionNum));
-                    }
-                    optionNum++;
+                string resolutionSize = Screen.resolutions[i].width + " X " + Screen.resolutions[i].height + " @ " + Screen.resolutions[i].refreshRate + "hz";
+                resolutionText.Add(resolutionSize);
+                setResolutions.Add(Screen.resolutions[i]);
+
+                if (Screen.resolutions[i].width == Screen.width && Screen.resolutions[i].height == Screen.height)
+                {
+                    StartCoroutine(SetValue(optionNum));
+                }
+                optionNum++;
                 //}
             }
         }

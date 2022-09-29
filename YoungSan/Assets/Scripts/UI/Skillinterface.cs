@@ -35,17 +35,22 @@ public class Skillinterface : MonoBehaviour
 
     public void SetSkillDatas()
     {
-        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
-        skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
         StopAllCoroutines();
         foreach (EventCategory category in skillSet.skillDatas.Keys)
         {
             if (skillSet.skillCoolTimes.ContainsKey(category))
             {
-                for (int i = 0; i < skillSet.skillCoolTimes[category].Length; i++)
-                {
-                    Set_FillAmount(0, 0, i);
-                }
+                Set_FillAmount(0, 0, (int)category);
+            }
+        }
+        GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        skillSet = gameManager.Player.GetComponentInChildren<SkillSet>();
+
+        foreach (EventCategory category in skillSet.skillDatas.Keys)
+        {
+            if (skillSet.skillCoolTimes.ContainsKey(category))
+            {
+                Set_FillAmount(skillSet.skillCoolTimes[category][skillSet.skillDatas[category][skillSet.skillStackAmount[category]].targetIndex], skillSet.skillDatas[category][skillSet.skillStackAmount[category]].coolTime, (int)category);
             }
         }
         SkillUIActivation();

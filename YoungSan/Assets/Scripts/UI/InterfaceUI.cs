@@ -34,27 +34,26 @@ public class InterfaceUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (!isEnabled)
+            if (!isEnabled && uIManager.settingUI.GetComponent<CanvasGroup>().alpha == 0 && uIManager.loadingUI.transform.parent.GetComponent<CanvasGroup>().alpha == 0 && Time.timeScale == 1)
             {
-                UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 uIManager.OpenUI(canvasGroup, true);
                 isEnabled = true;
                 questName.text = "--";
                 questContext.text = "--";
                 SetQuestUI();
             }
-            else
+            else if (isEnabled)
             {
-                UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
                 uIManager.CloseUI(canvasGroup);
-				foreach (var item in objList)
-				{
+                foreach (var item in objList)
+                {
                     item.SetActive(false);
-				}
-                if(interactibleOffBtn!=null)
-                interactibleOffBtn.interactable = true;
+                }
+                if (interactibleOffBtn != null)
+                    interactibleOffBtn.interactable = true;
                 isEnabled = false;
             }
         }
@@ -75,7 +74,7 @@ public class InterfaceUI : MonoBehaviour
         }
         if (questManager.haveSort)
         {
-            questManager.completeQuestIds = questManager.completedQuests.Keys.Cast<int>().ToList() ;
+            questManager.completeQuestIds = questManager.completedQuests.Keys.Cast<int>().ToList();
             questManager.completeQuestIds.Sort();
             Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             questManager.haveSort = false;
@@ -85,7 +84,7 @@ public class InterfaceUI : MonoBehaviour
             CreateQuestUI(questManager.GetQuest(item), completedList.transform);
         }
     }
-    public void CreateQuestUI(Quest quest,Transform content)
+    public void CreateQuestUI(Quest quest, Transform content)
     {
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
 
@@ -104,26 +103,26 @@ public class InterfaceUI : MonoBehaviour
             interactibleOffBtn = button;
         });
 
-        text.text = quest.title+" "+ quest.name;
+        text.text = quest.title + " " + quest.name;
     }
     public GameObject GetObject(Transform content)
     {
-            foreach (GameObject item in objList)
+        foreach (GameObject item in objList)
+        {
+            if (item == null)
             {
-                if (item == null)
-                {
-                    continue;
-                }
-                // ¹Ì·¡¿¡ »©°ÚÁö
-                if (!item.activeSelf)
-                {
-                    item.SetActive(true);
-                    item.transform.parent = content;
-                    return item;
-                }
+                continue;
             }
+            // ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (!item.activeSelf)
+            {
+                item.SetActive(true);
+                item.transform.parent = content;
+                return item;
+            }
+        }
 
-            objList.Add(GameObject.Instantiate(uiPrefab, content));
-            return objList[objList.Count-1];
+        objList.Add(GameObject.Instantiate(uiPrefab, content));
+        return objList[objList.Count - 1];
     }
 }

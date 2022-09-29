@@ -15,6 +15,7 @@ public class UIManager : Manager
     public EnemyStaUIt enemyStatUI;
     public QuestUI questUI;
     public SettingUI settingUI;
+    public InterfaceUI interfaceUI;
     public Skillinterface skillinterface;
     public Statbar statbar;
     public StatUI statUI;
@@ -88,7 +89,7 @@ public class UIManager : Manager
             statbar.UpdateStatBar();
             statbar.UpdateStatText();
 
-            if (category == StatCategory.Health) 
+            if (category == StatCategory.Health)
                 enemyStatUI.EnemyHpBarUpdate(entity);
         }));
         eventManager.GetEventTrigger(typeof(DieEventTrigger)).Add(new GlobalEventTrigger.DieEvent((hitEntity, attackEntity) =>

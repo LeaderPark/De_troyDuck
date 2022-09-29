@@ -1255,6 +1255,35 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &-4811728919446157901
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 1.333333331843217
+  animationDatas:
+  - mainChar: 1
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: 4cbcd2ce353943a46a014122600ce265
+      defaultValue: {fileID: 0}
+    animation: Idle
+    isLeft: 1
+  - mainChar: 0
+    getMainCharAnimator: 0
+    contorolObject:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    animation: 
+    isLeft: 0
+  objectData: []
 --- !u!114 &-4080651779930530894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1404,6 +1433,35 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-2641172974504672862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  animationDatas:
+  - mainChar: 0
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: 5b3782b6ac7e25b4eb3bf87c44f6bf62
+      defaultValue: {fileID: 0}
+    animation: Move
+    isLeft: 1
+  - mainChar: 0
+    getMainCharAnimator: 0
+    contorolObject:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    animation: 
+    isLeft: 0
+  objectData: []
 --- !u!114 &-2527115672897119909
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2278,6 +2336,7 @@ MonoBehaviour:
   - {fileID: 3264750693936553514}
   - {fileID: 5786944862234686293}
   - {fileID: 8319193021126981654}
+  - {fileID: 609775175397062199}
   - {fileID: -1620463452078068100}
   - {fileID: -8947574650680861851}
   - {fileID: -5221191442282908217}
@@ -2288,6 +2347,35 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 484007389479929138}
+--- !u!114 &211386337938753233
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 7.433333333333334
+  animationDatas:
+  - mainChar: 1
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: 3b688af327a89bb428167c26a57324f4
+      defaultValue: {fileID: 0}
+    animation: Move
+    isLeft: 1
+  - mainChar: 0
+    getMainCharAnimator: 0
+    contorolObject:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    animation: 
+    isLeft: 0
+  objectData: []
 --- !u!114 &212866887736518884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2491,6 +2579,33 @@ MonoBehaviour:
     - {fileID: -735295505296523083}
     - {fileID: -2487118099008346108}
     - {fileID: 3246572179560044860}
+--- !u!114 &609775175397062199
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track (1)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -2641172974504672862}
+    - {fileID: -4811728919446157901}
+    - {fileID: 211386337938753233}
+    - {fileID: 7511414442716903402}
 --- !u!114 &1531321230395508675
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3029,13 +3144,49 @@ MonoBehaviour:
     m_BlendOutDuration: 0.5999999932944782
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -3062,7 +3213,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -3436,6 +3605,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 8.683333333333334
   quest: {fileID: 11400000, guid: b0fdab332fe8977488391fef8a1fc220, type: 2}
+--- !u!114 &7511414442716903402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
+  m_Name: Object/ObjControl
+  m_EditorClassIdentifier: 
+  m_Time: 8.65
+  animationDatas:
+  - mainChar: 1
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: e27be07ddbcdcce42b483048454be1fe
+      defaultValue: {fileID: 0}
+    animation: Idle
+    isLeft: 1
+  - mainChar: 0
+    getMainCharAnimator: 0
+    contorolObject:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    animation: 
+    isLeft: 0
+  objectData: []
 --- !u!114 &8319193021126981654
 MonoBehaviour:
   m_ObjectHideFlags: 1

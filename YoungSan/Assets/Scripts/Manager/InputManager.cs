@@ -102,6 +102,18 @@ public class InputManager : Manager
                     mouseTable[mouse] = ButtonState.None;
             }
         }
+        else
+        {
+            foreach (KeyCode keyCode in keyTable.Keys.ToArray())
+            {
+                keyTable[keyCode] = ButtonState.None;
+            }
+
+            foreach (MouseButton mouse in mouseTable.Keys.ToArray())
+            {
+                mouseTable[mouse] = ButtonState.None;
+            }
+        }
     }
 }
 

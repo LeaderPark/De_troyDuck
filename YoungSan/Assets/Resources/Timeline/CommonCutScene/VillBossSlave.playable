@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7341719354120529181
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0.03333333333333333
+  events:
+  - obj:
+      exposedName: 946f8c8e2fe7ac144ba9d4d3bb60d68f
+      defaultValue: {fileID: 2443370219129394576, guid: 4fd8bc5c71fcd1c49bf333cc1dde558b, type: 3}
+    component: SoundCaller
+    function: SetBgm
+    param:
+    - data: Slave_Theme
+      type: string
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    component: 
+    function: 
+    param: []
 --- !u!114 &-7279891057135962768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25,6 +53,7 @@ MonoBehaviour:
     m_Objects:
     - {fileID: -2854107906294725266}
     - {fileID: 948924296768638905}
+    - {fileID: -7341719354120529181}
 --- !u!114 &-5014572907815027704
 MonoBehaviour:
   m_ObjectHideFlags: 1

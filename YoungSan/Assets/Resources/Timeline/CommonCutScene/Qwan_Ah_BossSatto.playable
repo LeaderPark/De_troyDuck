@@ -1283,7 +1283,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2002,6 +2020,34 @@ MonoBehaviour:
       exposedName: 
       defaultValue: {fileID: 0}
     mainCharTrm: 0
+--- !u!114 &519650278482442675
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 16.550000002980234
+  events:
+  - obj:
+      exposedName: 3e8c436b74368cf45b03137e37734b06
+      defaultValue: {fileID: 0}
+    component: SoundCaller
+    function: SetBgm
+    param:
+    - data: Satto_Theme
+      type: string
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    component: 
+    function: 
+    param: []
 --- !u!114 &1172403827604707546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2708,6 +2754,7 @@ MonoBehaviour:
     - {fileID: 3404406318435458566}
     - {fileID: 9219264372619051040}
     - {fileID: -2791266906804952558}
+    - {fileID: 519650278482442675}
 --- !u!114 &2318510112051184519
 MonoBehaviour:
   m_ObjectHideFlags: 1

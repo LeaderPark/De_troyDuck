@@ -8,6 +8,8 @@ public class Samulnori : MonoBehaviour
     List<EntityEvent> samulEntityEvents = new List<EntityEvent>(4);
     public RotationAttack rotationAttack;
 
+    public SamulnoriSound[] samulnoriSounds;
+
     public float radius;
     public float assembleRadius;
     public float allAttackRadius;
@@ -149,6 +151,28 @@ public class Samulnori : MonoBehaviour
                 if (samulEntities[i].isDead)
                 {
                     removes.Add(i);
+
+                    int n = 0;
+                    switch (samulEntities[i].gameObject.name)
+                    {
+                        case "Buk":
+                            n = 0;
+                            break;
+                        case "Jing":
+                            n = 1;
+                            break;
+                        case "Janggu":
+                            n = 2;
+                            break;
+                        case "Kkwaenggwari":
+                            n = 3;
+                            break;
+                    }
+
+                    bgmPrefabs[n].GetComponent<AudioSource>().Stop();
+                    bgmPrefabs[n].gameObject.SetActive(false);
+                    bgmPrefabs[n] = null;
+                    bgmDead[n] = true;
                 }
             }
 
@@ -177,16 +201,56 @@ public class Samulnori : MonoBehaviour
 
     float standardAngle = 0;
 
+    GameObject[] bgmPrefabs;
+
+    bool[] bgmDead = new bool[4];
+
     IEnumerator PlayRoutine()
     {
         ClearPattern();
         yield return PositionRoutine();
+
+        bgmPrefabs = new GameObject[4];
+        PoolManager poolManager = ManagerObject.Instance.GetManager(ManagerType.PoolManager) as PoolManager;
+
+        for (int i = 0; i < 4; i++)
+        {
+            bgmPrefabs[i] = poolManager.GetObject("BgmPrefab");
+            switch (i)
+            {
+                case 0:
+                    bgmPrefabs[i].GetComponent<AudioSource>().clip = samulnoriSounds[0].Buk;
+                    break;
+                case 1:
+                    bgmPrefabs[i].GetComponent<AudioSource>().clip = samulnoriSounds[0].Jing;
+                    break;
+                case 2:
+                    bgmPrefabs[i].GetComponent<AudioSource>().clip = samulnoriSounds[0].Janggu;
+                    break;
+                case 3:
+                    bgmPrefabs[i].GetComponent<AudioSource>().clip = samulnoriSounds[0].Kkwaenggwari;
+                    break;
+            }
+            bgmPrefabs[i].GetComponent<AudioSource>().volume = 1;
+            bgmPrefabs[i].GetComponent<AudioSource>().Play();
+        }
 
         while (samulCount > 0)
         {
             if (samulDead)
             {
                 samulDead = false;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (!bgmDead[i])
+                    {
+                        bgmPrefabs[i].GetComponent<AudioSource>().Stop();
+                        bgmPrefabs[i].gameObject.SetActive(false);
+                        bgmPrefabs[i] = null;
+                    }
+                }
+
                 yield return AssembleRoutine();
                 yield return new WaitForSeconds(1);
 
@@ -202,6 +266,30 @@ public class Samulnori : MonoBehaviour
                 deadCount = 0;
 
                 yield return PositionRoutine();
+
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (bgmDead[i]) continue;
+                    bgmPrefabs[i] = poolManager.GetObject("BgmPrefab");
+                    switch (i)
+                    {
+                        case 0:
+                            bgmPrefabs[i].GetComponent<AudioSource>().clip = samulnoriSounds[4 - samulCount].Buk;
+                            break;
+                        case 1:
+                            bgmPrefabs[i].GetComponent<AudioSource>().clip = samulnoriSounds[4 - samulCount].Jing;
+                            break;
+                        case 2:
+                            bgmPrefabs[i].GetComponent<AudioSource>().clip = samulnoriSounds[4 - samulCount].Janggu;
+                            break;
+                        case 3:
+                            bgmPrefabs[i].GetComponent<AudioSource>().clip = samulnoriSounds[4 - samulCount].Kkwaenggwari;
+                            break;
+                    }
+                    bgmPrefabs[i].GetComponent<AudioSource>().volume = 1;
+                    bgmPrefabs[i].GetComponent<AudioSource>().Play();
+                }
             }
             else
             {
@@ -642,4 +730,13 @@ public class Samulnori : MonoBehaviour
     {
         Debug.Log("공략 ㅊㅊ");
     }
+}
+
+[System.Serializable]
+public struct SamulnoriSound
+{
+    public AudioClip Buk;
+    public AudioClip Jing;
+    public AudioClip Janggu;
+    public AudioClip Kkwaenggwari;
 }

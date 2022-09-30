@@ -42,6 +42,16 @@ public class DataManager : Manager
     public void Save()
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
+        var datas = FindObjectsOfType<Entity>();
+
+        for (int i = 0; i < datas.Length; i++)
+        {
+            if (datas[i].isDead && gameManager.Player.gameObject != datas[i].gameObject)
+            {
+                datas[i].gameObject.SetActive(false);
+            }
+        }
+
         SaveGameData(gameManager.Player.GetComponent<Entity>());
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);

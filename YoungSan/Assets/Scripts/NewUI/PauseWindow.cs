@@ -15,6 +15,9 @@ public class PauseWindow : MonoBehaviour
 
     public Button[] selectButtons;
 
+    public PauseSelectionPanel[] pauseSelectionPanels;
+    Dictionary<PauseSelection, GameObject> panelTable;
+
     bool opened;
 
     PauseSelection selected;
@@ -26,6 +29,14 @@ public class PauseWindow : MonoBehaviour
             if (pauseSelection == PauseSelection.None) continue;
 
             selectButtons[(int)pauseSelection - 1].onClick.AddListener(() => { SelectMain(pauseSelection); });
+        }
+
+        if (pauseSelectionPanels != null)
+        {
+            foreach (var item in pauseSelectionPanels)
+            {
+                panelTable[item.selection] = item.panel;
+            }
         }
     }
 
@@ -134,13 +145,14 @@ public class PauseWindow : MonoBehaviour
         if (selected == select)
         {
             UnselectMain(selected);
-            UnselectProcedure(select);
+            SelectProcedure(select, selected);
             return;
         }
+        var prev = selected;
         UnselectMain(selected);
         selected = select;
         selectButtons[(int)select - 1].GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
-        SelectProcedure(select);
+        SelectProcedure(prev, select);
     }
 
     public void UnselectMain(PauseSelection select)
@@ -150,11 +162,13 @@ public class PauseWindow : MonoBehaviour
         selectButtons[(int)select - 1].GetComponent<Image>().color = Color.white;
     }
 
-    public void SelectProcedure(PauseSelection select)
+    public void SelectProcedure(PauseSelection prev, PauseSelection select)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         switch (select)
         {
+            case PauseSelection.None:
+                break;
             case PauseSelection.Resume:
                 uiManager.CloseUI(canvasGroup);
                 Close();
@@ -176,19 +190,6 @@ public class PauseWindow : MonoBehaviour
         }
     }
 
-    public void UnselectProcedure(PauseSelection select)
-    {
-        switch (select)
-        {
-            case PauseSelection.Setting:
-                break;
-            case PauseSelection.Key:
-                break;
-            case PauseSelection.Quest:
-                break;
-        }
-    }
-
     public enum PauseSelection
     {
         None,
@@ -197,5 +198,12 @@ public class PauseWindow : MonoBehaviour
         Key,
         Quest,
         Quit,
+    }
+
+    [System.Serializable]
+    public struct PauseSelectionPanel
+    {
+        public PauseSelection selection;
+        public GameObject panel;
     }
 }

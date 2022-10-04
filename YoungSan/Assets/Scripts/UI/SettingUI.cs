@@ -40,27 +40,27 @@ public class SettingUI : MonoBehaviour
         SetResolution();
     }
 
-    void Update()
-    {
-        SetBackGroundSound();
-        SetSFXSound();
+    // void Update()
+    // {
+    //     SetBackGroundSound();
+    //     SetSFXSound();
 
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+    //     UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (!isEnabled && uIManager.interfaceUI.GetComponent<CanvasGroup>().alpha == 0 && uIManager.loadingUI.transform.parent.GetComponent<CanvasGroup>().alpha == 0 && Time.timeScale == 1)
-            {
-                uIManager.OpenUI(canvasGroup, true);
-                isEnabled = true;
-            }
-            else if (isEnabled)
-            {
-                uIManager.CloseUI(canvasGroup);
-                isEnabled = false;
-            }
-        }
-    }
+    //     if (Input.GetKeyDown(KeyCode.Escape))
+    //     {
+    //         if (!isEnabled)
+    //         {
+    //             uIManager.OpenUI(canvasGroup, true);
+    //             isEnabled = true;
+    //         }
+    //         else if (isEnabled)
+    //         {
+    //             uIManager.CloseUI(canvasGroup);
+    //             isEnabled = false;
+    //         }
+    //     }
+    // }
 
     #region 사운드
     public void SetBackGroundSound()

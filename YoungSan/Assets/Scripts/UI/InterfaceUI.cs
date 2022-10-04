@@ -32,32 +32,32 @@ public class InterfaceUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (!isEnabled && uIManager.settingUI.GetComponent<CanvasGroup>().alpha == 0 && uIManager.loadingUI.transform.parent.GetComponent<CanvasGroup>().alpha == 0 && Time.timeScale == 1)
-            {
-                uIManager.OpenUI(canvasGroup, true);
-                isEnabled = true;
-                questName.text = "--";
-                questContext.text = "--";
-                SetQuestUI();
-            }
-            else if (isEnabled)
-            {
-                uIManager.CloseUI(canvasGroup);
-                foreach (var item in objList)
-                {
-                    item.SetActive(false);
-                }
-                if (interactibleOffBtn != null)
-                    interactibleOffBtn.interactable = true;
-                isEnabled = false;
-            }
-        }
-    }
+    // void Update()
+    // {
+    //     UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+    //     if (Input.GetKeyDown(KeyCode.Tab))
+    //     {
+    //         if (!isEnabled)
+    //         {
+    //             uIManager.OpenUI(canvasGroup, true);
+    //             isEnabled = true;
+    //             questName.text = "--";
+    //             questContext.text = "--";
+    //             SetQuestUI();
+    //         }
+    //         else if (isEnabled)
+    //         {
+    //             uIManager.CloseUI(canvasGroup);
+    //             foreach (var item in objList)
+    //             {
+    //                 item.SetActive(false);
+    //             }
+    //             if (interactibleOffBtn != null)
+    //                 interactibleOffBtn.interactable = true;
+    //             isEnabled = false;
+    //         }
+    //     }
+    // }
 
     public void SetQuestAllUI()
     {

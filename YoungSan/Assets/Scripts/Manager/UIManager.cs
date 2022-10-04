@@ -14,8 +14,6 @@ public class UIManager : Manager
     public EnemyDelayUI enemyDelayUI;
     public EnemyStaUIt enemyStatUI;
     public QuestUI questUI;
-    public SettingUI settingUI;
-    public InterfaceUI interfaceUI;
     public Skillinterface skillinterface;
     public Statbar statbar;
     public StatUI statUI;

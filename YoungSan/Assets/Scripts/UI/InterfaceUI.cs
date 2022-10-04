@@ -76,6 +76,7 @@ public class InterfaceUI : MonoBehaviour
         {
             questManager.completeQuestIds = questManager.completedQuests.Keys.Cast<int>().ToList();
             questManager.completeQuestIds.Sort();
+            questManager.completeQuestIds.Reverse();
             Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             questManager.haveSort = false;
         }
@@ -103,7 +104,7 @@ public class InterfaceUI : MonoBehaviour
             interactibleOffBtn = button;
         });
 
-        text.text = quest.title + " " + quest.name;
+        text.text = /*quest.title + " " + */quest.name;
     }
     public GameObject GetObject(Transform content)
     {

@@ -2306,49 +2306,13 @@ MonoBehaviour:
     m_BlendOutDuration: 0.4499999999999993
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2375,25 +2339,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -4187,6 +4133,16 @@ MonoBehaviour:
     objPos: {x: 0, y: 0, z: 0}
     objTrm:
       exposedName: 44c3423a37f360b439d5a6196d2fa004
+      defaultValue: {fileID: 0}
+    mainCharTrm: 0
+  - mainChar: 0
+    obj:
+      exposedName: e47a462d4286fe5479a9a68347f729a8
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 962f6918aede49a40bc5ba5ecd0a9cb1
       defaultValue: {fileID: 0}
     mainCharTrm: 0
   - mainChar: 0
@@ -7655,7 +7611,7 @@ MonoBehaviour:
   m_Name: Quest/QuestClearMarker
   m_EditorClassIdentifier: 
   m_Time: 0
-  quest: {fileID: 11400000, guid: 1ae33134822079043a7d4525d52ebf29, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &9052299742963015610
 MonoBehaviour:
   m_ObjectHideFlags: 1

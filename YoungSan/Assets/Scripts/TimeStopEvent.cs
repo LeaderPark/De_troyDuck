@@ -13,6 +13,7 @@ public class TimeStopEvent : MonoBehaviour
 
     private void Awake()
     {
+        if (!gameObject.activeSelf) return;
         if (entityData.Length == 0) return;
         EventManager eventManager = ManagerObject.Instance.GetManager(ManagerType.EventManager) as EventManager;
         GlobalEventTrigger.SkillEvent attackAction = null;

@@ -31,7 +31,6 @@ public class DefaultPanel : MonoBehaviour
 
     void SetContent(int index, bool active, Entity entity, SkillSet skillSet)
     {
-        if (entity.entityData.skillContents == null || entity.entityData.skillContents.Length == 0) return;
         if (active)
         {
             if (index == 0)
@@ -42,7 +41,8 @@ public class DefaultPanel : MonoBehaviour
             {
                 skillImages[index].sprite = entity.entityData.skillIcon[index - 1];
             }
-            contents[index].text = InterpretContent((EventCategory)(index - 1), entity.entityData.skillContents[index].text, skillSet);
+            if (!(entity.entityData.skillContents == null || entity.entityData.skillContents.Length == 0))
+                contents[index].text = InterpretContent((EventCategory)(index - 1), entity.entityData.skillContents[index].text, skillSet);
             covers[index].SetActive(false);
         }
         else

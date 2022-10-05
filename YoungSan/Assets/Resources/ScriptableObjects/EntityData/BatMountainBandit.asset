@@ -13,17 +13,15 @@ MonoBehaviour:
   m_Name: BatMountainBandit
   m_EditorClassIdentifier: 
   entityName: "\uBC29\uB9DD\uC774 \uC0B0\uC801"
-  skillUi:
-  - {fileID: 0}
-  - {fileID: 0}
+  skillIcon: []
   status:
     stats:
     - category: 0
       minValue: 200
       maxValue: 300
     - category: 1
-      minValue: 50
-      maxValue: 60
+      minValue: 60
+      maxValue: 70
     - category: 2
       minValue: 5
       maxValue: 7
@@ -31,18 +29,6 @@ MonoBehaviour:
       minValue: 200
       maxValue: 300
   playerStatus:
-    stats:
-    - category: 0
-      minValue: 200
-      maxValue: 300
-    - category: 1
-      minValue: 50
-      maxValue: 60
-    - category: 2
-      minValue: 5
-      maxValue: 7
-    - category: 3
-      minValue: 200
-      maxValue: 300
+    stats: []
   prefab: {fileID: 4630027691702936259, guid: 1f5bbebe607d92740ae5df9bd29f8a21, type: 3}
   uiPos: 3.75

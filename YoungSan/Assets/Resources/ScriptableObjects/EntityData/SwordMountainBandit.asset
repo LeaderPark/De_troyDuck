@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SwordMountainBandit
   m_EditorClassIdentifier: 
   entityName: "\uCE7C \uC0B0\uC801"
+  skillIcon: []
   status:
     stats:
     - category: 0
@@ -28,18 +29,6 @@ MonoBehaviour:
       minValue: 200
       maxValue: 300
   playerStatus:
-    stats:
-    - category: 0
-      minValue: 200
-      maxValue: 300
-    - category: 1
-      minValue: 30
-      maxValue: 40
-    - category: 2
-      minValue: 5
-      maxValue: 7
-    - category: 3
-      minValue: 200
-      maxValue: 300
+    stats: []
   prefab: {fileID: 2193459943475004808, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
   uiPos: 3.75

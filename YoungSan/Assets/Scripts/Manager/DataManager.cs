@@ -54,6 +54,7 @@ public class DataManager : Manager
 
         SaveGameData(gameManager.Player.GetComponent<Entity>());
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
+        //string jsonData = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);
         Debug.Log(jsonData);
@@ -95,6 +96,7 @@ public class DataManager : Manager
             new Stat() { category = StatCategory.Stamina, minValue = 500, maxValue = 500 }
         };
         string jsonData = Encrypt(JsonUtility.ToJson(data), key);
+        //string jsonData = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/SaveData.json", jsonData);
         Debug.Log(Application.persistentDataPath);
         Debug.Log(jsonData);
@@ -114,6 +116,11 @@ public class DataManager : Manager
         {
             status.stats.Add(new Stat() { category = item.category, minValue = entity.clone.GetStat(item.category), maxValue = entity.clone.GetMaxStat(item.category) });
         };
+        data.status = status;
+        //foreach (var item in status.stats)
+        //{
+        //    Debug.LogError(item.maxValue);
+        //}
 
         data.proceedingQuests = new int[questManager.proceedingQuests.Keys.Count];
         data.completedQuests = new int[questManager.completedQuests.Keys.Count];
@@ -148,6 +155,7 @@ public class DataManager : Manager
 
         string jsonDataString = File.ReadAllText(Application.persistentDataPath + "/SaveData.json");
         data = JsonUtility.FromJson<Data>(Decrypt(jsonDataString, key));
+        //data = JsonUtility.FromJson<Data>(jsonDataString);
 
 
         //퀘스트 적용
@@ -176,6 +184,7 @@ public class DataManager : Manager
         go.GetComponent<AudioListener>().enabled = true;
         go.GetComponent<Entity>().isDead = false;
 
+
         //스텟 적용
         Clone clone = go.GetComponent<Entity>().clone;
         foreach (Stat stat in data.status.stats)
@@ -183,7 +192,11 @@ public class DataManager : Manager
             clone.SetMaxStat(stat.category, stat.maxValue);
             clone.SetStat(stat.category, stat.minValue);
         }
-
+        //foreach (StatCategory stat in System.Enum.GetValues(typeof(StatCategory)))
+        //{
+        //    clone.SetMaxStat(stat, clone.GetPlayerMaxStat(stat));
+        //    clone.SetStat(stat, clone.GetPlayerMaxStat(stat));
+        //}
         //UI 세팅
 
         yield return null;

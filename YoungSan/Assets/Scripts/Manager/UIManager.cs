@@ -20,6 +20,7 @@ public class UIManager : Manager
     public TimeLineSkipGage timeLineSkipGage;
     public DamageCountUI damageCountUI;
     public LoadingUI loadingUI;
+    public Slider skipSlider;
 
     [SerializeField] private CanvasGroup canvas;
 
@@ -203,6 +204,11 @@ public class UIManager : Manager
         //yield return new WaitForSeconds(time);
         //entity?.GetProcessor(typeof(Processor.Sprite))?.AddCommand("SetColor", new object[] { Color.black });
         yield return null;
+    }
+
+    public void SetSkipSliderValue(float max,float value)
+    {
+        skipSlider.value = value / max;
     }
 
     private IEnumerator FadeOut(Action endAction, bool FadeOrLoading)

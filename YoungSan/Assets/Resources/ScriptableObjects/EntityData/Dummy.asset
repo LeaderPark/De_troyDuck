@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dummy
   m_EditorClassIdentifier: 
   entityName: "\uD5C8\uC218\uC544\uBE44"
+  skillIcon: []
   status:
     stats:
     - category: 0
@@ -28,18 +29,6 @@ MonoBehaviour:
       minValue: 0
       maxValue: 0
   playerStatus:
-    stats:
-    - category: 0
-      minValue: 200
-      maxValue: 1000000
-    - category: 1
-      minValue: 0
-      maxValue: 0
-    - category: 2
-      minValue: 0
-      maxValue: 0
-    - category: 3
-      minValue: 0
-      maxValue: 0
+    stats: []
   prefab: {fileID: 2193459943475004808, guid: b2f748e520554284f8bba77f2e5da852, type: 3}
   uiPos: 3.75

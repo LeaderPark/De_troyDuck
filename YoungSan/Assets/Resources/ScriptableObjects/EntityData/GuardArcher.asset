@@ -13,33 +13,22 @@ MonoBehaviour:
   m_Name: GuardArcher
   m_EditorClassIdentifier: 
   entityName: "\uAD00\uC544 \uAD81\uBCD1"
+  skillIcon: []
   status:
     stats:
     - category: 0
-      minValue: 100
-      maxValue: 200
+      minValue: 250
+      maxValue: 300
     - category: 1
-      minValue: 30
-      maxValue: 40
+      minValue: 70
+      maxValue: 80
     - category: 2
       minValue: 6
       maxValue: 7
     - category: 3
-      minValue: 100
-      maxValue: 200
+      minValue: 200
+      maxValue: 300
   playerStatus:
-    stats:
-    - category: 0
-      minValue: 100
-      maxValue: 200
-    - category: 1
-      minValue: 30
-      maxValue: 40
-    - category: 2
-      minValue: 6
-      maxValue: 7
-    - category: 3
-      minValue: 100
-      maxValue: 200
+    stats: []
   prefab: {fileID: 5698397584404828078, guid: 43a0a6ef9b13ef74684d0a0d0d5e4783, type: 3}
   uiPos: 3.6

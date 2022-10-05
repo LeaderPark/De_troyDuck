@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton HP1
   m_EditorClassIdentifier: 
   entityName: "\uC2A4\uCF08\uB808\uD1A4"
+  skillIcon: []
   status:
     stats:
     - category: 0
@@ -28,18 +29,6 @@ MonoBehaviour:
       minValue: 50
       maxValue: 100
   playerStatus:
-    stats:
-    - category: 0
-      minValue: 1
-      maxValue: 1
-    - category: 1
-      minValue: 30
-      maxValue: 50
-    - category: 2
-      minValue: 15
-      maxValue: 15
-    - category: 3
-      minValue: 50
-      maxValue: 100
+    stats: []
   prefab: {fileID: 7073492965576089795, guid: 9d93b64306195424cbb0381ae18979ec, type: 3}
   uiPos: 3

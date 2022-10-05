@@ -31,6 +31,7 @@ public class PauseWindow : MonoBehaviour
             selectButtons[(int)pauseSelection - 1].onClick.AddListener(() => { SelectMain(pauseSelection); });
         }
 
+        panelTable = new Dictionary<PauseSelection, GameObject>();
         if (pauseSelectionPanels != null)
         {
             foreach (var item in pauseSelectionPanels)
@@ -102,6 +103,7 @@ public class PauseWindow : MonoBehaviour
 
     void Open()
     {
+        SelectProcedure(PauseSelection.None, PauseSelection.None);
         StartCoroutine(OpenPanel(selectPanel));
         StartCoroutine(OpenPanel(mainPanel, () =>
         {
@@ -138,6 +140,10 @@ public class PauseWindow : MonoBehaviour
         opened = false;
         if (selected != PauseSelection.None) selectButtons[(int)selected - 1].transform.localScale = Vector3.one;
         UnselectMain(selected);
+        foreach (var item in panelTable.Values)
+        {
+            item.SetActive(false);
+        }
     }
 
     public void SelectMain(PauseSelection select)
@@ -165,9 +171,27 @@ public class PauseWindow : MonoBehaviour
     public void SelectProcedure(PauseSelection prev, PauseSelection select)
     {
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
+
+        switch (prev)
+        {
+            case PauseSelection.None:
+                PanelActive(PauseSelection.None, false);
+                break;
+            case PauseSelection.Setting:
+                PanelActive(PauseSelection.Setting, false);
+                break;
+            case PauseSelection.Key:
+                PanelActive(PauseSelection.Key, false);
+                break;
+            case PauseSelection.Quest:
+                PanelActive(PauseSelection.Quest, false);
+                break;
+        }
+
         switch (select)
         {
             case PauseSelection.None:
+                PanelActive(PauseSelection.None, true);
                 break;
             case PauseSelection.Resume:
                 uiManager.CloseUI(canvasGroup);
@@ -175,10 +199,13 @@ public class PauseWindow : MonoBehaviour
                 activated = false;
                 break;
             case PauseSelection.Setting:
+                PanelActive(PauseSelection.Setting, true);
                 break;
             case PauseSelection.Key:
+                PanelActive(PauseSelection.Key, true);
                 break;
             case PauseSelection.Quest:
+                PanelActive(PauseSelection.Quest, true);
                 break;
             case PauseSelection.Quit:
 #if UNITY_EDITOR
@@ -188,6 +215,11 @@ public class PauseWindow : MonoBehaviour
 #endif
                 break;
         }
+    }
+
+    public void PanelActive(PauseSelection selection, bool active)
+    {
+        panelTable[selection].SetActive(active);
     }
 
     public enum PauseSelection

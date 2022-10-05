@@ -440,7 +440,7 @@ public class Samulnori : MonoBehaviour
 
     IEnumerator OneAttackRoutine()
     {
-        int randomSamul = Random.Range(1, samulCount + 1);
+        int randomSamul = Mathf.Clamp(Random.Range(1, samulCount + 1), 1, 2);
 
         int[] randoms = new int[randomSamul];
 

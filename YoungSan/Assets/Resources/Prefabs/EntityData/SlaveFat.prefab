@@ -413,6 +413,7 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 140e72b3a77d3c74f82f3b6ca281354c, type: 2}
   isDead: 0
   hitable: 0
+  cantChange: 0
   isGround: 0
 --- !u!114 &2224708821530652751
 MonoBehaviour:
@@ -427,6 +428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCoolTime: 0
+  targeting: 0
+  targetSkillCategory: 0
 --- !u!114 &2224708821530652789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,14 +710,18 @@ MonoBehaviour:
   soundStartTimes:
   - 0
   skillDamageForms:
-  - '{Attack}'
+  - '{Health} / 20'
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 0
   waitTime: 1
-  useStaminaForm: '{Attack} * 2'
+  useStaminaForm: '{MaxStamina} / 5'
   skillEffect: {fileID: 1079055413492156009}
   attackSounds:
   - {fileID: 8300000, guid: 1faeb5443c5808445884bfb6ec8603fe, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &3918276217960184960
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,14 +822,18 @@ MonoBehaviour:
   soundStartTimes:
   - 0
   skillDamageForms:
-  - '{Attack}'
+  - '{Health} / 20'
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 0
   waitTime: 0
-  useStaminaForm: '{Attack}'
+  useStaminaForm: '{MaxStamina} / 5'
   skillEffect: {fileID: 2359425491017221281}
   attackSounds:
   - {fileID: 8300000, guid: e18f10e0bb3688d4782e896922e56567, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &4241710952629284192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1027,8 @@ MonoBehaviour:
   useSkill: 0
   active: 0
   delayTime: 0.1
+  skillData: {fileID: 0}
+  running: 0
 --- !u!1 &5637106850048738381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,13 +1415,17 @@ MonoBehaviour:
   soundStartTimes:
   - 0
   skillDamageForms: []
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 10
   waitTime: 0
-  useStaminaForm: ({MaxHealth} - {Health}) / 4
+  useStaminaForm: ({MaxHealth} - {Health}) / 3
   skillEffect: {fileID: 0}
   attackSounds:
   - {fileID: 8300000, guid: 96ce289c932f8cc4892d6049b528f4aa, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &9103542017093317012
 GameObject:
   m_ObjectHideFlags: 0

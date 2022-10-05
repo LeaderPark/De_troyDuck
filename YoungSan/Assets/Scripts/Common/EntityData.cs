@@ -10,6 +10,8 @@ public class EntityData : ScriptableObject
     [Space(10)]
     public Sprite[] skillIcon;
     [Space(10)]
+    public SkillContent[] skillContents;
+    [Space(10)]
     public Status status;
     [Space(10)]
     public Status playerStatus;
@@ -19,4 +21,11 @@ public class EntityData : ScriptableObject
     public float uiPos;
 
 
+}
+
+[System.Serializable]
+public struct SkillContent
+{
+    [Multiline]
+    public string text;
 }

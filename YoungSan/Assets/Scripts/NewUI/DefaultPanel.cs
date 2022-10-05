@@ -23,44 +23,52 @@ public class DefaultPanel : MonoBehaviour
         SkillSet skillSet = gameManager.Player.GetComponent<EntityEvent>().skillSet;
         Entity entity = skillSet.entity;
 
-        if (skillSet.skillDatas.ContainsKey(EventCategory.DefaultAttack))
+        for (int i = 0; i < 4; i++)
         {
-            skillImages[0].sprite = defaultAttackIcon;
-            covers[0].SetActive(false);
-        }
-        else
-        {
-            covers[0].SetActive(true);
-        }
-        if (skillSet.skillDatas.ContainsKey(EventCategory.Skill1))
-        {
-            skillImages[1].sprite = entity.entityData.skillIcon[0];
-            covers[1].SetActive(false);
-        }
-        else
-        {
-            covers[1].SetActive(true);
-        }
-        if (skillSet.skillDatas.ContainsKey(EventCategory.Skill2))
-        {
-            covers[2].SetActive(false);
-        }
-        else
-        {
-            covers[2].SetActive(true);
-        }
-        if (skillSet.skillDatas.ContainsKey(EventCategory.Skill3))
-        {
-            covers[3].SetActive(false);
-        }
-        else
-        {
-            covers[3].SetActive(true);
+            SetContent(i, skillSet.skillDatas.ContainsKey((EventCategory)(i + 1)), entity, skillSet);
         }
     }
 
-    void SetContent(int index, bool active, Entity entity)
+    void SetContent(int index, bool active, Entity entity, SkillSet skillSet)
     {
+        if (entity.entityData.skillContents == null || entity.entityData.skillContents.Length == 0) return;
+        if (active)
+        {
+            if (index == 0)
+            {
+                skillImages[index].sprite = defaultAttackIcon;
+            }
+            else
+            {
+                skillImages[index].sprite = entity.entityData.skillIcon[index - 1];
+            }
+            contents[index].text = InterpretContent((EventCategory)(index - 1), entity.entityData.skillContents[index].text, skillSet);
+            covers[index].SetActive(false);
+        }
+        else
+        {
+            skillImages[index].sprite = skillBasicIcon;
+            contents[index].text = string.Empty;
+            covers[index].SetActive(true);
+        }
+    }
 
+    string InterpretContent(EventCategory category, string text, SkillSet skillSet)
+    {
+        string result = text;
+        for (int i = 0; i < skillSet.skillDatas[category].Length; i++)
+        {
+            for (int j = 0; j < skillSet.skillDatas[category][i].skillDamageForms.Length; j++)
+            {
+                result = result.Replace(string.Concat("{Damage", i, j, "}"), skillSet.skillDatas[category][i].CalculateSkillDamage().ToString());
+            }
+            result = result.Replace(string.Concat("{Stamina", i, "}"), skillSet.skillDatas[category][i].CalculateUseStamina().ToString());
+        }
+
+        result = result.Replace("<D", "<color=red>");
+        result = result.Replace("<S", "<color=blue>");
+        result = result.Replace(">", "</color>");
+
+        return result;
     }
 }

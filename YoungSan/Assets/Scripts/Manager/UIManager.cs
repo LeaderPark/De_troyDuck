@@ -224,13 +224,14 @@ public class UIManager : Manager
             fade.transform.GetChild(1).gameObject.SetActive(true);
         }
 
-        float alpha = 0f;
+        float alpha = fade.alpha;
 
         while (true)
         {
             if (alpha < 1f)
             {
                 alpha += Time.deltaTime * 1;
+                fade.alpha = alpha;
             }
             else
             {

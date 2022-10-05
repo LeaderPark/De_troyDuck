@@ -13,15 +13,6 @@ public class NPCTalk : MonoBehaviour
         questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         timelineManager = ManagerObject.Instance.GetManager(ManagerType.TimelineManager) as TimelineManager;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-            for (int i = 0; i < npcData.Length; i++)
-            {
-                questManager.completedQuests.Clear();
-                questManager.proceedingQuests.Clear();
-            }
-    }
     public void Talk()
     {
         for (int i = 0; i < npcData.Length; i++)

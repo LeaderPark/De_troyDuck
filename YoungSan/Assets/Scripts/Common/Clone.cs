@@ -8,6 +8,7 @@ public class Clone
 
     private Hashtable StatTable { get; set; }
     private Hashtable MaxStatTable { get; set; }
+    private Hashtable PlayerMaxStat { get; set; }
 
     private Entity entity;
 
@@ -17,7 +18,6 @@ public class Clone
         {
             return (int)StatTable[category];
         }
-
         return 0;
     }
 
@@ -28,6 +28,20 @@ public class Clone
             return (int)MaxStatTable[category];
         }
 
+        return 0;
+    }
+
+    public int GetPlayerMaxStat(StatCategory category)
+    {
+        if (PlayerMaxStat.ContainsKey(category))
+        {
+            Debug.Log((int)PlayerMaxStat[category]);
+            return (int)PlayerMaxStat[category];
+        }
+        if (MaxStatTable.ContainsKey(category))
+        {
+            return (int)MaxStatTable[category];
+        }
         return 0;
     }
 
@@ -82,6 +96,7 @@ public class Clone
         Name = data.entityName;
         this.entity = entity;
         MaxStatTable = new Hashtable();
+        PlayerMaxStat = new Hashtable();
 
         for (int i = 0; i < data.status.stats.Count; i++)
         {
@@ -89,6 +104,13 @@ public class Clone
 
             MaxStatTable.Add(temp.category, Random.Range(temp.minValue, temp.maxValue + 1));
         }
+        for (int i = 0; i < data.playerStatus.stats.Count; i++)
+        {
+            Stat temp = data.playerStatus.stats[i];
+
+            PlayerMaxStat.Add(temp.category, Random.Range(temp.minValue, temp.maxValue + 1));
+        }
+
 
 
         StatTable = new Hashtable(MaxStatTable);

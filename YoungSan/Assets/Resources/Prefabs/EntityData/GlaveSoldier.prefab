@@ -577,13 +577,13 @@ MonoBehaviour:
   soundStartTimes:
   - 0.2
   skillDamageForms:
-  - '{Attack} * 4'
+  - '{Attack} * 2'
   targeting: 0
   canmove: 0
   canrotate: 0
-  coolTime: 3
+  coolTime: 4
   waitTime: 0
-  useStaminaForm: 0
+  useStaminaForm: '{MaxStamina} / 5'
   skillEffect: {fileID: 2601119440529192870}
   attackSounds:
   - {fileID: 8300000, guid: f9012f4052b2df04ebba6d4902e8f8cf, type: 3}
@@ -1436,15 +1436,15 @@ MonoBehaviour:
   - 0.4
   - 0.6
   skillDamageForms:
+  - '{Attack} * 5 / 10'
   - '{Attack}'
-  - '{Attack}'
-  - '{Attack}'
+  - '{Attack} * 15 / 10'
   targeting: 0
   canmove: 0
   canrotate: 0
   coolTime: 0
   waitTime: 0
-  useStaminaForm: 0
+  useStaminaForm: '{MaxStamina} / 3'
   skillEffect: {fileID: 8688571837323373854}
   attackSounds:
   - {fileID: 8300000, guid: 530a5c89a7ef3f042aa8000f6d4d4749, type: 3}
@@ -1657,7 +1657,6 @@ MonoBehaviour:
   dashCoolTime: 0
   targeting: 0
   targetSkillCategory: 0
-  targetSelect: {fileID: 0}
 --- !u!114 &7230566578263696723
 MonoBehaviour:
   m_ObjectHideFlags: 0

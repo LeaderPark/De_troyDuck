@@ -156,6 +156,8 @@ MonoBehaviour:
   useSkill: 0
   active: 0
   delayTime: 0.2
+  skillData: {fileID: 0}
+  running: 0
 --- !u!1 &5750736376227008181
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,13 +211,17 @@ MonoBehaviour:
   - 0
   skillDamageForms:
   - '{Attack}'
+  targeting: 0
+  canmove: 0
+  canrotate: 0
   coolTime: 0
   waitTime: 0
-  useStaminaForm: 0
+  useStaminaForm: '{MaxStamina} / 5'
   skillEffect: {fileID: 9144061596929386639}
   attackSounds:
   - {fileID: 8300000, guid: 806fc362f4d6c564faf45fda7c2162d4, type: 3}
   direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!1 &5825572863149619760
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +490,7 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 2325a61445c5b5d4aac0027f2d172b47, type: 2}
   isDead: 0
   hitable: 0
+  cantChange: 0
   isGround: 0
 --- !u!114 &7073492965576089848
 MonoBehaviour:
@@ -498,6 +505,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCoolTime: 0
+  targeting: 0
+  targetSkillCategory: 0
 --- !u!114 &7073492965576089794
 MonoBehaviour:
   m_ObjectHideFlags: 0

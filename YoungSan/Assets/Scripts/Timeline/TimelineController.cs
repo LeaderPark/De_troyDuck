@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class TimelineController : MonoBehaviour
 {
+    private UIManager uiManager;
 
     public bool onSceneLoadPlay;
     public PlayableAsset startTimeline;
@@ -28,6 +29,7 @@ public class TimelineController : MonoBehaviour
 
     private void Awake()
     {
+        uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
         director = GetComponent<PlayableDirector>();
         UnityEngine.TextAsset fileData = Resources.Load("TestDialogue") as UnityEngine.TextAsset;
     }
@@ -56,9 +58,11 @@ public class TimelineController : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Space) /*&& director.state == PlayState.Playing*/)
                     {
                         isKeyDown = true;
+                        uiManager.skipSlider.gameObject.SetActive(true);
                     }
                     else if (Input.GetKeyUp(KeyCode.Space))
                     {
+                        uiManager.skipSlider.gameObject.SetActive(false);
                         currentSkipTime = 0;
                         isKeyDown = false;
                         currentIsSkip = false;
@@ -69,9 +73,11 @@ public class TimelineController : MonoBehaviour
         if (isKeyDown)
         {
             currentSkipTime += Time.deltaTime;
+            uiManager.SetSkipSliderValue(maxSkipTime,currentSkipTime);
             //Debug.Log(currentSkipTime);
             if (currentSkipTime >= maxSkipTime)
             {
+                uiManager.skipSlider.gameObject.SetActive(false);
                 currentIsSkip = true;
             }
         }
@@ -117,13 +123,11 @@ public class TimelineController : MonoBehaviour
     }
     public void UISetActiveFalse()
     {
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.UISetActiveTimeLine(false);
+        uiManager.UISetActiveTimeLine(false);
     }
     public void UISetActiveTrue()
     {
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.UISetActiveTimeLine(true);
+        uiManager.UISetActiveTimeLine(true);
 
     }
     public void PlayerScriptActive(bool active)
@@ -133,8 +137,7 @@ public class TimelineController : MonoBehaviour
     }
     public void FadeInOut(bool fadeOut)
     {
-        UIManager uIManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        uIManager.FadeInOut(fadeOut, true);
+        uiManager.FadeInOut(fadeOut, true);
     }
     public void Save()
     {

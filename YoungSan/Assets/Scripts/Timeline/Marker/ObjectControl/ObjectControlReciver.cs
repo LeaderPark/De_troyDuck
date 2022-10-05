@@ -42,7 +42,13 @@ public class ObjectControlReciver :Receiver
 						obj.gameObject.transform.localScale = gameManager.Player.gameObject.transform.localScale;
 						objAnimator.runtimeAnimatorController = gameManager.Player.GetComponent<Animator>().runtimeAnimatorController;
 					}
-					objAnimator.Play(clip);
+                    switch (clip)
+                    {
+						case "Attack":
+							clip = gameManager.Player.GetComponentInChildren<SkillSet>().skillDatas[EventCategory.DefaultAttack][0].skill.name;
+							break;
+                    }
+                    objAnimator.Play(clip);
 				}
 			}
 			for (int i = 0; i < marker.objectData.Length; i++)

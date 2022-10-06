@@ -16,6 +16,7 @@ MonoBehaviour:
   skillIcon:
   - {fileID: -7391374338135731959, guid: 41f072fadf029174e90edeabb1e0092f, type: 3}
   - {fileID: 2749269965267140962, guid: 41f072fadf029174e90edeabb1e0092f, type: 3}
+  skillContents: []
   status:
     stats:
     - category: 0
@@ -25,12 +26,24 @@ MonoBehaviour:
       minValue: 50
       maxValue: 50
     - category: 2
-      minValue: 3
-      maxValue: 3
+      minValue: 5
+      maxValue: 5
     - category: 3
-      minValue: 200
+      minValue: 300
       maxValue: 300
   playerStatus:
-    stats: []
+    stats:
+    - category: 0
+      minValue: 300
+      maxValue: 300
+    - category: 1
+      minValue: 50
+      maxValue: 50
+    - category: 2
+      minValue: 5
+      maxValue: 5
+    - category: 3
+      minValue: 250
+      maxValue: 250
   prefab: {fileID: 1236690625908380985, guid: bd729ff88058c29408a2adb56c9eed0a, type: 3}
   uiPos: 3.75

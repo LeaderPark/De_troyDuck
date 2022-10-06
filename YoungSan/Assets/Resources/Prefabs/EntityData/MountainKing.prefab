@@ -959,7 +959,7 @@ MonoBehaviour:
   canrotate: 0
   coolTime: 1
   waitTime: 0
-  useStaminaForm: 0
+  useStaminaForm: '{MaxStamina} / 5'
   skillEffect: {fileID: 1236690624832364745}
   attackSounds:
   - {fileID: 8300000, guid: ea80cbee0405b984485b9963846baf64, type: 3}
@@ -1113,7 +1113,6 @@ MonoBehaviour:
   dashCoolTime: 0
   targeting: 0
   targetSkillCategory: 0
-  targetSelect: {fileID: 0}
 --- !u!65 &1236690625908380991
 BoxCollider:
   m_ObjectHideFlags: 0

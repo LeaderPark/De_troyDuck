@@ -104,7 +104,7 @@ public class DataManager : Manager
 
     private void SaveGameData(Entity entity)
     {
-        entity.SetHp(1);
+        entity.SetHp(1,true);
 
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;

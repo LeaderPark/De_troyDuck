@@ -1122,23 +1122,6 @@ MonoBehaviour:
   textColors: []
   test: {fileID: 0}
   activeTime: 0.5
---- !u!114 &-2791547273522583150
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bb05ac5374a774449c3c4b84341a25b, type: 3}
-  m_Name: Search Enemy Marker
-  m_EditorClassIdentifier: 
-  m_Time: 8.716666666666667
-  mainChar: 0
-  enemys: []
-  nextTimeLine: {fileID: 11400000, guid: 4b7191578f1ab8d4d96a563459271077, type: 2}
-  waitTime: 0
 --- !u!114 &-2555209556076841813
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1637,7 +1620,6 @@ MonoBehaviour:
     - {fileID: -8421194117217412762}
     - {fileID: 8509732808384218200}
     - {fileID: -954862901014564377}
-    - {fileID: -2791547273522583150}
 --- !u!74 &1629910639243726544
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -1980,7 +1962,7 @@ MonoBehaviour:
   m_Name: Quest/QuestMarker
   m_EditorClassIdentifier: 
   m_Time: 8.683333333333334
-  quest: {fileID: 11400000, guid: 1ae33134822079043a7d4525d52ebf29, type: 2}
+  quest: {fileID: 0}
 --- !u!114 &3154239573401416561
 MonoBehaviour:
   m_ObjectHideFlags: 1

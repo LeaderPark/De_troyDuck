@@ -51,20 +51,22 @@ public class Entity : MonoBehaviour
         extraStat[StatCategory.Speed] = 0;
     }
 
-    public void SetHp(float hp)
+    public void SetHp(float hp,bool player = false)
     {
         clone.SetStat(StatCategory.Health, (int)(clone.GetMaxStat(StatCategory.Health) * hp));
         if (clone.GetStat(StatCategory.Health) > 0)
         {
             isDead = false;
-
-            if (GetComponent<Enemy>() != null)
+            if (!player)
             {
-                GetComponent<Enemy>().enabled = true;
-            }
-            if (GetComponent<StateMachine.StateMachine>() != null)
-            {
-                GetComponent<StateMachine.StateMachine>().enabled = true;
+                if (GetComponent<Enemy>() != null)
+                {
+                    GetComponent<Enemy>().enabled = true;
+                }
+                if (GetComponent<StateMachine.StateMachine>() != null)
+                {
+                    GetComponent<StateMachine.StateMachine>().enabled = true;
+                }
             }
         }
     }

@@ -45,7 +45,7 @@ public class PauseWindow : MonoBehaviour
     {
         GameManager gameManager = ManagerObject.Instance.GetManager(ManagerType.GameManager) as GameManager;
         UIManager uiManager = ManagerObject.Instance.GetManager(ManagerType.UIManager) as UIManager;
-        if (Input.GetKeyDown(KeyCode.Escape) && gameManager.Player != null && !uiManager.fade.gameObject.activeSelf && Time.timeScale == 1)
+        if (Input.GetKeyDown(KeyCode.Escape) && gameManager.Player != null && uiManager.fade.alpha == 0 && Time.timeScale == 1)
         {
             if (!activated)
             {

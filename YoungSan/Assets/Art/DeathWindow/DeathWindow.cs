@@ -82,6 +82,7 @@ public class DeathWindow : MonoBehaviour
         yield return new WaitForSeconds(1f);
         time = 1f;
         tempTime = time;
+        onEndWindow?.Invoke();
         while (tempTime > 0f)
         {
             tempTime -= Time.deltaTime;
@@ -89,7 +90,6 @@ public class DeathWindow : MonoBehaviour
             GetComponent<SpriteRenderer>().material.SetFloat("_OutLineAlpha", Mathf.Clamp(1f - outline, 0, outlineTarget));
             yield return null;
         }
-        onEndWindow?.Invoke();
     }
 
     public void TurnOnWindow(System.Action action)

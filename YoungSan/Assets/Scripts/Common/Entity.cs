@@ -51,7 +51,7 @@ public class Entity : MonoBehaviour
         extraStat[StatCategory.Speed] = 0;
     }
 
-    public void SetHp(float hp,bool player = false)
+    public void SetHp(float hp, bool player = false)
     {
         clone.SetStat(StatCategory.Health, (int)(clone.GetMaxStat(StatCategory.Health) * hp));
         if (clone.GetStat(StatCategory.Health) > 0)
@@ -189,7 +189,6 @@ public class Entity : MonoBehaviour
             yield return null;
         }
         hitable = true;
-        isDead = true;
     }
 
     //private void OnDrawGizmos()

@@ -30,22 +30,21 @@ public class SettingPanel : MonoBehaviour
 
     public void Init_UI()
     {
-        Load();
         SetResolution();
     }
 
-    void Load()
+    public void Load()
     {
         if (PlayerPrefs.HasKey("bgmSlider"))
         {
             bgmSlider.value = PlayerPrefs.GetFloat("bgmSlider");
-            SetBackGroundSound();
         }
         if (PlayerPrefs.HasKey("sfxSlider"))
         {
-            bgmSlider.value = PlayerPrefs.GetFloat("sfxSlider");
-            SetSFXSound();
+            sfxSlider.value = PlayerPrefs.GetFloat("sfxSlider");
         }
+        SetBackGroundSound();
+        SetSFXSound();
         if (PlayerPrefs.HasKey("width") && PlayerPrefs.HasKey("height") && PlayerPrefs.HasKey("screenMode"))
         {
             Screen.SetResolution(PlayerPrefs.GetInt("width"), PlayerPrefs.GetInt("height"), (FullScreenMode)PlayerPrefs.GetInt("screenMode"));

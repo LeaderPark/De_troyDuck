@@ -22,6 +22,8 @@ public class UIManager : Manager
     public LoadingUI loadingUI;
     public Slider skipSlider;
 
+    public SettingPanel settingPanel;
+
     [SerializeField] private CanvasGroup canvas;
 
     public CanvasGroup fade;
@@ -39,6 +41,7 @@ public class UIManager : Manager
         {
             Init();
         }
+        settingPanel.Load();
     }
 
     void Update()

@@ -30,7 +30,7 @@ public class GuardArcherEvent : EntityEvent
         attackProcess[EventCategory.Skill1] = new AttackProcess[]{
         (inputX, inputY, position, skillData) =>
         {
-            Dash(inputX, inputY, -16, 0.35f, 0.2f);
+            Dash(inputX, inputY, -16, 0.24f, 0.2f);
         }
         };
     }

@@ -24,7 +24,7 @@ public class UIManager : Manager
 
     [SerializeField] private CanvasGroup canvas;
 
-    [SerializeField] private CanvasGroup fade;
+    public CanvasGroup fade;
 
     public QuestUI[] questUIObj;
 
@@ -206,7 +206,7 @@ public class UIManager : Manager
         yield return null;
     }
 
-    public void SetSkipSliderValue(float max,float value)
+    public void SetSkipSliderValue(float max, float value)
     {
         skipSlider.value = value / max;
     }

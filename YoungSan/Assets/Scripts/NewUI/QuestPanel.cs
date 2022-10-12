@@ -25,6 +25,14 @@ public class QuestPanel : MonoBehaviour
         SetQuestUI();
     }
 
+    void OnDisable()
+    {
+        foreach (var item in objList)
+        {
+            item.SetActive(false);
+        }
+    }
+
     public void SetQuestUI()
     {
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
@@ -64,7 +72,7 @@ public class QuestPanel : MonoBehaviour
             interactibleOffBtn = button;
         });
 
-        text.text = /*quest.title + " " + */quest.name;
+        text.text = /*quest.title + " " + */quest.title;
     }
     public GameObject GetObject(Transform content)
     {

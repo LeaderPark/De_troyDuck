@@ -11,7 +11,7 @@ public class TimeStopEvent : MonoBehaviour
     public bool mouseRight;
     public GameObject tutorialUi;
 
-    private void Awake()
+    private void Start()
     {
         if (!gameObject.activeSelf) return;
         if (entityData.Length == 0) return;

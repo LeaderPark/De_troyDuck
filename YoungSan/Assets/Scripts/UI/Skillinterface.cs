@@ -43,10 +43,7 @@ public class Skillinterface : MonoBehaviour
         {
             EventCategory category = (EventCategory)i;
 
-            if (skillSet.skillCoolTimes.ContainsKey(category))
-            {
-                Set_FillAmount(0, 0, (int)category-2);
-            }
+            Set_FillAmount(0, 0, (int)category - 2);
             if (skillSet.skillCoolTimes.ContainsKey(category))
             {
                 Set_FillAmount(skillSet.skillCoolTimes[category][skillSet.skillDatas[category][skillSet.skillStackAmount[category]].targetIndex], skillSet.skillDatas[category][skillSet.skillStackAmount[category]].coolTime, (int)category - 2);
@@ -61,12 +58,12 @@ public class Skillinterface : MonoBehaviour
         {
             activation_image[i].SetActive(true);
         }
-        for (int i = 0; i < skillSet.skillDatas.Count-1; i++)
+        for (int i = 0; i < skillSet.skillDatas.Count - 1; i++)
         {
             //추후 여기다가 스킬 이미지 갔다가 넣는거 만들면 됨 미래의 친구ssssss 
             //미래의 친구가 나였던거냐고 wwwwwwwwwww
-            if(entity.entityData.skillIcon.Length>=i)
-            skillIcons[i].sprite = entity.entityData.skillIcon[i];
+            if (entity.entityData.skillIcon.Length >= i)
+                skillIcons[i].sprite = entity.entityData.skillIcon[i];
             activation_image[i].SetActive(false);
         }
 
@@ -88,7 +85,7 @@ public class Skillinterface : MonoBehaviour
         while (true)
         {
             time -= Time.deltaTime;
-            Set_FillAmount(time, cool, (int)eventCategory-2);
+            Set_FillAmount(time, cool, (int)eventCategory - 2);
             if (time <= 0)
             {
                 //skillCoolTimes.RemoveAt(index);

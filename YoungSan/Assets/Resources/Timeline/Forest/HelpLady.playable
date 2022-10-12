@@ -550,6 +550,26 @@ MonoBehaviour:
     - {fileID: -6598808065946203714}
     - {fileID: 4345270044730146220}
     - {fileID: 1903801016896134999}
+--- !u!114 &-4858961481793734723
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  events:
+  - obj:
+      exposedName: f4389204c47160b4eafdab615e9871be
+      defaultValue: {fileID: 0}
+    component: SoundCaller
+    function: SetBgmCurrent
+    param: []
 --- !u!114 &-3985078815470480313
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1487,7 +1507,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1620,6 +1658,7 @@ MonoBehaviour:
     - {fileID: -8421194117217412762}
     - {fileID: 8509732808384218200}
     - {fileID: -954862901014564377}
+    - {fileID: -4858961481793734723}
 --- !u!74 &1629910639243726544
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -1962,7 +2001,7 @@ MonoBehaviour:
   m_Name: Quest/QuestMarker
   m_EditorClassIdentifier: 
   m_Time: 8.683333333333334
-  quest: {fileID: 0}
+  quest: {fileID: 11400000, guid: b0fdab332fe8977488391fef8a1fc220, type: 2}
 --- !u!114 &3154239573401416561
 MonoBehaviour:
   m_ObjectHideFlags: 1

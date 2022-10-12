@@ -298,13 +298,13 @@ MonoBehaviour:
   soundStartTimes:
   - 0.27
   skillDamageForms:
-  - '{Attack}'
+  - '{Attack} * 3 / 2'
   targeting: 0
   canmove: 0
   canrotate: 0
-  coolTime: 0
+  coolTime: 3
   waitTime: 0
-  useStaminaForm: '{MaxStamina} / 5'
+  useStaminaForm: '{MaxStamina} / 2'
   skillEffect: {fileID: 6155791542050721222}
   attackSounds:
   - {fileID: 8300000, guid: 79b12913891285d4ab484a7f63fcb365, type: 3}
@@ -413,7 +413,7 @@ MonoBehaviour:
   hitEffectClips:
   - {fileID: 7400000, guid: be006fcfde7a52a4bb5e20db344a7273, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 452363a27d1fa3f458632935a4c35253, type: 3}
+  - {fileID: 8300000, guid: 59257d4563f602f4ca40c9ff54830f81, type: 3}
 --- !u!1 &5746751670080446240
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,15 @@ MonoBehaviour:
   m_Name: GuardSpear
   m_EditorClassIdentifier: 
   entityName: "\uAD00\uC544 \uCC3D\uBCD1"
-  skillIcon: []
+  skillIcon:
+  - {fileID: -7513847108040282227, guid: 83ec08fcac7d25c4ca55d78eb4dbf9df, type: 3}
+  skillContents:
+  - text: "\uCC3D\uC744 \uCC14\uB7EC \uB3CC\uC9C4\uD558\uBA70 <D{Damage00}\uC758
+      \uD53C\uD574>\uB97C \uC785\uD799\uB2C8\uB2E4.\n<G( \uAE30\uB825 <S{Stamina0}>
+      \uC18C\uBAA8 )>"
+  - text: "\uCC3D\uC744 \uBE60\uB974\uAC8C \uCC14\uB7EC \uBA40\uB9AC \uB3CC\uC9C4\uD558\uBA70
+      <D{Damage00}\uC758 \uD53C\uD574>\uB97C \uC785\uD799\uB2C8\uB2E4.\n<G( \uAE30\uB825
+      <S{Stamina0}> \uC18C\uBAA8 )>"
   status:
     stats:
     - category: 0

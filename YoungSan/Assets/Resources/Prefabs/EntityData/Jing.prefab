@@ -634,7 +634,8 @@ MonoBehaviour:
   targetIndex: 0
   hitBoxDatas: []
   soundStartTimes:
-  - 0.1
+  - 0.55
+  - 0.55
   skillDamageForms:
   - '{Attack}'
   targeting: 0
@@ -645,7 +646,8 @@ MonoBehaviour:
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 8290785519106949230}
   attackSounds:
-  - {fileID: 8300000, guid: 830d4c0f905a3174491ba1e31b04716e, type: 3}
+  - {fileID: 8300000, guid: e3a8e06948d5f1e42af765152a8a40ad, type: 3}
+  - {fileID: 8300000, guid: 6725ff1bc87158347bd48f951c6fd51a, type: 3}
   direction: {x: 0, y: 0}
   target: {fileID: 0}
 --- !u!1 &8290785518765842823
@@ -895,7 +897,7 @@ MonoBehaviour:
   targetIndex: 0
   hitBoxDatas: []
   soundStartTimes:
-  - 0.1
+  - 0.5
   skillDamageForms:
   - '{Speed}'
   targeting: 0
@@ -906,7 +908,7 @@ MonoBehaviour:
   useStaminaForm: '{Attack}'
   skillEffect: {fileID: 8290785518126311912}
   attackSounds:
-  - {fileID: 8300000, guid: 830d4c0f905a3174491ba1e31b04716e, type: 3}
+  - {fileID: 8300000, guid: 6b8c02e0feb6b6e43a10d870957acda7, type: 3}
   direction: {x: 0, y: 0}
   target: {fileID: 0}
 --- !u!1 &8290785519173731887
@@ -1406,7 +1408,7 @@ MonoBehaviour:
   - LeftHitBox: {fileID: 8290785518765842817}
     RightHitBox: {fileID: 8290785518073723270}
   soundStartTimes:
-  - 0.1
+  - 0
   skillDamageForms:
   - '{Speed}'
   targeting: 0
@@ -1417,7 +1419,7 @@ MonoBehaviour:
   useStaminaForm: '{MaxStamina} / 5'
   skillEffect: {fileID: 8290785519917511473}
   attackSounds:
-  - {fileID: 8300000, guid: 830d4c0f905a3174491ba1e31b04716e, type: 3}
+  - {fileID: 8300000, guid: 6dd84e75efb98d049b55e30c2c5f7596, type: 3}
   direction: {x: 0, y: 0}
   target: {fileID: 0}
 --- !u!1 &8290785519894442368
@@ -1557,7 +1559,7 @@ MonoBehaviour:
   hitEffectClips:
   - {fileID: 7400000, guid: b1c047b62189c1745a9ba2eae88a7020, type: 2}
   hitSoundClips:
-  - {fileID: 8300000, guid: 6836ff46a1c9b1d448f348c5605fbec7, type: 3}
+  - {fileID: 8300000, guid: 6305241b79f63164aa6edab239cf3a43, type: 3}
 --- !u!1001 &8290785519420277401
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -413,7 +413,6 @@ MonoBehaviour:
     - {fileID: -6073408532044383946}
     - {fileID: 990043985730930311}
     - {fileID: 7972513725794733717}
-    - {fileID: -7922644580244717873}
     - {fileID: -154747979640922909}
 --- !u!114 &-1191689950779877732
 MonoBehaviour:
@@ -464,6 +463,7 @@ MonoBehaviour:
     - {fileID: 4641468946443865806}
     - {fileID: -4623380397534625755}
     - {fileID: -4817685057351223893}
+    - {fileID: 3780362645682698264}
 --- !u!114 &-154747979640922909
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1030,6 +1030,20 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &3780362645682698264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0863e9c2ac77964085c463aa797e1aa, type: 3}
+  m_Name: Quest/QuestClearMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  quest: {fileID: 11400000, guid: 655839007fe37264583e6f4ba637a12b, type: 2}
 --- !u!114 &4171144201878456295
 MonoBehaviour:
   m_ObjectHideFlags: 1

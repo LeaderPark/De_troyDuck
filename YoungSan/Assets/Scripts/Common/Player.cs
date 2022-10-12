@@ -108,10 +108,12 @@ public class Player : MonoBehaviour
         }
 
         //if (Input.GetMouseButtonDown(0))
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Z))
         {
             entityEvent.CallEvent(EventCategory.DefaultAttack, inputX, inputY, direction, transform.position);
         }
+#endif
         if (inputManager.CheckMouseState(MouseButton.Left, ButtonState.Down))
         {
             if (targeting)

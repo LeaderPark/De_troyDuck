@@ -34,7 +34,7 @@ public class FlyingJing : Installation
 
         soundWave.transform.position = transform.position;
 
-        soundWave.SetData(null, transform.position, skillData);
+        soundWave.SetData(skillData.skillSet.entity, transform.position, skillData);
 
         yield return new WaitForSeconds(2f);
 

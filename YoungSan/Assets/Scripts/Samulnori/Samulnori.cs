@@ -169,8 +169,8 @@ public class Samulnori : MonoBehaviour
                             break;
                     }
 
-                    bgmPrefabs[n].GetComponent<AudioSource>().Stop();
-                    bgmPrefabs[n].gameObject.SetActive(false);
+                    bgmPrefabs[n]?.GetComponent<AudioSource>().Stop();
+                    bgmPrefabs[n]?.gameObject.SetActive(false);
                     bgmPrefabs[n] = null;
                     bgmDead[n] = true;
                 }

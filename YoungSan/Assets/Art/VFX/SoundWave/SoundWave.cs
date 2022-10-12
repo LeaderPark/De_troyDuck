@@ -20,6 +20,16 @@ public class SoundWave : Installation
     IEnumerator Routine()
     {
         visualEffect.SetBool("Loop", true);
+
+        if (ownerEntity?.entityData.name == "Jing")
+        {
+            SoundManager soundManager = ManagerObject.Instance.GetManager(ManagerType.SoundManager) as SoundManager;
+            foreach (var sound in skillData.skillSet.skillDatas[EventCategory.Skill1][0].attackSounds)
+            {
+                soundManager.SoundStart(sound.name, transform);
+            }
+        }
+
         yield return new WaitForSeconds(0.1f);
         visualEffect.SetBool("Loop", false);
         yield return new WaitForSeconds(0.1f);

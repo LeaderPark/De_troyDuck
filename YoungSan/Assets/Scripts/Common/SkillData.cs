@@ -49,6 +49,29 @@ public class SkillData : MonoBehaviour
         }
     }
 
+
+    public int CalculateSkillDamageByIndex(int index)
+    {
+        string temp = skillDamageForms[index];
+        foreach (var item in System.Enum.GetNames(typeof(StatCategory)))
+        {
+            temp = temp.Replace("{" + item + "}", skillSet.entity.clone.GetStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+            temp = temp.Replace("{Max" + item + "}", skillSet.entity.clone.GetMaxStat((StatCategory)System.Enum.Parse(typeof(StatCategory), item)).ToString());
+        }
+
+        Expression ex = new Expression(temp);
+        object obj = ex.Evaluate();
+
+        if (obj.GetType() == typeof(double))
+        {
+            return (int)((double)ex.Evaluate());
+        }
+        else
+        {
+            return (int)ex.Evaluate();
+        }
+    }
+
     public int CalculateUseStamina()
     {
         string temp = useStaminaForm;

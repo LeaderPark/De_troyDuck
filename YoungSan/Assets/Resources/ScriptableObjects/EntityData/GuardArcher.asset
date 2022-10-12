@@ -13,7 +13,14 @@ MonoBehaviour:
   m_Name: GuardArcher
   m_EditorClassIdentifier: 
   entityName: "\uAD00\uC544 \uAD81\uBCD1"
-  skillIcon: []
+  skillIcon:
+  - {fileID: 7025812153680301779, guid: 83ec08fcac7d25c4ca55d78eb4dbf9df, type: 3}
+  skillContents:
+  - text: "\uD654\uC0B4\uC744 \uC3D8\uC544 <D{Damage00}\uC758 \uD53C\uD574>\uB97C
+      \uC785\uD799\uB2C8\uB2E4.\n<G( \uAE30\uB825 <S{Stamina0}> \uC18C\uBAA8 )>"
+  - text: "\uD65C\uC744 \uD718\uB458\uB7EC \uC8FC\uBCC0\uC758 \uC801\uC744 \uBC00\uC5B4\uB0B4\uBA70
+      <D{Damage00}\uC758 \uD53C\uD574>\uB97C \uC785\uD799\uB2C8\uB2E4.\n<G( \uAE30\uB825
+      <S{Stamina0}> \uC18C\uBAA8 )>"
   status:
     stats:
     - category: 0

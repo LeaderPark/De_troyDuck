@@ -42,7 +42,7 @@ public class DefaultPanel : MonoBehaviour
                 skillImages[index].sprite = entity.entityData.skillIcon[index - 1];
             }
             if (!(entity.entityData.skillContents == null || entity.entityData.skillContents.Length == 0))
-                contents[index].text = InterpretContent((EventCategory)(index - 1), entity.entityData.skillContents[index].text, skillSet);
+                contents[index].text = InterpretContent((EventCategory)(index + 1), entity.entityData.skillContents[index].text, skillSet);
             covers[index].SetActive(false);
         }
         else
@@ -60,14 +60,15 @@ public class DefaultPanel : MonoBehaviour
         {
             for (int j = 0; j < skillSet.skillDatas[category][i].skillDamageForms.Length; j++)
             {
-                result = result.Replace(string.Concat("{Damage", i, j, "}"), skillSet.skillDatas[category][i].CalculateSkillDamage().ToString());
+                result = result.Replace(string.Concat("{Damage", i, j, "}"), skillSet.skillDatas[category][i].CalculateSkillDamageByIndex(j).ToString());
             }
             result = result.Replace(string.Concat("{Stamina", i, "}"), skillSet.skillDatas[category][i].CalculateUseStamina().ToString());
         }
 
-        result = result.Replace("<D", "<color=red>");
-        result = result.Replace("<S", "<color=blue>");
         result = result.Replace(">", "</color>");
+        result = result.Replace("<D", "<color=red>");
+        result = result.Replace("<G", "<color=#A0A0A0>");
+        result = result.Replace("<S", "<color=#0000A0>");
 
         return result;
     }

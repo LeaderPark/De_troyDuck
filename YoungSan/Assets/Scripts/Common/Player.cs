@@ -351,7 +351,7 @@ public class Player : MonoBehaviour
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("LockTime", new object[] { 0.0f });
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Move" });
             entity.GetProcessor(typeof(Processor.Animate))?.AddCommand("PlayNoLock", new object[] { "Dash" });
-            entity.clone.SubStat(StatCategory.Stamina, 50);
+            entity.clone.SubStat(StatCategory.Stamina, entity.clone.GetMaxStat(StatCategory.Stamina) / 6);
 
             SkillSet skillSet = entity.GetComponentInChildren<SkillSet>();
             skillSet.StopSkill();

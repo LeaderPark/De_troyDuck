@@ -79,7 +79,7 @@ public class DataManager : Manager
 
     void OnApplicationQuit()
     {
-        //SetReFiles();
+        SetReFiles();
     }
 
     private void SetDefaultData()
@@ -104,7 +104,7 @@ public class DataManager : Manager
 
     private void SaveGameData(Entity entity)
     {
-        entity.SetHp(1,true);
+        entity.SetHp(1, true);
 
         QuestManager questManager = ManagerObject.Instance.GetManager(ManagerType.QuestManager) as QuestManager;
         data.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;

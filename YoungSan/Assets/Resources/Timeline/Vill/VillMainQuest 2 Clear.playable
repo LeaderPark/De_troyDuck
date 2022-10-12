@@ -3412,7 +3412,14 @@ MonoBehaviour:
   m_Name: Object/ObjControl
   m_EditorClassIdentifier: 
   m_Time: 0.2833333333333333
-  animationDatas: []
+  animationDatas:
+  - mainChar: 0
+    getMainCharAnimator: 1
+    contorolObject:
+      exposedName: 1f49d9b5003b9c148ae1c749ea0233fe
+      defaultValue: {fileID: 0}
+    animation: Idle
+    isLeft: 1
   objectData:
   - mainChar: 0
     obj:

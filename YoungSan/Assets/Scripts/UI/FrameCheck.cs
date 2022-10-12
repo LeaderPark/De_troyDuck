@@ -1,3 +1,5 @@
+
+#if UNITY_EDITOR
 using UnityEngine;
 using System.Collections;
 using System.Text;
@@ -97,4 +99,5 @@ public class FrameCheck : MonoBehaviour
 
         GUI.Label(rect_, builder_.ToString(), style_);
     }
-} 
+}
+#endif

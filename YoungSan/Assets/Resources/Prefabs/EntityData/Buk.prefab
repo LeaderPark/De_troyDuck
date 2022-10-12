@@ -59,7 +59,7 @@ MonoBehaviour:
     - {fileID: 5701435615488832334}
   useSkill: 0
   active: 0
-  delayTime: 0.1
+  delayTime: 0.3
   skillData: {fileID: 0}
   running: 0
 --- !u!1 &5701435615083901177
@@ -367,7 +367,7 @@ MonoBehaviour:
   canrotate: 0
   coolTime: 5
   waitTime: 0.5
-  useStaminaForm: '{Attack}'
+  useStaminaForm: 50
   skillEffect: {fileID: 5701435616517486248}
   attackSounds:
   - {fileID: 8300000, guid: 549825e7825724446ae01d90e19168ab, type: 3}
@@ -532,7 +532,7 @@ MonoBehaviour:
   canrotate: 0
   coolTime: 0
   waitTime: 0.5
-  useStaminaForm: '{Attack}'
+  useStaminaForm: 0
   skillEffect: {fileID: 5701435615083901127}
   attackSounds:
   - {fileID: 8300000, guid: 830d4c0f905a3174491ba1e31b04716e, type: 3}
@@ -596,7 +596,7 @@ MonoBehaviour:
   canrotate: 0
   coolTime: 0
   waitTime: 0.5
-  useStaminaForm: '{MaxStamina} / 5'
+  useStaminaForm: 30
   skillEffect: {fileID: 5701435616697094854}
   attackSounds:
   - {fileID: 8300000, guid: 6dd84e75efb98d049b55e30c2c5f7596, type: 3}
@@ -852,7 +852,7 @@ MonoBehaviour:
   canrotate: 0
   coolTime: 5
   waitTime: 0.5
-  useStaminaForm: '{Attack}'
+  useStaminaForm: 50
   skillEffect: {fileID: 5701435616755337657}
   attackSounds:
   - {fileID: 8300000, guid: 9be70c3fd2560794fa3cd15540cce7de, type: 3}

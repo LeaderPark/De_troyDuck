@@ -716,7 +716,7 @@ MonoBehaviour:
   canrotate: 0
   coolTime: 0
   waitTime: 1
-  useStaminaForm: '{MaxStamina} / 5'
+  useStaminaForm: 10
   skillEffect: {fileID: 1079055413492156009}
   attackSounds:
   - {fileID: 8300000, guid: 1faeb5443c5808445884bfb6ec8603fe, type: 3}
@@ -828,7 +828,7 @@ MonoBehaviour:
   canrotate: 0
   coolTime: 0
   waitTime: 0
-  useStaminaForm: '{MaxStamina} / 5'
+  useStaminaForm: 30
   skillEffect: {fileID: 2359425491017221281}
   attackSounds:
   - {fileID: 8300000, guid: e18f10e0bb3688d4782e896922e56567, type: 3}
@@ -1420,7 +1420,7 @@ MonoBehaviour:
   canrotate: 0
   coolTime: 10
   waitTime: 0
-  useStaminaForm: ({MaxHealth} - {Health}) / 3
+  useStaminaForm: 150
   skillEffect: {fileID: 0}
   attackSounds:
   - {fileID: 8300000, guid: 96ce289c932f8cc4892d6049b528f4aa, type: 3}

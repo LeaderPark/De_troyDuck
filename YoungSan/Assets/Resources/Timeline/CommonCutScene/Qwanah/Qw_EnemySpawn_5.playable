@@ -130,6 +130,7 @@ MonoBehaviour:
     - {fileID: 4063499115934537343}
     - {fileID: 1326506063916281463}
     - {fileID: -3807442731110900764}
+    - {fileID: 8790163455070183748}
 --- !u!114 &-2735152743191019821
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,7 +222,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -560,3 +579,29 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: c6e6eeb8d7bdfce4ebd89e2f2632bf6c, type: 2}
+--- !u!114 &8790163455070183748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
+  m_Name: Event Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0.016666666666666666
+  events:
+  - obj:
+      exposedName: ce99eca629b2b4d4cb7e9f97551ac346
+      defaultValue: {fileID: 0}
+    component: DeleteEntity
+    function: Delete
+    param: []
+  - obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    component: 
+    function: 
+    param: []

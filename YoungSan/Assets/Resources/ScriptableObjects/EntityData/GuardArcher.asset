@@ -27,8 +27,8 @@ MonoBehaviour:
       minValue: 250
       maxValue: 300
     - category: 1
-      minValue: 70
-      maxValue: 80
+      minValue: 30
+      maxValue: 40
     - category: 2
       minValue: 6
       maxValue: 7
@@ -36,6 +36,9 @@ MonoBehaviour:
       minValue: 200
       maxValue: 300
   playerStatus:
-    stats: []
+    stats:
+    - category: 1
+      minValue: 70
+      maxValue: 70
   prefab: {fileID: 5698397584404828078, guid: 43a0a6ef9b13ef74684d0a0d0d5e4783, type: 3}
   uiPos: 3.6

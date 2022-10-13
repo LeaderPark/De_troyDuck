@@ -443,6 +443,20 @@ MonoBehaviour:
       type: bool
     - data: 0
       type: float
+--- !u!114 &-856537896055155937
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0863e9c2ac77964085c463aa797e1aa, type: 3}
+  m_Name: Quest/QuestClearMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  quest: {fileID: 11400000, guid: 3293292a4dbc49644a9cf4c2b58c520d, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +534,7 @@ MonoBehaviour:
     - {fileID: 8907238623748879709}
     - {fileID: 2697160310360100771}
     - {fileID: 1390077611661064331}
+    - {fileID: -856537896055155937}
 --- !u!114 &598636094177783306
 MonoBehaviour:
   m_ObjectHideFlags: 1

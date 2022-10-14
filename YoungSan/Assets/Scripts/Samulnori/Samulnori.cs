@@ -24,6 +24,34 @@ public class Samulnori : MonoBehaviour
     public System.Func<IEnumerator>[] patternList = new System.Func<IEnumerator>[patternCount];
     int patternIndex = 0;
 
+    void OnDestroy()
+    {
+        for (int i = 0; i < samulEntities.Count; i++)
+        {
+            int n = 0;
+            switch (samulEntities[i].gameObject.name)
+            {
+                case "Buk":
+                    n = 0;
+                    break;
+                case "Jing":
+                    n = 1;
+                    break;
+                case "Janggu":
+                    n = 2;
+                    break;
+                case "Kkwaenggwari":
+                    n = 3;
+                    break;
+            }
+
+            bgmPrefabs[n]?.GetComponent<AudioSource>().Stop();
+            bgmPrefabs[n]?.gameObject.SetActive(false);
+            bgmPrefabs[n] = null;
+            bgmDead[n] = true;
+        }
+    }
+
     void ClearPattern()
     {
         patternList[0] = PatternPackA;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7618586de51a28a46a5963f79fd67a44, type: 3}
   m_Name: Event Marker
   m_EditorClassIdentifier: 
-  m_Time: 0
+  m_Time: 0.016666666666666666
   events:
   - obj:
       exposedName: 9c4ebfde1f8f73b4581180258e19d1d2
@@ -2389,16 +2389,6 @@ MonoBehaviour:
     mainCharTrm: 0
   - mainChar: 0
     obj:
-      exposedName: b763887597086b6469f892463de40edf
-      defaultValue: {fileID: 0}
-    active: 1
-    objPos: {x: 0, y: 0, z: 0}
-    objTrm:
-      exposedName: 
-      defaultValue: {fileID: 0}
-    mainCharTrm: 1
-  - mainChar: 1
-    obj:
       exposedName: 
       defaultValue: {fileID: 0}
     active: 0
@@ -2406,7 +2396,7 @@ MonoBehaviour:
     objTrm:
       exposedName: 
       defaultValue: {fileID: 0}
-    mainCharTrm: 1
+    mainCharTrm: 0
   - mainChar: 0
     obj:
       exposedName: 
@@ -3565,7 +3555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f5fa8c59613a24abe4dcf62747751e, type: 3}
   m_Name: Object/ObjControl
   m_EditorClassIdentifier: 
-  m_Time: 0.2833333333333333
+  m_Time: 2.533333333333333
   animationDatas:
   - mainChar: 0
     getMainCharAnimator: 1
@@ -3595,6 +3585,16 @@ MonoBehaviour:
       exposedName: 3071b3267b9e47f4fb670411a964e1d0
       defaultValue: {fileID: 0}
     mainCharTrm: 0
+  - mainChar: 1
+    obj:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    active: 0
+    objPos: {x: 0, y: 0, z: 0}
+    objTrm:
+      exposedName: 
+      defaultValue: {fileID: 0}
+    mainCharTrm: 1
   - mainChar: 0
     obj:
       exposedName: 
@@ -3617,7 +3617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 0.016666666666666666
+  m_Time: 0.08333333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: c6e6eeb8d7bdfce4ebd89e2f2632bf6c, type: 2}
